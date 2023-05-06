@@ -70,9 +70,21 @@ public class Player implements java.io.Serializable {
     //  method to check if a player can afford something based on the cost
     public boolean canAfford(HashMap<Object, Integer> cost) {
         for (Map.Entry<Object, Integer> entry : cost.entrySet()) {
-            if (!this.storeHouse.contains(entry.getKey(), entry.getValue())) {
-                return false;
+            Object key = entry.getKey();
+            int value = entry.getValue();
+
+            if (key instanceof Integer) {  //  if the key is a sestertius
+                if (this.sestertii < value) {
+                    return false;
+                }
             }
+            
+            //  TODO: Good enum/class
+            //if (key instanceof Good) {  //  if the key is a Good
+                if (!this.storeHouse.contains(entry.getKey(), entry.getValue())) {
+                    return false;
+                }
+            //}
         }
         return true;
     }
