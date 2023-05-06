@@ -3,6 +3,7 @@ package src;
 //  imports
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a store house that can store 12 elements
@@ -49,6 +50,11 @@ public class StoreHouse implements java.io.Serializable {
         //} else {
             //throw new IllegalArgumentException("Element must be of type Good or Colonist");
         //}
+    }
+
+    //  method to check if an element is contained a certain number of times
+    public boolean contains(Object element, int count) {
+        return Collections.frequency(elements, element) == count;
     }
 
     //  getter to get the number of elements
