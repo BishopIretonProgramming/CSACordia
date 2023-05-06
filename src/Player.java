@@ -2,6 +2,8 @@ package src;
 
 //  imports
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class to represent a player
@@ -63,6 +65,16 @@ public class Player implements java.io.Serializable {
         // cards.add(new Prefect());
         // cards.add(new Prefect());
         // cards.add(new Senator());
+    }
+
+    //  method to check if a player can afford something based on the cost
+    public boolean canAfford(HashMap<Object, Integer> cost) {
+        for (Map.Entry<Object, Integer> entry : cost.entrySet()) {
+            if (!this.storeHouse.contains(entry.getKey(), entry.getValue())) {
+                return false;
+            }
+        }
+        return true;
     }
     
     //  getter to get the name of the player
