@@ -81,7 +81,7 @@ public class Player implements java.io.Serializable {
             
             //  TODO: Good enum/class
             //if (key instanceof Good) {  //  if the key is a Good
-                if (!this.storeHouse.contains(entry.getKey(), entry.getValue())) {
+                if (!this.storeHouse.contains(key, value)) {
                     return false;
                 }
             //}
