@@ -1,3 +1,5 @@
+package src;
+
 /* Nora Hixson
 * Good Enum
 * Enums WINE, BRICK, TOOL, CLOTH, FOOD
