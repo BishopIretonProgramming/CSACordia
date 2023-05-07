@@ -57,6 +57,11 @@ public class StoreHouse implements java.io.Serializable {
         return Collections.frequency(elements, element) == count;
     }
 
+    //  method to get element at certain index
+    public Object get(int index) {
+        return elements.get(index);
+    }
+
     //  getter to get the number of elements
     public int size() {
         return elements.size();
