@@ -1,4 +1,4 @@
-package src.Cards;
+package src.cards;
 
 
 public class Mercator extends PersonalityCard implements Mercvrivs {

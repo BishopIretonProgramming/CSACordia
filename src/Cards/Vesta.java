@@ -1,4 +1,4 @@
-package src.Cards;
+package src.cards;
 
 
 public interface Vesta {
