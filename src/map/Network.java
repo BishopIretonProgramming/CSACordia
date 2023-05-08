@@ -3,10 +3,13 @@ package src.map;
 //  imports
 import java.util.List;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Queue;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 import static src.map.PathNode.PathType;
 
@@ -98,4 +101,21 @@ public class Network implements java.io.Serializable {
             });
         });
     }
+
+    /**
+     * Method to compute the distance between two PathNodes
+     * @param start the start PathNode
+     * @param end the end PathNode
+     * @return the number of nodes between the start node and path node including end but exclusing start or -1 if no path is found
+     */
+    public int computeDistanceBetween(PathNode start, PathNode end) {
+
+        //  if there is no path found
+        return -1;
+    }
+    
+    
+    
+    
+    
 }

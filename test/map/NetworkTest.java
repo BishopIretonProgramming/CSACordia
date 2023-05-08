@@ -11,6 +11,8 @@ public class NetworkTest {
         CityNode brundisium = new CityNode("Brundisium");
         CityNode pompeii = new CityNode("Pompeii");
         CityNode florence = new CityNode("Florence");
+        CityNode newYork = new CityNode("New York");
+        CityNode bremmerton = new CityNode("Bremmerton");
 
         PathNode romeToBrundisium = new PathNode("Rome to Brundisium", PathType.LAND);
         PathNode romeToPompeii = new PathNode("Rome to Pompeii", PathType.LAND);
@@ -18,6 +20,8 @@ public class NetworkTest {
         PathNode brundisiumToPompeii = new PathNode("Brundisium to Pompeii", PathType.SEA);
         PathNode brundisiumToFlorence = new PathNode("Brundisium to Florence", PathType.LAND);
         PathNode pompeiiToFlorence = new PathNode("Pompeii to Florence", PathType.LAND);
+        PathNode pompeiiToNewYork = new PathNode("Pompeii to New York", PathType.SEA);
+        PathNode newYorkToBremmerton = new PathNode("New York to Bremmerton", PathType.LAND);
 
         romeToBrundisium.addConnections(rome, brundisium);
         romeToPompeii.addConnections(rome, pompeii);
@@ -25,15 +29,20 @@ public class NetworkTest {
         brundisiumToPompeii.addConnections(brundisium, pompeii);
         brundisiumToFlorence.addConnections(brundisium, florence);
         pompeiiToFlorence.addConnections(pompeii, florence);
+        pompeiiToNewYork.addConnections(pompeii, newYork);
+        newYorkToBremmerton.addConnections(newYork, bremmerton);
 
         Network network = new Network();
 
-        network.addCities(rome, brundisium, pompeii, florence);
+        network.addCities(rome, brundisium, pompeii, florence, newYork, bremmerton);
         
-        network.addPaths(romeToBrundisium, romeToPompeii, romeToFlorence, brundisiumToPompeii, brundisiumToFlorence, pompeiiToFlorence);
+        network.addPaths(romeToBrundisium, romeToPompeii, romeToFlorence, brundisiumToPompeii, brundisiumToFlorence, pompeiiToFlorence, pompeiiToNewYork, newYorkToBremmerton);
 
         network.compute();
 
         network.visualize();
+
+        int distance = network.computeDistanceBetween(brundisiumToPompeii, newYorkToBremmerton);
+        System.out.println(distance);
     }
 }
