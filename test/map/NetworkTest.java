@@ -34,17 +34,9 @@ public class NetworkTest {
 
         Network network = new Network();
 
-        network.addCity(rome);
-        network.addCity(brundisium);
-        network.addCity(pompeii);
-        network.addCity(florence);
+        network.addCities(new CityNode[] {rome, brundisium, pompeii, florence});
         
-        network.addPath(romeToBrundisium);
-        network.addPath(romeToPompeii);
-        network.addPath(romeToFlorence);
-        network.addPath(brundisiumToPompeii);
-        network.addPath(brundisiumToFlorence);
-        network.addPath(pompeiiToFlorence);
+        network.addPaths(new PathNode[] {romeToBrundisium, romeToPompeii, romeToFlorence, brundisiumToPompeii, brundisiumToFlorence, pompeiiToFlorence});
 
         network.compute();
 

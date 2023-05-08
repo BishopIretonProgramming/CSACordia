@@ -49,7 +49,7 @@ public class Network implements java.io.Serializable {
      * Method to add several PathNodes at a time
      * @param paths the PathNodes to add to the Network
      */
-    public void addPath(PathNode... paths) {
+    public void addPaths(PathNode... paths) {
         for (PathNode path : paths) {
             this.paths.put(path.name(), path);
         }
