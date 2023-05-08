@@ -1,5 +1,8 @@
 package src.game.cards;
 
+//  imports
+import src.game.cards.godtype.Mercvrivs;
+
 import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
