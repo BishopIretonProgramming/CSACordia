@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import src.game.cards.PersonalityCard;
+
 /**
  * A class to represent a player
  * can be serialized for game state saving
@@ -18,8 +20,8 @@ public class Player implements java.io.Serializable {
 
     //  waiting for PersonalityCard class or something similar
     //  TODO: Personality Cards, Colonists
-    //private ArrayList<PersonalityCard> cards;  //  the player's personality cards
-    //private ArrayList<PersonalityCard> discard;  //  the personality cards that have been played
+    private ArrayList<PersonalityCard> cards;  //  the player's personality cards
+    private ArrayList<PersonalityCard> discard;  //  the personality cards that have been played
     //private ArrayList<Colonist> colonists;  //  the player's colonists
     private StoreHouse storeHouse;  //  the player's storeHouse
     private final String NAME;  //  the name of the player
@@ -45,8 +47,8 @@ public class Player implements java.io.Serializable {
     //  constructor with option to set the player as first or last
     public Player(final String NAME, boolean first, boolean last) {
         this.NAME = NAME;
-        //this.cards = new ArrayList<>(7);
-        //this.discard = new ArrayList<>();
+        this.cards = new ArrayList<>(7);
+        this.discard = new ArrayList<>();
         //this.colonists = new ArrayList<>(6);
         this.storeHouse = new StoreHouse();
         this.victoryPoints = 0;
@@ -79,12 +81,11 @@ public class Player implements java.io.Serializable {
                 }
             }
             
-            //  TODO: Good enum/class
-            //if (key instanceof Good) {  //  if the key is a Good
+            if (key instanceof Good) {  //  if the key is a Good
                 if (!this.storeHouse.contains(key, value)) {
                     return false;
                 }
-            //}
+            }
         }
         return true;
     }
