@@ -1,7 +1,7 @@
-package src.cards;
+package src.game.cards;
 
 
-public interface Mercvrivs {
+public interface Jupiter {
    
    default int scorePoints() {
       //Return points

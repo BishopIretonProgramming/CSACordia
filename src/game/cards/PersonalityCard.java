@@ -1,4 +1,4 @@
-package src.cards;
+package src.game.cards;
 
 import java.awt.Graphics;
 
@@ -7,7 +7,7 @@ public abstract class PersonalityCard {
    private int victoryMultiplier; //The mutiplier for the card's victory points
    private boolean played; //Whether this card has been played already
    
-   PersonalityCard(int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
+   public PersonalityCard(int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
       this.brickPrice = brickPrice;
       this.foodPrice = foodPrice;
       this.toolPrice = toolPrice;

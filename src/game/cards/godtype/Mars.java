@@ -1,7 +1,7 @@
-package src.cards;
+package src.game.cards;
 
 
-public interface Vesta {
+public interface Mars {
    
    default int scorePoints() {
       //Return points

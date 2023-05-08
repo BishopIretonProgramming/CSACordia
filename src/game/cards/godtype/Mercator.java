@@ -1,4 +1,4 @@
-package src.cards;
+package src.game.cards;
 
 import java.awt.Graphics;
 

@@ -1,4 +1,4 @@
-package src.cards;
+package src.game.cards;
 
 
 public interface Satvrnvs {

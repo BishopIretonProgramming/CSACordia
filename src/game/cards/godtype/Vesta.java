@@ -1,7 +1,7 @@
-package src.cards;
+package src.game.cards;
 
 
-public interface Jupiter {
+public interface Vesta {
    
    default int scorePoints() {
       //Return points
