@@ -1,4 +1,4 @@
-package src.cards;
+package src.game.cards.godtype;
 
 
 public interface Mars {

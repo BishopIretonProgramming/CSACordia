@@ -1,23 +1,25 @@
-package src.cards;
+package src.game.cards;
 
+import java.awt.Graphics;
 
 public abstract class PersonalityCard {
    private int winePrice, toolPrice, foodPrice, brickPrice, clothPrice; //The amount of each item that this card costs to buy it
    private int victoryMultiplier; //The mutiplier for the card's victory points
    private boolean played; //Whether this card has been played already
    
-   PersonalityCard(int winePrice, int toolPrice, int foodPrice, int brickPrice, int clothPrice, int victoryMultiplier) {
-      this.winePrice = winePrice;
-      this.toolPrice = toolPrice;
-      this.foodPrice = foodPrice;
+   public PersonalityCard(int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
       this.brickPrice = brickPrice;
+      this.foodPrice = foodPrice;
+      this.toolPrice = toolPrice;
+      this.winePrice = winePrice;
       this.clothPrice = clothPrice;
       this.victoryMultiplier = victoryMultiplier;
    }
    
    public abstract void doAction();
    public abstract int calculatePoints();
-   
+   public abstract void update();
+   public abstract void draw(Graphics g);
    
    /*
    For use with Tribune ability; returns the card to the player's hand 

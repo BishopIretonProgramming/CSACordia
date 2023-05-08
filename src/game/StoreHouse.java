@@ -1,4 +1,4 @@
-package src;
+package src.game;
 
 //  imports
 import java.util.List;
@@ -25,13 +25,13 @@ public class StoreHouse implements java.io.Serializable {
     
     //  method to initialize the store house by adding the starting elements
     private void init() {
-        //  TODO: Good enum/class, Colonist class
-        // elements.add(Good.WINE);
-        // elements.add(Good.BRICK);
-        // elements.add(Good.TOOL);
-        // elements.add(Good.CLOTH);
-        // elements.add(Good.FOOD);
-        // elements.add(Good.FOOD);
+        //  TODO: Colonist class
+        elements.add(Good.WINE);
+        elements.add(Good.BRICK);
+        elements.add(Good.TOOL);
+        elements.add(Good.CLOTH);
+        elements.add(Good.FOOD);
+        elements.add(Good.FOOD);
         // elements.add(new Colonist(ColonistType.SEA));
         // elements.add(new Colonist(ColonistType.SEA));
         // elements.add(new Colonist(ColonistType.LAND));
@@ -40,16 +40,16 @@ public class StoreHouse implements java.io.Serializable {
 
     //  method to add an element to the StoreHouse
     public void add(Object element) {
-        // TODO: Good enum/class, Colonist class
-        //if (element instanceof Good || element instanceof Colonist) {
+        // TODO: Colonist class
+        if (element instanceof Good) { // || element instanceof Colonist) {
             if (elements.size() < MAX_CAPACITY) {
                 elements.add(element);
             } else {
                 throw new IllegalStateException("StoreHouse is full");
             }
-        //} else {
-            //throw new IllegalArgumentException("Element must be of type Good or Colonist");
-        //}
+        } else {
+            throw new IllegalArgumentException("Element must be of type Good or Colonist");
+        }
     }
 
     //  method to check if an element is contained a certain number of times

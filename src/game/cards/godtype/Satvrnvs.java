@@ -1,7 +1,7 @@
-package src.cards;
+package src.game.cards.godtype;
 
 
-public interface Vesta {
+public interface Satvrnvs {
    
    default int scorePoints() {
       //Return points
