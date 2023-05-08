@@ -4,8 +4,8 @@ package src;
 * Good Enum
 * Enums WINE, BRICK, TOOL, CLOTH, FOOD
 * Fields
-* int value
-* String name
+* int PRICE
+* String NAME
 */
 
 public enum Good{
@@ -16,11 +16,11 @@ public enum Good{
    CLOTH(7,"cloth"), 
    FOOD(4,"food");
    
-   final int value;
-   final String name; 
+   final int PRICE;
+   final String NAME; 
    
    Good(int v, String n){
-      value = v;
-      name = n;
+      VALUE = v;
+      NAME = n;
    }
 }
