@@ -89,13 +89,13 @@ public class Network implements java.io.Serializable {
      * Method to visualize the Network
      */
     public void visualize() {
-        for (CityNode city : cities.values()) {
-            System.out.println(city.name() + " connections");
-            for (PathNode path : city.connections()) {
+        cities.values().forEach(city -> {
+            System.out.printf("%s connections:%n", city.name());
+            city.connections().forEach(path -> {
                 List<CityNode> connections = path.connections();
-                System.out.println("\t" + connections.get(0).name() + " - " + connections.get(1).name() + " (" + path.name() + ")");            
-            }
-            System.out.println();
-        }
+                System.out.printf("\t%s - %s (%s)%n",
+                    connections.get(0).name(), connections.get(1).name(), path.name());
+            });
+        });
     }
 }

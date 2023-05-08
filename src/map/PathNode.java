@@ -49,4 +49,14 @@ public record PathNode(String name, PathType type, List<CityNode> connections) i
     public void addConnection(CityNode node) {
         this.connections.add(node);
     }
+
+    /**
+     * Method to add several connections at a time
+     * @param nodes the CityNodes to connect to this PathNode
+     */
+    public void addConnections(CityNode... nodes) {
+        for (CityNode node : nodes) {
+            addConnection(node);
+        }
+    }
 }

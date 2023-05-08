@@ -34,4 +34,14 @@ public record CityNode(String name, List<PathNode> connections) implements java.
     public void addConnection(PathNode node) {
         this.connections.add(node);
     }
+
+    /**
+     * Method to add several connections at a time
+     * @param nodes the PathNodes to connect to this CityNode
+     */
+    public void addConnections(PathNode... nodes) {
+        for (PathNode node : nodes) {
+            addConnection(node);
+        }
+    }
 }

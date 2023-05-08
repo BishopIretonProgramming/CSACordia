@@ -19,24 +19,18 @@ public class NetworkTest {
         PathNode brundisiumToFlorence = new PathNode("Brundisium to Florence", PathType.LAND);
         PathNode pompeiiToFlorence = new PathNode("Pompeii to Florence", PathType.LAND);
 
-        romeToBrundisium.addConnection(rome);
-        romeToBrundisium.addConnection(brundisium);
-        romeToPompeii.addConnection(rome);
-        romeToPompeii.addConnection(pompeii);
-        romeToFlorence.addConnection(rome);
-        romeToFlorence.addConnection(florence);
-        brundisiumToPompeii.addConnection(brundisium);
-        brundisiumToPompeii.addConnection(pompeii);
-        brundisiumToFlorence.addConnection(brundisium);
-        brundisiumToFlorence.addConnection(florence);
-        pompeiiToFlorence.addConnection(pompeii);
-        pompeiiToFlorence.addConnection(florence);
+        romeToBrundisium.addConnections(rome, brundisium);
+        romeToPompeii.addConnections(rome, pompeii);
+        romeToFlorence.addConnections(rome, florence);
+        brundisiumToPompeii.addConnections(brundisium, pompeii);
+        brundisiumToFlorence.addConnections(brundisium, florence);
+        pompeiiToFlorence.addConnections(pompeii, florence);
 
         Network network = new Network();
 
-        network.addCities(new CityNode[] {rome, brundisium, pompeii, florence});
+        network.addCities(rome, brundisium, pompeii, florence);
         
-        network.addPaths(new PathNode[] {romeToBrundisium, romeToPompeii, romeToFlorence, brundisiumToPompeii, brundisiumToFlorence, pompeiiToFlorence});
+        network.addPaths(romeToBrundisium, romeToPompeii, romeToFlorence, brundisiumToPompeii, brundisiumToFlorence, pompeiiToFlorence);
 
         network.compute();
 
