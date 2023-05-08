@@ -1,5 +1,6 @@
 package src.cards;
 
+import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
    
@@ -16,6 +17,16 @@ public class Mercator extends PersonalityCard implements Mercvrivs {
    @Override
    public int calculatePoints() {
       return getVictoryMultiplier() * scorePoints();
+   }
+   
+   @Override
+   public void update() {
+      
+   }
+   
+   @Override
+   public void draw(Graphics g) {
+      
    }
    
 }

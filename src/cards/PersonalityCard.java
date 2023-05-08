@@ -1,5 +1,6 @@
 package src.cards;
 
+import java.awt.Graphics;
 
 public abstract class PersonalityCard {
    private int winePrice, toolPrice, foodPrice, brickPrice, clothPrice; //The amount of each item that this card costs to buy it
@@ -17,7 +18,8 @@ public abstract class PersonalityCard {
    
    public abstract void doAction();
    public abstract int calculatePoints();
-   
+   public abstract void update();
+   public abstract void draw(Graphics g);
    
    /*
    For use with Tribune ability; returns the card to the player's hand 
