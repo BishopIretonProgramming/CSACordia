@@ -27,7 +27,7 @@ public class Network implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * A list of all of the cities in the Network
+     * A list of all the cities in the Network
      */
     private Map<String, CityNode> cities;
     private Map<String, PathNode> paths;
@@ -78,7 +78,7 @@ public class Network implements java.io.Serializable {
 
     /**
      * Method to compute the Network
-     * connects all of the paths and cities to form the network
+     * connects all the paths and cities to form the network
      */
     public void compute() {
         paths.values().forEach(path -> {
