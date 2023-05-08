@@ -46,11 +46,31 @@ public class Network implements java.io.Serializable {
     }
 
     /**
+     * Method to add several PathNodes at a time
+     * @param paths the PathNodes to add to the Network
+     */
+    public void addPath(PathNode... paths) {
+        for (PathNode path : paths) {
+            this.paths.put(path.name(), path);
+        }
+    }
+
+    /**
      * Method to add a CityNode to the Network
      * @param city the CityNode to add to the Network
      */
     public void addCity(CityNode city) {
         cities.put(city.name(), city);
+    }
+
+    /**
+     * Method to add multiple CityNodes at a time
+     * @param cities the CityNodes to add to the Network
+     */
+    public void addCities(CityNode... cities) {
+        for (CityNode city : cities) {
+            this.cities.put(city.name(), city);
+        }
     }
 
     /**
