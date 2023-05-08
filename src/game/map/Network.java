@@ -101,6 +101,14 @@ public class Network implements java.io.Serializable {
      * @return whether two PathNodes are connected
      */
     public boolean connected(PathNode start, PathNode end) {
-        return start.connections().stream().anyMatch(city -> city.connections().contains(end));
+        for (CityNode city : start.connections()) {
+            for (PathNode path : city.connections()) {
+                if (path.equals(end)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

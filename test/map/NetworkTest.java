@@ -41,5 +41,8 @@ public class NetworkTest {
         network.compute();
 
         network.visualize();
+
+        boolean connected = network.connected(brundisiumToPompeii, brundisiumToFlorence);
+        System.out.println(connected);
     }
 }

@@ -44,4 +44,17 @@ public record CityNode(String name, List<PathNode> connections) implements java.
             addConnection(node);
         }
     }
+
+    /**
+     * equals method to return if this CityNode is equal to another object
+     * @param other the Object to compare this to
+     * @return whether this and other are equal
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof CityNode node) {
+            return this.name.equals(node.name) && this.connections.equals(node.connections);
+        }
+        return false;
+    }
 }
