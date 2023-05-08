@@ -1,4 +1,4 @@
-package src.map;
+package src.game.map;
 
 //  imports
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
-import static src.map.PathNode.PathType;
+import static src.game.map.PathNode.PathType;
 
 /**
  * A class to represent a Network of nodes

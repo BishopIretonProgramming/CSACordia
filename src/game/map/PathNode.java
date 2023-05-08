@@ -1,4 +1,4 @@
-package src.map;
+package src.game.map;
 
 //  imports
 import java.util.List;

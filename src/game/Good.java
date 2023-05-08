@@ -1,4 +1,4 @@
-package src;
+package src.game;
 
 /* Nora Hixson
 * Good Enum
@@ -20,7 +20,7 @@ public enum Good{
    final String NAME; 
    
    Good(int v, String n){
-      VALUE = v;
+      PRICE = v;
       NAME = n;
    }
 }
