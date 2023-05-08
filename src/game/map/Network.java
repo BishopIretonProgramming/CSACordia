@@ -103,14 +103,17 @@ public class Network implements java.io.Serializable {
     }
 
     /**
-     * Method to compute the distance between two PathNodes
+     * Method to compute whether two PathNodes are connected
      * @param start the start PathNode
      * @param end the end PathNode
-     * @return the number of nodes between the start node and path node including end but exclusing start or -1 if no path is found
+     * @return whether two PathNodes are connected
      */
-    public int computeDistanceBetween(PathNode start, PathNode end) {
-
-        //  if there is no path found
-        return -1;
+    public boolean connected(PathNode start, PathNode end) {
+        for (CityNode city : start.connections()) {
+            if (city.connections().contains(end)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
