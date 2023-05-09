@@ -1,3 +1,5 @@
+package src.game;
+
 /* Caroline Miller
 * colonist class (in the works)
 * Colonist objects for a Colonist arraylist
