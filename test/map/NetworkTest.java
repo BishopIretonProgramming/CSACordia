@@ -5,7 +5,7 @@ import src.game.map.*;
 import static src.game.map.PathNode.PathType;
 
 public class NetworkTest {
-    
+
     public static void main(String... args) {
         CityNode rome = new CityNode("Rome");
         CityNode brundisium = new CityNode("Brundisium");
@@ -35,7 +35,7 @@ public class NetworkTest {
         Network network = new Network();
 
         network.addCities(rome, brundisium, pompeii, florence, newYork, bremmerton);
-        
+
         network.addPaths(romeToBrundisium, romeToPompeii, romeToFlorence, brundisiumToPompeii, brundisiumToFlorence, pompeiiToFlorence, pompeiiToNewYork, newYorkToBremmerton);
 
         network.compute();

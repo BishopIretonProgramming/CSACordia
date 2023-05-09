@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @author Michael Bobrowski (devinlinux)
  */
 public class Network implements java.io.Serializable {
-    
+
     /**
      * Version ID for serialization
      */
@@ -75,8 +75,8 @@ public class Network implements java.io.Serializable {
     public void compute() {
         paths.values().forEach(path -> {
             path.connections().stream()
-                .map(CityNode::name)
-                .forEach(city -> cities.get(city).addConnection(path));
+                    .map(CityNode::name)
+                    .forEach(city -> cities.get(city).addConnection(path));
         });
     }
 
@@ -89,7 +89,7 @@ public class Network implements java.io.Serializable {
             city.connections().forEach(path -> {
                 List<CityNode> connections = path.connections();
                 System.out.printf("\t%s - %s (%s)%n",
-                    connections.get(0).name(), connections.get(1).name(), path.name());
+                        connections.get(0).name(), connections.get(1).name(), path.name());
             });
         });
     }
@@ -114,7 +114,7 @@ public class Network implements java.io.Serializable {
    //if no path is found under the specified maxDist, returns -1
    //@param x the index of one of the PathNodes in the paths "array"
    //@param y the index of teh second PathNode in the paths "array"
-   public int getShortestDistence(int x, int y, int maxDist) {
+   public int getShortestDistance(int x, int y, int maxDist) {
       int[][] adjacency = new int[paths.length][paths.length]; //Adjacency Matrix representing the network of paths
       //set up adjacency matrix
       for(int r = 0; r < paths.length; r ++) {
@@ -152,5 +152,14 @@ public class Network implements java.io.Serializable {
       return temp;
    }
    */
-    
+
+    /**
+     * Method to return the shortest distance between two pathnodes including end but not start
+     * @param start the start node
+     * @param end the end node
+     * @return the number of nodes between start and end
+     */
+    public int shortestDistanceBetween(PathNode start, PathNode end) {
+        return -1;
+    }
 }
