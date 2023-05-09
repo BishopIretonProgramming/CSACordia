@@ -16,7 +16,7 @@ public class City {
      */
     public City(String name, double x, double y) {
         if (name == null)
-            throw new IllegalArgumentException("You idiot. You fool. You absolute buffoon. That don't work cuh...");
+            throw new IllegalArgumentException("Cannot have a city with no name");
         this.name = name;
         this.x = x;
         this.y = y;
