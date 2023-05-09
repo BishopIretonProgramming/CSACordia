@@ -1,13 +1,16 @@
 package src.game.cards;
 
 import java.awt.Graphics;
+import src.game.Player;
 
 public abstract class PersonalityCard {
    private int winePrice, toolPrice, foodPrice, brickPrice, clothPrice; //The amount of each item that this card costs to buy it
    private int victoryMultiplier; //The mutiplier for the card's victory points
    private boolean played; //Whether this card has been played already
+   private Player myPlayer;
    
-   public PersonalityCard(int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
+   public PersonalityCard(Player myPlayer, int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
+      this.myPlayer = myPlayer;
       this.brickPrice = brickPrice;
       this.foodPrice = foodPrice;
       this.toolPrice = toolPrice;
@@ -33,6 +36,7 @@ public abstract class PersonalityCard {
    }
    
    /**GETTERS**/
+   public Player getMyPlayer() {return this.myPlayer;}
    public int getWinePrice() {return this.winePrice;}
    public int getToolPrice() {return this.toolPrice;}
    public int getFoodPrice() {return this.foodPrice;}

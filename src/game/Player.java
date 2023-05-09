@@ -104,6 +104,11 @@ public class Player implements java.io.Serializable {
     public int numHouses() {
         return this.numHouses;
     }
+    
+    // getter for cards
+    public ArrayList<PersonalityCard> cards() {
+        return this.cards;
+    }
 
     //  getter for victory points
     public int victoryPoints() {
