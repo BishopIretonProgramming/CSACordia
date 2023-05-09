@@ -71,11 +71,10 @@ public class Node {
                     })
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            System.err.println("Error while reading nodes from file: " + e.getMessage());
+            System.err.printf("Error while reading nodes from file: %s", e.getMessage());
         }
         return nodes;
     }
-
 
     /**
      * toString to make a String representation of a Node
