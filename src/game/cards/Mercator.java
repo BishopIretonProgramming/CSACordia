@@ -2,13 +2,14 @@ package src.game.cards;
 
 //  imports
 import src.game.cards.godtype.Mercvrivs;
+import src.game.Player;
 
 import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
    
-   Mercator(int winePrice) {
-      super(0, 0, 0, winePrice, 0, 2);
+   Mercator(Player myPlayer, int winePrice) {
+      super(myPlayer, 0, 0, 0, winePrice, 0, 2);
    }
    
    @Override
