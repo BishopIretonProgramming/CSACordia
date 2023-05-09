@@ -2,16 +2,8 @@ package src.game.map;
 
 //  imports
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-
-import static src.game.map.PathNode.PathType;
 
 /**
  * A class to represent a Network of nodes
@@ -109,11 +101,8 @@ public class Network implements java.io.Serializable {
      * @return whether two PathNodes are connected
      */
     public boolean connected(PathNode start, PathNode end) {
-        for (CityNode city : start.connections()) {
-            if (city.connections().contains(end)) {
-                return true;
-            }
-        }
-        return false;
+        return start.connections().stream()
+                .flatMap(city -> city.connections().stream())
+                .anyMatch(path -> path.equals(end));
     }
 }

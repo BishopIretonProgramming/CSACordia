@@ -59,4 +59,17 @@ public record PathNode(String name, PathType type, List<CityNode> connections) i
             addConnection(node);
         }
     }
+
+    /**
+     * equals method to check if two PathNodes are the same
+     * @param other the other PathNode to check against
+     * @return whether the this is equal to other
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof PathNode node) {
+            return this.name.equals(node.name) && this.type == node.type && this.connections.equals(node.connections);
+        }
+        return false;
+    }
 }

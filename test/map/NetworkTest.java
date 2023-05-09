@@ -1,8 +1,8 @@
 package test.map;
 
 //  imports
-import src.map.*;
-import static src.map.PathNode.PathType;
+import src.game.map.*;
+import static src.game.map.PathNode.PathType;
 
 public class NetworkTest {
     
@@ -42,7 +42,7 @@ public class NetworkTest {
 
         network.visualize();
 
-        int distance = network.computeDistanceBetween(brundisiumToPompeii, newYorkToBremmerton);
-        System.out.println(distance);
+        boolean connected = network.connected(brundisiumToPompeii, brundisiumToFlorence);
+        System.out.println(connected);
     }
 }
