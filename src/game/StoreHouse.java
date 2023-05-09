@@ -36,12 +36,15 @@ public class StoreHouse implements java.io.Serializable {
         // elements.add(new Colonist(ColonistType.SEA));
         // elements.add(new Colonist(ColonistType.LAND));
         // elements.add(new Colonist(ColonistType.LAND));
+        // the colonists dont take enums in the constructor anymore, instead we should do this:
+        // elements.add(new Colonist(*player*, whichever pathnode represents rome, whether it is a land colonist or not)); x4
+        // colonist contructor parameters: Player, PathNode, boolean
     }
 
     //  method to add an element to the StoreHouse
     public void add(Object element) {
         // TODO: Colonist class
-        if (element instanceof Good) { // || element instanceof Colonist) {
+        if (element instanceof Good || element instanceof Colonist) {
             if (elements.size() < MAX_CAPACITY) {
                 elements.add(element);
             } else {
@@ -70,5 +73,33 @@ public class StoreHouse implements java.io.Serializable {
     //  getter to get the capacity of the storehouse
     public int capacity() {
         return MAX_CAPACITY;
+    }
+    
+    // method to remove an element
+    // returns true if an element was removed, returns false if no matching element was found
+    // accepts an object as a parameter just in case, but if the object is not a good it will return false
+    public boolean removeGood(Object o) {
+        if (o instanceof Good) {
+            for (Object e : elements) {
+                if (e == o) { // both .equals and == work with enums, however == is null safe so this stays
+                    elements.remove(e);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    // this is purely for convenienience since I strongly dislike enums -jonah
+    // even though a string is an object, passing a string as an argument would work
+    // since the method with the most specific matching parameter is called
+    public boolean removeGood(String s) {
+        if (s.equals("wine")) return removeGood(Good.WINE);
+        if (s.equals("brick")) return removeGood(Good.BRICK);
+        if (s.equals("tool")) return removeGood(Good.TOOL);
+        if (s.equals("cloth")) return removeGood(Good.CLOTH);
+        if (s.equals("food")) return removeGood(Good.FOOD);
+        System.out.println("you misspelled a good, go fix it");
+        return false;
     }
 }
