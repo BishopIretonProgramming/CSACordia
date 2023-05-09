@@ -1,10 +1,12 @@
+package src.game;
+
 /* Caroline 
 * inspired by: Nora :)
 * enum for sestertii
 */
 public enum Sestertii {
    
-   ONESESTERTIUS(1, "one sestertii"),
+   ONESESTERTIUS(1, "one sestertius"),
    TWOSESTERTII(2, "two sestertii"),
    FIVESESTERTII(5, "five sestertii"),
    TENSESTERTII(10, "ten sestertii");
