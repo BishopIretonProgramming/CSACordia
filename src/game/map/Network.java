@@ -105,4 +105,36 @@ public class Network implements java.io.Serializable {
                 .flatMap(city -> city.connections().stream())
                 .anyMatch(path -> path.equals(end));
     }
+    
+    
+   /* SEMI-PSEUDO CODE TO SUGGEST ALGORITHM FOR FINDING DISTANCE BETWEEN TWO PATHNODES:
+   //This method assumes "paths" is an array and that "multiplyMatrix()" has been defined
+   
+   //returns the shortest distance between two pathnodes;
+   //if no path is found under the specified maxDist, returns -1
+   //@param x the index of one of the PathNodes in the paths "array"
+   //@param y the index of teh second PathNode in the paths "array"
+   public int getShortestDistence(int x, int y, int maxDist) {
+      int[][] adjacency = new int[paths.length][paths.length]; //Adjacency Matrix representing the network of paths
+      //set up adjacency matrix
+      for(int r = 0; r < paths.length; r ++) {
+         for(int c = 0; c < paths.length; c ++) {
+            if(paths[r].isConnectedTo(paths[c])) {
+               adjacency[r][c] = 1;
+            }
+         }
+      }
+      //search adjacency matrix at each distance until maxDist for a path
+      int[][] temp = adjacency;
+      for(int i = 1; i <= maxDist; i++) {
+         if(temp[x][y] > 0) {
+            //here we may also want to check if the path(s) already have a colonist on them
+            return i; //the length of the path between the PathNodes
+         }
+         temp = multiplyMatrices(temp, adjacency); //adjacency ^ i (adjacency raised to the power of i)
+      }
+      return -1; //if no path was found
+   }
+   */
+    
 }
