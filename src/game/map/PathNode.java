@@ -61,9 +61,19 @@ public record PathNode(String name, PathType type, List<CityNode> connections) i
     }
 
     /**
+     * Method to determine whether this PathNode is connected to a CityNode
+     * @param city the CityNode to check
+     */
+    public boolean isConnectedTo(CityNode city) {
+        return this.connections != null &&
+                (this.connections.get(0).equals(city) ||
+                this.connections.get(1).equals(city));
+    }
+
+    /**
      * equals method to check if two PathNodes are the same
      * @param other the other PathNode to check against
-     * @return whether the this is equal to other
+     * @return whether this is equal to other
      */
     @Override
     public boolean equals(Object other) {
