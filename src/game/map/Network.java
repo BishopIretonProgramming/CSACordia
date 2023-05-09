@@ -135,6 +135,22 @@ public class Network implements java.io.Serializable {
       }
       return -1; //if no path was found
    }
+   
+   public int[][] multiplyMatrix(int[][] a, int[][] b) {
+      int[][] temp = new int[a.length][a[0].length];
+      for(int r = 0; r < temp.length; r ++) {
+         for(int c = 0; c < temp[0].length; c++) {
+            count = 0;
+            for(int x = 0, x < a[0].length; x ++) {
+               for(int y = 0; y < b.length; y++) {
+                  count += a[r][x] * b[y][c];
+               }
+            }
+            temp[r][c] = count;
+         }
+      }
+      return temp;
+   }
    */
     
 }
