@@ -2,7 +2,7 @@ package src.game;
 
 /* Caroline 
 * inspired by: Nora :)
-* enum for sestertii
+* enum for sestertii 
 */
 public enum Sestertii {
    
