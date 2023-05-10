@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;  //  not really sure what I am going to be using
 
+import static src.game.map.PathNode.PathType;
+
 /**
  * Experimental implementation of Network
  * Going to try to keep this implementation using just numbers
@@ -15,14 +17,19 @@ import java.util.*;  //  not really sure what I am going to be using
 public class Network {
 
     /**
-     * The number of nodes (cities) in this Network
+     * The number of nodes (cities) in this Network on land
      */
     private int numNodes;
 
     /**
-     * the adjacency list of this Network
+     * The adjacency list of this Network on land
      */
-    private List<List<Integer>> adjList;
+    private List<List<Integer>> adjListLand;
+
+    /**
+     * The adjacency list of this Network on sea
+     */
+    private List<List<Integer>> adjListSea;
 
     /**
      * Constructor to make a new Network
@@ -30,9 +37,11 @@ public class Network {
      */
     public Network(int numNodes) {
         this.numNodes = numNodes;
-        this.adjList = new ArrayList<>();
+        this.adjListLand = new ArrayList<>();
+        this.adjListSea = new ArrayList<>();
         for (int i = 0; i < numNodes; i++) {
-            adjList.add(new ArrayList<>());
+            adjListLand.add(new ArrayList<>());
+            adjListSea.add(new ArrayList<>());
         }
     }
 
@@ -40,19 +49,29 @@ public class Network {
      * Method to add an edge (path) to the Network
      * @param u the start node (city) of the new edge (path)
      * @param v the end node (city) of the new edge (path)
+     * @param type the type of edge (path) to make
      */
-    public void connect(int u, int v) {
-        adjList.get(u).add(v);
-        adjList.get(v).add(u);
+    public void connect(int u, int v, PathType type) {
+        switch (type) {
+            case LAND -> {
+                this.adjListLand.get(u).add(v);
+                this.adjListLand.get(v).add(u);
+            }
+            case SEA -> {
+                this.adjListSea.get(u).add(v);
+                this.adjListSea.get(v).add(u);
+            }
+        }
     }
 
     /**
      * Method to add an edge (path) to the Network using the Node class
      * @param u the start Node of the new Edge (path)
      * @param v the end Node of the new Edge (path)
+     * @param type the type of edge (path) to make
      */
-    public void connect(Node u, Node v) {
-        connect(u.id(), v.id());
+    public void connect(Node u, Node v, PathType type) {
+        connect(u.id(), v.id(), type);
     }
 
     /**
@@ -68,13 +87,17 @@ public class Network {
      * @param end2 the second node associated with the end edge
      * @return the number of edges between the start and end edge
      */
-    public int distanceBetweenEdges(int start1, int start2, int end1, int end2) {
+    public int computeDistanceBetween(int start1, int start2, PathType type1, int end1, int end2, PathType type2) {
+
+        if (type1 != type2) {
+            return -1;
+        }
 
         int start = Math.min(start1, start2);
         int end = Math.min(end1, end2);
 
         boolean[] visited = new boolean[this.numNodes];
-        int[] dist = new int[numNodes];
+        int[] dist = new int[this.numNodes];
         Arrays.fill(dist, -1);
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
@@ -82,19 +105,35 @@ public class Network {
         dist[start] = 0;
         while (!queue.isEmpty()) {
             int curr = queue.poll();
-            for (int neighbor : adjList.get(curr)) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    dist[neighbor] = dist[curr] + 1;
-                    queue.add(neighbor);
+            switch (type1) {
+                case LAND -> {
+                    for (int neighbor : adjListLand.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            dist[neighbor] = dist[curr] + 1;
+                            queue.add(neighbor);
+                        }
+                        if (neighbor == end) {
+                            return dist[neighbor];
+                        }
+                    }
                 }
-                if (neighbor == end) {
-                    return dist[neighbor] + 1;
+                case SEA -> {
+                    for (int neighbor : adjListSea.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            dist[neighbor] = dist[curr] + 1;
+                            queue.add(neighbor);NUM_NODES
+                        }
+                        if (neighbor == end) {
+                            return dist[neighbor];
+                        }
+                    }
                 }
             }
         }
 
-        return -1;
+        return  -1;
     }
 
     /**
@@ -231,6 +270,8 @@ public class Network {
         System.out.println(readIn.distanceBetweenEdges(0, 2, 3, 4));  //  2
         System.out.println(readIn.distanceBetweenEdges(2, 5, 0, 1));  //  2
         System.out.println(readIn.distanceBetweenEdges(3, 4, 2, 5));  //  3
+
+        System.out.println("\n\n\n\n\n\n\n\n\n" + network.adjList);
     }
 
 }
