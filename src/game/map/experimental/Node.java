@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /** A class to represent a city in the experimental network
  * @author devinlinux
@@ -53,7 +52,7 @@ public class Node {
     /**
      * Library (static) method to read in Nodes from a file, the format should be as follows:
      * # indicates comment, everything left will be ignored
-     * name id # makes a new Node with name: name and id: id
+     * name::id # makes a new Node with name: name and id: id
      * @param path the path to the text file
      * @return the list of nodes found in the text file
      */

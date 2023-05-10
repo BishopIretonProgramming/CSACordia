@@ -86,7 +86,7 @@ public class Edge {
      * Library (static) method to load Edges from a file
      * # means a comment
      * Should be written in the form
-     * name [node1] [node2] # where node1 and node2 are in valid node file form (no comments)
+     * name::node1 name::node1 id::node2 name::node2 id # where node1 and node2 are in valid node file form (no comments)
      * @param path the path to the file with the edges
      * @return a list of Edges loaded from path
      */
