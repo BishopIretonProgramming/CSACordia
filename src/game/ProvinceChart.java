@@ -39,8 +39,8 @@ public class ProvinceChart {
          int sestercii = 0;
          
          for(Province currentProvince : provinceList) {
-            if(province.getStatus() == Province.ResourceStatus.SESTERCII) {
-               sestercii += province.collectSestercii();
+            if(currentProvince.getStatus() == Province.ResourceStatus.SESTERCII) {
+               sestercii += currentProvince.collectSestercii();
             }
          }
       }
