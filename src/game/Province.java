@@ -1,4 +1,4 @@
-package src.game;
+package game;
 
 /*
    @Author Joseph Murray
@@ -25,6 +25,7 @@ public class Province {
    public Province(String name, ArrayList<City> cityList) {
       this.name = name;
       this.cityList = cityList;
+      setProvinceGood();
       
       status = ResourceStatus.GOODS;
    }
@@ -35,7 +36,7 @@ public class Province {
       return provinceSestercii;
    }
    
-   //TO-DO: create way for Province to check which cities players own, and collect goods accordingly
+   //TODO: Collect goods based on good of cities in province
    public ArrayList<Good> collectGoods() {
       status = ResourceStatus.SESTERCII;
       
@@ -49,17 +50,15 @@ public class Province {
       return goodsCollected;
    }
    
-   private Good setProvinceGood() {
+   private void setProvinceGood() {
       Good good = Good.BRICK;
       
-      //TO-DO: find a way to implement this once these methods are available in City and Good classes
+      //TODO: select most valued good from province city to become province good
       /*for(City city : cityList) {
          if(city.getGood().PRICE > good.Price) {
             good = city.getGood();
          }
       }*/
-      
-      return good;
    }
    
                                              //GETTERS - SETTERS

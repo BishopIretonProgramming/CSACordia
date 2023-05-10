@@ -1,4 +1,4 @@
-package src.game.map.experimental;
+package game.map.experimental;
 
 //  imports
 import java.io.BufferedReader;

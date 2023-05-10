@@ -6,6 +6,7 @@
 * String name
 */
 
+
 public enum Good{
 
    WINE(6,"wine"), 

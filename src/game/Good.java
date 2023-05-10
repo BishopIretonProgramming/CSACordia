@@ -1,4 +1,4 @@
-package src.game;
+package game;
 
 /* Nora Hixson
 * Good Enum

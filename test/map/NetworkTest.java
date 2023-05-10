@@ -1,8 +1,8 @@
 package test.map;
 
 //  imports
-import src.game.map.*;
-import static src.game.map.PathNode.PathType;
+import game.map.*;
+import static game.map.PathNode.PathType;
 
 public class NetworkTest {
 

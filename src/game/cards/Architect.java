@@ -1,4 +1,4 @@
-package src.game.cards;
+package game.cards;
 
 public class Architect {
     
