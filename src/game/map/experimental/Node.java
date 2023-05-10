@@ -82,7 +82,7 @@ public class Node {
      * @param str the String that contains the Node
      * @return the Node formed from the String
      */
-    public Node loadNodeFromString(String str) {
+    public static Node loadNodeFromString(String str) {
         str = str.trim();
         int id = Integer.parseInt(str.replaceAll("\\D", ""));
         String name = str.replaceAll("[^a-zA-Z\\s\"]", "").trim();
