@@ -1,8 +1,5 @@
-Bremmerton 0
-"New York" 1 # the city of New York
-# this should be ignored
-Alexandria 2 # hello world
-# Java is cool
-# another comment here
-# yet another comment
-"Yakota" 3 # APCSA 2023
+Bremmerton::0 # comment
+New York::1
+# comment
+Alexandria::2
+Yakota::3

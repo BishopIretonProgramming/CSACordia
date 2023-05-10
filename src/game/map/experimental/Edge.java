@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * A class to represent an edge (path) in the Network
@@ -94,45 +92,27 @@ public class Edge {
      */
     public static List<Edge> loadEdgesFromFile(String path) {
         List<Edge> edges = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
-            while ((line = br.readLine()) != null) {
-                if (!line.startsWith("#")) {
-                    int index = line.indexOf("#");
-                    line = index != -1 ? line.substring(0, index) : line;
-
-                    String name = "";
-                    int quoteIndex = line.indexOf("\"");
-                    int bracketIndex = line.indexOf("[");
-
-                    if (quoteIndex >= 0 && quoteIndex < bracketIndex) {
-                        name = line.substring(0, bracketIndex).replaceAll("\"", "").trim();
-                    } else {
-                        name = line.substring(0, line.indexOf(" ")).trim();
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().startsWith("#")) {
+                    int commentIndex = line.indexOf("#");
+                    if (commentIndex != -1) {
+                        line = line.substring(0, commentIndex).trim();
                     }
 
-                    Matcher matcher;
-                    String node1Str = "";
-                    matcher = Pattern.compile("\\[([^\\]]+)\\]").matcher(line);
-                    if (matcher.find()) {
-                        node1Str = matcher.group(1);
-                    }
-
-                    String node2Str = "";
-                    matcher = Pattern.compile("\\[(.*)\\]").matcher(line.substring(matcher.end()));
-                    if (matcher.find()) {
-                        node2Str = matcher.group(1);
-                    }
-
-                    System.out.println("NAME: `" + name + "`");
-                    System.out.println("NODE1: " + node1Str);
-                    System.out.println("NODE2: " + node2Str);
-                    System.out.println("---");
+                    String[] tokens = line.split("::");
+                    String name = tokens[0];
+                    Node node1 = new Node(tokens[1], Integer.parseInt(tokens[2]));
+                    Node node2 = new Node(tokens[3], Integer.parseInt(tokens[4]));
+                    edges.add(new Edge(name, node1, node2));
                 }
             }
         } catch (IOException e) {
-            System.err.printf("Error reading edges from file: %s", e.getMessage());
+            System.err.printf("Error reading Edges from file: %s", e.getMessage());
         }
+
         return edges;
     }
 
@@ -141,6 +121,6 @@ public class Edge {
      * @return a String representation of this Edge
      */
     public String toString() {
-        return String.format("%s is associated with %s and %s", this.name, this.node1, this.node2);
+        return String.format("%s is associated with |%s| and |%s|", this.name, this.node1, this.node2);
     }
 }
