@@ -1,11 +1,11 @@
-package src.game;
+package game;
 
 //  imports
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import src.game.cards.PersonalityCard;
+import game.cards.PersonalityCard;
 
 /**
  * A class to represent a player

@@ -1,4 +1,4 @@
-package src.game.cards.godtype;
+package game.cards.godtype;
 
 
 public interface Jupiter {

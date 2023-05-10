@@ -1,8 +1,8 @@
-package src.game.cards;
+package game.cards;
 
 //  imports
-import src.game.cards.godtype.Mars;
-import src.game.Player;
+import game.cards.godtype.Mars;
+import game.Player;
 
 import java.awt.Graphics;
 
