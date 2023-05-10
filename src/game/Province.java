@@ -1,7 +1,7 @@
 package src.game;
 
 /*
-   Joseph Murray
+   @Author Joseph Murray
    5/9/2023
    Province - representation of game provinces, used for good collection from tribune cards
 */

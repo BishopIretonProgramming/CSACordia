@@ -1,7 +1,7 @@
 package src.game;
 
 /*
-   Joseph Murray
+   @Author Joseph Murray
    5/9/2023
    ProvinceGoodsChart - The lil chart with province goods
 */
