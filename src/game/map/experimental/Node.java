@@ -19,7 +19,8 @@ public class Node {
     private String name;
 
     /**
-     * The id of the node
+     * The id of the node, for a network id should start at 0 and increase
+     * similar to the indices of an array
      */
     private int id;
 
