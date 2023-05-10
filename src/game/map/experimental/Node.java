@@ -77,6 +77,19 @@ public class Node {
     }
 
     /**
+     * Library (static) method to read in Nodes from a String, same format as reading from a file
+     * except for no comments being allowed
+     * @param str the String that contains the Node
+     * @return the Node formed from the String
+     */
+    public Node loadNodeFromString(String str) {
+        str = str.trim();
+        int id = Integer.parseInt(str.replaceAll("\\D", ""));
+        String name = str.replaceAll("[^a-zA-Z\\s\"]", "").trim();
+        return new Node(name, id);
+    }
+
+    /**
      * toString to make a String representation of a Node
      * @return the String representation of this Node
      */
