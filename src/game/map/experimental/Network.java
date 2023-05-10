@@ -22,6 +22,11 @@ public class Network {
     private List<List<Integer>> adjList;
 
     /**
+     * The adjacency list of this Network using Nodes
+     */
+    private List<List<Integer>> nodeAdjList;
+
+    /**
      * Constructor to make a new Network
      * @param numNodes the number of nodes (cities) in this Network
      */
@@ -30,6 +35,10 @@ public class Network {
         this.adjList = new ArrayList<>();
         for (int i = 0; i < numNodes; i++) {
             adjList.add(new ArrayList<>());
+        }
+        this.nodeAdjList = new ArrayList<>();
+        for (int i = 0; i < numNodes; i++) {
+            nodeAdjList.add(new ArrayList<>());
         }
     }
 
@@ -41,6 +50,16 @@ public class Network {
     public void connect(int u, int v) {
         adjList.get(u).add(v);
         adjList.get(v).add(u);
+    }
+
+    /**
+     * Method to add an edge (path) to the Network using the Node class
+     * @param u the start Node of the new Edge (path)
+     * @param v the end Node of the new Edge (path)
+     */
+    public void connect(Node u, Node v) {
+        nodeAdjList.get(u.id()).add(v.id());
+        nodeAdjList.get(v.id()).add(u.id());
     }
 
     /**
@@ -86,6 +105,46 @@ public class Network {
     }
 
     /**
+     * Method to find the number of edges between a start and end edge (represented by start and end nodes)
+     * The basic plan here is to turn it into a normal pathfinding algorithm by using the min of start1
+     * and start2 and the min of end1 and end2 in a breadth-first search algorithm
+     * The method will return the number of paths between the start and end path including the end path
+     * but not the start path and -1 if no path is found. In order to do this using nodes I am going to
+     * take the precise number of nodes that it takes to get from start to end.
+     * @param start the start Edge
+     * @param end the end Edge
+     * @return the number of edges between the start and end edge
+     */
+    public int distanceBetweenEdges(Edge start, Edge end) {
+
+        int startNode = Math.min(start.node1().id(), start.node2().id());
+        int endNode = Math.min(end.node1().id(), end.node2().id());
+
+        boolean[] visited = new boolean[this.numNodes];
+        int[] dist = new int[numNodes];
+        Arrays.fill(dist, -1);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(startNode);
+        visited[startNode] = true;
+        dist[startNode] = 0;
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            for (int neighbor : nodeAdjList.get(curr)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    dist[neighbor] = dist[curr] + 1;
+                    queue.add(neighbor);
+                }
+                if (neighbor == endNode) {
+                    return dist[neighbor] + 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    /**
      * Main method for testing
      * @param args the run arguments of the program
      */
@@ -119,6 +178,36 @@ public class Network {
         for (Node node : nodes) {
             System.out.println(node);
         }
+
+        System.out.println("---");
+
+        Node zero = new Node("ZERO", 0);
+        Node one = new Node("ONE", 1);
+        Node two = new Node("TWO", 2);
+        Node three = new Node("THREE", 3);
+        Node four = new Node("FOUR", 4);
+        Node five = new Node("FIVE", 5);
+        Network nn = new Network(6);
+        nn.connect(zero, one);
+        nn.connect(zero, three);
+        nn.connect(zero, five);
+        nn.connect(one, two);
+        nn.connect(four, three);
+        nn.connect(zero, two);
+        nn.connect(five, two);
+
+        Edge testOneOne = new Edge("test 1-1", zero, two);
+        Edge testOneTwo = new Edge("test 1-2", three, four);
+
+        Edge testTwoOne= new Edge("test 2-1", two, five);
+        Edge testTwoTwo = new Edge("test 2-2", zero, one);
+
+        Edge testThreeOne = new Edge("test 3-1", three, four);
+        Edge testThreeTwo = new Edge("test 3-2", two, five);
+
+        System.out.println(nn.distanceBetweenEdges(testOneOne, testOneTwo));  //  2
+        System.out.println(nn.distanceBetweenEdges(testTwoOne, testTwoTwo));  //  2
+        System.out.println(nn.distanceBetweenEdges(testThreeOne, testThreeTwo));  //  3
     }
 
 }
