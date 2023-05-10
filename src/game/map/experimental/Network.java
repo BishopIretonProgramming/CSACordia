@@ -25,11 +25,6 @@ public class Network {
     private List<List<Integer>> adjList;
 
     /**
-     * The adjacency list of this Network using Nodes
-     */
-    private List<List<Integer>> nodeAdjList;
-
-    /**
      * Constructor to make a new Network
      * @param numNodes the number of nodes (cities) in this Network
      */
@@ -38,10 +33,6 @@ public class Network {
         this.adjList = new ArrayList<>();
         for (int i = 0; i < numNodes; i++) {
             adjList.add(new ArrayList<>());
-        }
-        this.nodeAdjList = new ArrayList<>();
-        for (int i = 0; i < numNodes; i++) {
-            nodeAdjList.add(new ArrayList<>());
         }
     }
 
@@ -61,8 +52,7 @@ public class Network {
      * @param v the end Node of the new Edge (path)
      */
     public void connect(Node u, Node v) {
-        nodeAdjList.get(u.id()).add(v.id());
-        nodeAdjList.get(v.id()).add(u.id());
+        connect(u.id(), v.id());
     }
 
     /**
@@ -114,37 +104,13 @@ public class Network {
      * The method will return the number of paths between the start and end path including the end path
      * but not the start path and -1 if no path is found. In order to do this using nodes I am going to
      * take the precise number of nodes that it takes to get from start to end.
+     * This implementation using the Edge classes will just convert it to a number problem
      * @param start the start Edge
      * @param end the end Edge
      * @return the number of edges between the start and end edge
      */
     public int distanceBetweenEdges(Edge start, Edge end) {
-
-        int startNode = Math.min(start.node1().id(), start.node2().id());
-        int endNode = Math.min(end.node1().id(), end.node2().id());
-
-        boolean[] visited = new boolean[this.numNodes];
-        int[] dist = new int[numNodes];
-        Arrays.fill(dist, -1);
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(startNode);
-        visited[startNode] = true;
-        dist[startNode] = 0;
-        while (!queue.isEmpty()) {
-            int curr = queue.poll();
-            for (int neighbor : nodeAdjList.get(curr)) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    dist[neighbor] = dist[curr] + 1;
-                    queue.add(neighbor);
-                }
-                if (neighbor == endNode) {
-                    return dist[neighbor] + 1;
-                }
-            }
-        }
-
-        return -1;
+        return distanceBetweenEdges(start.node1().id(), start.node2().id(), end.node1().id(), end.node2().id());
     }
 
     /**
