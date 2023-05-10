@@ -33,28 +33,16 @@ public class ProvinceChart {
       Province province = findProvince(provinceName);
       
       if(province.getStatus() == Province.ResourceStatus.GOODS) {
-         ArrayList<Good> goods = collectGoods(province);
+         ArrayList<Good> goods = province.collectGoods();
       }
       else {
-         int sestercii = collectSestercii();
-      }
-   }
-   
-   private int collectSestercii() {
-      int sestercii = 0;
-      
-      for(Province province : provinceList) {
-         if(province.getStatus() == Province.ResourceStatus.SESTERCII) {
-            sestercii += province.collectSestercii();
+         int sestercii = 0;
+         
+         for(Province province : provinceList) {
+            if(province.getStatus() == Province.ResourceStatus.SESTERCII) {
+               sestercii += province.collectSestercii();
+            }
          }
-      }
-      
-      return sestercii;
-   }
-   
-   private ArrayList<Good> collectGoods(Province province) {
-      if(province.getStatus() == Province.ResourceStatus.GOODS) {
-          return province.collectGoods();
       }
    }
    
