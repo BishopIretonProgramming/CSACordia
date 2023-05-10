@@ -1,0 +1,12 @@
+# comment
+##
+6
+## <->
+0 <-> 1
+0 <-> 3
+0 <-> 5
+# let's put a comment here
+1 <-> 2
+4 <-> 3
+0 <-> 2 # connecting some nodes
+5 <-> 2

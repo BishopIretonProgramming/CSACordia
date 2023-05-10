@@ -1,6 +1,9 @@
 package src.game.map.experimental;
 
 //  imports
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;  //  not really sure what I am going to be using
 
 /**
@@ -145,6 +148,53 @@ public class Network {
     }
 
     /**
+     * Library (static) method to load a Network from a file
+     * The first non comment line must be the number of nodes in the Network
+     * From there you can connect nodes using u <-> v
+     * @param path the path to the file containing the Network
+     * @return the Network created by the file
+     */
+    public static Network loadNetworkFromFile(String path) {
+        Network network = null;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            int i = 0;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().startsWith("#")) {
+                    int commentIndex = line.indexOf("#");
+                    if (commentIndex != -1) {
+                        line = line.substring(0, commentIndex);
+                    }
+                    if (i == 0) {
+                        network = new Network(Integer.parseInt(line.trim()));
+                    }
+                    if (i > 0 && line.contains("<->")) {
+                        String[] tokens = line.split("<->");
+                        int u = Integer.parseInt(tokens[0].trim());
+                        int v= Integer.parseInt(tokens[1].trim());
+                        network.connect(u, v);
+                    }
+                    i++;
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Error loading Network from file: %s", e.getMessage());
+        }
+
+        return network;
+    }
+
+    /**
+     * toString to return a String representation of a Network
+     * @return the String representation of this Network
+     */
+    @Override
+    public String toString() {
+        return String.format("%d", numNodes);
+    }
+
+    /**
      * Main method for testing
      * @param args the run arguments of the program
      */
@@ -208,6 +258,13 @@ public class Network {
         System.out.println(nn.distanceBetweenEdges(testOneOne, testOneTwo));  //  2
         System.out.println(nn.distanceBetweenEdges(testTwoOne, testTwoTwo));  //  2
         System.out.println(nn.distanceBetweenEdges(testThreeOne, testThreeTwo));  //  3
+
+        System.out.println("---");
+
+        Network readIn = Network.loadNetworkFromFile("src/game/map/experimental/files/test.network");
+        System.out.println(readIn.distanceBetweenEdges(0, 2, 3, 4));  //  2
+        System.out.println(readIn.distanceBetweenEdges(2, 5, 0, 1));  //  2
+        System.out.println(readIn.distanceBetweenEdges(3, 4, 2, 5));  //  3
     }
 
 }
