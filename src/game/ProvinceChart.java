@@ -38,7 +38,7 @@ public class ProvinceChart {
       else {
          int sestercii = 0;
          
-         for(Province province : provinceList) {
+         for(Province currentProvince : provinceList) {
             if(province.getStatus() == Province.ResourceStatus.SESTERCII) {
                sestercii += province.collectSestercii();
             }
@@ -53,6 +53,8 @@ public class ProvinceChart {
             return province;
          }
       }
+      
+      return null;
    }
    
    //TO-DO: add cities, either in this class or passed from another
