@@ -57,23 +57,7 @@ public class Node {
      * @return the list of nodes found in the text file
      */
     public static List<Node> loadNodesFromFile(String path) {
-        List<Node> nodes = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            nodes = br.lines()
-                    .filter(line -> !line.startsWith("#"))
-                    .map(line -> {
-                        int index = line.indexOf("#");
-                        String trimmedLine = index != -1 ? line.substring(0, index) : line;
-                        int id = Integer.parseInt(trimmedLine.replaceAll("\\D", ""));
-                        String name = trimmedLine.replaceAll("[^a-zA-Z\\s\"]", "").trim();
-                        name = name.startsWith("\"") && name.endsWith("\"") ? name.substring(1, name.length() - 1) : name;
-                        return new Node(name, id);
-                    })
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            System.err.printf("Error while reading nodes from file: %s", e.getMessage());
-        }
-        return nodes;
+        return null;
     }
 
     /**
@@ -83,10 +67,7 @@ public class Node {
      * @return the Node formed from the String
      */
     public static Node loadNodeFromString(String str) {
-        str = str.trim();
-        int id = Integer.parseInt(str.replaceAll("\\D", ""));
-        String name = str.replaceAll("[^a-zA-Z\\s\"]", "").trim();
-        return new Node(name, id);
+        return null;
     }
 
     /**

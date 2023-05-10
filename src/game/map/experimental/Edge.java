@@ -93,47 +93,7 @@ public class Edge {
      * @return a list of Edges loaded from path
      */
     public static List<Edge> loadEdgesFromFile(String path) {
-        List<Edge> edges = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (!line.startsWith("#")) {
-                    int index = line.indexOf("#");
-                    line = index != -1 ? line.substring(0, index) : line;
-
-                    String name = "";
-                    int quoteIndex = line.indexOf("\"");
-                    int bracketIndex = line.indexOf("[");
-
-                    if (quoteIndex >= 0 && quoteIndex < bracketIndex) {
-                        name = line.substring(0, bracketIndex).replaceAll("\"", "").trim();
-                    } else {
-                        name = line.substring(0, line.indexOf(" ")).trim();
-                    }
-
-                    Matcher matcher;
-                    String node1Str = "";
-                    matcher = Pattern.compile("\\[([^\\]]+)\\]").matcher(line);
-                    if (matcher.find()) {
-                        node1Str = matcher.group(1);
-                    }
-
-                    String node2Str = "";
-                    matcher = Pattern.compile("\\[(.*)\\]").matcher(line.substring(matcher.end()));
-                    if (matcher.find()) {
-                        node2Str = matcher.group(1);
-                    }
-
-                    System.out.println("NAME: `" + name + "`");
-                    System.out.println("NODE1: " + node1Str);
-                    System.out.println("NODE2: " + node2Str);
-                    System.out.println("---");
-                }
-            }
-        } catch (IOException e) {
-            System.err.printf("Error reading edges from file: %s", e.getMessage());
-        }
-        return edges;
+        return null;
     }
 
     /**
@@ -141,6 +101,6 @@ public class Edge {
      * @return a String representation of this Edge
      */
     public String toString() {
-        return String.format("%s is associated with %s and %s", this.name, this.node1, this.node2);
+        return String.format("%s is associated with |%s| and |%s|", this.name, this.node1, this.node2);
     }
 }

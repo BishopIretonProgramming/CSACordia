@@ -111,7 +111,7 @@ public class Network {
         List<Edge> edges = Edge.loadEdgesFromFile("src/game/map/experimental/files/test.edge");
 
         for (Edge edge : edges) {
-            //System.out.println(node);
+            System.out.println(edge);
         }
     }
 
