@@ -63,7 +63,7 @@ public class Network {
      * but not the start path and -1 if no path is found. In order to do this using nodes I am going to
      * take the precise number of nodes that it takes to get from start to end.
      * @param start1 the first node associated with the first edge
-     * @param start2 the second node associated with the second edge
+     * @param start2 the second node associated with the first edge
      * @param end1 the first node associated with the end edge
      * @param end2 the second node associated with the end edge
      * @return the number of edges between the start and end edge
