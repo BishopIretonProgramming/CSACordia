@@ -108,10 +108,10 @@ public class Network {
         System.out.println(network.distanceBetweenEdges(4, 3, 5, 2));  //  3
         System.out.println(network.distanceBetweenEdges(2, 5, 1, 0));  //  2
 
-        List<Node> nodes = Node.loadNodesFromFile("src/game/map/experimental/nodes/test.node");
+        List<Edge> edges = Edge.loadEdgesFromFile("src/game/map/experimental/files/test.edge");
 
-        for (Node node : nodes) {
-            System.out.println(node);
+        for (Edge edge : edges) {
+            //System.out.println(node);
         }
     }
 
