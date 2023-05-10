@@ -113,6 +113,12 @@ public class Network {
         for (Edge edge : edges) {
             System.out.println(edge);
         }
+
+        List<Node> nodes = Node.loadNodesFromFile("src/game/map/experimental/files/test.node");
+
+        for (Node node : nodes) {
+            System.out.println(node);
+        }
     }
 
 }

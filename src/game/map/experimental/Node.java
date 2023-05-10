@@ -57,17 +57,27 @@ public class Node {
      * @return the list of nodes found in the text file
      */
     public static List<Node> loadNodesFromFile(String path) {
-        return null;
-    }
+        List<Node> nodes = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().startsWith("#")) {
+                    int commentIndex = line.indexOf("#");
+                    if (commentIndex != -1) {
+                        line = line.substring(0, commentIndex).trim();
+                    }
 
-    /**
-     * Library (static) method to read in Nodes from a String, same format as reading from a file
-     * except for no comments being allowed
-     * @param str the String that contains the Node
-     * @return the Node formed from the String
-     */
-    public static Node loadNodeFromString(String str) {
-        return null;
+                    String[] tokens = line.split("::");
+                    String name = tokens[0];
+                    int id = Integer.parseInt(tokens[1]);
+                    nodes.add(new Node(name, id));
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Error reading Nodes from file: %s", e.getMessage());
+        }
+
+        return nodes;
     }
 
     /**

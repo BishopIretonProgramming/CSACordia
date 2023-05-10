@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * A class to represent an edge (path) in the Network
@@ -93,7 +91,29 @@ public class Edge {
      * @return a list of Edges loaded from path
      */
     public static List<Edge> loadEdgesFromFile(String path) {
-        return null;
+        List<Edge> edges = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().startsWith("#")) {
+                    int commentIndex = line.indexOf("#");
+                    if (commentIndex != -1) {
+                        line = line.substring(0, commentIndex).trim();
+                    }
+
+                    String[] tokens = line.split("::");
+                    String name = tokens[0];
+                    Node node1 = new Node(tokens[1], Integer.parseInt(tokens[2]));
+                    Node node2 = new Node(tokens[3], Integer.parseInt(tokens[4]));
+                    edges.add(new Edge(name, node1, node2));
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Error reading Edges from file: %s", e.getMessage());
+        }
+
+        return edges;
     }
 
     /**
