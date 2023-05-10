@@ -1,4 +1,6 @@
-/* Anthony Amedome 
+package src.game;
+
+/* Anthony Amedome
  *  This is a class for the top left of the board it is an array list of region bonuses
  */
 
