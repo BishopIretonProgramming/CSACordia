@@ -92,7 +92,7 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
                 }
             }
         } catch (IOException e) {
-            System.err.printf("Error reading PathNodes from file: %s", e.getMessage());
+            System.err.printf("Error reading PathNodes from file: %s%n", e.getMessage());
         }
         return paths;
     }

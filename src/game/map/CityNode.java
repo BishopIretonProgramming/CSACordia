@@ -47,7 +47,7 @@ public record CityNode(String name, int id) implements java.io.Serializable {
                 }
             }
         } catch (IOException e) {
-            System.err.printf("Error reading Nodes from file: %s", e.getMessage());
+            System.err.printf("Error reading Nodes from file: %s%n", e.getMessage());
         }
 
         return cities;
