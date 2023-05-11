@@ -190,7 +190,7 @@ public class Network implements java.io.Serializable {
                 }
             }
         } catch (IOException e) {
-            System.err.printf("Error loading Network from file: %s", e.getMessage());
+            System.err.printf("Error loading Network from file: %s%n", e.getMessage());
         }
         return network;
     }
