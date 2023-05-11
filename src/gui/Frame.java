@@ -10,12 +10,13 @@ import javax.swing.*;
 
 public class Frame {
     
+    // 1st frame the user sees upon running the game
     public static void welcome() {
         // create a JFrame object
         JFrame wFrame = new JFrame("Welcome Frame");
         
         JPanel welcomePanel = new JPanel();
-        welcomePanel.setBackground(Color.WHITE);
+        welcomePanel.setBackground(Color.BLUE);
         // create "New Game" and "Load Game" buttons
         JButton newGameButton = new JButton("New Game");
         JButton loadGameButton = new JButton("Load Game");
@@ -47,7 +48,7 @@ public class Frame {
          wFrame.getContentPane().add(welcomePanel, BorderLayout.SOUTH);
 
         // set the size and visibility of the frame
-        wFrame.setSize(1000, 500);
+        wFrame.setSize(900, 500);
         wFrame.setVisible(true);
     }
 
