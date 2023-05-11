@@ -27,8 +27,10 @@ public class ProvinceChart {
    
                                              //METHODS
 
-   //Collect goods or sestercii when tribune, prefect or prefectus Magnus are used
-   //@Param: the province name as a String, can later modify to accept Province objects if needed
+   /**
+    * Collect goods or sestertii when tribune, prefect or praefectus Magnus are used
+    * @param: the province name as a String, can later modify to accept Province objects if needed
+    */
    public void collect(String provinceName) {
       Province province = findProvince(provinceName);
       
@@ -36,11 +38,11 @@ public class ProvinceChart {
          ArrayList<Good> goods = province.collectGoods();
       }
       else {
-         int sestercii = 0;
+         int sestertii = 0;
          
          for(Province currentProvince : provinceList) {
             if(currentProvince.getStatus() == Province.ResourceStatus.SESTERCII) {
-               sestercii += currentProvince.collectSestercii();
+               sestertii += currentProvince.collectSestercii();
             }
          }
       }
