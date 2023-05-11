@@ -1,4 +1,4 @@
-package game;
+package src.game;
 
 public class User {
     String username;

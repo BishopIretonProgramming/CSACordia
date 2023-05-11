@@ -1,4 +1,4 @@
-package game.cards.godtype;
+package src.game.cards.godtype;
 
 
 public interface Satvrnvs {

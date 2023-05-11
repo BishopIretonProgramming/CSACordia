@@ -1,9 +1,10 @@
-package game;
+package src.game;
 
 //  imports
-import game.map.PathNode;
-import static game.Colonist.ColonistType.SEA;
-import static game.Colonist.ColonistType.LAND;
+import src.game.map.PathNode;
+import src.game.Player;
+import static src.game.Colonist.ColonistType.SEA;
+import static src.game.Colonist.ColonistType.LAND;
 
 /**
  * A class to represent a colonist

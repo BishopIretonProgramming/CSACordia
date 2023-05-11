@@ -1,8 +1,8 @@
-package game.cards;
+package src.game.cards;
 
 //  imports
-import game.cards.godtype.Mercvrivs;
-import game.Player;
+import src.game.cards.godtype.Mercvrivs;
+import src.game.Player;
 
 import java.awt.Graphics;
 

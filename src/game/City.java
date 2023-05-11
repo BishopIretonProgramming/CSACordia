@@ -1,4 +1,4 @@
-package game;
+package src.game;
 
 public class City {
     private String name;

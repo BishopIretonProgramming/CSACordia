@@ -1,7 +1,7 @@
-package game.cards;
+package src.game.cards;
 
 import java.awt.Graphics;
-import game.Player;
+import src.game.Player;
 
 public abstract class PersonalityCard {
    private int winePrice, toolPrice, foodPrice, brickPrice, clothPrice; //The amount of each item that this card costs to buy it

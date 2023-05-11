@@ -1,4 +1,4 @@
-package game;
+package src.game;
 
 /* Caroline 
 * inspired by: Nora :)
