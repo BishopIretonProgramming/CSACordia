@@ -2,6 +2,7 @@ package src.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.io.IOException;
@@ -52,7 +53,37 @@ public class Frame {
         wFrame.setVisible(true);
     }
 
+/*Nora Hixson this is the frame users will be able to interact with eventually */
+    public static void concordia(){
+
+        JFrame concordia = new JFrame("Concordia");
+
+    // Add map
+        JLabel imgMap = new JLabel();
+
+        try {
+            // creates Image then makes image an icon then sets the icon for the JLabel
+            Image map = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            ImageIcon img = new ImageIcon(map);
+            imgMap.setIcon(img);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        concordia.getContentPane().add(imgMap, BorderLayout.CENTER);
+        
+        /* 
+        Dimension mapSize = new Dimension(200, 200);
+        imgMap.setPreferredSize(mapSize);
+        */
+    // set up frame
+        concordia.setSize(900, 500);
+        concordia.setVisible(true);
+
+    }
+
     public static void main(String[] args) {
         welcome();
+        concordia();
     }
 }
