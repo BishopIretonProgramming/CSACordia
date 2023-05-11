@@ -1,4 +1,4 @@
-package gui;
+package src.gui;
 
 import javax.swing.*;
 import java.awt.Font;
