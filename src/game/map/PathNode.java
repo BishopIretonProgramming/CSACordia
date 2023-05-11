@@ -1,85 +1,108 @@
-package game.map;
+package src.game.map;
 
 //  imports
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
- * A record to represent a PathNode
- * can be serialized for game saving
- * @param name the name of the path
+ * A record to represent a PathNode in a Network, each PathNode is associated with exactly
+ * two CityNodes
+ * Can be serialized for game saving
+ * @param name the name of this PathNode
+ * @param node1 the first CityNode that this PathNode is connected to
+ * @param node2 the second CityNode that this PathNode is connected to
  * @param type the type of path
- * @param connections the CityNodes that the path is connected to
- * @author Michael Bobrowski (devinlinux)
+ * @author devinlinux
  */
-public record PathNode(String name, PathType type, List<CityNode> connections) implements java.io.Serializable {
+public record PathNode(String name, CityNode node1, CityNode node2, PathType type) implements java.io.Serializable {
 
     /**
-     * Secondary constructor to make a PathNode without initially specifying the connections
+     * An enum to represent the two types of PathNodes - land or sea
      */
-    public PathNode(String name, PathType type) {
-        this(name, type, new ArrayList<>(2));
+    public enum PathType {
+        LAND,
+        SEA;
+
+        /**
+         * Method to match a String to a PathType
+         * @param type the String to match
+         * @return the type that the String matches or null of the String does not match a type
+         */
+        public static PathType fromString(String type) {
+            type = type.toUpperCase();
+            switch (type) {
+                case "LAND" -> {
+                    return LAND;
+                }
+                case "SEA" -> {
+                    return SEA;
+                }
+                default -> {
+                    return null;
+                }
+            }
+        }
     }
 
     /**
-     * The version ID for serialization
+     * Version ID for serialization
      */
     @java.io.Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * An enum to represent the different types of PathNodes
-     * a PathNode can be a land path or a sea path
+     * Getter method to return a List of the CityNodes this PathNode is connected to
+     * @return a list of the CityNodes this PathNode is connected to
      */
-    public enum PathType {
-        /**
-         * Represents a land path
-         */
-        LAND,
-        /**
-         * Represents a sea path
-         */
-        SEA;
+    public List<CityNode> nodes() {
+        return new ArrayList<>(Arrays.asList(node1, node2));
     }
 
     /**
-     * A method to add a connection to this PathNode
-     * @param node the CityNode to connect to this PathNode
+     * Library (static) method to load Edges from a file
+     * # means a comment
+     * Should be written in the form
+     * name::node1 name::node1 id::node2 name::node2 id::type where node1 and node2 are in valid CityNode
+     * file form (no comments)
+     * @param path the path to the file with the edges
+     * @return a list of PathNodes loaded from path
      */
-    public void addConnection(CityNode node) {
-        this.connections.add(node);
-    }
+    public static List<PathNode> loadEdgesFromFile(String path) {
+        List<PathNode> paths = new ArrayList<>();
 
-    /**
-     * Method to add several connections at a time
-     * @param nodes the CityNodes to connect to this PathNode
-     */
-    public void addConnections(CityNode... nodes) {
-        for (CityNode node : nodes) {
-            addConnection(node);
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().startsWith("#")) {
+                    int commentIndex = line.indexOf("#");
+                    if (commentIndex != -1) {
+                        line = line.substring(0, commentIndex).trim();
+                    }
+
+                    String[] tokens = line.split("::");
+                    String name = tokens[0];
+                    CityNode node1 = new CityNode(tokens[1], Integer.parseInt(tokens[2]));
+                    CityNode node2 = new CityNode(tokens[3], Integer.parseInt(tokens[4]));
+                    PathType type = PathType.fromString(tokens[5]);
+                    paths.add(new PathNode(name, node1, node2, type));
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Error reading PathNodes from file: %s", e.getMessage());
         }
+        return paths;
     }
 
     /**
-     * Method to determine whether this PathNode is connected to a CityNode
-     * @param city the CityNode to check
-     */
-    public boolean isConnectedTo(CityNode city) {
-        return this.connections != null &&
-                (this.connections.get(0).equals(city) ||
-                this.connections.get(1).equals(city));
-    }
-
-    /**
-     * equals method to check if two PathNodes are the same
-     * @param other the other PathNode to check against
-     * @return whether this is equal to other
+     * toString method to return a String representation of a PathNode
+     * @return a String representation of this PathNode
      */
     @Override
-    public boolean equals(Object other) {
-        if (other instanceof PathNode node) {
-            return this.name.equals(node.name) && this.type == node.type && this.connections.equals(node.connections);
-        }
-        return false;
+    public String toString() {
+        return String.format("PathNode %s of type %s is connected to %s and %s", name, node1, node2);
     }
 }

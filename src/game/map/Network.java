@@ -1,165 +1,206 @@
-package game.map;
+package src.game.map;
 
 //  imports
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import static src.game.map.PathNode.PathType;
 
 /**
- * A class to represent a Network of nodes
+ * A class to represent a Network of Nodes
  * can be serialized for game saving
- * @author Michael Bobrowski (devinlinux)
+ * @author devinlinux
  */
 public class Network implements java.io.Serializable {
 
     /**
-     * Version ID for serialization
+     * The version ID for serialization
      */
     @java.io.Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * A list of all the cities in the Network
+     * The number of nodes (cities) in this Network
      */
-    private Map<String, CityNode> cities;
-    private Map<String, PathNode> paths;
+    private final int NUM_NODES;
+
+    /**
+     * The adjacency list of this Network for land
+     */
+    private List<List<Integer>> adjListLand;
+
+    /**
+     * The adjacency list of this Network for sea
+     */
+    private List<List<Integer>> adjListSea;
 
     /**
      * Constructor to make a new Network
+     * @param NUM_NODES the number of nodes (cities) in this Network
      */
-    public Network() {
-        this.cities = new HashMap<>();
-        this.paths = new HashMap<>();
-    }
-
-    /**
-     * Method to add a PathNode to the Network
-     * @param path the PathNode to add to the Network
-     */
-    public void addPath(PathNode path) {
-        paths.put(path.name(), path);
-    }
-
-    /**
-     * Method to add several PathNodes at a time
-     * @param paths the PathNodes to add to the Network
-     */
-    public void addPaths(PathNode... paths) {
-        for (PathNode path : paths) {
-            this.paths.put(path.name(), path);
+    public Network(final int NUM_NODES) {
+        this.NUM_NODES = NUM_NODES;
+        this.adjListLand = new ArrayList<>();
+        this.adjListSea = new ArrayList<>();
+        for (int i = 0; i < this.NUM_NODES; i++) {
+            adjListLand.add(new ArrayList<>());
+            adjListSea.add(new ArrayList<>());
         }
     }
 
     /**
-     * Method to add a CityNode to the Network
-     * @param city the CityNode to add to the Network
+     * Method to add an edge (path) to the Network
+     * @param u the starting node (city) of the new edge (path)
+     * @param v the ending node (city) of the new edge (path)
+     * @param type the type of edge (path) (land or sea)
      */
-    public void addCity(CityNode city) {
-        cities.put(city.name(), city);
-    }
-
-    /**
-     * Method to add multiple CityNodes at a time
-     * @param cities the CityNodes to add to the Network
-     */
-    public void addCities(CityNode... cities) {
-        for (CityNode city : cities) {
-            this.cities.put(city.name(), city);
+    public void connect(int u, int v, PathType type) {
+        switch (type) {
+            case LAND -> {
+                this.adjListLand.get(u).add(v);
+                this.adjListLand.get(v).add(u);
+            }
+            case SEA -> {
+                this.adjListSea.get(u).add(v);
+                this.adjListSea.get(v).add(u);
+            }
         }
     }
 
     /**
-     * Method to compute the Network
-     * connects all the paths and cities to form the network
+     * Method to add an edge (path) to the Network using CityNodes
+     * @param u the starting CityNode of the new edge (path)
+     * @param v the ending CityNode of the new edge (path)
+     * @param type the type of edge (path) (land or sea)
      */
-    public void compute() {
-        paths.values().forEach(path -> {
-            path.connections().stream()
-                    .map(CityNode::name)
-                    .forEach(city -> cities.get(city).addConnection(path));
-        });
+    public void connect(CityNode u, CityNode v, PathType type) {
+        connect(u.id(), v.id(), type);
     }
 
     /**
-     * Method to visualize the Network
+     * Method to find the number of edges between a start and an edge (represented by start and end nodes)
+     * Uses a breadth-first search pathfinding algorithm
+     * @param start1 the first node associated with the first edge
+     * @param start2 the second node associated with the first edge
+     * @param type1 the type associated with the first edge
+     * @param end1 the first node associated with the second edge
+     * @param end2 the second node associated with the second edge
+     * @param type2 the type associated with the second edge
+     * @end2 the second node associated with the second edge
+     * @return the number of edges between a start and end edge including the end edge, but
+     * excluding the start edge. Or -1 if no path is found
      */
-    public void visualize() {
-        cities.values().forEach(city -> {
-            System.out.printf("%s connections:%n", city.name());
-            city.connections().forEach(path -> {
-                List<CityNode> connections = path.connections();
-                System.out.printf("\t%s - %s (%s)%n",
-                        connections.get(0).name(), connections.get(1).name(), path.name());
-            });
-        });
+    public int computeDistanceBetween(int start1, int start2, PathType type1, int end1, int end2, PathType type2) {
+
+        if (type1 != type2) {
+            return -1;
+        }
+
+        int start = Math.min(start1, start2);
+        int end = Math.min(end1, end2);
+
+        boolean[] visited = new boolean[this.NUM_NODES];
+        int[] dist = new int[this.NUM_NODES];
+        Arrays.fill(dist, -1);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        visited[start] = true;
+        dist[start] = 0;
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            switch (type1) {
+                case LAND -> {
+                    for (int neighbor : adjListLand.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            dist[neighbor] = dist[curr] + 1;
+                            queue.add(neighbor);
+                        }
+                        if (neighbor == end) {
+                            return dist[neighbor];
+                        }
+                    }
+                }
+                case SEA -> {
+                    for (int neighbor : adjListSea.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            dist[neighbor] = dist[curr] + 1;
+                            queue.add(neighbor);
+                        }
+                        if (neighbor == end) {
+                            return dist[neighbor];
+                        }
+                    }
+                }
+            }
+        }
+
+        return  -1;
     }
 
     /**
-     * Method to compute whether two PathNodes are connected
+     * Method to find the number of PathNodes between a start and an end PathNode
+     * Uses the above implementation of the method using the ids of the cities associated
+     * with the provided PathNodes
      * @param start the start PathNode
      * @param end the end PathNode
-     * @return whether two PathNodes are connected
+     * @return the number of PathNodes between the start PathNode and the end PathNode including the end,
+     * but not the start. Or -1 if no path is found
      */
-    public boolean connected(PathNode start, PathNode end) {
-        return start.connections().stream()
-                .flatMap(city -> city.connections().stream())
-                .anyMatch(path -> path.equals(end));
+    public int computeDistanceBetween(PathNode start, PathNode end) {
+        return computeDistanceBetween(start.node1().id(), start.node2().id(), start.type(), end.node1().id(), end.node2().id(), end.type());
     }
-    
-    
-   /* SEMI-PSEUDO CODE TO SUGGEST ALGORITHM FOR FINDING DISTANCE BETWEEN TWO PATHNODES:
-   //This method assumes "paths" is an array and that "multiplyMatrix()" has been defined
-   
-   //returns the shortest distance between two pathnodes;
-   //if no path is found under the specified maxDist, returns -1
-   //@param x the index of one of the PathNodes in the paths "array"
-   //@param y the index of teh second PathNode in the paths "array"
-   public int getShortestDistance(int x, int y, int maxDist) {
-      int[][] adjacency = new int[paths.length][paths.length]; //Adjacency Matrix representing the network of paths
-      //set up adjacency matrix
-      for(int r = 0; r < paths.length; r ++) {
-         for(int c = 0; c < paths.length; c ++) {
-            if(paths[r].isConnectedTo(paths[c])) {
-               adjacency[r][c] = 1;
-            }
-         }
-      }
-      //search adjacency matrix at each distance until maxDist for a path
-      int[][] temp = adjacency;
-      for(int i = 1; i <= maxDist; i++) {
-         if(temp[x][y] > 0) {
-            //here we may also want to check if the path(s) already have a colonist on them
-            return i; //the length of the path between the PathNodes
-         }
-         temp = multiplyMatrices(temp, adjacency); //adjacency ^ i (adjacency raised to the power of i)
-      }
-      return -1; //if no path was found
-   }
-   
-   public int[][] multiplyMatrix(int[][] a, int[][] b) {
-      int[][] temp = new int[a.length][a[0].length];
-      for(int r = 0; r < temp.length; r ++) {
-         for(int c = 0; c < temp[0].length; c++) {
-            count = 0;
-            for(int x = 0, x < a[0].length; x ++) {
-               for(int y = 0; y < b.length; y++) {
-                  count += a[r][x] * b[y][c];
-               }
-            }
-            temp[r][c] = count;
-         }
-      }
-      return temp;
-   }
-   */
 
     /**
-     * Method to return the shortest distance between two pathnodes including end but not start
-     * @param start the start node
-     * @param end the end node
-     * @return the number of nodes between start and end
+     * Library (static) method to load a Network from a file
+     * The first non comment line must be the number of nodes in the Network
+     * From there you can connect nodes using u <-> v <-> t
+     * @param path the path to the file containing the Network
+     * @return the Network created by the file
      */
-    public int shortestDistanceBetween(PathNode start, PathNode end) {
-        return -1;
+    public static Network loadNetworkFromFile(String path) {
+        Network network = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            int i = 0;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().startsWith("#")) {
+                    int commentIndex = line.indexOf("#");
+                    if (commentIndex != -1) {
+                        line = line.substring(0, commentIndex);
+                    }
+                    if (i == 0) {
+                        network = new Network(Integer.parseInt(line.trim()));
+                    }
+                    if (i > 0 && line.contains("<->")) {
+                        String[] tokens = line.split("<->");
+                        int u = Integer.parseInt(tokens[0].trim());
+                        int v= Integer.parseInt(tokens[1].trim());
+                        PathType type = PathType.fromString(tokens[2].trim());
+                        network.connect(u, v, type);
+                    }
+                    i++;
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Error loading Network from file: %s", e.getMessage());
+        }
+        return network;
+    }
+
+    /**
+     * toString to return a String representation of a Network
+     * @return the String representation of this Network
+     */
+    @Override
+    public String toString() {
+        return String.format("Network has: %d nodes", this.NUM_NODES);
     }
 }
