@@ -15,6 +15,7 @@ public class Frame {
     public static void welcome() {
         // create a JFrame object
         JFrame wFrame = new JFrame("Welcome Frame");
+        wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel welcomePanel = new JPanel();
         welcomePanel.setBackground(Color.BLUE);
@@ -57,6 +58,7 @@ public class Frame {
     public static void concordia(){
 
         JFrame concordia = new JFrame("Concordia");
+        concordia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     // Add map
         JLabel imgMap = new JLabel();
