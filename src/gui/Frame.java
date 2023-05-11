@@ -1,28 +1,54 @@
 package src.gui;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class Frame {
     
     public static void welcome() {
         // create a JFrame object
-        JFrame frame = new JFrame("Welcome Frame");
+        JFrame wFrame = new JFrame("Welcome Frame");
         
+        JPanel welcomePanel = new JPanel();
+        welcomePanel.setBackground(Color.WHITE);
+        // create "New Game" and "Load Game" buttons
+        JButton newGameButton = new JButton("New Game");
+        JButton loadGameButton = new JButton("Load Game");
+        // add buttons to the panel
+        welcomePanel.add(newGameButton);
+        welcomePanel.add(loadGameButton);
+
         // create a JLabel object with text "Welcome"
-        JLabel label = new JLabel("WELCOME TO CONCORDIA");
-        
+        JLabel welcomeLabel = new JLabel("WELCOME TO CONCORDIA");
         // add the label to the frame's content pane
-        frame.getContentPane().add(label);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        
+        wFrame.getContentPane().add(welcomeLabel);
+        welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
         // font
-        Font welcomeFont = new Font("Wingdings 3", Font.BOLD, 48);
-        label.setFont(welcomeFont);
+        Font welcomeFont = new Font("SansSerif", Font.BOLD, 48);
+        welcomeLabel.setFont(welcomeFont);
+
+
+        JLabel wBackground = new JLabel();
+        try {
+            // load the image file from the project folder
+            Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            wBackground.setIcon(new ImageIcon(img));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         // add the label and panel to the frame's content pane
+         wFrame.getContentPane().add(wBackground, BorderLayout.CENTER);
+         wFrame.getContentPane().add(welcomeLabel, BorderLayout.NORTH);
+         wFrame.getContentPane().add(welcomePanel, BorderLayout.SOUTH);
 
         // set the size and visibility of the frame
-        frame.setSize(1000, 500);
-        frame.setVisible(true);
+        wFrame.setSize(1000, 500);
+        wFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
