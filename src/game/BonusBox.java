@@ -1,4 +1,4 @@
-package src.game;
+package game;
 
 /* Anthony Amedome
  *  This is a class for the top left of the board it is an array list of region bonuses
@@ -92,4 +92,14 @@ package src.game;
          }
          return totalSestertii;
      }
+
+     @Override
+     public String toString(){
+        String output = "";
+        for (RegionBonus region : this) {
+            output.add( "(" + /*this.get(1).getRegionGood()*/ " / " + region.getSersertiiVal() + ")");
+        }
+     }
+
+
  }
