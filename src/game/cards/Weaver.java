@@ -9,8 +9,8 @@ import java.awt.Graphics;
 //one superclass/interface
 public class Weaver extends PersonalityCard implements Minerva {
    
-   Weaver(Player myPlayer, int brickPrice, int foodPrice) {
-      super(myPlayer, brickPrice, foodPrice, 0, 0, 0, 2);
+   Weaver(Player myPlayer, int brickPrice, int clothPrice) {
+      super(myPlayer, brickPrice, 0, 0, 0, clothPrice, 2);
    }
    
    @Override

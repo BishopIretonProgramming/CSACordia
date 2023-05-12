@@ -9,8 +9,8 @@ import java.awt.Graphics;
 //one superclass/interface
 public class Vintner extends PersonalityCard implements Minerva {
    
-   Vintner(Player myPlayer, int brickPrice, int foodPrice) {
-      super(myPlayer, brickPrice, foodPrice, 0, 0, 0, 2);
+   Vintner(Player myPlayer, int brickPrice, int winePrice) {
+      super(myPlayer, brickPrice, 0, 0, winePrice, 0, 2);
    }
    
    @Override

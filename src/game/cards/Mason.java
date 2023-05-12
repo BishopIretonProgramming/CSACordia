@@ -9,8 +9,8 @@ import java.awt.Graphics;
 //one superclass/interface
 public class Mason extends PersonalityCard implements Minerva {
    
-   Mason(Player myPlayer, int brickPrice, int foodPrice) {
-      super(myPlayer, brickPrice, foodPrice, 0, 0, 0, 2);
+   Mason(Player myPlayer, int brickPrice) {
+      super(myPlayer, brickPrice, 0, 0, 0, 0, 2);
    }
    
    @Override
