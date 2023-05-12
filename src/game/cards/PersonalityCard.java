@@ -44,7 +44,7 @@ public abstract class PersonalityCard {
    public int getClothPrice() {return this.clothPrice;}
    public int getVictoryMultiplier() {return this.victoryMultiplier;}
    public boolean getPlayed() {return this.played;}
-   
+
    /**SETTERS**/
    public void setPlayed(boolean played) {this.played = played;}
 }

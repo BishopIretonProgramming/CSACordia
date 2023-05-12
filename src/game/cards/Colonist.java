@@ -36,4 +36,8 @@ public class Colonist extends PersonalityCard implements Mars {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

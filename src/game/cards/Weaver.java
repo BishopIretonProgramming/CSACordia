@@ -35,4 +35,8 @@ public class Weaver extends PersonalityCard implements Minerva {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

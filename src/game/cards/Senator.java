@@ -34,4 +34,8 @@ public class Senator extends PersonalityCard implements Vesta {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

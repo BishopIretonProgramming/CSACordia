@@ -35,4 +35,8 @@ public class Consul extends PersonalityCard implements Jvpiter {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

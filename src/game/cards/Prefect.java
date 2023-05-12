@@ -35,4 +35,8 @@ public class Prefect extends PersonalityCard implements Satvrnvs {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

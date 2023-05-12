@@ -33,4 +33,8 @@ public class Mercator extends PersonalityCard implements Mercvrivs {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

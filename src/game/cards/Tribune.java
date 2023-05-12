@@ -14,14 +14,16 @@ public class Tribune extends PersonalityCard implements Mars {
    
    @Override
    public void doAction() {
+      Player p = getMyPlayer();
       setPlayed(true);
       int count = 0;
-      for(int i = 0; i < getMyPlayer().cards().size(); i ++) {
-         if(getMyPlayer().cards().get(i).getPlayed())
+      for(int i = 0; i < p.cards().size(); i ++) {
+         if(p.cards().get(i).getPlayed())
             count ++;
-         getMyPlayer().cards().get(i).setPlayed(false);
+         p.cards().get(i).setPlayed(false);
       }
-      
+      if(count >= 3) count -= 3;else count = 0;
+      p.setSestertii(p.sestertii() + count);
       //TO DO: Allow player to create a colonist for 1 food + one tool
    }
    
@@ -40,4 +42,8 @@ public class Tribune extends PersonalityCard implements Mars {
       
    }
    
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
 }

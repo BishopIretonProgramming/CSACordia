@@ -34,5 +34,10 @@ public class Architect extends PersonalityCard implements Jvpiter {
    public void draw(Graphics g) {
       
    }
+
+   @Override
+   public Player getPlayer() {
+      return super.getMyPlayer();
+   }
    
 }
