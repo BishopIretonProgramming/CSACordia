@@ -114,6 +114,16 @@ public class Player implements java.io.Serializable {
         return this.cards;
     }
 
+    //  getter for discard
+    public ArrayList<PersonalityCard> discard() {
+        return this.discard;
+    }
+    
+    //  getter for colonists
+    public ArrayList<Colonist> colonists() {
+        return this.colonists;
+    }
+
     //  getter for victory points
     public int victoryPoints() {
         return this.victoryPoints;
