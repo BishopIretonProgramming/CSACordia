@@ -18,8 +18,6 @@ public class Player implements java.io.Serializable {
     @java.io.Serial
     private static final long serialVersionUID = 1L;
 
-    //  waiting for PersonalityCard class or something similar
-    //  TODO: Personality Cards, Colonists
     private ArrayList<PersonalityCard> cards;  //  the player's personality cards
     private ArrayList<PersonalityCard> discard;  //  the personality cards that have been played
     private ArrayList<Colonist> colonists;  //  the player's colonists
@@ -33,8 +31,8 @@ public class Player implements java.io.Serializable {
     //  constructor with name - basic constructor
     public Player(final String NAME) {
         this.NAME = NAME;
-        //this.cards = new ArrayList<>(7);
-        //this.discard = new ArrayList<>();
+        this.cards = new ArrayList<>(7);
+        this.discard = new ArrayList<>();
         this.colonists = new ArrayList<Colonist>(6);
         this.storeHouse = new StoreHouse();
         this.victoryPoints = 0;
@@ -59,14 +57,13 @@ public class Player implements java.io.Serializable {
     }
 
     public void init() {
-        //  TODO: Classes for personality cards
-        // cards.add(new Tribune());
-        // cards.add(new Diplomat());
-        // cards.add(new Architect());
-        // cards.add(new Mercator());
-        // cards.add(new Prefect());
-        // cards.add(new Prefect());
-        // cards.add(new Senator());
+        cards.add(new Tribune());
+        cards.add(new Diplomat());
+        cards.add(new Architect());
+        cards.add(new Mercator());
+        cards.add(new Prefect());
+        cards.add(new Prefect());
+        cards.add(new Senator());
     }
 
     //  method to check if a player can afford something based on the cost
