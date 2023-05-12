@@ -6,17 +6,19 @@ import src.game.Player;
 
 import java.awt.Graphics;
 
-public class Architect extends PersonalityCard implements Jvpiter {
-   
-   Architect(Player myPlayer, int toolPrice) {
-      super(myPlayer, 0, 0, toolPrice, 0, 0, 2);
+public class Diplomat extends PersonalityCard implements Jvpiter {
+   private PersonalityCard copied;
+
+   Diplomat(Player myPlayer, PersonalityCard copy) {
+      super(myPlayer, 0, 0, 0, 0, 0, 2);
+      this.copied = copy;
    }
    
    @Override
    public void doAction() {
       //TO DO
-      //Move colonists
-      //Build Houses
+      //Play any card shown by any other player
+      copied.doAction();
       setPlayed(true);
    }
    

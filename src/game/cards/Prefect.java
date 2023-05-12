@@ -1,22 +1,22 @@
 package src.game.cards;
 
 //  imports
-import src.game.cards.godtype.Jvpiter;
+import src.game.cards.godtype.Satvrnvs;
 import src.game.Player;
 
 import java.awt.Graphics;
 
-public class Architect extends PersonalityCard implements Jvpiter {
+public class Prefect extends PersonalityCard implements Satvrnvs {
    
-   Architect(Player myPlayer, int toolPrice) {
-      super(myPlayer, 0, 0, toolPrice, 0, 0, 2);
+   Prefect(Player myPlayer, int winePrice) {
+      super(myPlayer, 0, 0, 0, winePrice, 0, 2);
    }
    
    @Override
    public void doAction() {
       //TO DO
-      //Move colonists
-      //Build Houses
+      //Add Production Bonus
+      //Produce chosen province
       setPlayed(true);
    }
    

@@ -5,10 +5,10 @@ import src.game.cards.godtype.Jvpiter;
 import src.game.Player;
 
 import java.awt.Graphics;
-
-public class Architect extends PersonalityCard implements Jvpiter {
+//IMPORTANT: The godtype is undetermined; will need to check the game
+public class Consul extends PersonalityCard implements Jvpiter {
    
-   Architect(Player myPlayer, int toolPrice) {
+   Consul(Player myPlayer, int toolPrice) {
       super(myPlayer, 0, 0, toolPrice, 0, 0, 2);
    }
    

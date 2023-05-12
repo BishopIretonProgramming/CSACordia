@@ -1,22 +1,22 @@
 package src.game.cards;
 
 //  imports
-import src.game.cards.godtype.Jvpiter;
+import src.game.cards.godtype.Minerva;
 import src.game.Player;
 
 import java.awt.Graphics;
-
-public class Architect extends PersonalityCard implements Jvpiter {
+//Depending on future implementation, may incorporate all Specialist cards under
+//one superclass/interface
+public class Smith extends PersonalityCard implements Minerva {
    
-   Architect(Player myPlayer, int toolPrice) {
-      super(myPlayer, 0, 0, toolPrice, 0, 0, 2);
+   Smith(Player myPlayer, int brickPrice, int foodPrice) {
+      super(myPlayer, brickPrice, foodPrice, 0, 0, 0, 2);
    }
    
    @Override
    public void doAction() {
       //TO DO
-      //Move colonists
-      //Build Houses
+      //All owned cities of specified type produce
       setPlayed(true);
    }
    

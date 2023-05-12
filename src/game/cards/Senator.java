@@ -1,22 +1,21 @@
 package src.game.cards;
 
 //  imports
-import src.game.cards.godtype.Jvpiter;
+import src.game.cards.godtype.Vesta;
 import src.game.Player;
 
 import java.awt.Graphics;
 
-public class Architect extends PersonalityCard implements Jvpiter {
+public class Senator extends PersonalityCard implements Vesta {
    
-   Architect(Player myPlayer, int toolPrice) {
-      super(myPlayer, 0, 0, toolPrice, 0, 0, 2);
+   Senator(Player myPlayer) {
+      super(myPlayer, 0, 0, 0, 0, 0, 2);
    }
    
    @Override
    public void doAction() {
       //TO DO
-      //Move colonists
-      //Build Houses
+      //Buy up to two cards from the display
       setPlayed(true);
    }
    
