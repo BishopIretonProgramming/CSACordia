@@ -8,45 +8,39 @@ import java.util.Collections;
 
 public class CardStack {
    
-   private ArrayList<Object> stack;
+   private ArrayList<PersonalityCard> stack;
    
    public CardStack() {
-      stack = new ArrayList<Object>();
+      stack = new ArrayList<PersonalityCard>();
    }
    
    // adds cards to the top of the pile in order
-   public void addToTop(Object... o) {
-      for (Object obj : o) if (checkCard(obj)) stack.add(obj);
+   public void addToTop(PersonalityCard... o) {
+      for (PersonalityCard obj : o) stack.add(obj);
    }
    
    // adds cards to the bottom of the pile in order
-   public void addToBottom(Object... o) {
-      for (Object obj : o) if (checkCard(obj)) stack.add(0, obj);
+   public void addToBottom(PersonalityCard... o) {
+      for (PersonalityCard obj : o) stack.add(0, obj);
    }
    
    // randomly adds cards to the pile
-   public void addRandomly(Object... o) {
-      for (Object obj : o) if (checkCard(obj)) stack.add((int) (Math.random() * stack.size()), obj);
+   public void addRandomly(PersonalityCard... o) {
+      for (PersonalityCard obj : o) stack.add((int) (Math.random() * stack.size()), obj);
    }
-   
-   // checks if an object is eligible to be added to the stack
-   public boolean checkCard(Object o) {
-      if (o instanceof PersonalityCard) return true;
-      return false;
-   }
-   
+      
    // pass an instance of the card you want to check if the stack contains
    // parameter is a class type, so pass the type of the card you want like this: Diplomat.class
    // might be Diplomat.getClass() idk I dont like generics, you figure it out
    public boolean contains(Class<?> c) {
-      for (Object obj : stack) if (obj.getClass() == c) return true;
+      for (PersonalityCard obj : stack) if (obj.getClass() == c) return true;
       return false;
    }
    
    // returns the total amount of cards in the stack that are a certain type
    public int count(Class<?> c) {
       int total = 0;
-      for (Object obj : stack) if (obj.getClass() == c) total++;
+      for (PersonalityCard obj : stack) if (obj.getClass() == c) total++;
       return total;
    }
    
@@ -60,8 +54,19 @@ public class CardStack {
       return stack.size();
    }
    
+   // returns the card stack
+   public ArrayList<PersonalityCard> getCards() {
+      return stack;
+   }
+   
+   // returns a specific card
+   public PersonalityCard get(int i) {
+      return stack.get(i);
+   }
+   
+   // clears the array
    public void clear() {
-      stack = new ArrayList<Object>();
+      stack = new ArrayList<PersonalityCard>();
    }
 
 }
