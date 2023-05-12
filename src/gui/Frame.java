@@ -59,25 +59,24 @@ public class Frame {
 
         JFrame concordia = new JFrame("Concordia");
         concordia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    
     // Add map
         JLabel imgMap = new JLabel();
 
         try {
             // creates Image then makes image an icon then sets the icon for the JLabel
             Image map = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            ImageIcon img = new ImageIcon(map);
+            Image mapS = map.getScaledInstance(600, 333,  java.awt.Image.SCALE_SMOOTH);
+            ImageIcon img = new ImageIcon(mapS);
             imgMap.setIcon(img);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //put image on ContentPane and centers it
         concordia.getContentPane().add(imgMap, BorderLayout.CENTER);
-        
-        /* 
-        Dimension mapSize = new Dimension(200, 200);
-        imgMap.setPreferredSize(mapSize);
-        */
+        imgMap.setHorizontalAlignment(JLabel.CENTER);
+
     // set up frame
         concordia.setSize(900, 500);
         concordia.setVisible(true);
