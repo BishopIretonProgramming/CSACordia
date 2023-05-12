@@ -92,7 +92,6 @@ public class Network implements java.io.Serializable {
      * @param end1 the first node associated with the second edge
      * @param end2 the second node associated with the second edge
      * @param type2 the type associated with the second edge
-     * @end2 the second node associated with the second edge
      * @return the number of edges between a start and end edge including the end edge, but
      * excluding the start edge. Or -1 if no path is found
      */
