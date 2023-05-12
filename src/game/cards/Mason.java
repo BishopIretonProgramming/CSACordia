@@ -3,6 +3,7 @@ package src.game.cards;
 //  imports
 import src.game.cards.godtype.Minerva;
 import src.game.Player;
+import src.game.Good;
 
 import java.awt.Graphics;
 //Depending on future implementation, may incorporate all Specialist cards under
@@ -38,5 +39,10 @@ public class Mason extends PersonalityCard implements Minerva {
    @Override
    public Player getPlayer() {
       return super.getMyPlayer();
+   }
+   
+   @Override
+   public Good specialistType() {
+      return Good.BRICK;
    }
 }
