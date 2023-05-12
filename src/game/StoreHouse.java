@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static src.game.Colonist.ColonistType;
+
 /**
  * Represents a store house that can store 12 elements
  * can be serialized for game state saving
@@ -16,29 +18,29 @@ public class StoreHouse implements java.io.Serializable {
     private static final long serialVersionUID = 1L;  //  the version ID for serialization
     private static final int MAX_CAPACITY = 12;       //  the maximum capacity of the store house
     private List<Object> elements;                    //  the elements of the store house
+    private Player player;                            //  the player that this StoreHouse is associated with
 
     //  no-args constructor to make a new store house
-    public StoreHouse() {
+    public StoreHouse(Player player) {
+        this.player = player;
         this.elements = new ArrayList<>(MAX_CAPACITY);
         init();
     }
     
     //  method to initialize the store house by adding the starting elements
     private void init() {
-        //  TODO: Colonist class
         elements.add(Good.WINE);
         elements.add(Good.BRICK);
         elements.add(Good.TOOL);
         elements.add(Good.CLOTH);
         elements.add(Good.FOOD);
         elements.add(Good.FOOD);
-        // elements.add(new Colonist(ColonistType.SEA));
-        // elements.add(new Colonist(ColonistType.SEA));
-        // elements.add(new Colonist(ColonistType.LAND));
-        // elements.add(new Colonist(ColonistType.LAND));
-        // the colonists dont take enums in the constructor anymore, instead we should do this:
-        // elements.add(new Colonist(*player*, whichever pathnode represents rome, whether it is a land colonist or not)); x4
-        // colonist contructor parameters: Player, PathNode, boolean
+        elements.add(new Colonist(this.player, ColonistType.SEA));
+        elements.add(new Colonist(this.player, ColonistType.SEA));
+        elements.add(new Colonist(this.player, ColonistType.LAND));
+        elements.add(new Colonist(this.player, ColonistType.LAND));
+        //the colonists dont take enums in the constructor anymore, instead we should do this:
+        //elements.add(new Colonist(*player*, whichever pathnode represents rome, whether it is a land colonist or not)); x4
     }
 
     //  method to add an element to the StoreHouse

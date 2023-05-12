@@ -41,7 +41,7 @@ public class Player implements java.io.Serializable {
         this.cards = new ArrayList<>(7);
         this.discard = new ArrayList<>();
         this.colonists = new ArrayList<Colonist>(6);
-        this.storeHouse = new StoreHouse();
+        this.storeHouse = new StoreHouse(this);
         this.victoryPoints = 0;
         this.sestertii = 15;
         this.numHouses = 0;
@@ -55,7 +55,7 @@ public class Player implements java.io.Serializable {
         this.cards = new ArrayList<>(7);
         this.discard = new ArrayList<>();
         this.colonists = new ArrayList<Colonist>(6);
-        this.storeHouse = new StoreHouse();
+        this.storeHouse = new StoreHouse(this);
         this.victoryPoints = 0;
         this.sestertii = first ? 5 : 1;
         this.numHouses = 15;
