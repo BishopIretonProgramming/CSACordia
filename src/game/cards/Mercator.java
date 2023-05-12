@@ -8,7 +8,7 @@ import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
    
-   Mercator(Player myPlayer, int winePrice) {
+   public Mercator(Player myPlayer, int winePrice) {
       super(myPlayer, 0, 0, 0, winePrice, 0, 2);
    }
    

@@ -9,7 +9,7 @@ import java.awt.Graphics;
 public class Diplomat extends PersonalityCard implements Jvpiter {
    private PersonalityCard copied;
 
-   Diplomat(Player myPlayer, PersonalityCard copy) {
+   public Diplomat(Player myPlayer, PersonalityCard copy) {
       super(myPlayer, 0, 0, 0, 0, 0, 2);
       this.copied = copy;
    }

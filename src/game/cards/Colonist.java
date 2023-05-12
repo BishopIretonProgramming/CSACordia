@@ -8,7 +8,7 @@ import java.awt.Graphics;
 
 public class Colonist extends PersonalityCard implements Mars {
    
-   Colonist(Player myPlayer, int foodPrice) {
+   public Colonist(Player myPlayer, int foodPrice) {
       super(myPlayer, 0, foodPrice, 0, 0, 0, 2);
    }
    

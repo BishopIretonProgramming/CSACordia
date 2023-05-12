@@ -8,7 +8,7 @@ import java.awt.Graphics;
 //IMPORTANT: The godtype is undetermined; will need to check the game
 public class Consul extends PersonalityCard implements Jvpiter {
    
-   Consul(Player myPlayer, int toolPrice) {
+   public Consul(Player myPlayer, int toolPrice) {
       super(myPlayer, 0, 0, toolPrice, 0, 0, 2);
    }
    

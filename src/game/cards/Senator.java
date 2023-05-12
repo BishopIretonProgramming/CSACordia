@@ -8,7 +8,7 @@ import java.awt.Graphics;
 
 public class Senator extends PersonalityCard implements Vesta {
    
-   Senator(Player myPlayer) {
+   public Senator(Player myPlayer) {
       super(myPlayer, 0, 0, 0, 0, 0, 2);
    }
    

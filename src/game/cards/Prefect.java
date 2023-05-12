@@ -8,7 +8,7 @@ import java.awt.Graphics;
 
 public class Prefect extends PersonalityCard implements Satvrnvs {
    
-   Prefect(Player myPlayer, int winePrice) {
+   public Prefect(Player myPlayer, int winePrice) {
       super(myPlayer, 0, 0, 0, winePrice, 0, 2);
    }
    
