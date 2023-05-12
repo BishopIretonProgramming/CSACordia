@@ -22,7 +22,7 @@ public class Player implements java.io.Serializable {
     //  TODO: Personality Cards, Colonists
     private ArrayList<PersonalityCard> cards;  //  the player's personality cards
     private ArrayList<PersonalityCard> discard;  //  the personality cards that have been played
-    //private ArrayList<Colonist> colonists;  //  the player's colonists
+    private ArrayList<Colonist> colonists;  //  the player's colonists
     private StoreHouse storeHouse;  //  the player's storeHouse
     private final String NAME;  //  the name of the player
     private int victoryPoints;  //  the number of victory points the player has
@@ -35,7 +35,7 @@ public class Player implements java.io.Serializable {
         this.NAME = NAME;
         //this.cards = new ArrayList<>(7);
         //this.discard = new ArrayList<>();
-        //this.colonists = new ArrayList<>(6);
+        this.colonists = new ArrayList<Colonist>(6);
         this.storeHouse = new StoreHouse();
         this.victoryPoints = 0;
         this.sestertii = 15;
@@ -49,7 +49,7 @@ public class Player implements java.io.Serializable {
         this.NAME = NAME;
         this.cards = new ArrayList<>(7);
         this.discard = new ArrayList<>();
-        //this.colonists = new ArrayList<>(6);
+        this.colonists = new ArrayList<Colonist>(6);
         this.storeHouse = new StoreHouse();
         this.victoryPoints = 0;
         this.sestertii = first ? 5 : 1;
@@ -129,6 +129,11 @@ public class Player implements java.io.Serializable {
     public void setVictoryPoints(int victoryPoints) {
         this.victoryPoints = victoryPoints;
     }
+    
+    // adds victory points, just for convenience
+    public void addVictoryPoints(int vp) {
+        this.victoryPoints += vp;
+    }
 
     //  setter for praefectus magnus
     public void setPraefectusMagnus(boolean has) {
@@ -143,5 +148,10 @@ public class Player implements java.io.Serializable {
     //  setter for sestertii
     public void setSestertii(int sestertii) {
         this.sestertii = sestertii;
+    }
+    
+    // adds sestertii
+    public void addSestertii(int s) {
+        this.sestertii += s;
     }
 }
