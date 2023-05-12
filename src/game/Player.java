@@ -6,6 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import src.game.cards.PersonalityCard;
+import src.game.cards.Architect;
+import src.game.cards.Colonist;
+import src.game.cards.Diplomat;
+import src.game.cards.Mercator;
+import src.game.cards.Tribune;
+import src.game.cards.Prefect;
+import src.game.cards.Senator;
 
 /**
  * A class to represent a player
@@ -57,13 +64,13 @@ public class Player implements java.io.Serializable {
     }
 
     public void init() {
-        cards.add(new Tribune());
-        cards.add(new Diplomat());
-        cards.add(new Architect());
-        cards.add(new Mercator());
-        cards.add(new Prefect());
-        cards.add(new Prefect());
-        cards.add(new Senator());
+        cards.add(new Tribune(this));
+        cards.add(new Diplomat(this, null));
+        cards.add(new Architect(this, 0));
+        cards.add(new Mercator(this, 0));
+        cards.add(new Prefect(this, 0));
+        cards.add(new Prefect(this, 0));
+        cards.add(new Senator(this));
     }
 
     //  method to check if a player can afford something based on the cost
