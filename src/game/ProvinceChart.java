@@ -51,7 +51,7 @@ public class ProvinceChart {
    //takes the province name and finds the corresponding Province object
    private Province findProvince(String provinceName) {
       for(Province province : provinceList) {
-         if(provinceName == province.getName()) {
+         if(provinceName.equals(province.getName())) {
             return province;
          }
       }
