@@ -12,7 +12,7 @@ import static src.game.Colonist.ColonistType.LAND;
  * @author Jonah Cook
  * @author Caroline Miller
  */
-public abstract class Colonist {
+public class Colonist {
 
 	/**
 	 * The player that the colonist is associated with
@@ -22,7 +22,7 @@ public abstract class Colonist {
 	/**
 	 * The current path that the colonist is on
 	 */
-	private final PathNode PATH;
+	private PathNode path;
 
 	/**
 	 * The type of colonist that this colonist is
@@ -33,12 +33,10 @@ public abstract class Colonist {
 	 * Constructor to make a new Colonist
 	 * 
 	 * @param PLAYER the player that the colonist is associated with
-	 * @param PATH   the current path of the player
 	 * @param TYPE the type of colonist that this colonist is
 	 */
-	public Colonist(final Player PLAYER, final PathNode PATH, final ColonistType TYPE) {
+	public Colonist(final Player PLAYER, final ColonistType TYPE) {
 		this.PLAYER = PLAYER;
-		this.PATH = PATH;
 		this.TYPE = TYPE;
 	}
 
@@ -53,7 +51,7 @@ public abstract class Colonist {
 	 * Getter to return the PathNode that this colonist is on
 	 */
 	public PathNode path() {
-		return this.PATH;
+		return this.path;
 	}
 
 	/**
@@ -81,7 +79,17 @@ public abstract class Colonist {
 	 * Method to determine if this colonist can move to a PathNode
 	 * @param node the PathNode to move to
 	 */
-	public abstract boolean canMoveTo(PathNode node);
+	public boolean canMoveTo(PathNode node) {
+		return false;
+	}
+
+	/**
+	 * Setter method to set the PathNode of this Colonist
+	 * @param path the PathNode this Colonist is on
+	 */
+	public void setPathNode(PathNode path) {
+		this.path = path;
+	}
 
 	/**
 	 * An enum to represent the type of colonist that a colonist is
