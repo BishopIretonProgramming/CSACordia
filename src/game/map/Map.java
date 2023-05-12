@@ -188,23 +188,6 @@ public class Map {
     }
 
     /**
-     * Method to get the city by name
-     * @param name the name of the CityNode to find
-     * @return the CityNode in cities whose name matches name
-     */
-    private CityNode get(String name) {
-        if (cities == null || name == null) {
-            return null;
-        }
-        for (CityNode city : this.cities) {
-            if (city.name().equals(name)) {
-                return city;
-            }
-        }
-        return null;
-    }
-
-    /**
      * Getter method for the map cities
      * @return the cities of this Map
      */
