@@ -1,6 +1,8 @@
 package src.game.map;
 
 //  imports
+import src.game.Good;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,18 +35,11 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
          * @return the type that the String matches or null of the String does not match a type
          */
         public static PathType fromString(String type) {
-            type = type.toUpperCase();
-            switch (type) {
-                case "LAND" -> {
-                    return LAND;
-                }
-                case "SEA" -> {
-                    return SEA;
-                }
-                default -> {
-                    return null;
-                }
-            }
+            return switch (type.toUpperCase()) {
+                case "LAND" -> LAND;
+                case "SEA" -> SEA;
+                default -> null;
+            };
         }
     }
 
@@ -66,31 +61,21 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
      * Library (static) method to load Edges from a file
      * # means a comment
      * Should be written in the form
-     * name::node1 name::node1 id::node2 name::node2 id::type where node1 and node2 are in valid CityNode
+     * name::cityname1::cityid1::cityletter1::citygood1::cityname2::cityid2::cityletter2::citygood2::type
      * file form (no comments)
      * @param path the path to the file with the edges
      * @return a list of PathNodes loaded from path
      */
-    public static List<PathNode> loadEdgesFromFile(String path) {
+    public static List<PathNode> fread(String path) {
         List<PathNode> paths = new ArrayList<>();
-
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.trim().startsWith("#")) {
-                    int commentIndex = line.indexOf("#");
-                    if (commentIndex != -1) {
-                        line = line.substring(0, commentIndex).trim();
-                    }
-
-                    String[] tokens = line.split("::");
-                    String name = tokens[0];
-                    CityNode node1 = new CityNode(tokens[1], Integer.parseInt(tokens[2]));
-                    CityNode node2 = new CityNode(tokens[3], Integer.parseInt(tokens[4]));
-                    PathType type = PathType.fromString(tokens[5]);
-                    paths.add(new PathNode(name, node1, node2, type));
-                }
-            }
+            paths = reader.lines()
+                    .map(String::trim)
+                    .filter(line -> !line.startsWith("#"))
+                    .map(line -> line.split("::"))
+                    .filter(tokens -> tokens.length == 10)
+                    .map(tokens -> new PathNode(tokens[0], new CityNode(tokens[1], Integer.parseInt(tokens[2]), tokens[3].charAt(0), Good.fromString(tokens[4])), new CityNode(tokens[5], Integer.parseInt(tokens[6]), tokens[7].charAt(0), Good.fromString(tokens[8])), PathType.fromString(tokens[9])))
+                    .toList();
         } catch (IOException e) {
             System.err.printf("Error reading PathNodes from file: %s%n", e.getMessage());
         }
@@ -103,6 +88,6 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
      */
     @Override
     public String toString() {
-        return String.format("PathNode %s of type %s is connected to %s and %s", name, node1, node2);
+        return String.format("PathNode %s of type %s is connected to %s and %s", name, type, node1, node2);
     }
 }

@@ -92,7 +92,6 @@ public class CityNode implements java.io.Serializable {
         } catch (IOException e) {
             System.err.printf("Error reading CityNodes from file: %s%n", e.getMessage());
         }
-
         return cities;
     }
 
