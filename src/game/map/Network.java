@@ -9,6 +9,12 @@ import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Font;
 
 import static src.game.map.PathNode.PathType;
 
@@ -192,6 +198,71 @@ public class Network implements java.io.Serializable {
             System.err.printf("Error loading Network from file: %s%n", e.getMessage());
         }
         return network;
+    }
+
+    /**
+     * Method to create a graphical visualization of this network
+     * mostly for testing purposes
+     */
+    public void visualize() {
+        JFrame frame = new JFrame("Network Visualization");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                g.setFont(new Font("Arial", Font.PLAIN, 12));
+
+                // Calculate the size of each node based on the panel size and number of nodes
+                int nodeSize = Math.min(getWidth() / 10, getHeight() / (NUM_NODES / 10));
+
+                for (int i = 0; i < NUM_NODES; i++) {
+                    int x = (i % 10) * nodeSize + nodeSize / 2;
+                    int y = (i / 10) * nodeSize + nodeSize / 2;
+
+                    g.setColor(Color.WHITE);
+                    g.drawOval(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
+
+                    // Draw the node ID
+                    String nodeId = Integer.toString(i);
+                    int nodeIdWidth = g.getFontMetrics().stringWidth(nodeId);
+                    g.drawString(nodeId, x - nodeIdWidth / 2, y);
+                }
+
+                for (int u = 0; u < NUM_NODES; u++) {
+                    for (int v : adjListLand.get(u)) {
+                        int x1 = (u % 10) * nodeSize + nodeSize / 2;
+                        int y1 = (u / 10) * nodeSize + nodeSize / 2;
+                        int x2 = (v % 10) * nodeSize + nodeSize / 2;
+                        int y2 = (v / 10) * nodeSize + nodeSize / 2;
+
+                        g.setColor(Color.GREEN);
+                        g.drawLine(x1, y1, x2, y2);
+                    }
+
+                    for (int v : adjListSea.get(u)) {
+                        int x1 = (u % 10) * nodeSize + nodeSize / 2;
+                        int y1 = (u / 10) * nodeSize + nodeSize / 2;
+                        int x2 = (v % 10) * nodeSize + nodeSize / 2;
+                        int y2 = (v / 10) * nodeSize + nodeSize / 2;
+
+                        g.setColor(Color.BLUE);
+                        g.drawLine(x1, y1, x2, y2);
+                    }
+                }
+            }
+        };
+
+        panel.setPreferredSize(new Dimension(800, 600)); // Increase the preferred size
+
+        panel.setBackground(Color.DARK_GRAY);
+
+        frame.getContentPane().add(panel);
+
+        frame.pack();
+        frame.setVisible(true);
     }
 
     /**

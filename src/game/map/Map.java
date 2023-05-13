@@ -49,7 +49,7 @@ public class Map {
      * @param type the type of map
      */
     public Map(byte type) {
-        if (type != IMPERIUM || type != ITALIA) {
+        if (type != IMPERIUM && type != ITALIA) {
             throw new IllegalArgumentException("Invalid map type");
         }
         this.type = type;
@@ -178,7 +178,6 @@ public class Map {
                 network.connect(26, 28, LAND);
                 network.connect(27, 28, LAND);
                 network.connect(28, 29, LAND);
-
                 //  TODO: save this to a file and remove this code 
             }
             case 1 -> {
