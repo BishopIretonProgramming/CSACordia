@@ -64,36 +64,36 @@ public class Map {
             case 0 -> {
                 cities = new ArrayList<>(
                         Arrays.asList(
-                                new CityNode("Isca D.", 0),
-                                new CityNode("Londinivm", 1),
-                                new CityNode("Colonia A", 2),
-                                new CityNode("Vindobona", 3),
-                                new CityNode("Napoca", 4),
-                                new CityNode("Lvtetia", 5),
-                                new CityNode("Sirmivm", 6),
-                                new CityNode("Tomis", 7),
-                                new CityNode("Brigantivm", 8),
-                                new CityNode("Bvrdigala", 9),
-                                new CityNode("Massilia", 10),
-                                new CityNode("Novaria", 11),
-                                new CityNode("Aquileia", 12),
-                                new CityNode("Bycantivm", 13),
-                                new CityNode("Sinope", 14),
-                                new CityNode("Olisipo", 15),
-                                new CityNode("Valentia", 16),
-                                new CityNode("Carthago", 17),
-                                new CityNode("Syracvsa", 18),
-                                new CityNode("Dyrrhachium", 19),
-                                new CityNode("Athena", 20),
-                                new CityNode("Attalia", 21),
-                                new CityNode("Antiochia", 22),
-                                new CityNode("Tyros", 23),
-                                new CityNode("Rvsadir", 24),
-                                new CityNode("Leptis Magna", 25),
-                                new CityNode("Cyrene", 26),
-                                new CityNode("Alexandria", 27),
-                                new CityNode("Memphis", 28),
-                                new CityNode("Petra", 29)
+                                new CityNode("Isca D.", 0, 'A'),
+                                new CityNode("Londinivm", 1, 'A'),
+                                new CityNode("Colonia A", 2, 'A'),
+                                new CityNode("Vindobona", 3, 'A'),
+                                new CityNode("Napoca", 4, 'A'),
+                                new CityNode("Lvtetia", 5, 'A'),
+                                new CityNode("Sirmivm", 6, 'A'),
+                                new CityNode("Tomis", 7, 'A'),
+                                new CityNode("Brigantivm", 8, 'B'),
+                                new CityNode("Bvrdigala", 9, 'B'),
+                                new CityNode("Massilia", 10, 'B'),
+                                new CityNode("Novaria", 11, 'D'),
+                                new CityNode("Aquileia", 12, 'D'),
+                                new CityNode("Bycantivm", 13, 'C'),
+                                new CityNode("Sinope", 14, 'C'),
+                                new CityNode("Olisipo", 15, 'B'),
+                                new CityNode("Valentia", 16, 'B'),
+                                new CityNode("Carthago", 17, 'B'),
+                                new CityNode("Syracvsa", 18, 'D'),
+                                new CityNode("Dyrrhachium", 19, 'D'),
+                                new CityNode("Athena", 20, 'D'),
+                                new CityNode("Attalia", 21, 'C'),
+                                new CityNode("Antiochia", 22, 'C'),
+                                new CityNode("Tyros", 23, 'C'),
+                                new CityNode("Rvsadir", 24, 'B'),
+                                new CityNode("Leptis Magna", 25, 'C'),
+                                new CityNode("Cyrene", 26, 'C'),
+                                new CityNode("Alexandria", 27, 'C'),
+                                new CityNode("Memphis", 28, 'C'),
+                                new CityNode("Petra", 29, 'C')
                         )
                 );
                 paths = null;  //  TODO: method in Network to return PathNodes from connections because I do not want to write out the code for every PathNode
@@ -184,6 +184,13 @@ public class Map {
                 //  TODO: high resolution image of Italia map so that the names of the cities can be read
             }
         }
+    }
+
+    /**
+     * Method to randomly assign goods to each city
+     */
+    public void assignGoods() {
+
     }
 
     /**

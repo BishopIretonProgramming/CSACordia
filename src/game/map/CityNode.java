@@ -35,6 +35,11 @@ public class CityNode implements java.io.Serializable {
     private int id;
 
     /**
+     * The letter associated with this CityNode (city)
+     */
+    private char letter;
+
+    /**
      * The Good that this CityNode (city) produces
      */
     private Good good;
@@ -43,11 +48,13 @@ public class CityNode implements java.io.Serializable {
      * Constructor to make a new CityNode
      * @param name the name of this CityNode (city)
      * @param id the id of this CityNode in a Network
+     * @param letter the letter associated with this CityNode (city)
      * @param good the Good that this CityNode (city) should produce
      */
-    public CityNode(String name, int id, Good good) {
+    public CityNode(String name, int id, char letter, Good good) {
         this.name = name;
         this.id = id;
+        this.letter = letter;
         this.good = good;
     }
 
@@ -55,10 +62,12 @@ public class CityNode implements java.io.Serializable {
      * Constructor to make a new CityNode
      * @param name the name of this CityNode (city)
      * @param id the id of this CityNode in a Network
+     * @param letter the letter associated with this CityNode (city)
      */
-    public CityNode(String name, int id) {
+    public CityNode(String name, int id, char letter) {
         this.name = name;
         this.id = id;
+        this.letter = letter;
     }
 
     /**
@@ -70,15 +79,15 @@ public class CityNode implements java.io.Serializable {
      * @param path the path to the file where the CityNodes are stored
      * @return a List of the CityNodes found in path
      */
-    public static List<CityNode> freadFromSave(String path) {
+    public static List<CityNode> fread(String path) {
         List<CityNode> cities = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             cities = reader.lines()
                     .map(String::trim)
                     .filter(line -> !line.startsWith("#"))
                     .map(line -> line.split("::"))
-                    .filter(tokens -> tokens.length == 3)
-                    .map(tokens -> new CityNode(tokens[0], Integer.parseInt(tokens[1]), Good.fromString(tokens[2])))
+                    .filter(tokens -> tokens.length == 4)
+                    .map(tokens -> new CityNode(tokens[0], Integer.parseInt(tokens[1]), tokens[2].charAt(0), Good.fromString(tokens[3])))
                     .toList();
         } catch (IOException e) {
             System.err.printf("Error reading CityNodes from file: %s%n", e.getMessage());
