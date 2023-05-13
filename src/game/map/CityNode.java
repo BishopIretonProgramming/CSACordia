@@ -70,7 +70,7 @@ public class CityNode implements java.io.Serializable {
      * @param path the path to the file where the CityNodes are stored
      * @return a List of the CityNodes found in path
      */
-    public static List<CityNode> fread(String path) {
+    public static List<CityNode> freadFromSave(String path) {
         List<CityNode> cities = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             cities = reader.lines()
