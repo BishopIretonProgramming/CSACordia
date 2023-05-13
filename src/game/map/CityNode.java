@@ -1,64 +1,121 @@
 package src.game.map;
 
 //  imports
-import java.util.List;
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+
+import src.game.Good;
 
 /**
- * A record to represent a CityNode in a Network, can be serialized for game state saving
- * @param name the name of this CityNode (the name of the city)
- * @param id the id of this CityNode in a Network (should start at 0 and increase like the
- *           indices of an array)
+ * A class to represent a CityNode in a Network and a city in a Game
+ * can be serialized for game saving
  * @author devinlinux
  */
-public record CityNode(String name, int id) implements java.io.Serializable {
+
+public class CityNode implements java.io.Serializable {
 
     /**
-     * Version ID for serialization
+     * The version ID for serialization
      */
     @java.io.Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * Library (static) method to read in Nodes from a file, the format should be as follows:
-     * # indicates comment, everything left will be ignored
-     * name::id # makes a new CityNode with name: name and id: id
-     * @param path the path to the text file
-     * @return the list of CityNodes found in the text file
+     * The name of this CityNode (city)
      */
-    public static List<CityNode> loadNodesFromFile(String path) {
+    private String name;
+
+    /**
+     * The id of this CityNode in a Network (should be assigned similar to the indices of an array, that
+     * is to say that they start at 0 and increment from there without skipping numbers)
+     */
+    private int id;
+
+    /**
+     * The Good that this CityNode (city) produces
+     */
+    private Good good;
+
+    /**
+     * Constructor to make a new CityNode
+     * @param name the name of this CityNode (city)
+     * @param id the id of this CityNode in a Network
+     * @param good the Good that this CityNode (city) should produce
+     */
+    public CityNode(String name, int id, Good good) {
+        this.name = name;
+        this.id = id;
+        this.good = good;
+    }
+
+    /**
+     * Constructor to make a new CityNode
+     * @param name the name of this CityNode (city)
+     * @param id the id of this CityNode in a Network
+     */
+    public CityNode(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    /**
+     * Library (static) method to read in a List of CityNodes from a file, the format should be
+     * as follows:
+     * # indicates a comment, everything right of this will be ignored
+     * name::id::good # the good should be a string that represents the Good that it should produce
+     * the good should be one of the Goods defined in the Good enum
+     * @param path the path to the file where the CityNodes are stored
+     * @return a List of the CityNodes found in path
+     */
+    public static List<CityNode> fread(String path) {
         List<CityNode> cities = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.trim().startsWith("#")) {
-                    int commentIndex = line.indexOf("#");
-                    if (commentIndex != -1) {
-                        line = line.substring(0, commentIndex).trim();
-                    }
-
-                    String[] tokens = line.split("::");
-                    String name = tokens[0];
-                    int id = Integer.parseInt(tokens[1]);
-                    cities.add(new CityNode(name, id));
-                }
-            }
+            cities = reader.lines()
+                    .map(String::trim)
+                    .filter(line -> !line.startsWith("#"))
+                    .map(line -> line.split("::"))
+                    .filter(tokens -> tokens.length == 3)
+                    .map(tokens -> new CityNode(tokens[0], Integer.parseInt(tokens[1]), Good.fromString(tokens[2])))
+                    .toList();
         } catch (IOException e) {
-            System.err.printf("Error reading Nodes from file: %s%n", e.getMessage());
+            System.err.printf("Error reading CityNodes from file: %s%n", e.getMessage());
         }
 
         return cities;
     }
 
     /**
-     * toString to return a String representation of a CityNode
-     * @return the String representation of this CityNode
+     * Setter to set the Good that this CityNode (city) produces
+     * @param good the Good that this CityNode (city) should produce
      */
-    @Override
-    public String toString() {
-        return String.format("CityNode %s: %d", name, id);
+    public void setGood(Good good) {
+        this.good = good;
+    }
+
+    /**
+     * Getter to return the name of this CityNode (city)
+     * @return the name of this CityNode
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Getter to return the id of this CityNode in a Network
+     * @return the id of this CityNode in a Network
+     */
+    public int id() {
+        return this.id;
+    }
+
+    /**
+     * Getter to return the Good that this CityNode (city) produces
+     * @return the Good that is produced by this CityNode (city)
+     */
+    public Good good() {
+        return this.good;
     }
 }

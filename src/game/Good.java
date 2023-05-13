@@ -35,4 +35,20 @@ public enum Good {
       PRICE = v;
       NAME = n;
    }
+
+   /**
+    * Library (static) method to return a Good from a String
+    * @param good the String of the Good
+    * @return the Good represented by the String
+    */
+   public static Good fromString(String good) {
+      return switch (good.toUpperCase()) {
+         case "WINE" -> WINE;
+         case "BRICK" -> BRICK;
+         case "TOOL" -> TOOL;
+         case "CLOTH" -> CLOTH;
+         case "FOOD" -> FOOD;
+         default -> null;
+      };
+   }
 }
