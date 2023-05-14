@@ -52,7 +52,7 @@ package src.game;
      
      public Good randomGood() {
        Random math = new Random();
-       int goodValue = (int)((math.nextInt()*5) + 3);
+       int goodValue = (math.nextInt()*5) + 3;
        
        switch (goodValue) {
           case 3:
@@ -79,14 +79,14 @@ package src.game;
      public void fillBox() {
      Random math = new Random();
         for (int i = 0; i < capacity; i++) {
-            this.add(new RegionBonus(randomGood(), (int)((math.nextInt()*3) +1) ));
+            this.add(new RegionBonus(randomGood(), (math.nextInt()*3) +1));
         }
      }
  
      public int flipBox() {
          int totalSestertii = 0;
          for (RegionBonus region: this) {
-             if (region.getFlipped() == true) {   
+             if (region.getFlipped()) {
                  totalSestertii += region.flip();
              }
          }
