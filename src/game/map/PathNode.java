@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -90,24 +91,36 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
      * @param nodes the PathNodes to write to the file
      */
     public static void fwrite(String path, List<PathNode> nodes) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            for (PathNode node : nodes) {
-                String line = String.format("%s::%s::%d::%c::%s::%s::%d::%c::%s::%s",
-                        node.name(),
-                        node.node1().name(),
-                        node.node1().id(),
-                        node.node1().letter(),
-                        node.node1().good(),
-                        node.node2().name(),
-                        node.node2().id(),
-                        node.node2().letter(),
-                        node.node2().good(),
-                        node.type());
-                writer.write(line);
-                writer.newLine();
+        try {
+            File file = new File(path);
+
+            if (!file.exists()) {
+                if (!file.createNewFile()) {
+                    System.err.printf("Could not make file %s%n", path);
+                }
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                for (PathNode node : nodes) {
+                    String line = String.format("%s::%s::%d::%c::%s::%s::%d::%c::%s::%s",
+                            node.name(),
+                            node.node1().name(),
+                            node.node1().id(),
+                            node.node1().letter(),
+                            node.node1().good(),
+                            node.node2().name(),
+                            node.node2().id(),
+                            node.node2().letter(),
+                            node.node2().good(),
+                            node.type());
+                    writer.write(line);
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                System.err.printf("Error writing PathNodes to file: %s%n", e.getMessage());
             }
         } catch (IOException e) {
-            System.err.printf("Error writing PathNodes to file: %s%n", e.getMessage());
+            System.err.printf("Error writing Network to file: %s%n", e.getMessage());
         }
     }
 
