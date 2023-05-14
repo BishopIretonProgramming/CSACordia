@@ -68,41 +68,42 @@ public class Map {
     public void init() {
         switch (type) {
             case 0 -> {
-                cities = new ArrayList<>(
-                        Arrays.asList(
-                                new CityNode("Isca D.", 0, 'A'),
-                                new CityNode("Londinivm", 1, 'A'),
-                                new CityNode("Colonia A", 2, 'A'),
-                                new CityNode("Vindobona", 3, 'A'),
-                                new CityNode("Napoca", 4, 'A'),
-                                new CityNode("Lvtetia", 5, 'A'),
-                                new CityNode("Sirmivm", 6, 'A'),
-                                new CityNode("Tomis", 7, 'A'),
-                                new CityNode("Brigantivm", 8, 'B'),
-                                new CityNode("Bvrdigala", 9, 'B'),
-                                new CityNode("Massilia", 10, 'B'),
-                                new CityNode("Novaria", 11, 'D'),
-                                new CityNode("Aquileia", 12, 'D'),
-                                new CityNode("Bycantivm", 13, 'C'),
-                                new CityNode("Sinope", 14, 'C'),
-                                new CityNode("Olisipo", 15, 'B'),
-                                new CityNode("Valentia", 16, 'B'),
-                                new CityNode("Carthago", 17, 'B'),
-                                new CityNode("Syracvsa", 18, 'D'),
-                                new CityNode("Dyrrhachium", 19, 'D'),
-                                new CityNode("Athena", 20, 'D'),
-                                new CityNode("Attalia", 21, 'C'),
-                                new CityNode("Antiochia", 22, 'C'),
-                                new CityNode("Tyros", 23, 'C'),
-                                new CityNode("Rvsadir", 24, 'B'),
-                                new CityNode("Leptis Magna", 25, 'C'),
-                                new CityNode("Cyrene", 26, 'C'),
-                                new CityNode("Alexandria", 27, 'C'),
-                                new CityNode("Memphis", 28, 'C'),
-                                new CityNode("Petra", 29, 'C')
-                        )
-                );
-                network.setCities(cities);
+//                cities = new ArrayList<>(
+//                        Arrays.asList(
+//                                new CityNode("Isca D.", 0, 'A'),
+//                                new CityNode("Londinivm", 1, 'A'),
+//                                new CityNode("Colonia A", 2, 'A'),
+//                                new CityNode("Vindobona", 3, 'A'),
+//                                new CityNode("Napoca", 4, 'A'),
+//                                new CityNode("Lvtetia", 5, 'A'),
+//                                new CityNode("Sirmivm", 6, 'A'),
+//                                new CityNode("Tomis", 7, 'A'),
+//                                new CityNode("Brigantivm", 8, 'B'),
+//                                new CityNode("Bvrdigala", 9, 'B'),
+//                                new CityNode("Massilia", 10, 'B'),
+//                                new CityNode("Novaria", 11, 'D'),
+//                                new CityNode("Aquileia", 12, 'D'),
+//                                new CityNode("Bycantivm", 13, 'C'),
+//                                new CityNode("Sinope", 14, 'C'),
+//                                new CityNode("Olisipo", 15, 'B'),
+//                                new CityNode("Valentia", 16, 'B'),
+//                                new CityNode("Carthago", 17, 'B'),
+//                                new CityNode("Syracvsa", 18, 'D'),
+//                                new CityNode("Dyrrhachium", 19, 'D'),
+//                                new CityNode("Athena", 20, 'D'),
+//                                new CityNode("Attalia", 21, 'C'),
+//                                new CityNode("Antiochia", 22, 'C'),
+//                                new CityNode("Tyros", 23, 'C'),
+//                                new CityNode("Rvsadir", 24, 'B'),
+//                                new CityNode("Leptis Magna", 25, 'C'),
+//                                new CityNode("Cyrene", 26, 'C'),
+//                                new CityNode("Alexandria", 27, 'C'),
+//                                new CityNode("Memphis", 28, 'C'),
+//                                new CityNode("Petra", 29, 'C')
+//                        )
+//                );
+//                CityNode.fwrite(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP), cities);
+
 
                 //  Note to self: 0 -> 29, no connections to lower, right > left! ^ ~ >! < ~ >!
 //                this.network = new Network(cities.size());
@@ -185,8 +186,9 @@ public class Map {
 //                network.connect(27, 28, LAND);
 //                network.connect(28, 29, LAND);
 //                Network.fwrite(String.format("src%sgame%smap%ssaves%snetwork.nw", SEP, SEP, SEP, SEP), network);
-                this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP));
-                paths = network.paths();
+                this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP), String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP));
+                this.cities = network.cities();
+                this.paths = this.network.paths();
             }
             case 1 -> {
                 //  TODO: high resolution image of Italia map so that the names of the cities can be read

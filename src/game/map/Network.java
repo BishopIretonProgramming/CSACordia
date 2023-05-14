@@ -91,11 +91,16 @@ public class Network implements java.io.Serializable {
             }
         }
 
-        this.paths.add(new PathNode(
-                cities.get(u).name() + " to " + cities.get(v).name(),
-                cities.get(u),
-                cities.get(v),
-                type));
+        if (this.cities != null) {
+            if (this.paths == null) {
+                this.paths = new ArrayList<>();
+            }
+            this.paths.add(new PathNode(
+                    cities.get(u).name() + " to " + cities.get(v).name(),
+                    cities.get(u),
+                    cities.get(v),
+                    type));
+        }
     }
 
     /**
@@ -183,15 +188,17 @@ public class Network implements java.io.Serializable {
     }
 
     /**
-     * Library (static) method to load a Network from a file
+     * Library (static) method to load a Network from a file with CityNodes (cities)
      * The first non comment line must be the number of nodes in the Network
      * From there you can connect nodes using u <-> v <-> t
-     * @param path the path to the file containing the Network
+     * @param networkPath the path to the file containing the Network
+     * @param citiesPath the path to the file containing the CityNodes (cities) of the Network
      * @return the Network created by the file
      */
-    public static Network fread(String path) {
+    public static Network fread(String networkPath, String citiesPath) {
         Network network = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        List<CityNode> cities = CityNode.fread(citiesPath);
+        try (BufferedReader reader = new BufferedReader(new FileReader(networkPath))) {
             int i = 0;
             String line;
             while ((line = reader.readLine()) != null) {
@@ -202,6 +209,7 @@ public class Network implements java.io.Serializable {
                     }
                     if (i == 0) {
                         network = new Network(Integer.parseInt(line.trim()));
+                        network.setCities(cities);
                     }
                     if (i > 0 && line.contains("<->")) {
                         String[] tokens = line.split("<->");
