@@ -218,30 +218,29 @@ public class Network implements java.io.Serializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                writer.write(Integer.toString(network.NUM_NODES));
+                writer.newLine();
 
-            writer.write(Integer.toString(network.NUM_NODES));
-            writer.newLine();
+                for (int u = 0; u < network.NUM_NODES; u++) {
+                    for (int v : network.adjListLand.get(u)) {
+                        String line = String.format("%d <-> %d <-> %s", u, v, PathType.LAND.name());
+                        writer.write(line);
+                        writer.newLine();
+                    }
 
-            for (int u = 0; u < network.NUM_NODES; u++) {
-                for (int v : network.adjListLand.get(u)) {
-                    String line = String.format("%d <-> %d <-> %s", u, v, PathType.LAND.name());
-                    writer.write(line);
-                    writer.newLine();
-                }
-
-                for (int v : network.adjListSea.get(u)) {
-                    String line = String.format("%d <-> %d <-> %s", u, v, PathType.SEA.name());
-                    writer.write(line);
-                    writer.newLine();
+                    for (int v : network.adjListSea.get(u)) {
+                        String line = String.format("%d <-> %d <-> %s", u, v, PathType.SEA.name());
+                        writer.write(line);
+                        writer.newLine();
+                    }
                 }
             }
-
-            writer.close();
         } catch (IOException e) {
             System.err.printf("Error writing Network to file: %s%n", e.getMessage());
         }
     }
+
 
     /**
      * Method to create a graphical visualization of this network
