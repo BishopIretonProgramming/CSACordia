@@ -116,11 +116,9 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
                     writer.write(line);
                     writer.newLine();
                 }
-            } catch (IOException e) {
-                System.err.printf("Error writing PathNodes to file: %s%n", e.getMessage());
             }
         } catch (IOException e) {
-            System.err.printf("Error writing Network to file: %s%n", e.getMessage());
+            System.err.printf("Error writing PathNodes to file: %s%n", e.getMessage());
         }
     }
 

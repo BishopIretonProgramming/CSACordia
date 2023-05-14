@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -103,18 +104,28 @@ public class CityNode implements java.io.Serializable {
      * @param nodes the CityNodes to write to the file
      */
     public static void fwrite(String path, List<CityNode> nodes) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            for (CityNode node : nodes) {
-                String line = String.format("%s::%d::%c::%s",
-                        node.name(),
-                        node.id(),
-                        node.letter(),
-                        node.good());
-                writer.write(line);
-                writer.newLine();
+        try {
+            File file = new File(path);
+
+            if (!file.exists()) {
+                if (!file.createNewFile()) {
+                    System.err.printf("Could not make file %s%n", path);
+                }
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                for (CityNode node : nodes) {
+                    String line = String.format("%s::%d::%c::%s",
+                            node.name(),
+                            node.id(),
+                            node.letter(),
+                            node.good());
+                    writer.write(line);
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
-            System.err.printf("Error writing CityNodes to file: %s%n", e.getMessage());
+            System.err.printf("Error writing CityNode to file: %s%n", e.getMessage());
         }
     }
 
