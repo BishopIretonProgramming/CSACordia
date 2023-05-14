@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import src.game.Good;
+import src.game.Colonist;
 
 /**
  * A class to represent a CityNode in a Network and a city in a Game
@@ -46,6 +47,11 @@ public class CityNode implements java.io.Serializable {
      * The Good that this CityNode (city) produces
      */
     private Good good;
+
+    /**
+     * The Colonists that have been added to this CityNode (city)
+     */
+    private ArrayList<Colonist> colonists;
 
     /**
      * Constructor to make a new CityNode
@@ -130,6 +136,22 @@ public class CityNode implements java.io.Serializable {
     }
 
     /**
+     * Method add a colonist to this CityNode (city)
+     * @param colonist the colonist to add
+     */
+    public void addColonist(Colonist colonist) {
+        this.colonists.add(colonist);
+    }
+
+    /**
+     * Method to remove a colonist from this CityNode (city)
+     * @param colonist the colonist to remove
+     */
+    public void removeColonist(Colonist colonist) {
+        this.colonists.remove(colonist);
+    }
+
+    /**
      * Setter to set the Good that this CityNode (city) produces
      * @param good the Good that this CityNode (city) should produce
      */
@@ -167,5 +189,13 @@ public class CityNode implements java.io.Serializable {
      */
     public Good good() {
         return this.good;
+    }
+
+    /**
+     * Getter to return the colonists on this CityNode (city)
+     * @return the colonists on this CityNode (city)
+     */
+    public ArrayList<Colonist> colonists() {
+        return this.colonists;
     }
 }
