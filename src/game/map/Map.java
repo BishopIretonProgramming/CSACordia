@@ -107,7 +107,7 @@ public class Map {
 
                 //  Note to self: 0 -> 29, no connections to lower, right > left! ^ ~ >! < ~ >!
 //                this.network = new Network(30);
-//                network.setCities(CityNode.fread("src/game/map/saves/imperium_cities.cn"));
+//                network.setCities(CityNode.fread(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP)));
 //                network.connect(0, 8, SEA);
 //                network.connect(0, 1, LAND);
 //                network.connect(0, 1, SEA);
