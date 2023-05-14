@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -58,7 +60,7 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
     }
 
     /**
-     * Library (static) method to load Edges from a file
+     * Library (static) method to load PathNodes from a file
      * # means a comment
      * Should be written in the form
      * name::cityname1::cityid1::cityletter1::citygood1::cityname2::cityid2::cityletter2::citygood2::type
@@ -80,6 +82,33 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
             System.err.printf("Error reading PathNodes from file: %s%n", e.getMessage());
         }
         return paths;
+    }
+
+    /**
+     * Library (static) method to write a List of PathNodes to a file
+     * @param path the path to the file to write to
+     * @param nodes the PathNodes to write to the file
+     */
+    public static void fwrite(String path, List<PathNode> nodes) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            for (PathNode node : nodes) {
+                String line = String.format("%s::%s::%d::%c::%s::%s::%d::%c::%s::%s",
+                        node.name(),
+                        node.node1().name(),
+                        node.node1().id(),
+                        node.node1().letter(),
+                        node.node1().good(),
+                        node.node2().name(),
+                        node.node2().id(),
+                        node.node2().letter(),
+                        node.node2().good(),
+                        node.type());
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.printf("Error writing PathNodes to file: %s%n", e.getMessage());
+        }
     }
 
     /**

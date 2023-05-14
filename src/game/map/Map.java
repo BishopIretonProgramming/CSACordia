@@ -96,7 +96,7 @@ public class Map {
                                 new CityNode("Petra", 29, 'C')
                         )
                 );
-                paths = null;  //  TODO: method in Network to return PathNodes from connections because I do not want to write out the code for every PathNode
+                paths = null;  //  TODO: method in Network to return PathNodes from connections
 
                 //  Note to self: 0 -> 29, no connections to lower, right > left! ^ ~ >! < ~ >!
                 this.network = new Network(cities.size());
@@ -190,7 +190,7 @@ public class Map {
      * Method to randomly assign goods to each city
      */
     public void assignGoods() {
-
+        //  TODO: information on number and types of the Good tokens
     }
 
     /**
