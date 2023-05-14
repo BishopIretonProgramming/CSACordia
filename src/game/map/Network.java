@@ -50,6 +50,16 @@ public class Network implements java.io.Serializable {
     private List<List<Integer>> adjListSea;
 
     /**
+     * The list of CityNodes (cities) associated with this Network
+     */
+    private List<CityNode> cities;
+
+    /**
+     * The list of PathNodes (paths) associated with this Network
+     */
+    private List<PathNode> paths;
+
+    /**
      * Constructor to make a new Network
      * @param NUM_NODES the number of nodes (cities) in this Network
      */
@@ -80,6 +90,12 @@ public class Network implements java.io.Serializable {
                 this.adjListSea.get(v).add(u);
             }
         }
+
+        this.paths.add(new PathNode(
+                cities.get(u).name() + " to " + cities.get(v).name(),
+                cities.get(u),
+                cities.get(v),
+                type));
     }
 
     /**
@@ -241,7 +257,6 @@ public class Network implements java.io.Serializable {
         }
     }
 
-
     /**
      * Method to create a graphical visualization of this network
      * mostly for testing purposes
@@ -305,6 +320,38 @@ public class Network implements java.io.Serializable {
 
         frame.pack();
         frame.setVisible(true);
+    }
+
+    /**
+     * Setter to set the CityNodes (cities) associated with this Network
+     * @param cities the CityNodes (cities) to be associated with this Network
+     */
+    public void setCities(List<CityNode> cities) {
+        this.cities = cities;
+    }
+
+    /**
+     * Setter to set the PathNodes (paths) associated with this Network
+     * @param paths the PathNodes (paths) to be associated with this Network
+     */
+    public void setPaths(List<PathNode> paths) {
+        this.paths = paths;
+    }
+
+    /**
+     * Getter to return a list of the CityNodes (cities) associated with this Network
+     * @return the CityNodes (cities) associated with this Network
+     */
+    public List<CityNode> cities() {
+        return this.cities;
+    }
+
+    /**
+     * Getter to return a list of the PathNodes (paths) associated with this Network
+     * @return the PathNodes (paths) associated with this Network
+     */
+    public List<PathNode> paths() {
+        return this.paths;
     }
 
     /**

@@ -102,7 +102,7 @@ public class Map {
                                 new CityNode("Petra", 29, 'C')
                         )
                 );
-                paths = null;  //  TODO: method in Network to return PathNodes from connections
+                network.setCities(cities);
 
                 //  Note to self: 0 -> 29, no connections to lower, right > left! ^ ~ >! < ~ >!
 //                this.network = new Network(cities.size());
@@ -186,6 +186,7 @@ public class Map {
 //                network.connect(28, 29, LAND);
 //                Network.fwrite(String.format("src%sgame%smap%ssaves%snetwork.nw", SEP, SEP, SEP, SEP), network);
                 this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP));
+                paths = network.paths();
             }
             case 1 -> {
                 //  TODO: high resolution image of Italia map so that the names of the cities can be read
