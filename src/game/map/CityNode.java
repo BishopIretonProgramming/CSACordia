@@ -198,4 +198,13 @@ public class CityNode implements java.io.Serializable {
     public ArrayList<Colonist> colonists() {
         return this.colonists;
     }
+
+    /**
+     * toString method to return a String representation of a CityNode
+     * @return a String representation of this CityNode
+     */
+    @Override
+    public String toString() {
+        return String.format("%s id: %d letter: %c", name, id, letter);
+    }
 }
