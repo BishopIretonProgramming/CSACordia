@@ -8,6 +8,8 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -170,7 +172,7 @@ public class Network implements java.io.Serializable {
      * @param path the path to the file containing the Network
      * @return the Network created by the file
      */
-    public static Network loadNetworkFromFile(String path) {
+    public static Network fread(String path) {
         Network network = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             int i = 0;
@@ -198,6 +200,34 @@ public class Network implements java.io.Serializable {
             System.err.printf("Error loading Network from file: %s%n", e.getMessage());
         }
         return network;
+    }
+
+    /**
+     * Library (static) method to write a Network to a file
+     * @param path the path to the file to write to
+     * @param network the Network to write to the file
+     */
+    public static void fwrite(String path, Network network) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            writer.write(Integer.toString(network.NUM_NODES));
+            writer.newLine();
+
+            for (int u = 0; u < network.NUM_NODES; u++) {
+                for (int v : network.adjListLand.get(u)) {
+                    String line = String.format("%d <-> %d <-> %s", u, v, PathType.LAND.name());
+                    writer.write(line);
+                    writer.newLine();
+                }
+
+                for (int v : network.adjListSea.get(u)) {
+                    String line = String.format("%d <-> %d <-> %s", u, v, PathType.SEA.name());
+                    writer.write(line);
+                    writer.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Error writing Network to file: %s%n", e.getMessage());
+        }
     }
 
     /**
