@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -208,7 +209,17 @@ public class Network implements java.io.Serializable {
      * @param network the Network to write to the file
      */
     public static void fwrite(String path, Network network) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+        try {
+            File file = new File(path);
+
+            if (!file.exists()) {
+                if (!file.createNewFile()) {
+                    System.err.println("Could not make file");
+                }
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
             writer.write(Integer.toString(network.NUM_NODES));
             writer.newLine();
 
@@ -225,6 +236,8 @@ public class Network implements java.io.Serializable {
                     writer.newLine();
                 }
             }
+
+            writer.close();
         } catch (IOException e) {
             System.err.printf("Error writing Network to file: %s%n", e.getMessage());
         }
