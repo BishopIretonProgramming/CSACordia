@@ -185,7 +185,7 @@ public class Map {
 //                network.connect(27, 28, LAND);
 //                network.connect(28, 29, LAND);
 //                Network.fwrite(String.format("src%sgame%smap%ssaves%snetwork.nw", SEP, SEP, SEP, SEP), network);
-                this.network = Network.fread(String.format("src%sgame%smap%ssaves%snetwork.nw", SEP, SEP, SEP, SEP));
+                this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP));
             }
             case 1 -> {
                 //  TODO: high resolution image of Italia map so that the names of the cities can be read
