@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import src.game.Good;
 import src.game.Colonist;
+import src.game.House;
 
 /**
  * A class to represent a CityNode in a Network and a city in a Game
@@ -52,6 +53,11 @@ public class CityNode implements java.io.Serializable {
      * The Colonists that have been added to this CityNode (city)
      */
     private ArrayList<Colonist> colonists;
+
+    /**
+     * The Houses that have been placed on this CitNode (city)
+     */
+    private ArrayList<House> houses;
 
     /**
      * Constructor to make a new CityNode
@@ -144,6 +150,14 @@ public class CityNode implements java.io.Serializable {
     }
 
     /**
+     * Method to add a house to this CityNode (city)
+     * @param house the house to add
+     */
+    public void addHouse(House house) {
+        this.houses.add(house);
+    }
+
+    /**
      * Method to remove a colonist from this CityNode (city)
      * @param colonist the colonist to remove
      */
@@ -197,6 +211,14 @@ public class CityNode implements java.io.Serializable {
      */
     public ArrayList<Colonist> colonists() {
         return this.colonists;
+    }
+
+    /**
+     * Getter to return the houses on this CityNode (city)
+     * @return the houses on this CityNode (city)
+     */
+    public ArrayList<House> houses() {
+        return this.houses;
     }
 
     /**
