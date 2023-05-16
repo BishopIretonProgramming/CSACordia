@@ -64,11 +64,16 @@ public class Frame {
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            Image imgMap = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            //Resizes the image so you can see the whole map on the screen
+            Image imgMap = img.getScaledInstance(1080, 600, java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //  centers the map so you can see the whole map
+        wBackground.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel bPanel = new JPanel();
         bPanel.setBackground(Color.CYAN);
