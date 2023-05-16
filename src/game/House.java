@@ -1,6 +1,6 @@
 package src.game;
+
 //  imports
-import src.game.Player;
 import src.game.map.CityNode;
 
 /**
