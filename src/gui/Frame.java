@@ -1,90 +1,91 @@
 package src.gui;
 
+import javax.swing.*;
+import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class Frame {
     
-    // 1st frame the user sees upon running the game
     public static void welcome() {
-        // create a JFrame object
         JFrame wFrame = new JFrame("Welcome Frame");
         wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        JPanel welcomePanel = new JPanel();
-        welcomePanel.setBackground(Color.BLUE);
+        // create a JPanel object to hold the buttons
+        JPanel wPanel = new JPanel();
+        wPanel.setBackground(Color.WHITE);
+        
         // create "New Game" and "Load Game" buttons
         JButton newGameButton = new JButton("New Game");
         JButton loadGameButton = new JButton("Load Game");
+        
         // add buttons to the panel
-        welcomePanel.add(newGameButton);
-        welcomePanel.add(loadGameButton);
-
-        // create a JLabel object with text "Welcome"
-        JLabel welcomeLabel = new JLabel("WELCOME TO CONCORDIA");
-        // add the label to the frame's content pane
-        wFrame.getContentPane().add(welcomeLabel);
-        welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
-        // font
-        Font welcomeFont = new Font("SansSerif", Font.BOLD, 48);
-        welcomeLabel.setFont(welcomeFont);
-
-
+        wPanel.add(newGameButton);
+        wPanel.add(loadGameButton);
+        
+        // create a JLabel object with an image as the background
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            wBackground.setIcon(new ImageIcon(img));
+            Image imgM = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            wBackground.setIcon(new ImageIcon(imgM));
         } catch (IOException e) {
             e.printStackTrace();
         }
-         // add the label and panel to the frame's content pane
-         wFrame.getContentPane().add(wBackground, BorderLayout.CENTER);
-         wFrame.getContentPane().add(welcomeLabel, BorderLayout.NORTH);
-         wFrame.getContentPane().add(welcomePanel, BorderLayout.SOUTH);
-
+        
+        // create a JLabel object with text "Welcome to Concordia"
+        JLabel wLabel = new JLabel("Welcome to Concordia");
+        
+        // center the text in the label
+        wLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        // change the font and size of the label
+        Font wFont = new Font("Egyptian", Font.BOLD, 48);
+        wLabel.setFont(wFont);
+        
+        // add the label and panel to the frame's content pane
+        wFrame.getContentPane().add(wBackground, BorderLayout.CENTER);
+        wFrame.getContentPane().add(wLabel, BorderLayout.NORTH);
+        wFrame.getContentPane().add(wPanel, BorderLayout.SOUTH);
+        
         // set the size and visibility of the frame
-        wFrame.setSize(900, 500);
+        wFrame.setSize(1000, 600);
         wFrame.setVisible(true);
     }
 
-/*Nora Hixson this is the frame users will be able to interact with eventually */
-    public static void concordia(){
-
-        JFrame concordia = new JFrame("Concordia");
-        concordia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-    // Add map
-        JLabel imgMap = new JLabel();
-
+    public static void board() { // Probably will have parameters for gamestate. 
+        JFrame bord = new JFrame("Game Board");
+        bord.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Construct Board
+        JLabel wBackground = new JLabel();
         try {
-            // creates Image then makes image an icon then sets the icon for the JLabel
-            Image map = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            Image mapS = map.getScaledInstance(600, 333,  java.awt.Image.SCALE_SMOOTH);
-            ImageIcon img = new ImageIcon(mapS);
-            imgMap.setIcon(img);
+            // load the image file from the project folder
+            Image imgMap = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            wBackground.setIcon(new ImageIcon(imgMap));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //put image on ContentPane and centers it
-        concordia.getContentPane().add(imgMap, BorderLayout.CENTER);
-        imgMap.setHorizontalAlignment(JLabel.CENTER);
+        JPanel bPanel = new JPanel();
+        bPanel.setBackground(Color.CYAN);
+        // create "Player Hand" button
+        JButton playerHandB = new JButton("Player Hand");
+        // add buttons to the panel
+        bPanel.add(playerHandB);
 
-    // set up frame
-        concordia.setSize(900, 500);
-        concordia.setVisible(true);
-
+        // add background to the frame
+        bord.getContentPane().add(wBackground, BorderLayout.CENTER);
+        bord.getContentPane().add(bPanel, BorderLayout.SOUTH);
+        bord.setSize(1225, 900);
+        bord.setVisible(true);
     }
 
     public static void main(String[] args) {
-        welcome();
-        concordia();
+        //welcome();
+        board();
     }
 }
