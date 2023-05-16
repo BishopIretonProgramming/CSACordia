@@ -9,6 +9,10 @@ import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import javax.swing.JButton;
+import java.awt.event.ActionListener;  
+import java.awt.event.ActionEvent;
+
 public class Frame {
     
     public static void welcome() {
@@ -65,20 +69,33 @@ public class Frame {
         try {
             // load the image file from the project folder
             Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            //Resizes the image so you can see the whole map on the screen
-            Image imgMap = img.getScaledInstance(1080, 600, java.awt.Image.SCALE_SMOOTH);
+            // Resizes the image so you can see the whole map on the screen
+            Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //  centers the map so you can see the whole map
+        // centers the map so you can see the whole map
         wBackground.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel bPanel = new JPanel();
         bPanel.setBackground(Color.CYAN);
+
         // create "Player Hand" button
         JButton playerHandB = new JButton("Player Hand");
+        
+
+        // adds an action listener only prints for now
+        playerHandB.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    System.out.println("Player hand was pressed");
+                }
+            }
+        );
+
         // add buttons to the panel
         bPanel.add(playerHandB);
 
