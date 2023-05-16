@@ -131,7 +131,7 @@ class ProvinceBonusGraphics {
                 break;
             case FOOD:
                 int[] xCords = {0,w,w/2};
-                int[] yCords = {0,0,h}
+                int[] yCords = {0,0,h};
                 g.setColor(new Color(230,177,32));
                 g.fillPolygon(xCords,yCords,3);
                 break;
@@ -141,7 +141,7 @@ class ProvinceBonusGraphics {
                 break;
             case WINE:
                 int[] xCord = {0,w,w/2};
-                int[] yCord = {0,0,h}
+                int[] yCord = {0,0,h};
                 g.setColor(new Color(182,99,255));
                 g.fillPolygon(xCord,yCord,3);
                 break;
