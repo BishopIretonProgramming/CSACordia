@@ -5,7 +5,6 @@ import src.game.map.CityNode;
 
 /**
  * A class to represent a House that can be placed on a city by a player
- * @version 0.1
  * @author devinlinux
  */
 public class House {
