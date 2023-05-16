@@ -1,9 +1,9 @@
 package src.game;
 
-/*
-   @Author Joseph Murray
-   5/9/2023
-   ProvinceGoodsChart - The lil chart with province goods
+/**
+ * @author Joseph Murray
+ * 5/9/2023
+ * ProvinceGoodsChart - The lil chart with province goods
 */
 
 import java.util.ArrayList;
