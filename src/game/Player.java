@@ -1,6 +1,7 @@
 package src.game;
 
 //  imports
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class Player implements java.io.Serializable {
     private final String NAME;  //  the name of the player
     private int victoryPoints;  //  the number of victory points the player has
     private int sestertii;  //  the amount of sestertii the player has
+    private ArrayList<House> houses;  //  the houses of the players
     private int numHouses;  //  the number of houses the player has
     private boolean hasPraefectusMagnus;  //  whether the player has the praefectus magnus card
 
@@ -44,9 +46,17 @@ public class Player implements java.io.Serializable {
         this.storeHouse = new StoreHouse(this);
         this.victoryPoints = 0;
         this.sestertii = 15;
-        this.numHouses = 0;
+        this.houses = new ArrayList<>(15);
+        this.numHouses = 15;
         this.hasPraefectusMagnus = false;
         init();
+    }
+
+    //  method to fill the houses ArrayList
+    private void fillHouses() {
+        for (int i = 0; i < 15; i++) {
+            this.houses.add(new House(this));
+        }
     }
 
     //  constructor with option to set the player as first or last
@@ -132,6 +142,11 @@ public class Player implements java.io.Serializable {
     //  getter for sestertii
     public int sestertii() {
         return this.sestertii;
+    }
+
+    // getter for houses ArrayList
+    public ArrayList<House> houses() {
+        return this.houses;
     }
 
     //  getter for praefectus magnus
