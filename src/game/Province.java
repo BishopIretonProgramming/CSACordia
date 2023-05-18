@@ -7,6 +7,7 @@ package src.game;
  */
 
 import java.util.ArrayList;
+import src.game.map.CityNode;
 
 public class Province {
    private ArrayList<CityNode> cityList = new ArrayList<CityNode>();
