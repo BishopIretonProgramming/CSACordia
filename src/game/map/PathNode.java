@@ -14,16 +14,31 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * A record to represent a PathNode in a Network, each PathNode is associated with exactly
+ * A class to represent a PathNode in a Network, each PathNode is associated with exactly
  * two CityNodes
  * Can be serialized for game saving
- * @param name the name of this PathNode
- * @param node1 the first CityNode that this PathNode is connected to
- * @param node2 the second CityNode that this PathNode is connected to
- * @param type the type of path
- * @author devinlinux
  */
-public record PathNode(String name, CityNode node1, CityNode node2, PathType type) implements java.io.Serializable {
+public class PathNode implements java.io.Serializable {
+
+    /**
+     * The name of this PathNode
+     */
+    private String name;
+
+    /**
+     * The first CityNode that this PathNode is connected to
+     */
+    private CityNode node1;
+
+    /**
+     * The second CityNode that this PathNode is connected to
+     */
+    private CityNode node2;
+
+    /**
+     * The type of Path this PathNode is
+     */
+    private PathType type;
 
     /**
      * An enum to represent the two types of PathNodes - land or sea
@@ -51,6 +66,52 @@ public record PathNode(String name, CityNode node1, CityNode node2, PathType typ
      */
     @java.io.Serial
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Getter method to return the name of this PathNode
+     * @return the name of this PathNode
+     */
+    public String name() {
+        return name;
+    }
+
+    /**
+     * Getter method to return the first CityNode that this PathNode is connected to
+     * @return the first CityNode that this PathNode is connected to
+     */
+    public CityNode node1() {
+        return node1;
+    }
+
+    /**
+     * Getter method to return the second CityNode that this PathNode is connected to
+     * @return the second CityNode that this PathNode is connected to
+     */
+    public CityNode node2() {
+        return node2;
+    }
+
+    /**
+     * Getter method to return the type of path
+     * @return the type of path
+     */
+    public PathType type() {
+        return type;
+    }
+
+    /**
+     * Constructor for PathNode
+     * @param name the name of this PathNode
+     * @param node1 the first CityNode that this PathNode is connected to
+     * @param node2 the second CityNode that this PathNode is connected to
+     * @param type the type of path
+     */
+    public PathNode(String name, CityNode node1, CityNode node2, PathType type) {
+        this.name = name;
+        this.node1 = node1;
+        this.node2 = node2;
+        this.type = type;
+    }
 
     /**
      * Getter method to return a List of the CityNodes this PathNode is connected to
