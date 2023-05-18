@@ -20,12 +20,12 @@ public class Architect extends PersonalityCard implements Jvpiter {
       setPlayed(true);
    }
    
-   @Override
+   @Override // calculates points
    public int calculatePoints() {
       return getVictoryMultiplier() * scorePoints();
    }
    
-   @Override
+   @Override // updates card
    public void update() {
       
    }
