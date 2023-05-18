@@ -25,10 +25,11 @@ public class Province {
                                              
    public Province(String name, ArrayList<CityNode> cityList) {
       this.name = name;
-      this.cityList = cityList;
-      setProvinceGood();
-      
+      this.cityList = cityList;   
+
       status = ResourceStatus.GOODS;
+
+      setProvinceGood();
    }
    
    public int collectSestercii() {
@@ -38,14 +39,18 @@ public class Province {
    }
    
    //TODO: Collect goods based on good of cities in province
-   public ArrayList<Good> collectGoods() {
+   public ArrayList<Good> collectGoods(Player player) {
       status = ResourceStatus.SESTERCII;
       
       ArrayList<Good> goodsCollected = new ArrayList<Good>();      
       goodsCollected.add(provinceGood);
       
       for(CityNode city : cityList) {
-         //goodsCollected.add(city.getGood());
+         for(House house : city.houses()) {
+            if(house.player().equals(player)) {
+               goodsCollected.add(city.good());
+            }
+         }
       }
       
       return goodsCollected;
@@ -54,12 +59,11 @@ public class Province {
    private void setProvinceGood() {
       Good good = Good.BRICK;
       
-      //TODO: select most valued good from province city to become province good
-      /*for(City city : cityList) {
-         if(city.getGood().PRICE > good.Price) {
-            good = city.getGood();
+      for(CityNode city : cityList) {
+         if(city.good().PRICE > good.PRICE) {
+            good = city.good();
          }
-      }*/
+      }
    }
    
                                              //GETTERS - SETTERS
