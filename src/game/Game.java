@@ -21,8 +21,4 @@ public class Game {
      * The Players of the game
      */
     private List<Player> players;
-
-    /**
-     *
-     */
 }
