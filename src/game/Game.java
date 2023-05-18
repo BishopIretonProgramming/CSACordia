@@ -3,6 +3,7 @@ package src.game;
 //  imports
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Color;
 
 import src.game.map.Map;
 
@@ -21,6 +22,11 @@ public class Game {
      * The Players of the game
      */
     private List<Player> players;
+
+    /**
+     * The Colors of each of the players
+     */
+    private List<Color> colors;
 
     /**
      * The name of the game
