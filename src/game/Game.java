@@ -21,4 +21,9 @@ public class Game {
      * The Players of the game
      */
     private List<Player> players;
+
+    /**
+     * The name of the game
+     */
+    private String name;
 }
