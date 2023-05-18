@@ -19,7 +19,6 @@ import src.game.House;
  * can be serialized for game saving
  * @author devinlinux
  */
-
 public class CityNode implements java.io.Serializable {
 
     /**
