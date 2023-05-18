@@ -29,14 +29,24 @@ public class ProvinceChart {
                                              //METHODS
 
    /**
-    * Collect goods or sestertii when tribune, prefect or praefectus Magnus are used
-    * @param: the province name as a String, can later modify to accept Province objects if needed
+    * Collect goods or sestertii when Prefect or Praefectus Magnus are used
+    * @param: String - the province name as a String, can later modify to accept Province objects if needed
+    * @param: Player - the player who played the card
+    * @param: boolean - false if the card played is Prefect, true if Praefectus Magnus
     */
-   public void collect(String provinceName) {
+   public void collect(String provinceName, Player player, boolean isMagnus) {
       Province province = findProvince(provinceName);
       
       if(province.getStatus() == Province.ResourceStatus.GOODS) {
-         ArrayList<Good> goods = province.collectGoods();
+         ArrayList<Good> goods = province.collectGoods(player);
+         
+         for(Good good : goods) {
+            player.storeHouse().add(good);
+         }
+
+         if(isMagnus) {
+            player.storeHouse().add(goods.get(0));
+         }
       }
       else {
          int sestertii = 0;
@@ -46,6 +56,8 @@ public class ProvinceChart {
                sestertii += currentProvince.collectSestercii();
             }
          }
+
+         player.addSestertii(sestertii);
       }
    }
    

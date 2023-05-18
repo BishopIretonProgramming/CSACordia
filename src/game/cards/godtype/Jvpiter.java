@@ -5,7 +5,7 @@ import src.game.Player;
 
 public interface Jvpiter {
    
-   Player getPlayer();
+   Player getPlayer(); // Method to get the card's player
    default int scorePoints() {
       //Player gets 1 point for each non-brick city
       //Return points
