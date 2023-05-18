@@ -7,6 +7,7 @@ package src.game;
 */
 
 import java.util.ArrayList;
+import src.game.map.CityNode;
 
 public class ProvinceChart {
    private static ProvinceChart provinceChartInstance = null;
@@ -61,17 +62,17 @@ public class ProvinceChart {
    
    //TODO: add cities, either in this class or passed from another
    private void addProvinces() {
-      provinceList.add(new Province("Britania", new ArrayList<City>(2)));
-      provinceList.add(new Province("Gallia", new ArrayList<City>(3)));
-      provinceList.add(new Province("Hispania", new ArrayList<City>(3)));
-      provinceList.add(new Province("Germania", new ArrayList<City>(2)));
-      provinceList.add(new Province("Dacia", new ArrayList<City>(3)));
-      provinceList.add(new Province("Italia", new ArrayList<City>(3)));
-      provinceList.add(new Province("Hellas", new ArrayList<City>(2)));
-      provinceList.add(new Province("Asia", new ArrayList<City>(3)));
-      provinceList.add(new Province("Syria", new ArrayList<City>(2)));
-      provinceList.add(new Province("Aegyptus", new ArrayList<City>(3)));
-      provinceList.add(new Province("Lybia", new ArrayList<City>(2)));
-      provinceList.add(new Province("Mauretania", new ArrayList<City>(2)));
+      provinceList.add(new Province("Britania", new ArrayList<CityNode>(2)));
+      provinceList.add(new Province("Gallia", new ArrayList<CityNode>(3)));
+      provinceList.add(new Province("Hispania", new ArrayList<CityNode>(3)));
+      provinceList.add(new Province("Germania", new ArrayList<CityNode>(2)));
+      provinceList.add(new Province("Dacia", new ArrayList<CityNode>(3)));
+      provinceList.add(new Province("Italia", new ArrayList<CityNode>(3)));
+      provinceList.add(new Province("Hellas", new ArrayList<CityNode>(2)));
+      provinceList.add(new Province("Asia", new ArrayList<CityNode>(3)));
+      provinceList.add(new Province("Syria", new ArrayList<CityNode>(2)));
+      provinceList.add(new Province("Aegyptus", new ArrayList<CityNode>(3)));
+      provinceList.add(new Province("Lybia", new ArrayList<CityNode>(2)));
+      provinceList.add(new Province("Mauretania", new ArrayList<CityNode>(2)));
    }
 }
