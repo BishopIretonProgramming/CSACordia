@@ -7,9 +7,10 @@ package src.game;
  */
 
 import java.util.ArrayList;
+import src.game.map.CityNode;
 
 public class Province {
-   private ArrayList<City> cityList = new ArrayList<City>();
+   private ArrayList<CityNode> cityList = new ArrayList<CityNode>();
    private String name;
    private Good provinceGood;
    private ResourceStatus status;
@@ -22,7 +23,7 @@ public class Province {
    
                                              //METHODS
                                              
-   public Province(String name, ArrayList<City> cityList) {
+   public Province(String name, ArrayList<CityNode> cityList) {
       this.name = name;
       this.cityList = cityList;
       setProvinceGood();
@@ -43,7 +44,7 @@ public class Province {
       ArrayList<Good> goodsCollected = new ArrayList<Good>();      
       goodsCollected.add(provinceGood);
       
-      for(City city : cityList) {
+      for(CityNode city : cityList) {
          //goodsCollected.add(city.getGood());
       }
       
