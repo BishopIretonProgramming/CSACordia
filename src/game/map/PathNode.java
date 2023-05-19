@@ -17,6 +17,7 @@ import java.io.IOException;
  * A class to represent a PathNode in a Network, each PathNode is associated with exactly
  * two CityNodes
  * Can be serialized for game saving
+ * @author devinlinux
  */
 public class PathNode implements java.io.Serializable {
 
