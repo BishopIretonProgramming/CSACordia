@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -68,7 +69,8 @@ public class Frame {
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
+            File sourceImg = new File("/images/Concordia board.jpg");
+            Image img = ImageIO.read(sourceImg/*Frame.class.getResource()*/);
             // Resizes the image so you can see the whole map on the screen
             Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
@@ -85,6 +87,7 @@ public class Frame {
         // create "Player Hand" button
         JButton playerHandB = new JButton("Player Hand");
         
+        
 
         // adds an action listener only prints for now
         playerHandB.addActionListener(
@@ -92,9 +95,10 @@ public class Frame {
                 @Override
                 public void actionPerformed(ActionEvent e){
                     System.out.println("Player hand was pressed");
+                    PlayerHandDisplay.changeVisible();
+                    PlayerHandDisplay.display();
                 }
-            }
-        );
+            }        );
 
         // add buttons to the panel
         bPanel.add(playerHandB);
@@ -102,6 +106,7 @@ public class Frame {
         // add background to the frame
         bord.getContentPane().add(wBackground, BorderLayout.CENTER);
         bord.getContentPane().add(bPanel, BorderLayout.SOUTH);
+        bord.getContentPane().add(PlayerHandDisplay.handDisplay);
         bord.setSize(1225, 900);
         bord.setVisible(true);
     }
