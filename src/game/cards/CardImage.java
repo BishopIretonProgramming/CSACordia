@@ -29,11 +29,11 @@ public enum CardImage {
     VINTNER("vitner.png"),
     WEAVER("weaver.png");
 
-    public BufferedImage CARD_IMAGE;
+    public BufferedImage cardImage;
 
     private CardImage(String cardImageFileName) {
         try {
-            CARD_IMAGE = ImageIO.read(new File(cardImageFileName));
+            cardImage = ImageIO.read(new File(cardImageFileName));
         }
         catch(IOException e) {
             System.out.println("Failed to load image");
