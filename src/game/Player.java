@@ -85,6 +85,11 @@ public class Player implements java.io.Serializable {
     private Color color;
 
     /**
+     * The number of turns this player has left
+     */
+    private int numTurnsLeft;
+
+    /**
      * Constructor to make a new Player with a name
      * @param NAME the name of this Player
      */
@@ -92,13 +97,14 @@ public class Player implements java.io.Serializable {
         this.NAME = NAME;
         this.cards = new ArrayList<>(7);
         this.discard = new ArrayList<>();
-        this.colonists = new ArrayList<Colonist>(6);
+        this.colonists = new ArrayList<>(6);
         this.storeHouse = new StoreHouse(this);
         this.victoryPoints = 0;
         this.sestertii = 15;
         this.houses = new ArrayList<>(15);
         this.numHouses = 15;
         this.hasPraefectusMagnus = false;
+        this.numTurnsLeft = Integer.MAX_VALUE;
         init();
     }
 
@@ -112,7 +118,7 @@ public class Player implements java.io.Serializable {
         this.NAME = NAME;
         this.cards = new ArrayList<>(7);
         this.discard = new ArrayList<>();
-        this.colonists = new ArrayList<Colonist>(6);
+        this.colonists = new ArrayList<>(6);
         this.storeHouse = new StoreHouse(this);
         this.victoryPoints = 0;
         this.sestertii = first ? 5 : 1;
@@ -256,6 +262,29 @@ public class Player implements java.io.Serializable {
      */
     public Color color() {
         return this.color;
+    }
+
+    /**
+     * Method to get the number of turns left
+     * @return the number of turns this Player has left to play
+     */
+    private int turnsLeft() {
+        return this.numTurnsLeft;
+    }
+
+    /**
+     * Method to decrement the number of turns left by 1
+     */
+    public void decrementTurnsLeft() {
+        this.numTurnsLeft--;
+    }
+
+    /**
+     * Method to set the number of turns this Player has left
+     * @param turns the number of turns this Player has left to play
+     */
+    private void setTurnsLeft(int turns) {
+        this.numTurnsLeft = turns;
     }
 
     /**
