@@ -197,4 +197,22 @@ public class IOUtils {
             Logger.error("IOutils", "Error occurred while downloading the pre-build imperium cities file: " + e.getMessage());
         }
     }
+
+    /**
+     * Method to check for all of the necessary files and directories to play the game
+     * and either creates them or downloads them depending on the occasion. This is the 
+     * main method that should be called on game startup to ensure that the game does
+     * not experience any errors in creation and initialization. While the client is able 
+     * to call the other methods individually, it is not recommended as this method will
+     * be constantly updated to ensure that it creates or downloads all necessary files
+     * and directories for the game. 
+     */
+    public static void checkForGameFiles() {
+        checkForUnfinishedGamesDirectoryAndCreateIfNotFound();
+        checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound();
+        checkForLoginInformationDirectoryAndCreateIfNotFound();
+        checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
+        checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
+        checkForPreBuiltImperumCitiesFileAndDownloadIfNotFound();
+    }
 }
