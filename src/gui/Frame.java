@@ -100,7 +100,7 @@ public class Frame {
                     System.out.println("Player hand was pressed");
                     PlayerHandDisplay.changeVisible();
         JFrame bord = new JFrame("Game Board");
-                    PlayerHandDisplay.display(bord);
+                    PlayerHandDisplay.display();
                 }
             }        );
 
