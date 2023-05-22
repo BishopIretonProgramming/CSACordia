@@ -7,6 +7,7 @@ import src.game.Player;
 import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
+   public final CardImage IMAGE = CardImage.MERCATOR;
    
    public Mercator(Player myPlayer, int winePrice) {
       super(myPlayer, 0, 0, 0, winePrice, 0, 2);

@@ -9,6 +9,7 @@ import java.awt.Graphics;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Farmer extends PersonalityCard implements Minerva {
+   public final CardImage IMAGE = CardImage.FARMER;
    
    public Farmer(Player myPlayer, int brickPrice, int foodPrice) {
       super(myPlayer, brickPrice, foodPrice, 0, 0, 0, 2);

@@ -7,6 +7,7 @@ import src.game.Player;
 import java.awt.Graphics;
 
 public class Prefect extends PersonalityCard implements Satvrnvs {
+   public final CardImage IMAGE = CardImage.PREFECT;
    
    public Prefect(Player myPlayer, int winePrice) {
       super(myPlayer, 0, 0, 0, winePrice, 0, 2);

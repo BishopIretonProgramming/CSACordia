@@ -7,6 +7,8 @@ package src.gui;
 */
 
 //TODO: add positioning and sizing for all GUI components
+//TODO: add file reading for appropriate data
+//TODO: find a way to equate each PersonalityCard to its corresponding image
 
 import src.game.Player;
 import src.game.cards.*;
@@ -39,7 +41,6 @@ public class PlayerDeck {
     private PersonalityCard shownCard; //The card that is currently displayed and visible in PlayerHandDisplay
     private int shownCardID; //The index of the shownCard; used for changing cards
 
-    private ArrayList<BufferedImage> cardImages; //List of card images
     private ArrayList<BufferedImage> guiImages; //List of button and label images
 
     private String[] guiImageFileNames = { //list of file names, temporary until file reading added //TODO: add images of buttons and labels
@@ -94,7 +95,6 @@ public class PlayerDeck {
 
         discardCards = new ArrayList<PersonalityCard>(cards.size());
 
-        cardImages = loadImage(cardImageFileNames);
         guiImages = loadImage(guiImageFileNames);
 
         infoLabel = createLabel(guiImages.get(0), 0, 0, 0, 0, "info");
@@ -293,6 +293,8 @@ public class PlayerDeck {
 
         shownCardID = newShownCardID;
         shownCard = cards.get(shownCardID);
+        
+        cardLabel.setIcon(new ImageIcon(shownCard.IMAGE.cardImage));
     }
 
     /**
@@ -318,13 +320,6 @@ public class PlayerDeck {
     */
     private void removeCard(PersonalityCard card) {
         cards.remove(card);
-    }
-
-    /**
-     * draws and displays these graphics
-    */
-    public void drawGraphics(Graphics g) {
-        //TODO: drawGraphics method
     }
 
     /**
