@@ -19,7 +19,7 @@ import java.io.IOException;
  * are displayed in orange, and {@code ERROR} level messages are displayed in red
  *
  * @author devinlinux
- * @version 1
+ * @version 1.0
  */
 public class Logger {
 
