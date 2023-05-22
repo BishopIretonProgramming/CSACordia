@@ -41,6 +41,55 @@ public class IOUtils {
      */
     private static final String UNFINISHED_GAME_SAVE_FILE_DIRECTORY = String.format("resources%csaves%cunfinished_games", separatorChar, separatorChar);
 
+    /**
+     * The directory that should be used for the save files of maps, networks,
+     * and cities. This directory must be present for the game to be played because
+     * it is where the pre-built networks for the imperium and italia maps will
+     * be located. If any of the files are not found or this directory does not exist,
+     * the files will need to be downloaded the internet in order for proper game functioning.
+     */
+    private static final String PRE_BUILT_MAP_FILES_DIRECTORY = String.format("resources%csaves%cpre_built_maps", separatorChar, separatorChar);
+
+    /**
+     * The directory that should be used for saving information regarding log in
+     * information about the players. This directory must be present for logging into
+     * the game because it will be where files for usernames and passwords will be stored.
+     */
+    private static final String LOGIN_INFORMATION_DIRECTORY = String.format("resources%clog_in%cuap", separatorChar, separatorChar);
+
+    /**
+     * The directory that should be used for saving information regarding performance
+     * information about the players. This directory must be present for storing information
+     * about player performance during games.
+     */
+    private static final String PLAYER_PERFORMANCE_INFORMATION_DIRECTORY = String.format("resources%cplayers%cperformance", separatorChar, separatorChar);
+
+    /**
+     * The file that represents the pre-build network of the imperium map.
+     * This file must be present in order to play the imperium map so that an adequate
+     * network can be formed to play the game.
+     */
+    private static final String PRE_BUILT_IMPERIUM_NETWORK_FILE = String.format("resources%csaves%cpre_built_maps%cimperium.nw", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that represents the cities in the imperium network.
+     * This file must be present in order to play the imperium map so that an adequate
+     * map can be made with the correct cities.
+     */
+    private static final String PRE_BUILT_IMERPIUM_CITIES_FILE = String.format("resources%csaves%cpre_built_maps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The link to where the pre-built imperium network can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String PRE_BUILT_IMPERIUM_NETWORK_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/resources/saves/pre_built_maps/imperium.nw";
+
+    /**
+     * The link to where the pre-built imperium network cities file can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String PRE_BUILT_IMPERIUM_CITIES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/resources/saves/pre_built_maps/imperium_cities.cnw";
+
     /*
      * File and directory creation methods. Note that all methods take the
      * same basic form: performing the checks to see if the directory or
@@ -51,4 +100,41 @@ public class IOUtils {
      * Checks for the directory that will be used to save the unfinished games
      * to and creates it if it does not exist.
      */
+    public static void checkForUnfinishedGamesDirectoryAndCreateIfNotFound() {
+        Path path = Paths.get(UNFINISHED_GAME_SAVE_FILE_DIRECTORY);
+        try {
+            Files.createDirectories(path);
+            Logger.info("IOUtils", "Successfully created unfinished game directory");
+        } catch (IOException e) {
+            Logger.error("IOUtils", "Could not create unfinished game save file directory: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Checks for the directory that will be used to save the pre-built map files
+     * and create the directory if it does not exist
+     */
+    public static void checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound() {
+        Path path = Paths.get(PRE_BUILT_MAP_FILES_DIRECTORY);
+        try {
+            Files.createDirectories(path);
+            Logger.info("IOUtils", "Successfully created pre-build map files directory");
+        } catch (IOException e) {
+            Logger.error("IOUtils", "Could not create pre-built map files directory: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Checks for the login information directory that is used to store usernames
+     * and passwords and creates the directory if it does not exist
+     */
+    public static void checkForLoginInformationDirectoryAndCreateIfNotFound() {
+        Path path = Paths.get(LOGIN_INFORMATION_DIRECTORY);
+        try {
+            Files.createDirectories(path);
+            Logger.info("IOUtils", "Successfully created login information directory");
+        } catch (IOException e) {
+            Logger.error("IOUtils", "Could not create login information directory: " + e.getMessage());
+        }
+    }
 }
