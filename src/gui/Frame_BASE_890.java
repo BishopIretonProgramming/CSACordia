@@ -9,7 +9,6 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;  
@@ -37,7 +36,7 @@ public class Frame {
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            Image imgM = ImageIO.read(new File(String.format("src%sgui%simages%sConcordia board.jpg", File.separator, File.separator, File.separator)));
+            Image imgM = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
             wBackground.setIcon(new ImageIcon(imgM));
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,11 +69,9 @@ public class Frame {
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            //File sourceImg = new File("/images/Concordia board.jpg");
-            Image img = ImageIO.read(new File("src\\gui\\images\\Concordia board.jpg"));
-            //Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            //Image img = ImageIO.read(new File("src/gui/images/Concordia board.jpg"));
-            //Resizes the image so you can see the whole map on the screen
+            File sourceImg = new File("/images/Concordia board.jpg");
+            Image img = ImageIO.read(sourceImg/*Frame.class.getResource()*/);
+            // Resizes the image so you can see the whole map on the screen
             Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
         } catch (IOException e) {
@@ -99,8 +96,7 @@ public class Frame {
                 public void actionPerformed(ActionEvent e){
                     System.out.println("Player hand was pressed");
                     PlayerHandDisplay.changeVisible();
-        JFrame bord = new JFrame("Game Board");
-                    PlayerHandDisplay.display(bord);
+                    PlayerHandDisplay.display();
                 }
             }        );
 
@@ -116,7 +112,7 @@ public class Frame {
     }
 
     public static void main(String[] args) {
-        welcome();
-        //board();
+        //welcome();
+        board();
     }
 }
