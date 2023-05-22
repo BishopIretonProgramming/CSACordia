@@ -17,6 +17,7 @@ import java.io.IOException;
  * A class to represent a PathNode in a Network, each PathNode is associated with exactly
  * two CityNodes
  * Can be serialized for game saving
+ * @author devinlinux
  */
 public class PathNode implements java.io.Serializable {
 
@@ -39,6 +40,11 @@ public class PathNode implements java.io.Serializable {
      * The type of Path this PathNode is
      */
     private PathType type;
+
+    /**
+     * Whether this PathNode (path) is currently occupied by a Colonist
+     */
+    private boolean occupied;
 
     /**
      * An enum to represent the two types of PathNodes - land or sea
@@ -111,6 +117,7 @@ public class PathNode implements java.io.Serializable {
         this.node1 = node1;
         this.node2 = node2;
         this.type = type;
+        this.occupied = false;
     }
 
     /**
@@ -181,6 +188,22 @@ public class PathNode implements java.io.Serializable {
         } catch (IOException e) {
             System.err.printf("Error writing PathNodes to file: %s%n", e.getMessage());
         }
+    }
+
+    /**
+     * Getter to return whether this PathNode (path) is occupied by a Colonist
+     * @return whether this PathNode (path) is occupied by a Colonist
+     */
+    public boolean occupied() {
+        return this.occupied;
+    }
+
+    /**
+     * Setter to set whether this PathNode (path) is occupied by a Colonist
+     * @param occupied whether this PathNode (path) is occupied by a Colonist
+     */
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
     }
 
     /**

@@ -9,6 +9,7 @@ import java.awt.Graphics;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Weaver extends PersonalityCard implements Minerva {
+   public final CardImage IMAGE = CardImage.WEAVER;
    
    public Weaver(Player myPlayer, int brickPrice, int clothPrice) {
       super(myPlayer, brickPrice, 0, 0, 0, clothPrice, 2);

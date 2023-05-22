@@ -9,6 +9,7 @@ import java.awt.Graphics;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Mason extends PersonalityCard implements Minerva {
+   public final CardImage IMAGE = CardImage.MASON;
    
    public Mason(Player myPlayer, int brickPrice) {
       super(myPlayer, brickPrice, 0, 0, 0, 0, 2);
