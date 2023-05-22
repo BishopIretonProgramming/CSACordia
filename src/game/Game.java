@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.awt.Color;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import src.game.map.Map;
 import src.game.cards.PersonalityCard;
@@ -52,6 +58,11 @@ public class Game {
     private Player currentPlayer;
 
     /**
+     * An alias for File.separator
+     */
+    private static final String SEP = File.separator;
+
+    /**
      * The Player who ended the game
      */
     private Player endingPlayer;
@@ -72,6 +83,11 @@ public class Game {
     private int totalTurnsPlayed;
 
     /**
+     * The path to save the game to
+     */
+    private String path;
+
+    /**
      * Constructor to make a new Game
      * @param name the name of this Game
      * @param map the map that this Game will use
@@ -90,6 +106,7 @@ public class Game {
         this.drawPile = initDrawPile();
         this.topFacingDiscardedCards = new ArrayList<>(players.size());
         this.totalTurnsPlayed = 0;
+        this.path = String.format("assets%ssaves%s%s.concordia", SEP, SEP, this.name);  //  TODO: find a better location to save the game to
     }
 
     /**
@@ -138,5 +155,25 @@ public class Game {
             /* TODO: Graphics interoperability */
             updateTopFacingDiscardedCards();
         } while (this.currentPlayer != this.endingPlayer);
+    }
+
+    /**
+     * Method to write this Game to a file
+     * @param path the path to the file to write to
+     */
+    public void save(String path) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            String line = String.format("");
+        } catch (IOException e) {
+            System.err.printf("Error saving game: %s%n", e.getMessage());
+        }
+    }
+
+    /**
+     * Setter to set the save location of this Game
+     * @param path the path to where the game should be saved
+     */
+    public void setSavePath(String path) {
+        this.path = path;
     }
 }
