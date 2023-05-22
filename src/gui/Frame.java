@@ -37,9 +37,7 @@ public class Frame {
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            //Image imgM = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            //Image imgM = ImageIO.read(Frame.class.getResource("src/gui/images/Concordia board.jpg"));
-            Image imgM = ImageIO.read( new File("src\\gui\\images\\Concordia board.jpg"));
+            Image imgM = ImageIO.read(new File(String.format("src%sgui%simages%sConcordia board.jpg", File.separator, File.separator, File.separator)));
             wBackground.setIcon(new ImageIcon(imgM));
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,7 +116,7 @@ public class Frame {
     }
 
     public static void main(String[] args) {
-        //welcome();
-        board();
+        welcome();
+        //board();
     }
 }

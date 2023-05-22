@@ -69,6 +69,13 @@ public class IOUtils {
     private static final String PLAYER_PERFORMANCE_INFORMATION_DIRECTORY = String.format("resources%cplayers%cperformance", separatorChar, separatorChar);
 
     /**
+     * The directory that contains the sprites for the graphics of the game. This directory
+     * must be present in order to properly load the sprites into the graphics without causing
+     * any errors or problems with displaying the sprites. 
+     */
+    private static final String SPRITES_DIRECTORY = String.format("assets%csprites", separatorChar, separatorChar);
+
+    /**
      * The file that represents the pre-build network of the imperium map.
      * This file must be present in order to play the imperium map so that an adequate
      * network can be formed to play the game.
@@ -81,6 +88,24 @@ public class IOUtils {
      * map can be made with the correct cities.
      */
     private static final String PRE_BUILT_IMERPIUM_CITIES_FILE = String.format("resources%csaves%cpre_built_maps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the sprites for the colonists. This file is essential 
+     * to the graphics of the game as it is necessary for the displaying of the colonists. 
+     */
+    private static final String COLONISTS_SPRITES_FILE = String.format("assets%csprites%ccolonists.png", separatorChar, separatorChar);
+
+    /**
+     * The file that contains the sprites for the goods. This file is essential to the
+     * graphics of the game as it is necessary for the displaying of the goods. 
+     */
+    private static final String GOODS_SPRITES_FILE = String.format("assets%csprites%cgoods.png", separatorChar, separatorChar);
+
+    /**
+     * The file that contains the sprites for the houses. This file is essential to the 
+     * graphics of the game as it is necessary for the displaying of the houses on the boards. 
+     */
+    private static final String HOUSES_SPRITES_FILE = String.format("assets%csprites%chouses.png", separatorChar, separatorChar);
 
     /**
      * The link to where the pre-built imperium network can be downloaded from.
@@ -158,6 +183,20 @@ public class IOUtils {
     }
 
     /**
+     * Checks for the sprites directory that is used to store the png files with the 
+     * sprites and creates it if it does not exist. 
+     */
+    public static void checkForSpritesDirectoryAndCreateIfNotFound() {
+        Path path = Paths.get(SPRITES_DIRECTORY);
+        try {
+            Files.createDirectories(path);
+            Logger.info("IOUtils", "Successfully created sprites directory");
+        } catch (IOException e) {
+            Logger.error("IOUtils", "Could not create sprites directory: " + e.getMessage());
+        }
+    }
+
+    /**
      * Checks for the pre-built imperium network file which is necessary for the playing
      * of the game when the imperium map is selected and downloads it if it is not found
      */
@@ -196,5 +235,31 @@ public class IOUtils {
         } catch (URISyntaxException | IOException e) {
             Logger.error("IOutils", "Error occurred while downloading the pre-build imperium cities file: " + e.getMessage());
         }
+    }
+
+    /**
+     * Checks for the colonists sprite file which is necessary for the graphics of the game
+     * and displaying the colonists on the game board and downloads it if it is not found.
+     */
+    public static void checkForColonistsSpriteFileAndDownloadifNotFound() {
+        Path file = Path.of(COLONISTS_SPRITES_FILE);
+    }
+
+    /**
+     * Method to check for all of the necessary files and directories to play the game
+     * and either creates them or downloads them depending on the occasion. This is the 
+     * main method that should be called on game startup to ensure that the game does
+     * not experience any errors in creation and initialization. While the client is able 
+     * to call the other methods individually, it is not recommended as this method will
+     * be constantly updated to ensure that it creates or downloads all necessary files
+     * and directories for the game. 
+     */
+    public static void checkForGameFiles() {
+        checkForUnfinishedGamesDirectoryAndCreateIfNotFound();
+        checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound();
+        checkForLoginInformationDirectoryAndCreateIfNotFound();
+        checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
+        checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
+        checkForPreBuiltImperumCitiesFileAndDownloadIfNotFound();
     }
 }
