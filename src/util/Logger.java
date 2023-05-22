@@ -197,6 +197,39 @@ public class Logger {
         }
     }
 
+    /*
+     * Utility methods to assist with non-essential logging functions.
+     * These methods include getters as well as a method to reset the
+     * logger.
+     */
+
+    /**
+     * A method to reset the log count for each log level.
+     */
+    public static void reset() {
+        logNumber = 1;
+        logCountMap.clear();
+    }
+
+    /**
+     * Retrieves the log count for the specified log level.
+     *
+     * @param level the log level ({@code INFO}, {@code WARN}, {@code ERROR}).
+     * @return the number of logs for the specified leve.
+     */
+    public static int getLogCount(Level level) {
+        return logCountMap.getOrDefault(level, 0);
+    }
+
+    /**
+     * Retrieves the log count for all log levels.
+     *
+     * @return A map containing the log count or each log level.
+     */
+    public static Map<Level, Integer> getAllLogCounts() {
+        return new HashMap<>(logCountMap);
+    }
+
     /**
      * The available log levels represented by an enum.
      * The {@code INFO} level should be used for any informational messages.
