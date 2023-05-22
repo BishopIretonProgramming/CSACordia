@@ -8,6 +8,7 @@ public abstract class PersonalityCard {
    private int victoryMultiplier; //The mutiplier for the card's victory points
    private boolean played; //Whether this card has been played already
    private Player myPlayer;
+   public final CardImage IMAGE = null;
    
    public PersonalityCard(Player myPlayer, int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
       this.myPlayer = myPlayer;
