@@ -6,7 +6,11 @@ import static java.io.File.separatorChar;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * A utility class to assist with Input/Output operations regarding files
@@ -135,6 +139,41 @@ public class IOUtils {
             Logger.info("IOUtils", "Successfully created login information directory");
         } catch (IOException e) {
             Logger.error("IOUtils", "Could not create login information directory: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Checks for the player performance information directory that is used to store
+     * information regarding the performance of players in games and creates it if
+     * it does not exist
+     */
+    public static void checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound() {
+        Path path = Paths.get(PLAYER_PERFORMANCE_INFORMATION_DIRECTORY);
+        try {
+            Files.createDirectories(path);
+            Logger.info("IOUtils", "Successfully created player performance information directory");
+        } catch (IOException e) {
+            Logger.error("IOUtils", "Could not create player performance information directory: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Checks for the pre-built imperium network file which is necessary for the playing
+     * of the game when the imperium map is selected and downloads it if it is not found
+     */
+    public static void checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound() {
+        Path file = Path.of(PRE_BUILT_IMPERIUM_NETWORK_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Pre-Built Imperium network file already exists");
+            return;
+        }
+        try {
+            URI uri = new URI(PRE_BUILT_IMPERIUM_NETWORK_FILE_DOWNLOAD_LINK);
+            URL url = uri.toURL();
+            Files.copy(url.openStream(), file, StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("IOUtils", "Successfully downloaded the pre-built imperium network file");
+        } catch (URISyntaxException | IOException e) {
+            Logger.error("IOUtils", "Error occurred while downloading the pre-built imperium network file: " + e.getMessage());
         }
     }
 }
