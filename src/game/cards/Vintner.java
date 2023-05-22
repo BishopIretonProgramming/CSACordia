@@ -9,6 +9,7 @@ import java.awt.Graphics;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Vintner extends PersonalityCard implements Minerva {
+   public final CardImage IMAGE = CardImage.VINTNER;
    
    public Vintner(Player myPlayer, int brickPrice, int winePrice) {
       super(myPlayer, brickPrice, 0, 0, winePrice, 0, 2);

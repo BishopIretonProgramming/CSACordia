@@ -8,6 +8,7 @@ import java.awt.Graphics;
 
 public class Diplomat extends PersonalityCard implements Jvpiter {
    private PersonalityCard copied;
+   public final CardImage IMAGE = CardImage.DIPLOMAT;
 
    public Diplomat(Player myPlayer, PersonalityCard copy) {
       super(myPlayer, 0, 0, 0, 0, 0, 2);

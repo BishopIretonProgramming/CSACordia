@@ -7,6 +7,7 @@ import src.game.Player;
 import java.awt.Graphics;
 
 public class Senator extends PersonalityCard implements Vesta {
+   public final CardImage IMAGE = CardImage.SENATOR;
    
    public Senator(Player myPlayer) {
       super(myPlayer, 0, 0, 0, 0, 0, 2);
