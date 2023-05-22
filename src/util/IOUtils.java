@@ -176,4 +176,43 @@ public class IOUtils {
             Logger.error("IOUtils", "Error occurred while downloading the pre-built imperium network file: " + e.getMessage());
         }
     }
+
+    /**
+     * Checks for the pre-built imperium cities file which is necessary for the playing
+     * of the game when the imperium map is selected as it is used to build the map and 
+     * downloads it if it is not found
+     */
+    public static void checkForPreBuiltImperumCitiesFileAndDownloadIfNotFound() {
+        Path file = Path.of(PRE_BUILT_IMERPIUM_CITIES_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Pre-Built Imperium cities file already exists");
+            return;
+        }
+        try {
+            URI uri = new URI(PRE_BUILT_IMPERIUM_CITIES_FILE_DOWNLOAD_LINK);
+            URL url = uri.toURL();
+            Files.copy(url.openStream(), file, StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("IOUtils", "Successfully downloaded the pre-built imperium cities file");
+        } catch (URISyntaxException | IOException e) {
+            Logger.error("IOutils", "Error occurred while downloading the pre-build imperium cities file: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Method to check for all of the necessary files and directories to play the game
+     * and either creates them or downloads them depending on the occasion. This is the 
+     * main method that should be called on game startup to ensure that the game does
+     * not experience any errors in creation and initialization. While the client is able 
+     * to call the other methods individually, it is not recommended as this method will
+     * be constantly updated to ensure that it creates or downloads all necessary files
+     * and directories for the game. 
+     */
+    public static void checkForGameFiles() {
+        checkForUnfinishedGamesDirectoryAndCreateIfNotFound();
+        checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound();
+        checkForLoginInformationDirectoryAndCreateIfNotFound();
+        checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
+        checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
+        checkForPreBuiltImperumCitiesFileAndDownloadIfNotFound();
+    }
 }
