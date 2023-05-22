@@ -129,7 +129,72 @@ public class Logger {
         logNumber++;
 
         System.out.print(logMessage);
-        //write(logMessage);
+        write(logMessage);
+    }
+
+    /**
+     * Logs an informational message with the specified cause and message.
+     * This method simply calls the {@code log} method with the {@code INFO}
+     * level.
+     *
+     * @param cause    The cause of the log message.
+     * @param message  The log message to be displayed.
+     */
+    public static void info(String cause, String message) {
+        log(Level.INFO, cause, message);
+    }
+
+    /**
+     * Logs a warning message with the specified cause and message.
+     * This method simply calls the {@code log} method with the
+     * {@code WARN} level.
+     *
+     * @param cause    The cause of the message.
+     * @param message  The log message to be displayed.
+     */
+    public static void warn(String cause, String message) {
+        log(Level.WARN, cause, message);
+    }
+
+    /**
+     * Logs an error message with the specified cause and message.
+     * This method simply calls the {@code log} method with the
+     * {@code ERROR} level.
+     *
+     * @param cause    The cause of the message.
+     * @pram message   The log message to be displayed.
+     */
+    public static void error(String cause, String message) {
+        log(Level.ERROR, cause, message);
+    }
+
+    /*
+     * Methods related to writing the log messages to the file.
+     * The {@code write} method is private so that it cannot be
+     * called by other users and write incorrect and useless
+     * information to the log file. The {@code closeFile} method
+     * must be called by the client in order to release the resources
+     * of the log file.
+     */
+
+    /**
+     * Closes the log file and releases all resources related to it.
+     */
+    public static void closeFile() {
+        logFilePath = null;
+    }
+
+    /**
+     * Writes the log message to the file.
+     *
+     * @param message the log message to be written to the file
+     */
+    private static void write(String message) {
+        try {
+            Files.write(logFilePath, message.getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
