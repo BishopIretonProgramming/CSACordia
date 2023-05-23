@@ -77,6 +77,13 @@ public class IOUtils {
     private static final String SPRITES_DIRECTORY = String.format("assets%csprites", separatorChar);
 
     /**
+     * The directory that contains the images related to the graphics of the game. This directory
+     * must be present in order to prevent errors while loading the images and to properly display
+     * the images on the various frames and panels of the game.
+     */
+    private static final String GRAPHICS_IMAGES_DIRECTORY = String.format("src%cgui%cimages", separatorChar, separatorChar);
+
+    /**
      * The file that represents the pre-build network of the imperium map.
      * This file must be present in order to play the imperium map so that an adequate
      * network can be formed to play the game.
@@ -216,6 +223,20 @@ public class IOUtils {
     }
 
     /**
+     * Checks for the graphics images directory that is used to store the images related to
+     * the graphics of the game and creates the directory if it does not exist.
+     */
+    public static void checkForGraphicsImagesDirectoryAndCreateIfNotFound() {
+        Path path = Paths.get(GRAPHICS_IMAGES_DIRECTORY);
+        try {
+            Files.createDirectories(path);
+            Logger.info("IOUtils", "Successfully created graphics images directory");
+        } catch (IOException e) {
+            Logger.error("IOUtils", "Could not create the graphics images directory: " + e.getMessage());
+        }
+    }
+
+    /**
      * Checks for the pre-built imperium network file which is necessary for the playing
      * of the game when the imperium map is selected and downloads it if it is not found
      */
@@ -333,6 +354,7 @@ public class IOUtils {
         checkForLoginInformationDirectoryAndCreateIfNotFound();
         checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
         checkForSpritesDirectoryAndCreateIfNotFound();
+        checkForGraphicsImagesDirectoryAndCreateIfNotFound();
         checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
         checkForPreBuiltImperumCitiesFileAndDownloadIfNotFound();
         checkForColonistsSpriteFileAndDownloadIfNotFound();
