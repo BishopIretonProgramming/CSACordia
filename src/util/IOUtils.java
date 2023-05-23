@@ -239,6 +239,96 @@ public class IOUtils {
      */
     private static final String HOUSES_SPRITES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/assets/sprites/houses.png";
 
+    /**
+     * The link to where the image file for the concordia board can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/Concordia%20board.jpg";
+
+    /**
+     * The link to where the first image of the architect personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/architect.png";
+
+    /**
+     * The link to where the second image of the architect personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_2_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/architect2.png";
+
+    /**
+     * The link to where the image for the colonist personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String COLONIST_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/consul.png";
+
+    /**
+     * The link to where the image for the consul personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String CONSUL_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/consul.png";
+
+    /**
+     * The link to where the image for the diplomat personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/diplomat.png";
+
+    /**
+     * The link to where the first image of the mercator personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/mercator.png";
+
+    /**
+     * The link to where the second image of the mercator personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE_2_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/mercator2.png";
+
+    /**
+     * The link to where the image of the prefect personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String PREFECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/prefect.png";
+
+    /**
+     * The link to where the image of the reference card for the good prices can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String GOOD_PRICE_REFERENCE_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/reference.png";
+
+    /**
+     * The link to where the image of the senator personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String SENATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/senator.png";
+
+    /**
+     * The link to where the image of the green store house can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String GREEN_STOREHOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/storehouse-green.png";
+
+    /**
+     * The link to where the image of the tribune personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String TRIBUNE_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/tribune.png";
+
+    /**
+     * The link to where the image of the vinter personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String VINTER_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/vintner.png";
+
+    /**
+     * The link to where the image of the weaver personality card can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String WEAVER_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/weaver.png";
+
     /*
      * File and directory creation methods. Note that all methods take the
      * same basic form: performing the checks to see if the directory or
