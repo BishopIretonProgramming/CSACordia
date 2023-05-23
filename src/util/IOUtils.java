@@ -563,7 +563,7 @@ public class IOUtils {
             Future<Boolean> future = executorService.submit(downloadTask);
             future.get();
 
-            Logger.info("IOUtils", "Started downloading the " + fileName);
+            Logger.info("IOUtils", "Successfully downloaded the " + fileName);
         } catch (URISyntaxException | IOException | InterruptedException | ExecutionException e) {
             Logger.error("IOUtils", "Error occurred while downloading the " + fileName + ": " + e.getMessage());
         }
@@ -608,7 +608,7 @@ public class IOUtils {
     /**
      * Checks for the concordia board image file which is necessary for the graphics of the game
      * in terms of displaying the game board on all the various frames and panels that it is used
-     * on. If the file is not found locally, it will be downloaded from the internet.
+     * on. If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForConcordiaBoardImageFileAndDownloadIfNotFound() {
         Path file = Path.of(CONCORDIA_BOARD_IMAGE_FILE);
@@ -623,7 +623,7 @@ public class IOUtils {
      * Checks for the black store house image file which is necessary for the graphics of the game
      * in terms of displaying what is in the store house of a player and what resources the player
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
-     * from the internet.
+     * from the internet using the {@code downloadFile} method.
      */
     public static void checkForBlackStoreHouseImageFileAndDownloadIfNotFound() {
         Path file = Path.of(BLACK_STORE_HOUSE_IMAGE_FILE);
@@ -638,7 +638,7 @@ public class IOUtils {
      * Checks for the blue store house image file which is necessary for the graphics of the game
      * in terms of displaying what is in the store house of a player and what resources the player
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
-     * from the internet.
+     * from the internet using the {@code downloadFile} method.
      */
     public static void checkForBlueStoreHouseImageFileAndDownloadIfNotFound() {
         Path file = Path.of(BLUE_STORE_HOUSE_IMAGE_FILE);
@@ -652,7 +652,7 @@ public class IOUtils {
     /**
      * Checks for the concordia card image file which is necessary for the graphics of the game
      * in terms of displaying the concordia card when it is awarded to the player who ends the game.
-     * If the file is not found locally, it will be downloaded from the internet.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForConcordiaCardImageFileAndDownloadIfNotFound() {
         Path file = Path.of(CONCORDIA_CARD_IMAGE_FILE);
@@ -666,7 +666,7 @@ public class IOUtils {
     /**
      * Checks for the back of the concordia card image file which is necessary for the graphics of the game
      * in terms of displaying the back of the concordia card when it is awarded to the player who ends the game.
-     * If the file is not found locally, it will be downloaded from the internet.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForConcordiaCardImageFileBackAndDownloadIfNotFound() {
         Path file = Path.of(CONCORDIA_CARD_BACK_IMAGE_FILE);
@@ -681,7 +681,7 @@ public class IOUtils {
      * Checks for the green store house image file which is necessary for the graphics of the game
      * in terms of displaying what is in the store house of a player and what resources the player
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
-     * from the internet.
+     * from the internet using the {@code downloadFile} method.
      */
     public static void checkForGreenStoreHouseImageFileAndDownloadIfNotFound() {
         Path file = Path.of(GREEN_STORE_HOUSE_IMAGE_FILE);
@@ -695,7 +695,7 @@ public class IOUtils {
     /**
      * Checks for the praefectus magnus card image file which is necessary for the graphics of the game
      * in terms of displaying which player has the praefectus magnus card during the game. If the file
-     * is not found locally, it will be downloaded from the internet.
+     * is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForPraefectusMagnusCardImageFileAndDownloadIfNotFound() {
         Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE);
@@ -709,7 +709,7 @@ public class IOUtils {
     /**
      * Checks for the back of the praefectus magnus card image file which is necessary for the graphics of the game
      * in terms of displaying the back of the praefectus magnus card when it is awarded to the player who ends the game.
-     * If the file is not found locally, it will be downloaded from the internet.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForPraefectusMagnusCardImageFileBackAndDownloadIfNotFound() {
         Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE);
@@ -724,7 +724,7 @@ public class IOUtils {
      * Checks for the red store house image file which is necessary for the graphics of the game
      * in terms of displaying what is in the store house of a player and what resources the player
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
-     * from the internet.
+     * from the internet using the {@code downloadFile} method.
      */
     public static void checkForRedStoreHouseImageFileAndDownloadIfNotFound() {
         Path file = Path.of(RED_STORE_HOUSE_IMAGE_FILE);
@@ -738,7 +738,7 @@ public class IOUtils {
     /**
      * Checks for the first reference card image file which is necessary for the graphics of the game
      * in terms of displaying the information that the first reference card displays to the players.
-     * If the file is not found locally, it will be downloaded from the internet.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForReferenceCardAImageFileAndDownloadIfNotFound() {
         Path file = Path.of(REFERENCE_CARD_A_IMAGE_FILE);
@@ -752,7 +752,7 @@ public class IOUtils {
     /**
      * Checks for the second reference card image file which is necessary for the graphics of the game
      * in terms of displaying the information that the second reference card displays to the players.
-     * If the file is not found locally, it will be downloaded from the internet.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForReferenceCardBImageFileAndDownloadIfNotFound() {
         Path file = Path.of(REFERENCE_CARD_B_IMAGE_FILE);
@@ -767,7 +767,7 @@ public class IOUtils {
      * Checks for the yellow store house image file which is necessary for the graphics of the game
      * in terms of displaying what is in the store house of a player and what resources the player
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
-     * from the internet.
+     * from the internet using the {@code downloadFile} method.
      */
     public static void checkForYellowStoreHouseImageFileAndDownloadIfNotFound() {
         Path file = Path.of(YELLOW_STORE_HOUSE_IMAGE_FILE);
@@ -776,6 +776,166 @@ public class IOUtils {
             return;
         }
         downloadFile(YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, YELLOW_STORE_HOUSE_IMAGE_FILE, "yellow store house image file");
+    }
+
+    /**
+     * Checks for the architect personality card image file which is necessary for the graphics of
+     * the game in terms of displaying the card in the player hands and displaying the card on the
+     * game board when it can be bought. If the file is not found locally, it will be downloaded
+     * from the internet using the {@code downloadFIle} method.
+     */
+    public static void checkForArchitectPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Architect personality card image file already exists");
+            return;
+        }
+        downloadFile(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, ARCHITECT_PERSONALITY_CARD_IMAGE_FILE, "architect personality card image file");
+    }
+
+    /**
+     * Checks for the image containing the black back of personality cards which is necessary for the graphics of
+     * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForBlackBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Black back of personality cards image file already exists");
+            return;
+        }
+        downloadFile(PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE, "black back of personality cards image file");
+    }
+
+    /**
+     * Checks for the image containing the blue back of personality cards which is necessary for the graphics of
+     * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForBlueBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Blue back of personality cards image file already exists");
+            return;
+        }
+        downloadFile(PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE, "blue back of personality cards image file");
+    }
+
+    /**
+     * Checks for the diplomat personality card image file which is necessary for the graphics of
+     * the game in terms of displaying the card in the player hands and displaying the card on the
+     * game board when it can be bought. If the file is not found locally, it will be downloaded
+     * from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForDiplomatPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Diplomat personality card image file already exists");
+            return;
+        }
+        downloadFile(DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE, "diplomat personality card image file");
+    }
+
+    /**
+     * Checks for the image containing the green back of personality cards which is necessary for the graphics of
+     * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForGreenBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Green back of personality cards image file already exists");
+            return;
+        }
+        downloadFile(PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE, "green back of personality cards image file");
+    }
+
+    /**
+     * Checks for the mercator personality card image file which is necessary for the graphics of
+     * the game in terms of displaying the card in the player hands and displaying the card on the
+     * game board when it can be bought. If the file is not found locally, it will be downloaded
+     * from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForMercatorPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(MERCATOR_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Mercator personality card image file already exists");
+            return;
+        }
+        downloadFile(MERCATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, MERCATOR_PERSONALITY_CARD_IMAGE_FILE, "mercator personality card image file");
+    }
+
+    /**
+     * Checks for the prefect personality card image file which is necessary for the graphics of
+     * the game in terms of displaying the card in the player hands and displaying the card on the
+     * game board when it can be bought. If the file is not found locally, it will be downloaded
+     * from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPrefectPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PREFECT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Prefect personality card image file already exists");
+            return;
+        }
+        downloadFile(PREFECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, PREFECT_PERSONALITY_CARD_IMAGE_FILE, "prefect personality card image file");
+    }
+
+    /**
+     * Checks for the image containing the red back of personality cards which is necessary for the graphics of
+     * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForRedBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PERSONALITY_CARD_RED_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Red back of personality cards image file already exists");
+            return;
+        }
+        downloadFile(PERSONALITY_CARD_RED_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_RED_BACK_IMAGE_FILE, "red back of personality cards image file");
+    }
+
+    /**
+     * Checks for the senator personality card image file which is necessary for the graphics of
+     * the game in terms of displaying the card in the player hands and displaying the card on the
+     * game board when it can be bought. If the file is not found locally, it will be downloaded
+     * from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForSenatorPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(SENATOR_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Senator personality card image file already exists");
+            return;
+        }
+        downloadFile(SENATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, SENATOR_PERSONALITY_CARD_IMAGE_FILE, "senator personality card image file");
+    }
+
+    /**
+     * Checks for the tribune personality card image file which is necessary for the graphics of
+     * the game in terms of displaying the card in the player hands and displaying the card on the
+     * game board when it can be bought. If the file is not found locally, it will be downloaded
+     * from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForTribunePersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TRIBUNE_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Tribune personality card image file already exists");
+            return;
+        }
+        downloadFile(TRIBUNE_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, TRIBUNE_PERSONALITY_CARD_IMAGE_FILE, "tribune personality card image file");
+    }
+
+    /**
+     * Checks for the image containing the yellow back of personality cards which is necessary for the graphics of
+     * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForYellowBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Yellow back of personality cards image file already exists");
+            return;
+        }
+        downloadFile(PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE, "yellow back of personality cards image file");
     }
 
     /**
@@ -809,6 +969,17 @@ public class IOUtils {
         checkForReferenceCardAImageFileAndDownloadIfNotFound();
         checkForReferenceCardBImageFileAndDownloadIfNotFound();
         checkForYellowStoreHouseImageFileAndDownloadIfNotFound();
+        checkForArchitectPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForBlackBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
+        checkForBlueBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
+        checkForDiplomatPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForGreenBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
+        checkForMercatorPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForPrefectPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForRedBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
+        checkForSenatorPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForTribunePersonalityCardImageFileAndDownloadIfNotFound();
+        checkForYellowBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
 
         shutdownExecutorService();
     }
