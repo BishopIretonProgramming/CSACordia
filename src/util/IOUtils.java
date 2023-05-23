@@ -76,6 +76,177 @@ public class IOUtils {
      */
     private static final String SPRITES_DIRECTORY = String.format("assets%csprites", separatorChar);
 
+    /**
+     * The directory that contains the main images for the graphics. This directory must be present
+     * in order to display most of the images in the game, including the game board image, the store
+     * house images, and some of the game card images.
+     */
+    private static final String MAIN_GRAPHICS_IMAGES_DIRECTORY = String.format("src%cgui%cimages", separatorChar, separatorChar);
+
+    /**
+     * The directory that contains the images of the starting cards for the graphics. This directory
+     * must be present in order to display the starting personality cards. If this directory is not
+     * present, none of the starting personality cards will be able to be rendered.
+     */
+    private static final String STARTING_CARDS_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cstartingcards", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The directory that contains the images of the game pieces. This directory must be present in order
+     * to display the game pieces on the game board as well as in the inventory of the Player and possibly
+     * in the store house of the player.
+     */
+    private static final String GAME_PIECES_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cpieces", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The directory that contains the images of the personality cards that can be bought. This directory must
+     * be present in order to be able to render the personality cards that can be bought from the game board.
+     */
+    private static final String BOUGHT_PERSONALITY_CARDS_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cboughtcards", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the image of the game board. This file is used in several frames and panels to
+     * display the game board as a functional component and as a background or feature image.
+     */
+    private static final String CONCORDIA_BOARD_IMAGE_FILE = String.format("src%cgui%cimages%cConcordia board.jpg", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the concordia board image file from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/Concordia%20board.jpg";
+
+    /**
+     * The file that contains the image of the black store house. This file is used to display the image of
+     * the black store house for the player that is using it.
+     */
+    private static final String BLACK_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cblackStorehouse.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the black store house image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String BLACK_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/blackStorehouse.png";
+
+    /**
+     * The file that contains the image of the blue store house. This file is used to display the image of
+     * the blue store house for the player that is using it.
+     */
+    private static final String BLUE_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cblueStorehouse.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the blue store house image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String BLUE_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/blueStorehouse.png";
+
+    /**
+     * The file that contains an image of the back of the concordia card. This file is used to display the
+     * concordia card when it is awarded to the player who ends the game.
+     */
+    private static final String CONCORDIA_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cconcordia.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the concordia card image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/concordia.png";
+
+    /**
+     * The file that contains an image of teh concordia card. This file is used to display the concordia
+     * card when it is awarded to the player who ends the game.
+     */
+    private static final String CONCORDIA_CARD_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cconcordiaBack.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the concordia card back image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String CONCORDIA_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/concordiaBack.png";
+
+    /**
+     * The file that contains an image of the green store house. This file is used to display the image of
+     * the green store house for the player that is using it.
+     */
+    private static final String GREEN_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cgreenStorehouse.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the green store house image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String GREEN_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/greenStorehouse.png";
+
+    /**
+     * The file that contains an image of the praefectus magnus card. This file is used to display the
+     * praefectus magnus card when a player has it in their hand.
+     */
+    private static final String PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cpraefectusMagnus.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the praefectus magnus card image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/praefectusMagnus.png";
+
+    /**
+     * The file that contains an image of the back of the praefectus magnus card. This file is used to
+     * display the back of the praefectus magnus card when a player has it in their hand.
+     */
+    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cpraefectusMagnusBack.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the back of the praefectus magnus card from the GitHub
+     * repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/praefectusMagnusBack.png";
+
+    /**
+     * The file that contains an image of the red store house. This file is used to display the image of
+     * the red store house for the player that is using it.
+     */
+    private static final String RED_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%credStorehouse.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the red store house image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String RED_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/redStorehouse.png";
+
+    /**
+     * The file that contains an image of the first reference card. This file is used to display the
+     * information found on the first reference card for players to read.
+     */
+    private static final String REFERENCE_CARD_A_IMAGE_FILE = String.format("src%cgui%cimages%creferenceCardA.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the first reference card image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String REFERENCE_CARD_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/referenceCardA.png";
+
+    /**
+     * The file that contains an image of the second reference card. This file is used to display the
+     * information found on the second reference card for players to read.
+     */
+    private static final String REFERENCE_CARD_B_IMAGE_FILE = String.format("src%cgui%cimages%creferenceCardB.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the second reference card image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String REFERENCE_CARD_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/referenceCardB.png";
+
+    /**
+     * The file that contains an image of the yellow store house. This file is used to display the image of
+     * the yellow store house for the player that is using it.
+     */
+    private static final String YELLOW_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cyellowStorehouse.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the yellow store house image from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/yellowStorehouse.png";
+
     /*
      * File and directory creation methods. Note that all methods take the
      * same basic form: performing the checks to see if the directory or
@@ -148,6 +319,40 @@ public class IOUtils {
     }
 
     /**
+     * Checks for the main graphics images directory that is used to store the image files
+     * associated with most of the images that are used in the game.
+     */
+    public static void checkForMainGraphicsImagesDirectoryAndCreateIfNotFound() {
+        createDirectoryIfNotFound(Paths.get(MAIN_GRAPHICS_IMAGES_DIRECTORY), "main graphics images");
+    }
+
+    /**
+     * Checks for the starting cards images directory that is used to store the image files
+     * of the starting personality cards that are used to render the personality cards that
+     * the players start with.
+     */
+    public static void checkForStartingCardsImagesDirectoryAndCreateIfNotFound() {
+        createDirectoryIfNotFound(Paths.get(STARTING_CARDS_IMAGES_DIRECTORY), "starting cards images");
+    }
+
+    /**
+     * Checks for the pieces image directory that is used to store the image that are used
+     * to render the game pieces on the game board, in the inventory of the players, and in
+     * the store house of the players.
+     */
+    public static void checkForGamePiecesImagesDirectoryAndCreateIfNotFound() {
+        createDirectoryIfNotFound(Paths.get(GAME_PIECES_IMAGES_DIRECTORY), "game pieces images");
+    }
+
+    /**
+     * Checks for the bought personality cards images directory that is used to store the image
+     * files of the personality cards that can be bought from the game board.
+     */
+    public static void checkForBoughtPersonalityCardsImagesDirectoryAndCreateIfNotFound() {
+        createDirectoryIfNotFound(Paths.get(BOUGHT_PERSONALITY_CARDS_IMAGES_DIRECTORY), "bought personality cards images");
+    }
+
+    /**
      * Method to check for all the necessary files and directories to play the game
      * and either creates them or downloads them depending on the occasion. This is the 
      * main method that should be called on game startup to ensure that the game does
@@ -162,5 +367,14 @@ public class IOUtils {
         checkForLoginInformationDirectoryAndCreateIfNotFound();
         checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
         checkForSpritesDirectoryAndCreateIfNotFound();
+        checkForMainGraphicsImagesDirectoryAndCreateIfNotFound();
+        checkForStartingCardsImagesDirectoryAndCreateIfNotFound();
+        checkForGamePiecesImagesDirectoryAndCreateIfNotFound();
+        checkForBoughtPersonalityCardsImagesDirectoryAndCreateIfNotFound();
+    }
+
+    /* just for testing */
+    public static void main(String[] args) {
+        checkForGameFiles();
     }
 }
