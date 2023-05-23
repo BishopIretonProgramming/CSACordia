@@ -21,7 +21,8 @@ import java.net.URISyntaxException;
  */
 public class IOUtils {
 
-    /* Suppress the default no-args constructor provided by the compiler,
+    /**
+     * Suppress the default no-args constructor provided by the compiler,
      * ensuring that no one can make an instance of this class.
      */
     private IOUtils() {}
@@ -73,7 +74,7 @@ public class IOUtils {
      * must be present in order to properly load the sprites into the graphics without causing
      * any errors or problems with displaying the sprites. 
      */
-    private static final String SPRITES_DIRECTORY = String.format("assets%csprites", separatorChar, separatorChar);
+    private static final String SPRITES_DIRECTORY = String.format("assets%csprites", separatorChar);
 
     /**
      * The file that represents the pre-build network of the imperium map.
@@ -118,6 +119,24 @@ public class IOUtils {
      * This link is to be used if the file is not already present.
      */
     private static final String PRE_BUILT_IMPERIUM_CITIES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/resources/saves/pre_built_maps/imperium_cities.cnw";
+
+    /**
+     * The link to where the sprites file for the colonists sprites can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String COLONISTS_SPRITES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/assets/sprites/colonists.png";
+
+    /**
+     * The link to where the sprites file for the goods sprites can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String GOODS_SPRITES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/assets/sprites/goods.png";
+
+    /**
+     * The link to where the sprites file for the houses sprites can be downloaded from.
+     * This link is to be used if the file is not already present.
+     */
+    private static final String HOUSES_SPRITES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/assets/sprites/houses.png";
 
     /*
      * File and directory creation methods. Note that all methods take the
@@ -233,7 +252,7 @@ public class IOUtils {
             Files.copy(url.openStream(), file, StandardCopyOption.REPLACE_EXISTING);
             Logger.info("IOUtils", "Successfully downloaded the pre-built imperium cities file");
         } catch (URISyntaxException | IOException e) {
-            Logger.error("IOutils", "Error occurred while downloading the pre-build imperium cities file: " + e.getMessage());
+            Logger.error("IOUtils", "Error occurred while downloading the pre-built imperium cities file: " + e.getMessage());
         }
     }
 
@@ -241,12 +260,66 @@ public class IOUtils {
      * Checks for the colonists sprite file which is necessary for the graphics of the game
      * and displaying the colonists on the game board and downloads it if it is not found.
      */
-    public static void checkForColonistsSpriteFileAndDownloadifNotFound() {
+    public static void checkForColonistsSpriteFileAndDownloadIfNotFound() {
         Path file = Path.of(COLONISTS_SPRITES_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Colonists sprite file already exists");
+            return;
+        }
+        try {
+            URI uri = new URI(COLONISTS_SPRITES_FILE_DOWNLOAD_LINK);
+            URL url = uri.toURL();
+            Files.copy(url.openStream(), file, StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("IOUtils", "Successfully downloaded the colonists sprite file");
+        } catch (URISyntaxException | IOException e) {
+            Logger.error("IOUtils", "Error occurred while downloading the colonists sprite file: " + e.getMessage());
+        }
     }
 
     /**
-     * Method to check for all of the necessary files and directories to play the game
+     * Checks for the goods sprite file which is necessary for the graphics of the game
+     * and displaying the goods on the game board and in the store house of a player and
+     * downloads it if it is not found.
+     */
+    public static void checkForGoodsSpriteFileAndDownloadedIfNotFound() {
+        Path file = Path.of(GOODS_SPRITES_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Goods sprite file already exists");
+            return;
+        }
+        try {
+            URI uri = new URI(GOODS_SPRITES_FILE_DOWNLOAD_LINK);
+            URL url = uri.toURL();
+            Files.copy(url.openStream(), file, StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("IOUtils", "Successfully downloaded the goods sprite file");
+        } catch (URISyntaxException | IOException e) {
+            Logger.error("IOUtils", "Error occurred while downloading the goods sprite file: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Checks for the houses sprites file which is necessary for the graphics of the game and
+     * displaying the goods on the cities of the game board and in the inventory of a player
+     * and downloads it if it is not found.
+     */
+    public static void checkForHousesSpriteFileAndDownloadIfNotFound() {
+        Path file = Path.of(HOUSES_SPRITES_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Houses sprites file already exists");
+            return;
+        }
+        try {
+            URI uri = new URI(HOUSES_SPRITES_FILE_DOWNLOAD_LINK);
+            URL url = uri.toURL();
+            Files.copy(url.openStream(), file, StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("IOUtils", "Successfully downloaded the houses sprites file");
+        } catch (URISyntaxException | IOException e) {
+            Logger.error("IOUtils", "Error occurred while downloading the houses sprites file: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Method to check for all the necessary files and directories to play the game
      * and either creates them or downloads them depending on the occasion. This is the 
      * main method that should be called on game startup to ensure that the game does
      * not experience any errors in creation and initialization. While the client is able 
@@ -259,7 +332,11 @@ public class IOUtils {
         checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound();
         checkForLoginInformationDirectoryAndCreateIfNotFound();
         checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
+        checkForSpritesDirectoryAndCreateIfNotFound();
         checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
         checkForPreBuiltImperumCitiesFileAndDownloadIfNotFound();
+        checkForColonistsSpriteFileAndDownloadIfNotFound();
+        checkForGoodsSpriteFileAndDownloadedIfNotFound();
+        checkForHousesSpriteFileAndDownloadIfNotFound();
     }
 }
