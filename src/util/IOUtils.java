@@ -116,6 +116,100 @@ public class IOUtils {
     private static final String HOUSES_SPRITES_FILE = String.format("assets%csprites%chouses.png", separatorChar, separatorChar);
 
     /**
+     * The file that contains the image of the game board. This file is essential to the graphics
+     * of the game as it is extensively used in various frames and panels and if not present
+     * will be unable to be rendered on in all the various places it needs to be rendered.
+     */
+    private static final String CONCORDIA_BOARD_IMAGE_FILE = String.format("src%cgui%cimages%cConcordia board.jpg", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The first file that contains an image of the architect personality card. This file is
+     * essential to the graphics of the game as it will be used to render the card during
+     * gameplay.
+     */
+    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%carchitect.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The second file that contains an image of the architect personality card. This file is
+     * essential to the graphics of the game as it will be used to render the card during
+     * gameplay.
+     */
+    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_2 = String.format("src%cgui%cimages%carchitect2.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the image of the colonist personality card. This file is
+     * essential to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String COLONIST_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%ccolonist.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of the consul personality card. This file is essential to
+     * the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String CONSUL_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cconsul.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of the diplomat personality card. This file is essential to
+     * the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cdiplomat.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the first image of the mercator personality card. This file is
+     * essential to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cmercator.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the second image of the mercator personality card. This file is essential
+     * to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE_2 = String.format("src%cgui%cimages%cmercator2.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the image of the prefect personality card. This file is essential to the
+     * graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String PREFECT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cprefect.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of the reference card for the price of goods in the game. This
+     * file is essential to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String GOOD_PRICE_REFERENCE_CARD_IMAGE_FILE = String.format("src%cgui%cimages%creference.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of the senator personality card. This file is essential to the
+     * graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String SENATOR_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%csenator.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of an empty green store house. This file is essential to the
+     * graphics of the game as it will be used to render the store house during gameplay and to
+     * display what is in the store house of a player.
+     */
+    private static final String GREEN_STOREHOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cstorehouse-green.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of the tribune personality card. This file is essential
+     * to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String TRIBUNE_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%ctribune.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains an image of the vinter personality card. This file is essential
+     * to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String VINTER_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cvinter.png", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The file that contains the image of the weaver personality card. This file is essential
+     * to the graphics of the game as it will be used to render the card during gameplay.
+     */
+    private static final String WEAVER_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cweaver.png", separatorChar, separatorChar, separatorChar);
+
+    /**
      * The link to where the pre-built imperium network can be downloaded from.
      * This link is to be used if the file is not already present.
      */
