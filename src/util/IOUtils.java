@@ -260,6 +260,138 @@ public class IOUtils {
      */
     private static final String YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/yellowStorehouse.png";
 
+    /**
+     * The file that contains an image of the architect personality card. This file is used to display the
+     * image of the architect personality card when a player has it in their hand or wants to buy it.
+     */
+    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the architect personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/architect.png";
+
+    /**
+     * The file that contains an image of the black back of personality cards. This file is used to display
+     * the back of a personality card when it is black.
+     */
+    private static final String PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cblackBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the black back of personality cards from the GitHub
+     * repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blackBack.png";
+
+    /**
+     * The file that contains an image of the blue back of personality cards. This file is used to display
+     * the back of a personality card when it is blue.
+     */
+    private static final String PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cblueBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the blue back of personality cards from the GitHub
+     * repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blueBack.png";
+
+    /**
+     * The file that contains an image of the diplomat personality card. This file is used to display the
+     * image of the diplomat personality card when a player has it in their hand or wants to buy it.
+     */
+    private static final String DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the diplomat personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/diplomat.png";
+
+    /**
+     * The file that contains an image of the green back of personality cards. This file is used to display
+     * the back of a personality card when it is green.
+     */
+    private static final String PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cgreenBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the green back of personality cards from the GitHub
+     * repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/greenBack.png";
+
+    /**
+     * The file that contains an image of the mercator personality card. This file is used to display the
+     * image of the mercator personality card when a player has it in their hand or wants to buy it.
+     */
+    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the mercator personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/mercator.png";
+
+    /**
+     * The file that contains the image of the prefect personality card. This file is used to display the
+     * image of the prefect personality card when a player has it in their hand or wants to buy it.
+     */
+    private static final String PREFECT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the prefect personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String PREFECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/prefect.png";
+
+    /**
+     * The file that contains an image of the red back of personality cards. This file is used to display
+     * the back of a personality card when it is red.
+     */
+    private static final String PERSONALITY_CARD_RED_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%credBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the red back of personality cards from the GitHub
+     * repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String PERSONALITY_CARD_RED_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/redBack.png";
+
+    /**
+     * The file that contains an image of the senator personality card. This file is used to display the
+     * image of the senator personality card when a player has it in their hand or wants to buy it.
+     */
+    private static final String SENATOR_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%csenator.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the senator personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String SENATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/senator.png";
+
+    /**
+     * The file that contains the image of the tribune personality card. This file is used to display the
+     * image of the tribune personality card when a player has it in their hand or wants to buy it.
+     */
+    private static final String TRIBUNE_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%ctribune.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the tribune personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String TRIBUNE_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/tribune.png";
+
+    /**
+     * The file that contains the image of the yellow back of personality cards. This file is used to display
+     * the back of a personality card when it is yellow.
+     */
+    private static final String PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cyellowBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the yellow back of personality cards from the GitHub
+     * repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/yellowBack.png";
+
     /*
      * File and directory creation methods. Note that all methods take the
      * same basic form: performing the checks to see if the directory or
