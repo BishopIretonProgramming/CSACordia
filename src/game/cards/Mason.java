@@ -11,8 +11,8 @@ import java.awt.Graphics;
 public class Mason extends PersonalityCard implements Minerva {
    public final CardImage IMAGE = CardImage.MASON;
    
-   public Mason(Player myPlayer, int brickPrice) {
-      super(myPlayer, brickPrice, 0, 0, 0, 0, 2);
+   public Mason(Player myPlayer) {
+      super(myPlayer, 0, 1, 0, 0, 0, 3);
    }
    
    @Override
@@ -24,7 +24,7 @@ public class Mason extends PersonalityCard implements Minerva {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * minervaScorePoints();
    }
    
    @Override

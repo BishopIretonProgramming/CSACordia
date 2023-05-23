@@ -1,0 +1,61 @@
+All starting hand cards can be found in startingcards, all cards bought afterward are found in boughtcards
+The only difference between them is that starting cards don't have prices
+*Mercator cards are different, starting mercators give 3 sestertii, while bought give 5
+
+When sorting cards into the draw pile, put the I cards at the top (first) and the V cards on the bottom (last)
+
+Card Backs: 
+All starting cards have the colored backs, depending on the owner of the cards
+All bought cards have the standard backs with their number (I-V) on them
+
+Cards Found in Each Category:
+
+Starting hand: (All cards w/o prices)
+Tribune
+Mercator
+Prefect --X2
+Architect
+Diplomat
+Senator
+
+Bought cards: (All cards with prices)
+
+I:
+Mason
+Smith
+Mercator
+Colonist
+Diplomat
+Farmer
+Architect
+Prefect
+
+II:
+Mercator
+Prefect
+Colonist
+Weaver
+Architect
+Consul
+Vintner
+
+III:
+Consul
+Architect
+Colonist
+Diplomat
+Mercator
+Prefect
+
+IV:
+Consul
+Prefect
+Colonist
+Diplomat
+Architect
+
+V:
+Consul
+Mercator
+Prefect
+Diplomat

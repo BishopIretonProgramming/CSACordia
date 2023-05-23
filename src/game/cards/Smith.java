@@ -11,8 +11,8 @@ import java.awt.Graphics;
 public class Smith extends PersonalityCard implements Minerva {
    public final CardImage IMAGE = CardImage.SMITH;
    
-   public Smith(Player myPlayer, int brickPrice, int toolPrice) {
-      super(myPlayer, brickPrice, 0, toolPrice, 0, 0, 2);
+   public Smith(Player myPlayer) {
+      super(myPlayer, 1, 0, 1, 0, 0, 2);
    }
    
    @Override
@@ -24,7 +24,7 @@ public class Smith extends PersonalityCard implements Minerva {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * minervaScorePoints();
    }
    
    @Override
