@@ -3,22 +3,22 @@ package src.util;
 //  imports
 import static java.io.File.separatorChar;
 
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.AsynchronousFileChannel;
+import java.nio.channels.CompletionHandler;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.HttpURLConnection;
+
+import java.util.concurrent.*;
 
 /**
  * A utility class to assist with Input/Output operations regarding files
@@ -34,6 +34,11 @@ public class IOUtils {
      * ensuring that no one can make an instance of this class.
      */
     private IOUtils() {}
+
+    /**
+     * The maximum number of concurrent downloads represented by an {@code ExecutorService}
+     */
+     private static final ExecutorService executorService = Executors.newFixedThreadPool(12);
 
     /*
      * The fields and constants that will be used throughout this class,
@@ -160,7 +165,7 @@ public class IOUtils {
     private static final String CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordia.png";
 
     /**
-     * The file that contains an image of teh concordia card. This file is used to display the concordia
+     * The file that contains an image of the concordia card. This file is used to display the concordia
      * card when it is awarded to the player who ends the game.
      */
     private static final String CONCORDIA_CARD_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cconcordiaBack.png", separatorChar, separatorChar, separatorChar);
@@ -369,7 +374,8 @@ public class IOUtils {
      * Method to download a file from the internet if it is not found locally. This method will
      * be used by each of the individual methods that check for the existence of the necessary
      * game files to reduce the amount of repeated code and to improve readability in the entirety
-     * of the IOUtils class.
+     * of the IOUtils class. This method uses asynchronous I/O along with concurrent downloads to
+     * download the fast.
      *
      * @param downloadLink       the link to the file that should be downloaded
      * @param destinationPath    the path to where the file should be stored
@@ -382,10 +388,71 @@ public class IOUtils {
         }
         try {
             URL url = new URI(downloadLink).toURL();
-            Files.copy(url.openStream(), Path.of(destinationPath), StandardCopyOption.REPLACE_EXISTING);
-            Logger.info("IOUtils", "Successfully downloaded the " + fileName);
-        } catch (URISyntaxException | IOException e) {
+            Path destination = Path.of(destinationPath);
+
+            AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(destination,
+                    StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+
+            ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024);
+
+            CompletionHandler<Integer, Void> completionHandler = new CompletionHandler<>() {
+                @Override
+                public void completed(Integer result, Void attachment) {
+                    if (result == -1) {
+                        try {
+                            fileChannel.close();
+                            Logger.info("IOUtils", "Successfully downloaded the " + fileName);
+                        } catch (IOException e) {
+                            Logger.error("IOUtils", "Error occurred while closing the file channel for " + fileName + ": " + e.getMessage());
+                        }
+                    } else {
+                        buffer.flip();
+                        fileChannel.write(buffer, 0, null, this);
+                        buffer.clear();
+                    }
+                }
+
+                @Override
+                public void failed(Throwable exc, Void attachment) {
+                    Logger.error("IOUtils", "Error occurred while downloading the " + fileName + ": " + exc.getMessage());
+                }
+            };
+
+            Callable<Boolean> downloadTask = () -> {
+                try {
+                    fileChannel.write(buffer, 0, null, completionHandler);
+                    return true;
+                } catch (Exception e) {
+                    Logger.error("IOUtils", "Error occurred while initiating the download for " + fileName + ": " + e.getMessage());
+                    return false;
+                }
+            };
+
+            Future<Boolean> future = executorService.submit(downloadTask);
+            future.get();
+
+            Logger.info("IOUtils", "Started downloading the " + fileName);
+        } catch (URISyntaxException | IOException | InterruptedException | ExecutionException e) {
             Logger.error("IOUtils", "Error occurred while downloading the " + fileName + ": " + e.getMessage());
+        }
+    }
+
+    /**
+     * Method to shut down the {@code ExecutorService} that is used to download the necessary
+     * game files concurrently. This will ensure that the program will not continue to run after
+     * the main thread has finished executing.
+     */
+    private static void shutdownExecutorService() {
+        executorService.shutdown();
+        try {
+            if (!executorService.awaitTermination(800, TimeUnit.MILLISECONDS)) {
+                executorService.shutdownNow();
+                if (!executorService.awaitTermination(800, TimeUnit.MILLISECONDS))
+                    Logger.error("IOUtils", "Could not shut down the executor service for downloads");
+            }
+        } catch (InterruptedException e) {
+            executorService.shutdownNow();
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -610,6 +677,8 @@ public class IOUtils {
         checkForReferenceCardAImageFileAndDownloadIfNotFound();
         checkForReferenceCardBImageFileAndDownloadIfNotFound();
         checkForYellowStoreHouseImageFileAndDownloadIfNotFound();
+
+        shutdownExecutorService();
     }
 
     /* just for testing */
