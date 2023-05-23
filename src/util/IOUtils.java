@@ -83,17 +83,35 @@ public class IOUtils {
      */
 
     /**
+     * Method to create a directory if it does not exist. This method will
+     * check to see if the directory exists and if it does not, it will
+     * create the directory. This method will be used in all the methods
+     * that check to ensure the existence of the necessary game file directories
+     * to reduce the amount of repeated code and to improve readability in the
+     * entirety of the IOUtils class.
+     *
+     * @param directory The directory to check for and create if it does not exist
+     * @param directoryName The name of the directory to check for and create if it does not exist
+     */
+    private static void createDirectoryIfNotFound(Path directory, String directoryName) {
+        if (Files.exists(directory)) {
+            Logger.info("IOUtils", "The " + directoryName + " directory already exists");
+        } else {
+            try {
+                Files.createDirectories(directory);
+                Logger.info("IOUtils", "Successfully created the " + directoryName + " directory");
+            } catch (IOException e) {
+                Logger.error("IOUtils", "Could not create the " + directoryName + " directory: " + e.getMessage());
+            }
+        }
+    }
+
+    /**
      * Checks for the directory that will be used to save the unfinished games
      * to and creates it if it does not exist.
      */
     public static void checkForUnfinishedGamesDirectoryAndCreateIfNotFound() {
-        Path path = Paths.get(UNFINISHED_GAME_SAVE_FILE_DIRECTORY);
-        try {
-            Files.createDirectories(path);
-            Logger.info("IOUtils", "Successfully created unfinished game directory");
-        } catch (IOException e) {
-            Logger.error("IOUtils", "Could not create unfinished game save file directory: " + e.getMessage());
-        }
+        createDirectoryIfNotFound(Paths.get(UNFINISHED_GAME_SAVE_FILE_DIRECTORY), "unfinished games");
     }
 
     /**
@@ -101,13 +119,7 @@ public class IOUtils {
      * and create the directory if it does not exist
      */
     public static void checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound() {
-        Path path = Paths.get(PRE_BUILT_MAP_FILES_DIRECTORY);
-        try {
-            Files.createDirectories(path);
-            Logger.info("IOUtils", "Successfully created pre-build map files directory");
-        } catch (IOException e) {
-            Logger.error("IOUtils", "Could not create pre-built map files directory: " + e.getMessage());
-        }
+        createDirectoryIfNotFound(Paths.get(PRE_BUILT_MAP_FILES_DIRECTORY), "pre-built map files");
     }
 
     /**
@@ -115,13 +127,7 @@ public class IOUtils {
      * and passwords and creates the directory if it does not exist
      */
     public static void checkForLoginInformationDirectoryAndCreateIfNotFound() {
-        Path path = Paths.get(LOGIN_INFORMATION_DIRECTORY);
-        try {
-            Files.createDirectories(path);
-            Logger.info("IOUtils", "Successfully created login information directory");
-        } catch (IOException e) {
-            Logger.error("IOUtils", "Could not create login information directory: " + e.getMessage());
-        }
+        createDirectoryIfNotFound(Paths.get(LOGIN_INFORMATION_DIRECTORY), "login information");
     }
 
     /**
@@ -130,13 +136,7 @@ public class IOUtils {
      * it does not exist
      */
     public static void checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound() {
-        Path path = Paths.get(PLAYER_PERFORMANCE_INFORMATION_DIRECTORY);
-        try {
-            Files.createDirectories(path);
-            Logger.info("IOUtils", "Successfully created player performance information directory");
-        } catch (IOException e) {
-            Logger.error("IOUtils", "Could not create player performance information directory: " + e.getMessage());
-        }
+        createDirectoryIfNotFound(Paths.get(PLAYER_PERFORMANCE_INFORMATION_DIRECTORY), "player performance information");
     }
 
     /**
@@ -144,13 +144,7 @@ public class IOUtils {
      * sprites and creates it if it does not exist. 
      */
     public static void checkForSpritesDirectoryAndCreateIfNotFound() {
-        Path path = Paths.get(SPRITES_DIRECTORY);
-        try {
-            Files.createDirectories(path);
-            Logger.info("IOUtils", "Successfully created sprites directory");
-        } catch (IOException e) {
-            Logger.error("IOUtils", "Could not create sprites directory: " + e.getMessage());
-        }
+        createDirectoryIfNotFound(Paths.get(SPRITES_DIRECTORY), "sprites");
     }
 
     /**
