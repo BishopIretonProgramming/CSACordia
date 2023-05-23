@@ -7,10 +7,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
+
 import java.io.IOException;
+import java.io.InputStream;
+
 import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.HttpURLConnection;
 
 /**
  * A utility class to assist with Input/Output operations regarding files
@@ -113,7 +121,7 @@ public class IOUtils {
      * The download link to download the concordia board image file from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/Concordia%20board.jpg";
+    private static final String CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/Concordia%20board.jpg";
 
     /**
      * The file that contains the image of the black store house. This file is used to display the image of
@@ -125,7 +133,7 @@ public class IOUtils {
      * The download link to download the black store house image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String BLACK_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/blackStorehouse.png";
+    private static final String BLACK_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blackStorehouse.png";
 
     /**
      * The file that contains the image of the blue store house. This file is used to display the image of
@@ -137,7 +145,7 @@ public class IOUtils {
      * The download link to download the blue store house image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String BLUE_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/blueStorehouse.png";
+    private static final String BLUE_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blueStorehouse.png";
 
     /**
      * The file that contains an image of the back of the concordia card. This file is used to display the
@@ -149,7 +157,7 @@ public class IOUtils {
      * The download link to download the concordia card image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/concordia.png";
+    private static final String CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordia.png";
 
     /**
      * The file that contains an image of teh concordia card. This file is used to display the concordia
@@ -161,7 +169,7 @@ public class IOUtils {
      * The download link to download the concordia card back image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String CONCORDIA_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/concordiaBack.png";
+    private static final String CONCORDIA_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordiaBack.png";
 
     /**
      * The file that contains an image of the green store house. This file is used to display the image of
@@ -173,7 +181,7 @@ public class IOUtils {
      * The download link to download the green store house image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String GREEN_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/greenStorehouse.png";
+    private static final String GREEN_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/greenStorehouse.png";
 
     /**
      * The file that contains an image of the praefectus magnus card. This file is used to display the
@@ -185,7 +193,7 @@ public class IOUtils {
      * The download link to download the praefectus magnus card image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/praefectusMagnus.png";
+    private static final String PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnus.png";
 
     /**
      * The file that contains an image of the back of the praefectus magnus card. This file is used to
@@ -197,7 +205,7 @@ public class IOUtils {
      * The download link to download the image of the back of the praefectus magnus card from the GitHub
      * repository. This link is to be used if the file does not already exist locally.
      */
-    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/praefectusMagnusBack.png";
+    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnusBack.png";
 
     /**
      * The file that contains an image of the red store house. This file is used to display the image of
@@ -209,7 +217,7 @@ public class IOUtils {
      * The download link to download the red store house image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String RED_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/redStorehouse.png";
+    private static final String RED_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/redStorehouse.png";
 
     /**
      * The file that contains an image of the first reference card. This file is used to display the
@@ -221,7 +229,7 @@ public class IOUtils {
      * The download link to download the first reference card image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String REFERENCE_CARD_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/referenceCardA.png";
+    private static final String REFERENCE_CARD_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardA.png";
 
     /**
      * The file that contains an image of the second reference card. This file is used to display the
@@ -233,7 +241,7 @@ public class IOUtils {
      * The download link to download the second reference card image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String REFERENCE_CARD_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/referenceCardB.png";
+    private static final String REFERENCE_CARD_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardB.png";
 
     /**
      * The file that contains an image of the yellow store house. This file is used to display the image of
@@ -245,7 +253,7 @@ public class IOUtils {
      * The download link to download the yellow store house image from the GitHub repository.
      * This link is to be used if the file does not already exist locally.
      */
-    private static final String YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/devinlinux/CSACordia-Forkenstein/main/src/gui/images/yellowStorehouse.png";
+    private static final String YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/yellowStorehouse.png";
 
     /*
      * File and directory creation methods. Note that all methods take the
@@ -352,6 +360,225 @@ public class IOUtils {
         createDirectoryIfNotFound(Paths.get(BOUGHT_PERSONALITY_CARDS_IMAGES_DIRECTORY), "bought personality cards images");
     }
 
+    /*
+     * Methods to check for necessary game files and download them from the internet if they
+     * are not found locally.
+     */
+
+    /**
+     * Method to download a file from the internet if it is not found locally. This method will
+     * be used by each of the individual methods that check for the existence of the necessary
+     * game files to reduce the amount of repeated code and to improve readability in the entirety
+     * of the IOUtils class.
+     *
+     * @param downloadLink       the link to the file that should be downloaded
+     * @param destinationPath    the path to where the file should be stored
+     * @param fileName           the name of the file
+     */
+    private static void downloadFile(String downloadLink, String destinationPath, String fileName) {
+        if (!isInternetAvailable()) {
+            Logger.error("IOUtils", "Internet is not available. Cannot download the " + fileName);
+            return;
+        }
+        try {
+            URL url = new URI(downloadLink).toURL();
+            Files.copy(url.openStream(), Path.of(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("IOUtils", "Successfully downloaded the " + fileName);
+        } catch (URISyntaxException | IOException e) {
+            Logger.error("IOUtils", "Error occurred while downloading the " + fileName + ": " + e.getMessage());
+        }
+    }
+
+    /**
+     * Method to check if internet is available to start a download. This method will be used
+     * by the {@code downloadFile} method to check if internet is available before starting a
+     * download.
+     *
+     * @return  {@code true} if internet is available, {@code false} otherwise
+     */
+    private static boolean isInternetAvailable() {
+        try {
+            URL url = new URL("https://www.gnu.org");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            return connection.getResponseCode() == HttpURLConnection.HTTP_OK;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks for the concordia board image file which is necessary for the graphics of the game
+     * in terms of displaying the game board on all the various frames and panels that it is used
+     * on. If the file is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForConcordiaBoardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(CONCORDIA_BOARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Concordia board image file already exists");
+            return;
+        }
+        downloadFile(CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK, CONCORDIA_BOARD_IMAGE_FILE, "concordia board image file");
+    }
+
+    /**
+     * Checks for the black store house image file which is necessary for the graphics of the game
+     * in terms of displaying what is in the store house of a player and what resources the player
+     * has at any given moment in the game. If the file is not found locally, it will be downloaded
+     * from the internet.
+     */
+    public static void checkForBlackStoreHouseImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BLACK_STORE_HOUSE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Black store house image file already exists");
+            return;
+        }
+        downloadFile(BLACK_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, BLACK_STORE_HOUSE_IMAGE_FILE, "black store house image file");
+    }
+
+    /**
+     * Checks for the blue store house image file which is necessary for the graphics of the game
+     * in terms of displaying what is in the store house of a player and what resources the player
+     * has at any given moment in the game. If the file is not found locally, it will be downloaded
+     * from the internet.
+     */
+    public static void checkForBlueStoreHouseImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BLUE_STORE_HOUSE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Blue store house image file already exists");
+            return;
+        }
+        downloadFile(BLUE_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, BLUE_STORE_HOUSE_IMAGE_FILE, "blue store house image file");
+    }
+
+    /**
+     * Checks for the concordia card image file which is necessary for the graphics of the game
+     * in terms of displaying the concordia card when it is awarded to the player who ends the game.
+     * If the file is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForConcordiaCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(CONCORDIA_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Concordia card image file already exists");
+            return;
+        }
+        downloadFile(CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK, CONCORDIA_CARD_IMAGE_FILE, "concordia card image file");
+    }
+
+    /**
+     * Checks for the back of the concordia card image file which is necessary for the graphics of the game
+     * in terms of displaying the back of the concordia card when it is awarded to the player who ends the game.
+     * If the file is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForConcordiaCardImageFileBackAndDownloadIfNotFound() {
+        Path file = Path.of(CONCORDIA_CARD_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Back of concordia card image file already exists");
+            return;
+        }
+        downloadFile(CONCORDIA_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK, CONCORDIA_CARD_BACK_IMAGE_FILE, "back of concordia card image file");
+    }
+
+    /**
+     * Checks for the green store house image file which is necessary for the graphics of the game
+     * in terms of displaying what is in the store house of a player and what resources the player
+     * has at any given moment in the game. If the file is not found locally, it will be downloaded
+     * from the internet.
+     */
+    public static void checkForGreenStoreHouseImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(GREEN_STORE_HOUSE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Green store house image file already exists");
+            return;
+        }
+        downloadFile(GREEN_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, GREEN_STORE_HOUSE_IMAGE_FILE, "green store house image file");
+    }
+
+    /**
+     * Checks for the praefectus magnus card image file which is necessary for the graphics of the game
+     * in terms of displaying which player has the praefectus magnus card during the game. If the file
+     * is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForPraefectusMagnusCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Praefectus magnus card image file already exists");
+            return;
+        }
+        downloadFile(PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE_DOWNLOAD_LINK, PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE, "praefectus magnus card image file");
+    }
+
+    /**
+     * Checks for the back of the praefectus magnus card image file which is necessary for the graphics of the game
+     * in terms of displaying the back of the praefectus magnus card when it is awarded to the player who ends the game.
+     * If the file is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForPraefectusMagnusCardImageFileBackAndDownloadIfNotFound() {
+        Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Back of praefectus magnus card image file already exists");
+            return;
+        }
+        downloadFile(PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK, PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE, "back of praefectus magnus card image file");
+    }
+
+    /**
+     * Checks for the red store house image file which is necessary for the graphics of the game
+     * in terms of displaying what is in the store house of a player and what resources the player
+     * has at any given moment in the game. If the file is not found locally, it will be downloaded
+     * from the internet.
+     */
+    public static void checkForRedStoreHouseImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(RED_STORE_HOUSE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Red store house image file already exists");
+            return;
+        }
+        downloadFile(RED_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, RED_STORE_HOUSE_IMAGE_FILE, "red store house image file");
+    }
+
+    /**
+     * Checks for the first reference card image file which is necessary for the graphics of the game
+     * in terms of displaying the information that the first reference card displays to the players.
+     * If the file is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForReferenceCardAImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(REFERENCE_CARD_A_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "First reference card image file already exists");
+            return;
+        }
+        downloadFile(REFERENCE_CARD_A_IMAGE_FILE_DOWNLOAD_LINK, REFERENCE_CARD_A_IMAGE_FILE, "first reference card image file");
+    }
+
+    /**
+     * Checks for the second reference card image file which is necessary for the graphics of the game
+     * in terms of displaying the information that the second reference card displays to the players.
+     * If the file is not found locally, it will be downloaded from the internet.
+     */
+    public static void checkForReferenceCardBImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(REFERENCE_CARD_B_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Second reference card image file already exists");
+            return;
+        }
+        downloadFile(REFERENCE_CARD_B_IMAGE_FILE_DOWNLOAD_LINK, REFERENCE_CARD_B_IMAGE_FILE, "second reference card image file");
+    }
+
+    /**
+     * Checks for the yellow store house image file which is necessary for the graphics of the game
+     * in terms of displaying what is in the store house of a player and what resources the player
+     * has at any given moment in the game. If the file is not found locally, it will be downloaded
+     * from the internet.
+     */
+    public static void checkForYellowStoreHouseImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(YELLOW_STORE_HOUSE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Yellow store house image file already exists");
+            return;
+        }
+        downloadFile(YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, YELLOW_STORE_HOUSE_IMAGE_FILE, "yellow store house image file");
+    }
+
     /**
      * Method to check for all the necessary files and directories to play the game
      * and either creates them or downloads them depending on the occasion. This is the 
@@ -371,6 +598,18 @@ public class IOUtils {
         checkForStartingCardsImagesDirectoryAndCreateIfNotFound();
         checkForGamePiecesImagesDirectoryAndCreateIfNotFound();
         checkForBoughtPersonalityCardsImagesDirectoryAndCreateIfNotFound();
+        checkForConcordiaBoardImageFileAndDownloadIfNotFound();
+        checkForBlackStoreHouseImageFileAndDownloadIfNotFound();
+        checkForBlueStoreHouseImageFileAndDownloadIfNotFound();
+        checkForConcordiaCardImageFileAndDownloadIfNotFound();
+        checkForConcordiaCardImageFileBackAndDownloadIfNotFound();
+        checkForGreenStoreHouseImageFileAndDownloadIfNotFound();
+        checkForPraefectusMagnusCardImageFileAndDownloadIfNotFound();
+        checkForPraefectusMagnusCardImageFileBackAndDownloadIfNotFound();
+        checkForRedStoreHouseImageFileAndDownloadIfNotFound();
+        checkForReferenceCardAImageFileAndDownloadIfNotFound();
+        checkForReferenceCardBImageFileAndDownloadIfNotFound();
+        checkForYellowStoreHouseImageFileAndDownloadIfNotFound();
     }
 
     /* just for testing */
