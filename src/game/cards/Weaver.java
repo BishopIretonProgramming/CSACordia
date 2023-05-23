@@ -11,8 +11,8 @@ import java.awt.Graphics;
 public class Weaver extends PersonalityCard implements Minerva {
    public final CardImage IMAGE = CardImage.WEAVER;
    
-   public Weaver(Player myPlayer, int brickPrice, int clothPrice) {
-      super(myPlayer, brickPrice, 0, 0, 0, clothPrice, 2);
+   public Weaver(Player myPlayer) {
+      super(myPlayer, 1, 0, 0, 0, 1, 5);
    }
    
    @Override
@@ -24,7 +24,7 @@ public class Weaver extends PersonalityCard implements Minerva {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * minervaScorePoints();
    }
    
    @Override

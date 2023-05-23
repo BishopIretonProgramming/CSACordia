@@ -8,9 +8,11 @@ import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
    public final CardImage IMAGE = CardImage.MERCATOR;
+   public final boolean ISSTARTING;
    
-   public Mercator(Player myPlayer, int winePrice) {
-      super(myPlayer, 0, 0, 0, winePrice, 0, 2);
+   public Mercator(Player myPlayer, boolean isStarting) {
+      super(myPlayer, 0, 0, 0, isStarting ? 0 : 1, 0, 2);
+      this.ISSTARTING = isStarting;
    }
    
    @Override
@@ -21,7 +23,7 @@ public class Mercator extends PersonalityCard implements Mercvrivs {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * mercvrivsScorePoints();
    }
    
    @Override
