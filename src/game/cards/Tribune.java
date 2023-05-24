@@ -30,7 +30,7 @@ public class Tribune extends PersonalityCard implements Mars {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * marsScorePoints();
    }
    
    @Override

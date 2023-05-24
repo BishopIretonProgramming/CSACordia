@@ -8,16 +8,25 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-
-import javax.swing.JButton;
 import java.awt.event.ActionListener;  
 import java.awt.event.ActionEvent;
 
+import src.game.Game;
+import src.game.map.Map;
+import src.game.Player;
+
 public class Frame {
+
+    public Frame(){
+
+    }
     
-    public static void welcome() {
+    public void welcome() {
         JFrame wFrame = new JFrame("Welcome Frame");
         wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -63,18 +72,17 @@ public class Frame {
         wFrame.setVisible(true);
     }
 
-    public static void board() { // Probably will have parameters for gamestate. 
+    public void board(Game g) { // Probably will have parameters for gamestate. 
         JFrame bord = new JFrame("Game Board");
+        PlayerHandDisplay d = new PlayerHandDisplay();
+
         bord.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Construct Board
         JLabel wBackground = new JLabel();
         try {
-            // load the image file from the project folder
-            //File sourceImg = new File("/images/Concordia board.jpg");
+
             Image img = ImageIO.read(new File("src\\gui\\images\\Concordia board.jpg"));
-            //Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            //Image img = ImageIO.read(new File("src/gui/images/Concordia board.jpg"));
-            //Resizes the image so you can see the whole map on the screen
+
             Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
         } catch (IOException e) {
@@ -93,14 +101,15 @@ public class Frame {
         
 
         // adds an action listener only prints for now
+        d.display(g);
+
         playerHandB.addActionListener(
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e){
                     System.out.println("Player hand was pressed");
-                    PlayerHandDisplay.changeVisible();
-        JFrame bord = new JFrame("Game Board");
-                    PlayerHandDisplay.display(bord);
+                    d.changeVisible();
+                    
                 }
             }        );
 
@@ -110,13 +119,36 @@ public class Frame {
         // add background to the frame
         bord.getContentPane().add(wBackground, BorderLayout.CENTER);
         bord.getContentPane().add(bPanel, BorderLayout.SOUTH);
-        bord.getContentPane().add(PlayerHandDisplay.handDisplay);
+        bord.getContentPane().add(d.handDisplay);
         bord.setSize(1225, 900);
         bord.setVisible(true);
     }
 
     public static void main(String[] args) {
-        welcome();
-        //board();
+        // what I need for game String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer
+        String name ="We're no strangers to love";
+        Map youKnowTheRulesAndSoDoI = new Map();
+
+        Player aFullCommitmentsWhatImThinkingOf = new Player("You wouldn't get this from any other guy");
+        Player iJustWannaTellYouHowImFeeling = new Player("Gotta make you understand");
+        Player neverGonnaGiveYouUp = new Player("Never gonna let you down");
+        Player neverGonnaRunAroundAndDesertYou = new Player("Never gonna make you cry"); 
+        Player neverGonnaSayGoodbye = new Player("Never gonna tell a lie and hurt you");
+        List<Player> rickroll = new ArrayList<Player>();
+
+        rickroll.add(aFullCommitmentsWhatImThinkingOf);
+        rickroll.add(iJustWannaTellYouHowImFeeling);
+        rickroll.add(neverGonnaGiveYouUp);
+        rickroll.add(neverGonnaRunAroundAndDesertYou);
+        rickroll.add(neverGonnaSayGoodbye);
+
+        List<Color> lol = new ArrayList<Color>();
+        lol.add(Color.BLUE);
+
+
+        Game Rick = new Game(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
+        Frame test = new Frame();
+        test.welcome();
+        test.board(Rick);
     }
 }

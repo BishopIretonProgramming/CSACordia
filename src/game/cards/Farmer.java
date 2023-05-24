@@ -11,8 +11,8 @@ import java.awt.Graphics;
 public class Farmer extends PersonalityCard implements Minerva {
    public final CardImage IMAGE = CardImage.FARMER;
    
-   public Farmer(Player myPlayer, int brickPrice, int foodPrice) {
-      super(myPlayer, brickPrice, foodPrice, 0, 0, 0, 2);
+   public Farmer(Player myPlayer) {
+      super(myPlayer, 1, 1, 0, 0, 0, 3);
    }
    
    @Override
@@ -24,7 +24,7 @@ public class Farmer extends PersonalityCard implements Minerva {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * minervaScorePoints();
    }
    
    @Override

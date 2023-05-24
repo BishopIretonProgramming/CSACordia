@@ -141,11 +141,11 @@ public class Player implements java.io.Serializable {
      */
     public void init() {
         cards.add(new Tribune(this));
-        cards.add(new Diplomat(this, null));
-        cards.add(new Architect(this, 0));
-        cards.add(new Mercator(this, 0));
-        cards.add(new Prefect(this, 0));
-        cards.add(new Prefect(this, 0));
+        cards.add(new Diplomat(this, 0, 0, 0, 0, 0, "Jvpiter"));
+        cards.add(new Architect(this, true));
+        cards.add(new Mercator(this, true));
+        cards.add(new Prefect(this, true));
+        cards.add(new Prefect(this, true));
         cards.add(new Senator(this));
     }
 

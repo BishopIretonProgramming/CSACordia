@@ -11,8 +11,8 @@ import java.awt.Graphics;
 public class Vintner extends PersonalityCard implements Minerva {
    public final CardImage IMAGE = CardImage.VINTNER;
    
-   public Vintner(Player myPlayer, int brickPrice, int winePrice) {
-      super(myPlayer, brickPrice, 0, 0, winePrice, 0, 2);
+   public Vintner(Player myPlayer) {
+      super(myPlayer, 1, 0, 0, 1, 0, 4);
    }
    
    @Override
@@ -24,7 +24,7 @@ public class Vintner extends PersonalityCard implements Minerva {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * minervaScorePoints();
    }
    
    @Override

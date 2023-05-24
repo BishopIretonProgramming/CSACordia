@@ -10,7 +10,7 @@ public class Senator extends PersonalityCard implements Vesta {
    public final CardImage IMAGE = CardImage.SENATOR;
    
    public Senator(Player myPlayer) {
-      super(myPlayer, 0, 0, 0, 0, 0, 2);
+      super(myPlayer, 0, 0, 0, 0, 0, 1);
    }
    
    @Override
@@ -22,7 +22,7 @@ public class Senator extends PersonalityCard implements Vesta {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * vestaScorePoints();
    }
    
    @Override
