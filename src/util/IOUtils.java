@@ -38,7 +38,7 @@ public class IOUtils {
     /**
      * The maximum number of concurrent downloads represented by an {@code ExecutorService}
      */
-     private static final ExecutorService executorService = Executors.newFixedThreadPool(12);
+     private static final ExecutorService executorService = Executors.newFixedThreadPool(20);
 
     /*
      * The fields and constants that will be used throughout this class,
@@ -1179,6 +1179,286 @@ public class IOUtils {
     }
 
     /**
+     * Checks for the image containing the brick city which is necessary for the graphics of
+     * the game in terms of rendering the correct city. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForBrickCityImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BRICK_CITY_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Brick city image file already exists");
+            return;
+        }
+        downloadFile(BRICK_CITY_IMAGE_FILE_DOWNLOAD_LINK, BRICK_CITY_IMAGE_FILE, "brick city image file");
+    }
+
+    /**
+     * Checks for the image containing the brick tile which is necessary for the graphics of
+     * the game in terms of rendering the resource correct tile. If the file is not found locally,
+     * it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForBrickTileImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BRICK_TILE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Brick tile image file already exists");
+            return;
+        }
+        downloadFile(BRICK_TILE_IMAGE_FILE_DOWNLOAD_LINK, BRICK_TILE_IMAGE_FILE, "brick tile image file");
+    }
+
+    /**
+     * Checks for the image containing the cloth city which is necessary for the graphics of
+     * the game in terms of rendering the correct city. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForClothCityImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(CLOTH_CITY_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Cloth city image file already exists");
+            return;
+        }
+        downloadFile(CLOTH_CITY_IMAGE_FILE_DOWNLOAD_LINK, CLOTH_CITY_IMAGE_FILE, "cloth city image file");
+    }
+
+    /**
+     * Checks for the image containing the cloth tile which is necessary for the graphics of
+     * the game in terms of rendering the correct tile. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForClothTileImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(CLOTH_TILE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Cloth tile image file already exists");
+            return;
+        }
+        downloadFile(CLOTH_TILE_IMAGE_FILE_DOWNLOAD_LINK, CLOTH_TILE_IMAGE_FILE, "cloth tile image file");
+    }
+
+    /**
+     * Checks for the file containing the first image of the coin which is necessary for the graphics of
+     * the game in terms of rendering the correct coin. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForCoinImageFile1AndDownloadIfNotFound() {
+        Path file = Path.of(COIN_TILE_IMAGE_FILE_1);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Coin image file already exists");
+            return;
+        }
+        downloadFile(COIN_TILE_IMAGE_FILE_1_DOWNLOAD_LINK, COIN_TILE_IMAGE_FILE_1, "coin image file");
+    }
+
+    /**
+     * Checks for the file containing the second image of the coin which is necessary for the graphics of
+     * the game in terms of rendering the correct coin. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForCoinImageFile2AndDownloadIfNotFound() {
+        Path file = Path.of(COIN_TILE_IMAGE_FILE_2);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Coin image file 2 already exists");
+            return;
+        }
+        downloadFile(COIN_TILE_IMAGE_FILE_2_DOWNLOAD_LINK, COIN_TILE_IMAGE_FILE_2, "coin image file 2");
+    }
+
+    /**
+     * Checks for the file containing the first image of the five coin which is necessary for the graphics of
+     * the game in terms of rendering the correct value coin. If the file is not found locally, it
+     * will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForFiveCoinAImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(FIVE_COIN_A_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Five coin image file already exists");
+            return;
+        }
+        downloadFile(FIVE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, FIVE_COIN_A_IMAGE_FILE, "five coin image file");
+    }
+
+    /**
+     * Checks for the file containing the second image of the five coin which is necessary for the
+     * graphics of the game in terms of rendering the correct value coin. If the file is not found
+     * locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForFiveCoinBImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(FIVE_COIN_B_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Five coin image file 2 already exists");
+            return;
+        }
+        downloadFile(FIVE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, FIVE_COIN_B_IMAGE_FILE, "five coin image file 2");
+    }
+
+    /**
+     * Checks for the file containing the image of the food city which is necessary for the graphics of
+     * the game in terms of rendering the correct city. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForFoodCityImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(FOOD_CITY_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Food city image file already exists");
+            return;
+        }
+        downloadFile(FOOD_CITY_IMAGE_FILE_DOWNLOAD_LINK, FOOD_CITY_IMAGE_FILE, "food city image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the food tile which is necessary for the graphics of
+     * the game in terms of rendering the correct tile. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForFoodTileImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(FOOD_TILE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Food tile image file already exists");
+            return;
+        }
+        downloadFile(FOOD_TILE_IMAGE_FILE_DOWNLOAD_LINK, FOOD_TILE_IMAGE_FILE, "food tile image file");
+    }
+
+    /**
+     * Checks for the file containing the first image of the one coin which is necessary for the graphics of
+     * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForOneCoinAImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(ONE_COIN_A_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "One coin image file already exists");
+            return;
+        }
+        downloadFile(ONE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, ONE_COIN_A_IMAGE_FILE, "one coin image file");
+    }
+
+    /**
+     * Checks for the file containing the second image of the one coin which is necessary for the graphics of
+     * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForOneCoinBImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(ONE_COIN_B_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "One coin image file 2 already exists");
+            return;
+        }
+        downloadFile(ONE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, ONE_COIN_B_IMAGE_FILE, "one coin image file 2");
+    }
+
+    /**
+     * Checks for the file containing the first image of the ten coin which is necessary for the graphics
+     * of the game in terms of rendering the correct value coin. If the file is not found locally, it will
+     * be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForTenCoinAImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TEN_COIN_A_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Ten coin image file already exists");
+            return;
+        }
+        downloadFile(TEN_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, TEN_COIN_A_IMAGE_FILE, "ten coin image file");
+    }
+
+    /**
+     * Checks for the file containing the second image of the ten coin which is necessary for the graphics
+     * of the game in terms of rendering the correct value coin. If the file is not found locally, it will
+     * be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForTenCoinBImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TEN_COIN_B_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Ten coin image file 2 already exists");
+            return;
+        }
+        downloadFile(TEN_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, TEN_COIN_B_IMAGE_FILE, "ten coin image file 2");
+    }
+
+    /**
+     * Checks for the file containing the image of the tool city which is necessary for the graphics of
+     * the game in terms of rendering the correct city. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForToolCityImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TOOL_CITY_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Tool city image file already exists");
+            return;
+        }
+        downloadFile(TOOL_CITY_IMAGE_FILE_DOWNLOAD_LINK, TOOL_CITY_IMAGE_FILE, "tool city image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the tool tile which is necessary for the graphics of
+     * the game in terms of rendering the correct tile. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForToolTileImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TOOL_TILE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Tool tile image file already exists");
+            return;
+        }
+        downloadFile(TOOL_TILE_IMAGE_FILE_DOWNLOAD_LINK, TOOL_TILE_IMAGE_FILE, "tool tile image file");
+    }
+
+    /**
+     * Checks for the file containing the first image of the two coin which is necessary for the graphics of
+     * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForTwoCoinAImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TWO_COIN_A_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Two coin image file already exists");
+            return;
+        }
+        downloadFile(TWO_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, TWO_COIN_A_IMAGE_FILE, "two coin image file");
+    }
+
+    /**
+     * Checks for the file containing the second image of the two coin which is necessary for the graphics of
+     * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForTwoCoinBImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(TWO_COIN_B_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Two coin image file 2 already exists");
+            return;
+        }
+        downloadFile(TWO_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, TWO_COIN_B_IMAGE_FILE, "two coin image file 2");
+    }
+
+    /**
+     * Checks for the file containing the wine city which is necessary for the graphics of the game in terms
+     * of rendering the correct city. If the file is not found locally, it will be downloaded from the internet
+     * using the {@code downloadFile} method.
+     */
+    public static void checkForWineCityImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(WINE_CITY_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Wine city image file already exists");
+            return;
+        }
+        downloadFile(WINE_CITY_IMAGE_FILE_DOWNLOAD_LINK, WINE_CITY_IMAGE_FILE, "wine city image file");
+    }
+
+    /**
+     * Checks for the file containing the wine tile which is necessary for the graphics of the game in terms
+     * of rendering the correct tile. If the file is not found locally, it will be downloaded from the internet
+     * using the {@code downloadFile} method.
+     */
+    public static void checkForWineTileImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(WINE_TILE_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Wine tile image file already exists");
+            return;
+        }
+        downloadFile(WINE_TILE_IMAGE_FILE_DOWNLOAD_LINK, WINE_TILE_IMAGE_FILE, "wine tile image file");
+    }
+
+    /**
      * Method to check for all the necessary files and directories to play the game
      * and either creates them or downloads them depending on the occasion. This is the 
      * main method that should be called on game startup to ensure that the game does
@@ -1220,6 +1500,26 @@ public class IOUtils {
         checkForSenatorPersonalityCardImageFileAndDownloadIfNotFound();
         checkForTribunePersonalityCardImageFileAndDownloadIfNotFound();
         checkForYellowBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
+        checkForBrickCityImageFileAndDownloadIfNotFound();
+        checkForBrickTileImageFileAndDownloadIfNotFound();
+        checkForClothCityImageFileAndDownloadIfNotFound();
+        checkForClothTileImageFileAndDownloadIfNotFound();
+        checkForCoinImageFile1AndDownloadIfNotFound();
+        checkForCoinImageFile2AndDownloadIfNotFound();
+        checkForFiveCoinAImageFileAndDownloadIfNotFound();
+        checkForFiveCoinBImageFileAndDownloadIfNotFound();
+        checkForFoodCityImageFileAndDownloadIfNotFound();
+        checkForFoodTileImageFileAndDownloadIfNotFound();
+        checkForOneCoinAImageFileAndDownloadIfNotFound();
+        checkForOneCoinBImageFileAndDownloadIfNotFound();
+        checkForTenCoinAImageFileAndDownloadIfNotFound();
+        checkForTenCoinBImageFileAndDownloadIfNotFound();
+        checkForToolCityImageFileAndDownloadIfNotFound();
+        checkForToolTileImageFileAndDownloadIfNotFound();
+        checkForTwoCoinAImageFileAndDownloadIfNotFound();
+        checkForTwoCoinBImageFileAndDownloadIfNotFound();
+        checkForWineCityImageFileAndDownloadIfNotFound();
+        checkForWineTileImageFileAndDownloadIfNotFound();
 
         shutdownExecutorService();
     }
