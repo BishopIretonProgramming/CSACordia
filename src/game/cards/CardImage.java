@@ -13,21 +13,23 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import src.util.IOUtils;
+
 public enum CardImage {
-    ARCHITECT("architect.png"),
-    COLONIST("colonist.png"),
-    CONSUL("consul.png"),
-    DIPLOMAT("diplomat.png"),
-    FARMER("architect.png"), //TODO: create Farmer image
-    MASON("architect.png"), //TODO: create Mason image
-    MERCATOR("mercator.png"),
-    PREFECT("prefect.png"),
-    PRAEFECTUS_MAGNUS("architect.png"), //TODO: create Praefectus Magnus image and class
-    SENATOR("senator.png"),
-    SMITH("architect.png"), //TODO: create Smith image
-    TRIBUNE("tribune.png"),
-    VINTNER("vitner.png"),
-    WEAVER("weaver.png");
+    ARCHITECT("src\\gui\\images\\architect.png"),
+    COLONIST("src\\gui\\images\\colonist.png"),
+    CONSUL("src\\gui\\images\\consul.png"),
+    DIPLOMAT("src\\gui\\images\\diplomat.png"),
+    FARMER("src\\gui\\images\\architect.png"), //TODO: create Farmer image
+    MASON("src\\gui\\images\\architect.png"), //TODO: create Mason image
+    MERCATOR("src\\gui\\images\\mercator.png"),
+    PREFECT("src\\gui\\images\\prefect.png"),
+    PRAEFECTUS_MAGNUS("src\\gui\\images\\architect.png"), //TODO: create Praefectus Magnus image and class
+    SENATOR("src\\gui\\images\\senator.png"),
+    SMITH("src\\gui\\images\\architect.png"), //TODO: create Smith image
+    TRIBUNE("src\\gui\\images\\tribune.png"),
+    VINTNER("src\\gui\\images\\vitner.png"),
+    WEAVER("src\\gui\\images\\weaver.png");
 
     public BufferedImage cardImage;
 
