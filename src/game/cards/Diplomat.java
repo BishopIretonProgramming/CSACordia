@@ -51,7 +51,7 @@ public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvri
    
    @Override
    public void doAction() {
-      //TO DO
+      //TO DO: Pick a Card
       //Play any card shown by any other player
       copied.doAction();
       setPlayed(true);

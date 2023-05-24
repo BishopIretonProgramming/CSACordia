@@ -16,8 +16,7 @@ public class Consul extends PersonalityCard implements Jvpiter {
    @Override
    public void doAction() {
       //TO DO
-      //Move colonists
-      //Build Houses
+      //Buy up to one card, do not pay additional fees (cloth, etc.)
       setPlayed(true);
    }
    
