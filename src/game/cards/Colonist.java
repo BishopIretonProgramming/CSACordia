@@ -8,9 +8,9 @@ import java.awt.Graphics;
 
 public class Colonist extends PersonalityCard implements Mars {
    public final CardImage IMAGE = CardImage.COLONIST;
-   
-   public Colonist(Player myPlayer, int foodPrice) {
-      super(myPlayer, 0, foodPrice, 0, 0, 0, 2);
+
+   public Colonist(Player myPlayer) {
+      super(myPlayer, 0, 1, 0, 0, 0, 2);
    }
    
    @Override
@@ -24,7 +24,7 @@ public class Colonist extends PersonalityCard implements Mars {
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * marsScorePoints();
    }
    
    @Override

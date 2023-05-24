@@ -5,25 +5,24 @@ import src.game.cards.godtype.Jvpiter;
 import src.game.Player;
 
 import java.awt.Graphics;
-//IMPORTANT: The godtype is undetermined; will need to check the game
+
 public class Consul extends PersonalityCard implements Jvpiter {
    public final CardImage image = CardImage.CONSUL;
    
-   public Consul(Player myPlayer, int clothPrice) {
-      super(myPlayer, 0, 0, 0, 0, clothPrice, 2);
+   public Consul(Player myPlayer, boolean isStarting) {
+      super(myPlayer, 0, 0, 0, 0, isStarting ? 0 : 1, 1);
    }
    
    @Override
    public void doAction() {
       //TO DO
-      //Move colonists
-      //Build Houses
+      //Buy up to one card, do not pay additional fees (cloth, etc.)
       setPlayed(true);
    }
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * jvpiterScorePoints();
    }
    
    @Override

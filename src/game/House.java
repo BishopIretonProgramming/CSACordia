@@ -20,6 +20,11 @@ public class House {
     private CityNode city;
 
     /**
+     * The Good that this House (and its city) produces
+     */
+    private Good good;
+
+    /**
      * Constructor to make a new House
      * @param PLAYER the Player associated with this House
      */
@@ -34,6 +39,7 @@ public class House {
      */
     public void setCity(CityNode city) {
         this.city = city;
+        this.good = city.good();
     }
 
     /**
@@ -50,5 +56,13 @@ public class House {
      */
     public CityNode city() {
         return this.city;
+    }
+
+    /**
+     * Getter to return the Good that this House produces
+     * @return the Good that this House produces
+     */
+    public Good good() {
+        return this.good;
     }
 }

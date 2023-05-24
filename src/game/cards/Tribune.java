@@ -23,14 +23,14 @@ public class Tribune extends PersonalityCard implements Mars {
             count ++;
          p.cards().get(i).setPlayed(false);
       }
-      if(count >= 3) count -= 3;else count = 0;
+      if(count >= 3) count -= 3; else count = 0;
       p.addSestertii(count);
-      //TO DO: Allow player to create a colonist for 1 food + one tool
+      //TO DO: Allow player to create a single colonist for 1 food + one tool
    }
    
    @Override
    public int calculatePoints() {
-      return getVictoryMultiplier() * scorePoints();
+      return getVictoryMultiplier() * marsScorePoints();
    }
    
    @Override
