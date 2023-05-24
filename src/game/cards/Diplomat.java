@@ -45,7 +45,7 @@ public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvri
             break;
          default:
             System.out.println("Invalid godtype entered into Diplomat constructor");
-            break;
+            IMAGE = null;
       }
    }
    
