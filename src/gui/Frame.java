@@ -16,8 +16,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Frame {
+
+    public Frame(){
+
+    }
     
-    public static void welcome() {
+    public void welcome() {
         JFrame wFrame = new JFrame("Welcome Frame");
         wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -63,7 +67,7 @@ public class Frame {
         wFrame.setVisible(true);
     }
 
-    public static void board() { // Probably will have parameters for gamestate. 
+    public void board() { // Probably will have parameters for gamestate. 
         JFrame bord = new JFrame("Game Board");
         bord.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Construct Board
@@ -91,7 +95,7 @@ public class Frame {
 
         // adds an action listener only prints for now
         PlayerHandDisplay.display();
-        
+
         playerHandB.addActionListener(
             new ActionListener() {
                 @Override
@@ -114,7 +118,8 @@ public class Frame {
     }
 
     public static void main(String[] args) {
-        welcome();
-        board();
+        Frame test = new Frame();
+        test.welcome();
+        test.board();
     }
 }
