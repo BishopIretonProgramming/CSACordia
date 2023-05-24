@@ -1042,13 +1042,28 @@ public class IOUtils {
      * @return  {@code true} if internet is available, {@code false} otherwise
      */
     private static boolean isInternetAvailable() {
-        try {
-            URL url = new URL("https://www.gnu.org");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            return connection.getResponseCode() == HttpURLConnection.HTTP_OK;
-        } catch (IOException e) {
-            return false;
+        int maxAttempts = 3;
+        int retryInterval = 200;
+
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            try {
+                URL url = new URL("https://gnu.org");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    return true;
+                }
+            } catch (IOException e) {
+                Logger.warn("IOUtils", "Attempt " + attempt + " to check for internet availability failed");
+            }
+
+            try {
+                Thread.sleep(retryInterval);
+            } catch (InterruptedException e) {
+                Logger.error("IOUtils", "Error waiting to retry checking for internet availability: " + e.getMessage());
+            }
         }
+
+        return false;
     }
 
     /**
