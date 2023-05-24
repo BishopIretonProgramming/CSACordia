@@ -15,25 +15,21 @@ import src.game.Game;
 
 public class PlayerHandDisplay extends JPanel{
 
-public static boolean isVisible;// allows other methods to turn panel on and off
-public static JPanel handDisplay = new JPanel(); // this allows other methods to acess the panel
+public boolean isVisible;// allows other methods to turn panel on and off
+public JPanel handDisplay = new JPanel(); // this allows other methods to acess the panel
 
 private Player currentPlayer;
 private StoreHouse store;
-private int sestertii ;  
+private int sestertii;  
    
 // this  constructor should allow for different values to be displayed for different players
 
 // constructor
-    public PlayerHandDisplay(){
-        
-    }
+    
 
-    public static void display(){// makes the display or panel
+    public void display(){// makes the display or panel
 
-        PlayerHandDisplay hand = new PlayerHandDisplay();
-
-        hand.currentPlayer = Game.currentPlayer();
+        currentPlayer = Game.currentPlayer();
 
         // sets format and layout of Panel
 
@@ -57,7 +53,7 @@ private int sestertii ;
         
     }
 
-    public static void changeVisible(){
+    public void changeVisible(){
         isVisible = !isVisible;
         handDisplay.setVisible(isVisible);
         System.out.println( isVisible);
