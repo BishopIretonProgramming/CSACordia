@@ -7,7 +7,7 @@ import src.game.Player;
 import java.awt.Graphics;
 
 public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvrivs, Jvpiter {
-   public final CardImage IMAGE = CardImage.DIPLOMAT;
+   public final CardImage IMAGE;
    public final String GOD;
    private PersonalityCard copied;
 
@@ -15,6 +15,38 @@ public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvri
       super(myPlayer, brickPrice, foodPrice, toolPrice, winePrice, clothPrice, 1);
       this.GOD = god;
       this.copied = null;
+      
+      //set the correct image
+      switch(GOD) {
+         case "Satvrnvs":
+         case "satvrnvs":
+         case "Saturnus":
+         case "saturnus":
+            if(foodPrice > 0)
+               IMAGE = CardImage.DIPLOMAT_I;
+            else
+               IMAGE = CardImage.DIPLOMAT_III;
+            break;
+         case "Mercvrivs":
+         case "mercvrivs":
+         case "Mercurius":
+         case "mercurius":
+            IMAGE = CardImage.DIPLOMAT_IV;
+            break;
+         case "Mars":
+         case "mars":
+            IMAGE = CardImage.DIPLOMAT_V;
+            break;
+         case "Jvpiter":
+         case "jvpiter":
+         case "Jupiter":
+         case "jupiter":
+            IMAGE = CardImage.DIPLOMAT_ST;
+            break;
+         default:
+            System.out.println("Invalid godtype entered into Diplomat constructor");
+            break;
+      }
    }
    
    @Override
