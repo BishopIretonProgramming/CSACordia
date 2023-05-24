@@ -5,5 +5,5 @@ package src.ai.environment.game.cards.godtypes;
  *
  * @author devinlinux
  */
-public interface Vesta {
+public class Vesta {
 }
