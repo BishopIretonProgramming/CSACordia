@@ -117,6 +117,32 @@ public class IOUtils {
     private static final String BOUGHT_PERSONALITY_CARDS_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cboughtcards", separatorChar, separatorChar, separatorChar);
 
     /**
+     * The file that contains the pre-built imperium network. This file is required for playing the game with the
+     * imperium map and must be present in order for the game to be played with the imperium map so that the cities
+     * and connections can be accurately mapped.
+     */
+    private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE = String.format("resources%csaves%cpre_built_maps%cimperium.nw", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the imperium pre-built network file from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium.nw";
+
+    /**
+     * The file that contains the pre-built list of cities for the imperium network. This file is required for
+     * playing the game with the imperium map and must be present in order for the game to be played with the
+     * imperium map so that the cities and connections can be accurately mapped.
+     */
+    private static final String IMPERIUM_PRE_BUILT_CITIES_FILE = String.format("resources%csaves%cpre_built_maps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the imperium pre-built cities file from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String IMPERIUM_PRE_BUILT_CITIES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium_cities.cnw";
+
+    /**
      * The file that contains the image of the game board. This file is used in several frames and panels to
      * display the game board as a functional component and as a background or feature image.
      */
@@ -1026,6 +1052,34 @@ public class IOUtils {
     }
 
     /**
+     * Checks for the pre-built imperium network file which is necessary for the game to run
+     * properly. If the file is not found locally, it will be downloaded from the internet
+     * using the {@code downloadFile} method.
+     */
+    public static void checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound() {
+        Path file = Path.of(IMPERIUM_PRE_BUILT_NETWORK_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Pre-built imperium network file already exists");
+            return;
+        }
+        downloadFile(IMPERIUM_PRE_BUILT_NETWORK_FILE_DOWNLOAD_LINK, IMPERIUM_PRE_BUILT_NETWORK_FILE, "pre-built imperium network file");
+    }
+
+    /**
+     * Checks for the pre-built imperium cities file which is necessary for the game to run
+     * properly. If the file is not found locally, it will be downloaded from the internet
+     * using the {@code downloadFile} method.
+     */
+    public static void checkForPreBuiltImperiumCitiesFileAndDownloadIfNotFound() {
+        Path file = Path.of(IMPERIUM_PRE_BUILT_CITIES_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Pre-built imperium cities file already exists");
+            return;
+        }
+        downloadFile(IMPERIUM_PRE_BUILT_CITIES_FILE_DOWNLOAD_LINK, IMPERIUM_PRE_BUILT_CITIES_FILE, "pre-built imperium cities file");
+    }
+
+    /**
      * Checks for the concordia board image file which is necessary for the graphics of the game
      * in terms of displaying the game board on all the various frames and panels that it is used
      * on. If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
@@ -1644,12 +1698,12 @@ public class IOUtils {
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
     public static void checkForArchitectBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE);
+        Path file = Path.of(ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Architect personality card image file already exists");
             return;
         }
-        downloadFile(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, ARCHITECT_PERSONALITY_CARD_IMAGE_FILE, "architect personality card image file");
+        downloadFile(ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "architect personality card image file");
     }
 
     /**
@@ -1867,6 +1921,8 @@ public class IOUtils {
         checkForStartingCardsImagesDirectoryAndCreateIfNotFound();
         checkForGamePiecesImagesDirectoryAndCreateIfNotFound();
         checkForBoughtPersonalityCardsImagesDirectoryAndCreateIfNotFound();
+        checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
+        checkForPreBuiltImperiumCitiesFileAndDownloadIfNotFound();
         checkForConcordiaBoardImageFileAndDownloadIfNotFound();
         checkForBlackStoreHouseImageFileAndDownloadIfNotFound();
         checkForBlueStoreHouseImageFileAndDownloadIfNotFound();
