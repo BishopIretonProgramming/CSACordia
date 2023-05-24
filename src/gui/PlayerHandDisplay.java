@@ -27,9 +27,9 @@ private int sestertii;
 // constructor
     
 
-    public void display(){// makes the display or panel
-
-        currentPlayer = Game.currentPlayer();
+    public void display(Game g){// makes the display or panel
+        
+       currentPlayer = g.currentPlayer();
 
         // sets format and layout of Panel
 
@@ -42,11 +42,15 @@ private int sestertii;
 
         // creates JLables
         JLabel money = new JLabel("<html><font  size ='20' color = white> Sestertii:  </font></html>");// the html just changes the size and color should work on everyone's computer
+        JLabel s = new JLabel( "" + currentPlayer.sestertii());
         JLabel storeTitle = new JLabel("<html><font  size ='20' color = white> Storehouse Contents:  </font></html>");
-        
+        JLabel store = new JLabel( "" + currentPlayer.storeHouse());
+
         //Adds JLabels to Panel
         handDisplay.add(money,mgb);
+        handDisplay.add(s,mgb);
         handDisplay.add(storeTitle,sgb);
+        handDisplay.add(store,sgb);
 
         //Makes sure the JPanel starts as invisble
         handDisplay.setVisible(isVisible);
