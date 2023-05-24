@@ -69,12 +69,9 @@ public class Frame {
         // Construct Board
         JLabel wBackground = new JLabel();
         try {
-            // load the image file from the project folder
-            //File sourceImg = new File("/images/Concordia board.jpg");
+
             Image img = ImageIO.read(new File("src\\gui\\images\\Concordia board.jpg"));
-            //Image img = ImageIO.read(Frame.class.getResource("Concordia board.jpg"));
-            //Image img = ImageIO.read(new File("src/gui/images/Concordia board.jpg"));
-            //Resizes the image so you can see the whole map on the screen
+
             Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
         } catch (IOException e) {
@@ -93,14 +90,15 @@ public class Frame {
         
 
         // adds an action listener only prints for now
+        PlayerHandDisplay.display();
+        
         playerHandB.addActionListener(
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e){
                     System.out.println("Player hand was pressed");
                     PlayerHandDisplay.changeVisible();
-        JFrame bord = new JFrame("Game Board");
-                    PlayerHandDisplay.display();
+                    
                 }
             }        );
 
@@ -117,6 +115,6 @@ public class Frame {
 
     public static void main(String[] args) {
         welcome();
-        //board();
+        board();
     }
 }

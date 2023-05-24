@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import src.game.Player;
+import src.game.StoreHouse;
+import src.game.Game;
 
 /* @author Nora Hixson
  * a class to display the Jpanel with the players storehouse, Sesterii, and mabye there deck of cards
@@ -16,18 +18,22 @@ public class PlayerHandDisplay extends JPanel{
 public static boolean isVisible;// allows other methods to turn panel on and off
 public static JPanel handDisplay = new JPanel(); // this allows other methods to acess the panel
 
-public Player currentPlayer;
+private Player currentPlayer;
+private StoreHouse store;
+private int sestertii ;  
    
 // this  constructor should allow for different values to be displayed for different players
 
 // constructor
-    private PlayerHandDisplay(Player pl){
-        currentPlayer = pl; 
+    public PlayerHandDisplay(){
+        
     }
 
     public static void display(){// makes the display or panel
 
-        PlayerHandDisplay hand = new PlayerHandDisplay(null);
+        PlayerHandDisplay hand = new PlayerHandDisplay();
+
+        hand.currentPlayer = Game.currentPlayer();
 
         // sets format and layout of Panel
 
