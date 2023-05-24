@@ -8,7 +8,6 @@ package src.gui;
 
 //TODO: add positioning and sizing for all GUI components
 //TODO: add file reading for appropriate data
-//TODO: find a way to equate each PersonalityCard to its corresponding image
 
 import src.game.Player;
 import src.game.cards.*;
@@ -20,7 +19,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
@@ -34,9 +32,13 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 
 public class PlayerDeck {
+
+                                        /* Fields */
+
     private Player player; //The player whose deck this is
 
-    private ArrayList<PersonalityCard> cards; //The cards the player can play
+    private ArrayList<PersonalityCard> cards; //The cards the player can see in the PlayerDeck display
+    private ArrayList<PersonalityCard> availableCards; //The cards the player can play
     private ArrayList<PersonalityCard> discardCards; //The cards the player have already played
     private PersonalityCard shownCard; //The card that is currently displayed and visible in PlayerHandDisplay
     private int shownCardID; //The index of the shownCard; used for changing cards
@@ -44,27 +46,11 @@ public class PlayerDeck {
     private ArrayList<BufferedImage> guiImages; //List of button and label images
 
     private String[] guiImageFileNames = { //list of file names, temporary until file reading added //TODO: add images of buttons and labels
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " "
-    };
-    private String[] cardImageFileNames = { //list of file names, temporary until file reading added //TODO: add praefectus magnus image and class
-        "architect.png",
-        "colonist.png",
-        "consul.png",
-        "diplomat.png",
-        "mercator.png",
-        "mercator2.png",
-        "prefect.png",
-        "tribune.png",
-        "vintner.png",
-        "weaver.png"
+        "info_button.png",
+        "left_button.png",
+        "right_button.png",
+        "use_button.png",
+        "background_label.png"
     };
 
     private JButton leftButton; //Button to cycle left through cards
@@ -82,6 +68,10 @@ public class PlayerDeck {
 
     private JPanel panel; //The JPanel that holds these graphics
 
+    private boolean infoShown; //Whether or not the info for each card is shown
+
+                                        /* Constructors */
+
     /**
      * Constructor
      * @param player the player
@@ -90,9 +80,9 @@ public class PlayerDeck {
     */
     public PlayerDeck(Player player, ArrayList<PersonalityCard> cards, JPanel panel) {
         this.player = player;
-        this.cards = cards;
         this.panel = panel;
-
+        availableCards = cards;
+        this.cards = availableCards;
         discardCards = new ArrayList<PersonalityCard>(cards.size());
 
         guiImages = loadImage(guiImageFileNames);
@@ -101,9 +91,12 @@ public class PlayerDeck {
         backgroundLabel = createLabel(guiImages.get(0), 0, 0, 0, 0, "");
         cardLabel = createLabel(guiImages.get(0), 0, 0, 0, 0, "");
 
+        updateInfoShown(false);
         createButtons();
         createRadioButtons();
     }
+
+                                        /* Methods */
 
     /**
      * Helper method for Constructor
@@ -120,6 +113,7 @@ public class PlayerDeck {
         leftButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                updateInfoShown(false);
                 changeCard(-1);
             }
         });
@@ -127,6 +121,7 @@ public class PlayerDeck {
         rightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                updateInfoShown(false);
                 changeCard(1);
             }
         });
@@ -134,7 +129,7 @@ public class PlayerDeck {
         infoButton.addActionListener(new ActionListener() {//TODO: create info cards for each card
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Show information");
+                updateInfoShown(!infoShown);
             }
         });
 
@@ -164,14 +159,20 @@ public class PlayerDeck {
         shownCards.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("show shown cards");
+                shownCardID = 0;
+                cards = availableCards;
+                updateInfoShown(false);
+                changeCard(0);
             }
         });
 
         discardedCards.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("show discarded cards");
+                shownCardID = 0;
+                cards = discardCards;
+                updateInfoShown(false);
+                changeCard(0);
             }
         });
     } 
@@ -321,6 +322,18 @@ public class PlayerDeck {
     private void removeCard(PersonalityCard card) {
         cards.remove(card);
     }
+
+    /**
+     * method that switches between showing the card and showing extra information on said card 
+     * @param showInfo if info shown, true to show info, false to show card
+    */
+    private void updateInfoShown(boolean showInfo) {
+        infoShown = showInfo;
+        infoLabel.setVisible(infoShown);
+        cardLabel.setVisible(!infoShown);
+    }
+
+                                        /* Getters / Setters / ToString */
 
     /**
      * @return the last played card, the one at the top of the discard pile
