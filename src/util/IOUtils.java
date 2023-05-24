@@ -392,6 +392,246 @@ public class IOUtils {
      */
     private static final String PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/yellowBack.png";
 
+    /**
+     * The file that contains the image of a brick city. This file is used to display the image of a brick
+     * city on the game board.
+     */
+    private static final String BRICK_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cbrickCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a brick city from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String BRICK_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickCity.png";
+
+    /**
+     * The file that contains the image of a brick tile. This file is used to display the image of a brick tile
+     * on the game board.
+     */
+    private static final String BRICK_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cbrickTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a brick tile from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String BRICK_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickTile.png";
+
+    /**
+     * The file that contains the image of a cloth city. This file is used to display the image of a cloth city
+     * on the game board.
+     */
+    private static final String CLOTH_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cclothCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a cloth city from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String CLOTH_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothCity.png";
+
+    /**
+     * The file that contains the image of a cloth tile. This file is used to display the image of a cloth tile
+     * on the game board.
+     */
+    private static final String CLOTH_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cclothTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a cloth tile from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String CLOTH_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothTile.png";
+
+    /**
+     * The file that contains the first image of a coin tile. This file is used to display the first image of a
+     * coin tile on the game board.
+     */
+    private static final String COIN_TILE_IMAGE_FILE_1 = String.format("src%cgui%cimages%cpieces%ccoinTile1.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the first image of a coin tile from the GitHub repository. This link is to
+     * be used if the file does not already exist locally.
+     */
+    private static final String COIN_TILE_IMAGE_FILE_1_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile1.png";
+
+    /**
+     * The file that contains the second image of a coin tile. This file is used to display the second image of a
+     * coin tile on the game board.
+     */
+    private static final String COIN_TILE_IMAGE_FILE_2 = String.format("src%cgui%cimages%cpieces%ccoinTile2.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the second image of a coin tile from the GitHub repository. This link is to
+     * be used if the file does not already exist locally.
+     */
+    private static final String COIN_TILE_IMAGE_FILE_2_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile2.png";
+
+    /**
+     * The file that contains the first image of the five coin tile. This file is used to display the first image
+     * of the five coin tile on the game board.
+     */
+    private static final String FIVE_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfiveCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the first image of the five coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String FIVE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinA.png";
+
+    /**
+     * The file that contains the second image of the five coin tile. This file is used to display the second
+     * image of the five coin tile on the game board.
+     */
+    private static final String FIVE_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfiveCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the second image of the five coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String FIVE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinB.png";
+
+    /**
+     * The file that contains the image of a food city. This file is used to display the image of a food city
+     * on the game board.
+     */
+    private static final String FOOD_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfoodCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a food city from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String FOOD_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodCity.png";
+
+    /**
+     * The file that contains the image of the food tile. This file is used to display the image of the food
+     * tile on the game board.
+     */
+    private static final String FOOD_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfoodTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the food tile from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String FOOD_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodTile.png";
+
+    /**
+     * The file that contains the first image of the one coin tile. This file is used to display the first image
+     * of the one coin tile on the game board.
+     */
+    private static final String ONE_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%coneCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the first image of the one coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String ONE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinA.png";
+
+    /**
+     * The file that contains the second image of the one coin tile. This file is used to display the second
+     * image of the one coin tile on the game board.
+     */
+    private static final String ONE_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%coneCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the second image of the one coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String ONE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinB.png";
+
+    /**
+     * The file that contains the first image of the ten coin tile. This file is used to display the first image
+     * of the ten coin tile on the game board.
+     */
+    private static final String TEN_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctenCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the first image of the ten coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String TEN_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinA.png";
+
+    /**
+     * The file that contains the second image of the ten coin tile. This file is used to display the second
+     * image of the ten coin tile on the game board.
+     */
+    private static final String TEN_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctenCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the second image of the ten coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String TEN_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinB.png";
+
+    /**
+     * The file that contains the image of a tool city. This file is used to display the image of a tool city
+     * on the game board.
+     */
+    private static final String TOOL_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctoolCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a tool city from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String TOOL_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolCity.png";
+
+    /**
+     * The file that contains the image of the tool tile. This file is used to display the image of the tool
+     * tile on the game board.
+     */
+    private static final String TOOL_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctoolTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the tool tile from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String TOOL_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolTile.png";
+
+    /**
+     * The file that contains the first image of the two coin tile. This file is used to display the first image
+     * of the two coin tile on the game board.
+     */
+    private static final String TWO_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctwoCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the first image of the two coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String TWO_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinA.png";
+
+    /**
+     * The file that contains the second image of the two coin tile. This file is used to display the second
+     * image of the two coin tile on the game board.
+     */
+    private static final String TWO_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctwoCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the second image of the two coin tile from the GitHub repository. This link
+     * is to be used if the file does not already exist locally.
+     */
+    private static final String TWO_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinB.png";
+
+    /**
+     * The file that contains the iamge of a wine city. This file is used to display the image of a wine city
+     * on the game board.
+     */
+    private static final String WINE_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cwineCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of a wine city from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String WINE_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineCity.png";
+
+    /**
+     * The file that contains the image of the wine tile. This file is used to display the image of the wine
+     * tile on the game board.
+     */
+    private static final String WINE_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cwineTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the wine tile from the GitHub repository. This link is to be
+     * used if the file does not already exist locally.
+     */
+    private static final String WINE_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineTile.png";
+
     /*
      * File and directory creation methods. Note that all methods take the
      * same basic form: performing the checks to see if the directory or
