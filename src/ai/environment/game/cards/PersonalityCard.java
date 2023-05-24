@@ -1,34 +1,20 @@
 package src.ai.environment.game.cards;
 
-import src.ai.environment.game.cards.godtypes.RomanGod;
+import src.ai.environment.game.player.Player;
+import src.ai.environment.ConcordiaGame;
 
 /**
- * A basic class to represent a personality card.
+ * A basic interface to represent a personality card.
  *
  * @author devinlinux
  */
-public abstract class PersonalityCard {
+public interface PersonalityCard {
 
     /**
-     * The roman god associated with this personality card.
-     */
-    private RomanGod romanGod;
-
-    /**
-     * Constructor to make a personality card
+     * A method to do the action of the personality card.
      *
-     * @param romanGod the roman god associated with this personality card
+     * @param player the player who played the personality card.
+     * @param game   the game that the personality card is affecting.
      */
-    public PersonalityCard(RomanGod romanGod) {
-        this.romanGod = romanGod;
-    }
-
-    /**
-     * Getter to get the roman god associated with this personality card
-     *
-     * @return the roman god associated with this personality card
-     */
-    public RomanGod getRomanGod() {
-        return romanGod;
-    }
+    void play(Player player, ConcordiaGame game);
 }
