@@ -632,6 +632,186 @@ public class IOUtils {
      */
     private static final String WINE_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineTile.png";
 
+    /**
+     * The file that contains the image of the architect card. This file is used to display the image of the
+     * architect card on the game board.
+     */
+    private static final String ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the architect card from the GitHub repository. This link is
+     * to be used if the file does not already exist locally.
+     */
+    private static final String ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/architect.png";
+
+    /**
+     * The file that contains the image of the back of personality cards in the first set. This file is used
+     * to display the image of the back of personality cards in the first set on the game board.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackI.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the back of personality cards in the first set from the
+     * GitHub repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backI.png";
+
+    /**
+     * The file that contains the image of the back of personality cards in the second set. This file is used
+     * to display the image of the back of personality cards in the second set on the game board.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackII.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the back of personality cards in the second set from the
+     * GitHub repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backII.png";
+
+    /**
+     * The file that contains the image of the back of personality cards in the third set. This file is used
+     * to display the image of the back of personality cards in the third set on the game board.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackIII.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the back of personality cards in the third set from the
+     * GitHub repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIII.png";
+
+    /**
+     * The file that contains the image of the back of personality cards in the fourth set. This file is used
+     * to display the image of the back of personality cards in the fourth set on the game board.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackIV.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the back of personality cards in the fourth set from the
+     * GitHub repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIV.png";
+
+    /**
+     * The file that contains the image of the back of personality cards in the fifth set. This file is used
+     * to display the image of the back of personality cards in the fifth set on the game board.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackV.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the back of personality cards in the fifth set from the
+     * GitHub repository. This link is to be used if the file does not already exist locally.
+     */
+    private static final String BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backV.png";
+
+    /**
+     * The file containing the image of the colonist personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%ccolonist.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the colonist personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/colonist.png";
+
+    /**
+     * The file that contains the image of the diplomat personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the diplomat personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/diplomat.png";
+
+    /**
+     * The file that contains the image of the farmer personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cfarmer.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the farmer personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/farmer.png";
+
+    /**
+     * The file that contains the image of the mason personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cmason.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the mason personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mason.png";
+
+    /**
+     * The file that contains the image of the mercator personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the mercator personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mercator.png";
+
+    /**
+     * The file that contains the image of the prefect personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the prefect personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/prefect.png";
+
+    /**
+     * The file that contains the image of the smith personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%csmith.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the smith personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/smith.png";
+
+    /**
+     * The file that contains the image of the vinter personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cvinter.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the vinter personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/vinter.png";
+
+    /**
+     * The file that contains the image of the weaver personality card to be bought. This file is used to
+     * display the correct image when the player is buying personality cards.
+     */
+    private static final String WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cweaver.png", separatorChar, separatorChar, separatorChar, separatorChar);
+
+    /**
+     * The download link to download the image of the weaver personality card from the GitHub repository.
+     * This link is to be used if the file does not already exist locally.
+     */
+    private static final String WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/weaver.png";
+
     /*
      * File and directory creation methods. Note that all methods take the
      * same basic form: performing the checks to see if the directory or
