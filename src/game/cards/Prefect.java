@@ -19,8 +19,10 @@ public class Prefect extends PersonalityCard implements Satvrnvs {
    @Override
    public void doAction() {
       //TO DO
+      //Pick a Province
       //Add Production Bonus
       //Produce chosen province
+      //OR earn back all displayed sestertii
       setPlayed(true);
    }
    

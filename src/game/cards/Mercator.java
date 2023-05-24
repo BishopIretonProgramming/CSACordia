@@ -18,6 +18,10 @@ public class Mercator extends PersonalityCard implements Mercvrivs {
    @Override
    public void doAction() {
       //TO DO
+      Player p = getMyPlayer();
+      //add 3 if starting, 5 if bought
+      p.addSestertii(ISSTARTING ? 3 : 5);
+      //buy/sell two different types of goods
       setPlayed(true);
    }
    
