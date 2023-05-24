@@ -176,4 +176,12 @@ public class Game {
     public void setSavePath(String path) {
         this.path = path;
     }
+
+    /**
+     * Getter to get the current Player
+     * @return the current Player
+     */
+    public Player currentPlayer() {
+        return this.currentPlayer;
+    }
 }
