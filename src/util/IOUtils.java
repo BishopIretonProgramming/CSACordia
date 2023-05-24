@@ -1999,9 +1999,4 @@ public class IOUtils {
 
         shutdownExecutorService();
     }
-
-    /* just for testing */
-    public static void main(String[] args) {
-        checkForGameFiles();
-    }
 }
