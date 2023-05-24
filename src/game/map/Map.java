@@ -15,6 +15,10 @@ import static src.game.map.PathNode.PathType.SEA;
  */
 public class Map {
 
+    //throw away constructor to delete later
+
+    public Map(){}
+
     /**
      * An alias for File.separator
      */
