@@ -1,20 +1,25 @@
 package src.ai.environment.game.cards;
 
 //  imports
+import src.ai.environment.ConcordiaGame;
 import src.ai.environment.game.cards.godtypes.Jupiter;
-import src.ai.environment.game.cards.godtypes.RomanGod;
+import src.ai.environment.game.player.Player;
 
 /**
  * A basic class to represent the Architect personality card.
  *
  * @author devinlinux
  */
-public class Architect extends PersonalityCard {
+public class Architect extends Jupiter implements PersonalityCard {
 
     /**
-     * Constructor to make an Architect personality card
+     * A method to do the action of the personality card.
+     *
+     * @param player the player who played the personality card.
+     * @param game   the game that the personality card is affecting.
      */
-    public Architect() {
-        //  some kind of way to do jupiter maybe convert to class
+    @Override
+    public void play(Player player, ConcordiaGame game) {
+
     }
 }

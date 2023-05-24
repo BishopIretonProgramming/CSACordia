@@ -9,11 +9,11 @@ import src.ai.environment.game.Good;
 import src.ai.environment.game.map.City;
 
 /**
- * A basic interface to represent the Roman god Jupiter.
+ * A basic class to represent the Roman god Jupiter.
  *
  * @author devinlinux
  */
-public interface Jupiter implements RomanGod {
+public class Jupiter {
 
     /**
      * Method to calculate the number of points a player has earned from
@@ -22,7 +22,7 @@ public interface Jupiter implements RomanGod {
      * @param player the player to calculate the score for
      * @return the number of personality cards to be awarded to the player
      */
-    public default int calculateScore(Player player) {
+    public int calculateScore(Player player) {
         return Math.min(player.getCitiesWithHouses().stream()
                 .filter(city -> city.getGood()) != Good.BRICK)
                 .count(), 15);
