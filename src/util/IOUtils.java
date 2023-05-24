@@ -1639,6 +1639,216 @@ public class IOUtils {
     }
 
     /**
+     * Checks for the file containing the image of the architect personality card to be bought by the player
+     * which is necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForArchitectBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Architect personality card image file already exists");
+            return;
+        }
+        downloadFile(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, ARCHITECT_PERSONALITY_CARD_IMAGE_FILE, "architect personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the back of the personality cards in the first set
+     * which is necessary for the graphics of the game in terms of rendering the correct card back.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPersonalityCardBackIImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "First set personality card back image file already exists");
+            return;
+        }
+        downloadFile(BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE, "first set personality card back image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the back of the personality cards in the second set
+     * which is necessary for the graphics of the game in terms of rendering the correct card back.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPersonalityCardBackIIImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Second set personality card back image file already exists");
+            return;
+        }
+        downloadFile(BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE, "second set personality card back image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the back of the personality cards in the third set
+     * which is necessary for the graphics of the game in terms of rendering the correct card back.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPersonalityCardBackIIIImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Third set personality card back image file already exists");
+            return;
+        }
+        downloadFile(BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE, "third set personality card back image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the back of the personality cards in the fourth set
+     * which is necessary for the graphics of the game in terms of rendering the correct card back.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPersonalityCardBackIVImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Fourth set personality card back image file already exists");
+            return;
+        }
+        downloadFile(BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE, "fourth set personality card back image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the back of the personality cards in the fifth set
+     * which is necessary for the graphics of the game in terms of rendering the correct card back.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPersonalityCardBackVImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Fifth set personality card back image file already exists");
+            return;
+        }
+        downloadFile(BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE, "fifth set personality card back image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the colonist personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForColonistBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Colonist personality card image file already exists");
+            return;
+        }
+        downloadFile(COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "colonist personality card image file");
+    }
+
+    /**
+     * Checks for the diplomat personality card to be bought which is necessary for the graphics of the game
+     * in terms of rendering the correct card to be bought. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForDiplomatBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Diplomat personality card image file already exists");
+            return;
+        }
+        downloadFile(DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "diplomat personality card image file");
+    }
+
+    /**
+     * Checks for the farmer personality card to be bought which is necessary for the graphics of the game
+     * in terms of rendering the correct card to be bought. If the file is not found locally, it will be
+     * downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForFarmerBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Farmer personality card image file already exists");
+            return;
+        }
+        downloadFile(FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "farmer personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the mason personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForMasonBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Mason personality card image file already exists");
+            return;
+        }
+        downloadFile(MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "mason personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the mercator personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForMercatorBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Mercator personality card image file already exists");
+            return;
+        }
+        downloadFile(MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "mercator personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the prefect personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForPrefectBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Prefect personality card image file already exists");
+            return;
+        }
+        downloadFile(PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "prefect personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the smith personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForSmithBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Smith personality card image file already exists");
+            return;
+        }
+        downloadFile(SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "smith personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the vinter personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForVinterBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Vinter personality card image file already exists");
+            return;
+        }
+        downloadFile(VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "vinter personality card image file");
+    }
+
+    /**
+     * Checks for the file containing the image of the weaver personality card to be bought which is
+     * necessary for the graphics of the game in terms of rendering the correct card to be bought.
+     * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
+     */
+    public static void checkForWeaverBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
+        Path file = Path.of(WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+        if (Files.exists(file)) {
+            Logger.info("IOUtils", "Weaver personality card image file already exists");
+            return;
+        }
+        downloadFile(WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "weaver personality card image file");
+    }
+
+    /**
      * Method to check for all the necessary files and directories to play the game
      * and either creates them or downloads them depending on the occasion. This is the 
      * main method that should be called on game startup to ensure that the game does
@@ -1700,6 +1910,21 @@ public class IOUtils {
         checkForTwoCoinBImageFileAndDownloadIfNotFound();
         checkForWineCityImageFileAndDownloadIfNotFound();
         checkForWineTileImageFileAndDownloadIfNotFound();
+        checkForArchitectBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForPersonalityCardBackIImageFileAndDownloadIfNotFound();
+        checkForPersonalityCardBackIIImageFileAndDownloadIfNotFound();
+        checkForPersonalityCardBackIIIImageFileAndDownloadIfNotFound();
+        checkForPersonalityCardBackIVImageFileAndDownloadIfNotFound();
+        checkForPersonalityCardBackVImageFileAndDownloadIfNotFound();
+        checkForColonistBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForDiplomatBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForFarmerBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForMasonBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForMercatorBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForPrefectBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForSmithBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForVinterBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+        checkForWeaverBoughtPersonalityCardImageFileAndDownloadIfNotFound();
 
         shutdownExecutorService();
     }
