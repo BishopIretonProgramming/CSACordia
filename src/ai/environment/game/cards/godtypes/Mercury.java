@@ -1,7 +1,9 @@
 package src.ai.environment.game.cards.godtypes;
 
+//  imports
 import src.ai.environment.ConcordiaGame;
 import src.ai.environment.game.player.Player;
+import src.ai.environment.game.map.City;
 
 /**
  * A basic class to represent the Roman god Mercury.
@@ -20,6 +22,11 @@ public class Mercury extends RomanGodType {
      */
     @Override
     public int calculateScore(Player player, ConcordiaGame game) {
-        return 0;
+        return Math.min(
+                (int) player.getCitiesWithHouses().stream()
+                        .map(City::getGood)
+                        .distinct()
+                        .count() * 2, 10);
     }
+
 }
