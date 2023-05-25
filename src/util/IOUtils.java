@@ -51,791 +51,134 @@ public class IOUtils {
      * and must be acquired from the internet.
      */
 
-    /**
-     * The directory that should be used for the save files of unfinished
-     * games. This directory must be present in order for the saving of
-     * the games to ensure that a {@code FileNotFoundException} is not
-     * thrown by any of the save methods of the {@code Game} class.
-     */
     private static final String UNFINISHED_GAME_SAVE_DIR = String.format("resources%csaves%cunfinished_games", separatorChar, separatorChar);
-
-    /**
-     * The directory that should be used for the save files of maps, networks,
-     * and cities. This directory must be present for the game to be played because
-     * it is where the pre-built networks for the imperium and italia maps will
-     * be located. If any of the files are not found or this directory does not exist,
-     * the files will need to be downloaded the internet in order for proper game functioning.
-     */
     private static final String PRE_BUILT_MAP_DIR = String.format("resources%csaves%cpre_built_maps", separatorChar, separatorChar);
-
-    /**
-     * The directory that should be used for saving information regarding log in
-     * information about the players. This directory must be present for logging into
-     * the game because it will be where files for usernames and passwords will be stored.
-     */
     private static final String LOGIN_INFORMATION_DIR = String.format("resources%clog_in%cuap", separatorChar, separatorChar);
-
-    /**
-     * The directory that should be used for saving information regarding performance
-     * information about the players. This directory must be present for storing information
-     * about player performance during games.
-     */
     private static final String PLAYER_PERFORMANCE_INFORMATION_DIR = String.format("resources%cplayers%cperformance", separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the sprites for the graphics of the game. This directory
-     * must be present in order to properly load the sprites into the graphics without causing
-     * any errors or problems with displaying the sprites. 
-     */
     private static final String SPRITES_DIR = String.format("assets%csprites", separatorChar);
-
-    /**
-     * The directory that contains the main images for the graphics. This directory must be present
-     * in order to display most of the images in the game, including the game board image, the store
-     * house images, and some of the game card images.
-     */
     private static final String MAIN_GRAPHICS_IMAGES_DIR = String.format("src%cgui%cimages", separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the images of the starting cards for the graphics. This directory
-     * must be present in order to display the starting personality cards. If this directory is not
-     * present, none of the starting personality cards will be able to be rendered.
-     */
     private static final String STARTING_CARDS_IMAGES_DIR = String.format("src%cgui%cimages%cstartingcards", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the images of the game pieces. This directory must be present in order
-     * to display the game pieces on the game board as well as in the inventory of the Player and possibly
-     * in the store house of the player.
-     */
     private static final String GAME_PIECES_IMAGES_DIR = String.format("src%cgui%cimages%cpieces", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the images of the personality cards that can be bought. This directory must
-     * be present in order to be able to render the personality cards that can be bought from the game board.
-     */
     private static final String BOUGHT_PCARDS_IMAGES_DIR = String.format("src%cgui%cimages%cboughtcards", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The file that contains the pre-built imperium network. This file is required for playing the game with the
-     * imperium map and must be present in order for the game to be played with the imperium map so that the cities
-     * and connections can be accurately mapped.
-     */
     private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE = String.format("resources%csaves%cpre_built_maps%cimperium.nw", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the imperium pre-built network file from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium.nw";
-
-    /**
-     * The file that contains the pre-built list of cities for the imperium network. This file is required for
-     * playing the game with the imperium map and must be present in order for the game to be played with the
-     * imperium map so that the cities and connections can be accurately mapped.
-     */
     private static final String IMPERIUM_PRE_BUILT_CITIES_FILE = String.format("resources%csaves%cpre_built_maps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the imperium pre-built cities file from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String IMPERIUM_PRE_BUILT_CITIES_FILE_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium_cities.cnw";
-
-    /**
-     * The file that contains the image of the game board. This file is used in several frames and panels to
-     * display the game board as a functional component and as a background or feature image.
-     */
     private static final String CONCORDIA_BOARD_IMG = String.format("src%cgui%cimages%cConcordia board.jpg", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the concordia board image file from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String CONCORDIA_BOARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/Concordia%20board.jpg";
-
-    /**
-     * The file that contains the image of the black store house. This file is used to display the image of
-     * the black store house for the player that is using it.
-     */
     private static final String BLACK_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cblackStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the black store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String BLACK_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blackStorehouse.png";
-
-    /**
-     * The file that contains the image of the blue store house. This file is used to display the image of
-     * the blue store house for the player that is using it.
-     */
     private static final String BLUE_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cblueStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the blue store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String BLUE_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blueStorehouse.png";
-
-    /**
-     * The file that contains an image of the back of the concordia card. This file is used to display the
-     * concordia card when it is awarded to the player who ends the game.
-     */
     private static final String CONCORDIA_CARD_IMG = String.format("src%cgui%cimages%cconcordia.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the concordia card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String CONCORDIA_CARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordia.png";
-
-    /**
-     * The file that contains an image of the concordia card. This file is used to display the concordia
-     * card when it is awarded to the player who ends the game.
-     */
     private static final String CONCORDIA_CARD_BACK_IMG = String.format("src%cgui%cimages%cconcordiaBack.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the concordia card back image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String CONCORDIA_CARD_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordiaBack.png";
-
-    /**
-     * The file that contains an image of the green store house. This file is used to display the image of
-     * the green store house for the player that is using it.
-     */
     private static final String GREEN_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cgreenStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the green store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String GREEN_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/greenStorehouse.png";
-
-    /**
-     * The file that contains an image of the praefectus magnus card. This file is used to display the
-     * praefectus magnus card when a player has it in their hand.
-     */
     private static final String PRAEFECTUS_MAGNUS_CARD_IMG = String.format("src%cgui%cimages%cpraefectusMagnus.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the praefectus magnus card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String PRAEFECTUS_MAGNUS_CARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnus.png";
-
-    /**
-     * The file that contains an image of the back of the praefectus magnus card. This file is used to
-     * display the back of the praefectus magnus card when a player has it in their hand.
-     */
     private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMG = String.format("src%cgui%cimages%cpraefectusMagnusBack.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of the praefectus magnus card from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnusBack.png";
-
-    /**
-     * The file that contains an image of the red store house. This file is used to display the image of
-     * the red store house for the player that is using it.
-     */
     private static final String RED_STORE_HOUSE_IMG = String.format("src%cgui%cimages%credStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the red store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String RED_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/redStorehouse.png";
-
-    /**
-     * The file that contains an image of the first reference card. This file is used to display the
-     * information found on the first reference card for players to read.
-     */
     private static final String REFERENCE_CARD_A_IMG = String.format("src%cgui%cimages%creferenceCardA.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first reference card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String REFERENCE_CARD_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardA.png";
-
-    /**
-     * The file that contains an image of the second reference card. This file is used to display the
-     * information found on the second reference card for players to read.
-     */
     private static final String REFERENCE_CARD_B_IMG = String.format("src%cgui%cimages%creferenceCardB.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second reference card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String REFERENCE_CARD_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardB.png";
-
-    /**
-     * The file that contains an image of the yellow store house. This file is used to display the image of
-     * the yellow store house for the player that is using it.
-     */
     private static final String YELLOW_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cyellowStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the yellow store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String YELLOW_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/yellowStorehouse.png";
-
-    /**
-     * The file that contains an image of the architect personality card. This file is used to display the
-     * image of the architect personality card when a player has it in their hand or wants to buy it.
-     */
     private static final String ARCHITECT_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the architect personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String ARCHITECT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/architect.png";
-
-    /**
-     * The file that contains an image of the black back of personality cards. This file is used to display
-     * the back of a personality card when it is black.
-     */
     private static final String PCARD_BLACK_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cblackBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the black back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String PCARD_BLACK_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blackBack.png";
-
-    /**
-     * The file that contains an image of the blue back of personality cards. This file is used to display
-     * the back of a personality card when it is blue.
-     */
     private static final String PCARD_BLUE_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cblueBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the blue back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String PCARD_BLUE_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blueBack.png";
-
-    /**
-     * The file that contains an image of the diplomat personality card. This file is used to display the
-     * image of the diplomat personality card when a player has it in their hand or wants to buy it.
-     */
     private static final String DIPLOMAT_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the diplomat personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String DIPLOMAT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/diplomat.png";
-
-    /**
-     * The file that contains an image of the green back of personality cards. This file is used to display
-     * the back of a personality card when it is green.
-     */
     private static final String PCARD_GREEN_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cgreenBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the green back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String PCARD_GREEN_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/greenBack.png";
-
-    /**
-     * The file that contains an image of the mercator personality card. This file is used to display the
-     * image of the mercator personality card when a player has it in their hand or wants to buy it.
-     */
     private static final String MERCATOR_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the mercator personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String MERCATOR_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/mercator.png";
-
-    /**
-     * The file that contains the image of the prefect personality card. This file is used to display the
-     * image of the prefect personality card when a player has it in their hand or wants to buy it.
-     */
     private static final String PREFECT_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the prefect personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String PREFECT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/prefect.png";
-
-    /**
-     * The file that contains an image of the red back of personality cards. This file is used to display
-     * the back of a personality card when it is red.
-     */
     private static final String PCARD_RED_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%credBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the red back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String PCARD_RED_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/redBack.png";
-
-    /**
-     * The file that contains an image of the senator personality card. This file is used to display the
-     * image of the senator personality card when a player has it in their hand or wants to buy it.
-     */
     private static final String SENATOR_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%csenator.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the senator personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String SENATOR_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/senator.png";
-
-    /**
-     * The file that contains the image of the tribune personality card. This file is used to display the
-     * image of the tribune personality card when a player has it in their hand or wants to buy it.
-     */
     private static final String TRIBUNE_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%ctribune.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the tribune personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String TRIBUNE_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/tribune.png";
-
-    /**
-     * The file that contains the image of the yellow back of personality cards. This file is used to display
-     * the back of a personality card when it is yellow.
-     */
     private static final String PCARD_YELLOW_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cyellowBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the yellow back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String PCARD_YELLOW_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/yellowBack.png";
-
-    /**
-     * The file that contains the image of a brick city. This file is used to display the image of a brick
-     * city on the game board.
-     */
     private static final String BRICK_CITY_IMG = String.format("src%cgui%cimages%cpieces%cbrickCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a brick city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String BRICK_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickCity.png";
-
-    /**
-     * The file that contains the image of a brick tile. This file is used to display the image of a brick tile
-     * on the game board.
-     */
     private static final String BRICK_TILE_IMG = String.format("src%cgui%cimages%cpieces%cbrickTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a brick tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String BRICK_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickTile.png";
-
-    /**
-     * The file that contains the image of a cloth city. This file is used to display the image of a cloth city
-     * on the game board.
-     */
     private static final String CLOTH_CITY_IMG = String.format("src%cgui%cimages%cpieces%cclothCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a cloth city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String CLOTH_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothCity.png";
-
-    /**
-     * The file that contains the image of a cloth tile. This file is used to display the image of a cloth tile
-     * on the game board.
-     */
     private static final String CLOTH_TILE_IMG = String.format("src%cgui%cimages%cpieces%cclothTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a cloth tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String CLOTH_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothTile.png";
-
-    /**
-     * The file that contains the first image of a coin tile. This file is used to display the first image of a
-     * coin tile on the game board.
-     */
     private static final String COIN_TILE_IMG_1 = String.format("src%cgui%cimages%cpieces%ccoinTile1.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of a coin tile from the GitHub repository. This link is to
-     * be used if the file does not already exist locally.
-     */
     private static final String COIN_TILE_IMG_1_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile1.png";
-
-    /**
-     * The file that contains the second image of a coin tile. This file is used to display the second image of a
-     * coin tile on the game board.
-     */
     private static final String COIN_TILE_IMG_2 = String.format("src%cgui%cimages%cpieces%ccoinTile2.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of a coin tile from the GitHub repository. This link is to
-     * be used if the file does not already exist locally.
-     */
     private static final String COIN_TILE_IMG_2_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile2.png";
-
-    /**
-     * The file that contains the first image of the five coin tile. This file is used to display the first image
-     * of the five coin tile on the game board.
-     */
     private static final String FIVE_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%cfiveCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the five coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String FIVE_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinA.png";
-
-    /**
-     * The file that contains the second image of the five coin tile. This file is used to display the second
-     * image of the five coin tile on the game board.
-     */
     private static final String FIVE_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%cfiveCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the five coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String FIVE_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinB.png";
-
-    /**
-     * The file that contains the image of a food city. This file is used to display the image of a food city
-     * on the game board.
-     */
     private static final String FOOD_CITY_IMG = String.format("src%cgui%cimages%cpieces%cfoodCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a food city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String FOOD_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodCity.png";
-
-    /**
-     * The file that contains the image of the food tile. This file is used to display the image of the food
-     * tile on the game board.
-     */
     private static final String FOOD_TILE_IMG = String.format("src%cgui%cimages%cpieces%cfoodTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the food tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String FOOD_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodTile.png";
-
-    /**
-     * The file that contains the first image of the one coin tile. This file is used to display the first image
-     * of the one coin tile on the game board.
-     */
     private static final String ONE_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%coneCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the one coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String ONE_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinA.png";
-
-    /**
-     * The file that contains the second image of the one coin tile. This file is used to display the second
-     * image of the one coin tile on the game board.
-     */
     private static final String ONE_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%coneCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the one coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String ONE_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinB.png";
-
-    /**
-     * The file that contains the first image of the ten coin tile. This file is used to display the first image
-     * of the ten coin tile on the game board.
-     */
     private static final String TEN_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%ctenCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the ten coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String TEN_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinA.png";
-
-    /**
-     * The file that contains the second image of the ten coin tile. This file is used to display the second
-     * image of the ten coin tile on the game board.
-     */
     private static final String TEN_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%ctenCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the ten coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String TEN_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinB.png";
-
-    /**
-     * The file that contains the image of a tool city. This file is used to display the image of a tool city
-     * on the game board.
-     */
     private static final String TOOL_CITY_IMG = String.format("src%cgui%cimages%cpieces%ctoolCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a tool city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String TOOL_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolCity.png";
-
-    /**
-     * The file that contains the image of the tool tile. This file is used to display the image of the tool
-     * tile on the game board.
-     */
     private static final String TOOL_TILE_IMG = String.format("src%cgui%cimages%cpieces%ctoolTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the tool tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String TOOL_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolTile.png";
-
-    /**
-     * The file that contains the first image of the two coin tile. This file is used to display the first image
-     * of the two coin tile on the game board.
-     */
     private static final String TWO_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%ctwoCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the two coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String TWO_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinA.png";
-
-    /**
-     * The file that contains the second image of the two coin tile. This file is used to display the second
-     * image of the two coin tile on the game board.
-     */
     private static final String TWO_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%ctwoCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the two coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
     private static final String TWO_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinB.png";
-
-    /**
-     * The file that contains the iamge of a wine city. This file is used to display the image of a wine city
-     * on the game board.
-     */
     private static final String WINE_CITY_IMG = String.format("src%cgui%cimages%cpieces%cwineCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a wine city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String WINE_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineCity.png";
-
-    /**
-     * The file that contains the image of the wine tile. This file is used to display the image of the wine
-     * tile on the game board.
-     */
     private static final String WINE_TILE_IMG = String.format("src%cgui%cimages%cpieces%cwineTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the wine tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
     private static final String WINE_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineTile.png";
-
-    /**
-     * The file that contains the image of the architect card. This file is used to display the image of the
-     * architect card on the game board.
-     */
     private static final String ARCHITECT_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the architect card from the GitHub repository. This link is
-     * to be used if the file does not already exist locally.
-     */
     private static final String ARCHITECT_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/architect.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the first set. This file is used
-     * to display the image of the back of personality cards in the first set on the game board.
-     */
     private static final String BACK_OF_PCARD_I_IMG = String.format("src%cgui%cimages%cboughtcards%cbackI.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the first set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String BACK_OF_PCARD_I_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backI.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the second set. This file is used
-     * to display the image of the back of personality cards in the second set on the game board.
-     */
     private static final String BACK_OF_PCARD_II_IMG = String.format("src%cgui%cimages%cboughtcards%cbackII.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the second set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String BACK_OF_PCARD_II_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backII.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the third set. This file is used
-     * to display the image of the back of personality cards in the third set on the game board.
-     */
     private static final String BACK_OF_PCARD_III_IMG = String.format("src%cgui%cimages%cboughtcards%cbackIII.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the third set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String BACK_OF_PCARD_III_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIII.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the fourth set. This file is used
-     * to display the image of the back of personality cards in the fourth set on the game board.
-     */
     private static final String BACK_OF_PCARD_IV_IMG = String.format("src%cgui%cimages%cboughtcards%cbackIV.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the fourth set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String BACK_OF_PCARD_IV_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIV.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the fifth set. This file is used
-     * to display the image of the back of personality cards in the fifth set on the game board.
-     */
     private static final String BACK_OF_PCARD_V_IMG = String.format("src%cgui%cimages%cboughtcards%cbackV.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the fifth set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
     private static final String BACK_OF_PCARD_V_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backV.png";
-
-    /**
-     * The file containing the image of the colonist personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String COLONIST_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%ccolonist.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the colonist personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String COLONIST_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/colonist.png";
-
-    /**
-     * The file that contains the image of the diplomat personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String DIPLOMAT_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the diplomat personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String DIPLOMAT_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/diplomat.png";
-
-    /**
-     * The file that contains the image of the farmer personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String FARMER_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cfarmer.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the farmer personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String FARMER_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/farmer.png";
-
-    /**
-     * The file that contains the image of the mason personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String MASON_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cmason.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the mason personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String MASON_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mason.png";
-
-    /**
-     * The file that contains the image of the mercator personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String MERCATOR_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the mercator personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String MERCATOR_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mercator.png";
-
-    /**
-     * The file that contains the image of the prefect personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String PREFECT_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the prefect personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String PREFECT_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/prefect.png";
-
-    /**
-     * The file that contains the image of the smith personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String SMITH_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%csmith.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the smith personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String SMITH_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/smith.png";
-
-    /**
-     * The file that contains the image of the vinter personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String VINTER_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cvinter.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the vinter personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String VINTER_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/vinter.png";
-
-    /**
-     * The file that contains the image of the weaver personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
     private static final String WEAVER_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cweaver.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the weaver personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
     private static final String WEAVER_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/weaver.png";
 
     /*
