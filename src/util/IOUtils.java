@@ -51,792 +51,135 @@ public class IOUtils {
      * and must be acquired from the internet.
      */
 
-    /**
-     * The directory that should be used for the save files of unfinished
-     * games. This directory must be present in order for the saving of
-     * the games to ensure that a {@code FileNotFoundException} is not
-     * thrown by any of the save methods of the {@code Game} class.
-     */
-    private static final String UNFINISHED_GAME_SAVE_FILE_DIRECTORY = String.format("resources%csaves%cunfinished_games", separatorChar, separatorChar);
-
-    /**
-     * The directory that should be used for the save files of maps, networks,
-     * and cities. This directory must be present for the game to be played because
-     * it is where the pre-built networks for the imperium and italia maps will
-     * be located. If any of the files are not found or this directory does not exist,
-     * the files will need to be downloaded the internet in order for proper game functioning.
-     */
-    private static final String PRE_BUILT_MAP_FILES_DIRECTORY = String.format("resources%csaves%cpre_built_maps", separatorChar, separatorChar);
-
-    /**
-     * The directory that should be used for saving information regarding log in
-     * information about the players. This directory must be present for logging into
-     * the game because it will be where files for usernames and passwords will be stored.
-     */
-    private static final String LOGIN_INFORMATION_DIRECTORY = String.format("resources%clog_in%cuap", separatorChar, separatorChar);
-
-    /**
-     * The directory that should be used for saving information regarding performance
-     * information about the players. This directory must be present for storing information
-     * about player performance during games.
-     */
-    private static final String PLAYER_PERFORMANCE_INFORMATION_DIRECTORY = String.format("resources%cplayers%cperformance", separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the sprites for the graphics of the game. This directory
-     * must be present in order to properly load the sprites into the graphics without causing
-     * any errors or problems with displaying the sprites. 
-     */
-    private static final String SPRITES_DIRECTORY = String.format("assets%csprites", separatorChar);
-
-    /**
-     * The directory that contains the main images for the graphics. This directory must be present
-     * in order to display most of the images in the game, including the game board image, the store
-     * house images, and some of the game card images.
-     */
-    private static final String MAIN_GRAPHICS_IMAGES_DIRECTORY = String.format("src%cgui%cimages", separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the images of the starting cards for the graphics. This directory
-     * must be present in order to display the starting personality cards. If this directory is not
-     * present, none of the starting personality cards will be able to be rendered.
-     */
-    private static final String STARTING_CARDS_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cstartingcards", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the images of the game pieces. This directory must be present in order
-     * to display the game pieces on the game board as well as in the inventory of the Player and possibly
-     * in the store house of the player.
-     */
-    private static final String GAME_PIECES_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cpieces", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The directory that contains the images of the personality cards that can be bought. This directory must
-     * be present in order to be able to render the personality cards that can be bought from the game board.
-     */
-    private static final String BOUGHT_PERSONALITY_CARDS_IMAGES_DIRECTORY = String.format("src%cgui%cimages%cboughtcards", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The file that contains the pre-built imperium network. This file is required for playing the game with the
-     * imperium map and must be present in order for the game to be played with the imperium map so that the cities
-     * and connections can be accurately mapped.
-     */
+    private static final String UNFINISHED_GAME_SAVE_DIR = String.format("resources%csaves%cunfinished_games", separatorChar, separatorChar);
+    private static final String PRE_BUILT_MAP_DIR = String.format("resources%csaves%cpre_built_maps", separatorChar, separatorChar);
+    private static final String LOGIN_INFORMATION_DIR = String.format("resources%clog_in%cuap", separatorChar, separatorChar);
+    private static final String PLAYER_PERFORMANCE_INFORMATION_DIR = String.format("resources%cplayers%cperformance", separatorChar, separatorChar);
+    private static final String SPRITES_DIR = String.format("assets%csprites", separatorChar);
+    private static final String MAIN_GRAPHICS_IMAGES_DIR = String.format("src%cgui%cimages", separatorChar, separatorChar);
+    private static final String STARTING_CARDS_IMAGES_DIR = String.format("src%cgui%cimages%cstartingcards", separatorChar, separatorChar, separatorChar);
+    private static final String GAME_PIECES_IMAGES_DIR = String.format("src%cgui%cimages%cpieces", separatorChar, separatorChar, separatorChar);
+    private static final String BOUGHT_PCARDS_IMAGES_DIR = String.format("src%cgui%cimages%cboughtcards", separatorChar, separatorChar, separatorChar);
     private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE = String.format("resources%csaves%cpre_built_maps%cimperium.nw", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the imperium pre-built network file from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium.nw";
-
-    /**
-     * The file that contains the pre-built list of cities for the imperium network. This file is required for
-     * playing the game with the imperium map and must be present in order for the game to be played with the
-     * imperium map so that the cities and connections can be accurately mapped.
-     */
+    private static final String IMPERIUM_PRE_BUILT_NETWORK_FILE_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium.nw";
     private static final String IMPERIUM_PRE_BUILT_CITIES_FILE = String.format("resources%csaves%cpre_built_maps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the imperium pre-built cities file from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String IMPERIUM_PRE_BUILT_CITIES_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium_cities.cnw";
-
-    /**
-     * The file that contains the image of the game board. This file is used in several frames and panels to
-     * display the game board as a functional component and as a background or feature image.
-     */
-    private static final String CONCORDIA_BOARD_IMAGE_FILE = String.format("src%cgui%cimages%cConcordia board.jpg", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the concordia board image file from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/Concordia%20board.jpg";
-
-    /**
-     * The file that contains the image of the black store house. This file is used to display the image of
-     * the black store house for the player that is using it.
-     */
-    private static final String BLACK_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cblackStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the black store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String BLACK_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blackStorehouse.png";
-
-    /**
-     * The file that contains the image of the blue store house. This file is used to display the image of
-     * the blue store house for the player that is using it.
-     */
-    private static final String BLUE_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cblueStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the blue store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String BLUE_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blueStorehouse.png";
-
-    /**
-     * The file that contains an image of the back of the concordia card. This file is used to display the
-     * concordia card when it is awarded to the player who ends the game.
-     */
-    private static final String CONCORDIA_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cconcordia.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the concordia card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordia.png";
-
-    /**
-     * The file that contains an image of the concordia card. This file is used to display the concordia
-     * card when it is awarded to the player who ends the game.
-     */
-    private static final String CONCORDIA_CARD_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cconcordiaBack.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the concordia card back image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String CONCORDIA_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordiaBack.png";
-
-    /**
-     * The file that contains an image of the green store house. This file is used to display the image of
-     * the green store house for the player that is using it.
-     */
-    private static final String GREEN_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cgreenStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the green store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String GREEN_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/greenStorehouse.png";
-
-    /**
-     * The file that contains an image of the praefectus magnus card. This file is used to display the
-     * praefectus magnus card when a player has it in their hand.
-     */
-    private static final String PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cpraefectusMagnus.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the praefectus magnus card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnus.png";
-
-    /**
-     * The file that contains an image of the back of the praefectus magnus card. This file is used to
-     * display the back of the praefectus magnus card when a player has it in their hand.
-     */
-    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cpraefectusMagnusBack.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of the praefectus magnus card from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnusBack.png";
-
-    /**
-     * The file that contains an image of the red store house. This file is used to display the image of
-     * the red store house for the player that is using it.
-     */
-    private static final String RED_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%credStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the red store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String RED_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/redStorehouse.png";
-
-    /**
-     * The file that contains an image of the first reference card. This file is used to display the
-     * information found on the first reference card for players to read.
-     */
-    private static final String REFERENCE_CARD_A_IMAGE_FILE = String.format("src%cgui%cimages%creferenceCardA.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first reference card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String REFERENCE_CARD_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardA.png";
-
-    /**
-     * The file that contains an image of the second reference card. This file is used to display the
-     * information found on the second reference card for players to read.
-     */
-    private static final String REFERENCE_CARD_B_IMAGE_FILE = String.format("src%cgui%cimages%creferenceCardB.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second reference card image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String REFERENCE_CARD_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardB.png";
-
-    /**
-     * The file that contains an image of the yellow store house. This file is used to display the image of
-     * the yellow store house for the player that is using it.
-     */
-    private static final String YELLOW_STORE_HOUSE_IMAGE_FILE = String.format("src%cgui%cimages%cyellowStorehouse.png", separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the yellow store house image from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/yellowStorehouse.png";
-
-    /**
-     * The file that contains an image of the architect personality card. This file is used to display the
-     * image of the architect personality card when a player has it in their hand or wants to buy it.
-     */
-    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the architect personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/architect.png";
-
-    /**
-     * The file that contains an image of the black back of personality cards. This file is used to display
-     * the back of a personality card when it is black.
-     */
-    private static final String PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cblackBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the black back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blackBack.png";
-
-    /**
-     * The file that contains an image of the blue back of personality cards. This file is used to display
-     * the back of a personality card when it is blue.
-     */
-    private static final String PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cblueBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the blue back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blueBack.png";
-
-    /**
-     * The file that contains an image of the diplomat personality card. This file is used to display the
-     * image of the diplomat personality card when a player has it in their hand or wants to buy it.
-     */
-    private static final String DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the diplomat personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/diplomat.png";
-
-    /**
-     * The file that contains an image of the green back of personality cards. This file is used to display
-     * the back of a personality card when it is green.
-     */
-    private static final String PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cgreenBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the green back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/greenBack.png";
-
-    /**
-     * The file that contains an image of the mercator personality card. This file is used to display the
-     * image of the mercator personality card when a player has it in their hand or wants to buy it.
-     */
-    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the mercator personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String MERCATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/mercator.png";
-
-    /**
-     * The file that contains the image of the prefect personality card. This file is used to display the
-     * image of the prefect personality card when a player has it in their hand or wants to buy it.
-     */
-    private static final String PREFECT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the prefect personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String PREFECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/prefect.png";
-
-    /**
-     * The file that contains an image of the red back of personality cards. This file is used to display
-     * the back of a personality card when it is red.
-     */
-    private static final String PERSONALITY_CARD_RED_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%credBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the red back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String PERSONALITY_CARD_RED_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/redBack.png";
-
-    /**
-     * The file that contains an image of the senator personality card. This file is used to display the
-     * image of the senator personality card when a player has it in their hand or wants to buy it.
-     */
-    private static final String SENATOR_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%csenator.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the senator personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String SENATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/senator.png";
-
-    /**
-     * The file that contains the image of the tribune personality card. This file is used to display the
-     * image of the tribune personality card when a player has it in their hand or wants to buy it.
-     */
-    private static final String TRIBUNE_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%ctribune.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the tribune personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String TRIBUNE_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/tribune.png";
-
-    /**
-     * The file that contains the image of the yellow back of personality cards. This file is used to display
-     * the back of a personality card when it is yellow.
-     */
-    private static final String PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE = String.format("src%cgui%cimages%cstartingcards%cyellowBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the yellow back of personality cards from the GitHub
-     * repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/yellowBack.png";
-
-    /**
-     * The file that contains the image of a brick city. This file is used to display the image of a brick
-     * city on the game board.
-     */
-    private static final String BRICK_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cbrickCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a brick city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String BRICK_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickCity.png";
-
-    /**
-     * The file that contains the image of a brick tile. This file is used to display the image of a brick tile
-     * on the game board.
-     */
-    private static final String BRICK_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cbrickTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a brick tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String BRICK_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickTile.png";
-
-    /**
-     * The file that contains the image of a cloth city. This file is used to display the image of a cloth city
-     * on the game board.
-     */
-    private static final String CLOTH_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cclothCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a cloth city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String CLOTH_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothCity.png";
-
-    /**
-     * The file that contains the image of a cloth tile. This file is used to display the image of a cloth tile
-     * on the game board.
-     */
-    private static final String CLOTH_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cclothTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a cloth tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String CLOTH_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothTile.png";
-
-    /**
-     * The file that contains the first image of a coin tile. This file is used to display the first image of a
-     * coin tile on the game board.
-     */
-    private static final String COIN_TILE_IMAGE_FILE_1 = String.format("src%cgui%cimages%cpieces%ccoinTile1.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of a coin tile from the GitHub repository. This link is to
-     * be used if the file does not already exist locally.
-     */
-    private static final String COIN_TILE_IMAGE_FILE_1_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile1.png";
-
-    /**
-     * The file that contains the second image of a coin tile. This file is used to display the second image of a
-     * coin tile on the game board.
-     */
-    private static final String COIN_TILE_IMAGE_FILE_2 = String.format("src%cgui%cimages%cpieces%ccoinTile2.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of a coin tile from the GitHub repository. This link is to
-     * be used if the file does not already exist locally.
-     */
-    private static final String COIN_TILE_IMAGE_FILE_2_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile2.png";
-
-    /**
-     * The file that contains the first image of the five coin tile. This file is used to display the first image
-     * of the five coin tile on the game board.
-     */
-    private static final String FIVE_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfiveCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the five coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String FIVE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinA.png";
-
-    /**
-     * The file that contains the second image of the five coin tile. This file is used to display the second
-     * image of the five coin tile on the game board.
-     */
-    private static final String FIVE_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfiveCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the five coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String FIVE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinB.png";
-
-    /**
-     * The file that contains the image of a food city. This file is used to display the image of a food city
-     * on the game board.
-     */
-    private static final String FOOD_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfoodCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a food city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String FOOD_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodCity.png";
-
-    /**
-     * The file that contains the image of the food tile. This file is used to display the image of the food
-     * tile on the game board.
-     */
-    private static final String FOOD_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cfoodTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the food tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String FOOD_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodTile.png";
-
-    /**
-     * The file that contains the first image of the one coin tile. This file is used to display the first image
-     * of the one coin tile on the game board.
-     */
-    private static final String ONE_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%coneCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the one coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String ONE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinA.png";
-
-    /**
-     * The file that contains the second image of the one coin tile. This file is used to display the second
-     * image of the one coin tile on the game board.
-     */
-    private static final String ONE_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%coneCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the one coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String ONE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinB.png";
-
-    /**
-     * The file that contains the first image of the ten coin tile. This file is used to display the first image
-     * of the ten coin tile on the game board.
-     */
-    private static final String TEN_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctenCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the ten coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String TEN_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinA.png";
-
-    /**
-     * The file that contains the second image of the ten coin tile. This file is used to display the second
-     * image of the ten coin tile on the game board.
-     */
-    private static final String TEN_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctenCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the ten coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String TEN_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinB.png";
-
-    /**
-     * The file that contains the image of a tool city. This file is used to display the image of a tool city
-     * on the game board.
-     */
-    private static final String TOOL_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctoolCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a tool city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String TOOL_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolCity.png";
-
-    /**
-     * The file that contains the image of the tool tile. This file is used to display the image of the tool
-     * tile on the game board.
-     */
-    private static final String TOOL_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctoolTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the tool tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String TOOL_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolTile.png";
-
-    /**
-     * The file that contains the first image of the two coin tile. This file is used to display the first image
-     * of the two coin tile on the game board.
-     */
-    private static final String TWO_COIN_A_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctwoCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the first image of the two coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String TWO_COIN_A_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinA.png";
-
-    /**
-     * The file that contains the second image of the two coin tile. This file is used to display the second
-     * image of the two coin tile on the game board.
-     */
-    private static final String TWO_COIN_B_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%ctwoCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the second image of the two coin tile from the GitHub repository. This link
-     * is to be used if the file does not already exist locally.
-     */
-    private static final String TWO_COIN_B_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinB.png";
-
-    /**
-     * The file that contains the iamge of a wine city. This file is used to display the image of a wine city
-     * on the game board.
-     */
-    private static final String WINE_CITY_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cwineCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of a wine city from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String WINE_CITY_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineCity.png";
-
-    /**
-     * The file that contains the image of the wine tile. This file is used to display the image of the wine
-     * tile on the game board.
-     */
-    private static final String WINE_TILE_IMAGE_FILE = String.format("src%cgui%cimages%cpieces%cwineTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the wine tile from the GitHub repository. This link is to be
-     * used if the file does not already exist locally.
-     */
-    private static final String WINE_TILE_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineTile.png";
-
-    /**
-     * The file that contains the image of the architect card. This file is used to display the image of the
-     * architect card on the game board.
-     */
-    private static final String ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the architect card from the GitHub repository. This link is
-     * to be used if the file does not already exist locally.
-     */
-    private static final String ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/architect.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the first set. This file is used
-     * to display the image of the back of personality cards in the first set on the game board.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackI.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the first set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backI.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the second set. This file is used
-     * to display the image of the back of personality cards in the second set on the game board.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackII.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the second set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backII.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the third set. This file is used
-     * to display the image of the back of personality cards in the third set on the game board.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackIII.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the third set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIII.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the fourth set. This file is used
-     * to display the image of the back of personality cards in the fourth set on the game board.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackIV.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the fourth set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIV.png";
-
-    /**
-     * The file that contains the image of the back of personality cards in the fifth set. This file is used
-     * to display the image of the back of personality cards in the fifth set on the game board.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cbackV.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the back of personality cards in the fifth set from the
-     * GitHub repository. This link is to be used if the file does not already exist locally.
-     */
-    private static final String BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backV.png";
-
-    /**
-     * The file containing the image of the colonist personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%ccolonist.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the colonist personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/colonist.png";
-
-    /**
-     * The file that contains the image of the diplomat personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the diplomat personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/diplomat.png";
-
-    /**
-     * The file that contains the image of the farmer personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cfarmer.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the farmer personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/farmer.png";
-
-    /**
-     * The file that contains the image of the mason personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cmason.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the mason personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mason.png";
-
-    /**
-     * The file that contains the image of the mercator personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the mercator personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mercator.png";
-
-    /**
-     * The file that contains the image of the prefect personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the prefect personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/prefect.png";
-
-    /**
-     * The file that contains the image of the smith personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%csmith.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the smith personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/smith.png";
-
-    /**
-     * The file that contains the image of the vinter personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cvinter.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the vinter personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/vinter.png";
-
-    /**
-     * The file that contains the image of the weaver personality card to be bought. This file is used to
-     * display the correct image when the player is buying personality cards.
-     */
-    private static final String WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE = String.format("src%cgui%cimages%cboughtcards%cweaver.png", separatorChar, separatorChar, separatorChar, separatorChar);
-
-    /**
-     * The download link to download the image of the weaver personality card from the GitHub repository.
-     * This link is to be used if the file does not already exist locally.
-     */
-    private static final String WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/weaver.png";
+    private static final String IMPERIUM_PRE_BUILT_CITIES_FILE_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium_cities.cnw";
+    private static final String CONCORDIA_BOARD_IMG = String.format("src%cgui%cimages%cConcordia board.jpg", separatorChar, separatorChar, separatorChar);
+    private static final String CONCORDIA_BOARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/Concordia%20board.jpg";
+    private static final String BLACK_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cblackStorehouse.png", separatorChar, separatorChar, separatorChar);
+    private static final String BLACK_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blackStorehouse.png";
+    private static final String BLUE_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cblueStorehouse.png", separatorChar, separatorChar, separatorChar);
+    private static final String BLUE_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/blueStorehouse.png";
+    private static final String CONCORDIA_CARD_IMG = String.format("src%cgui%cimages%cconcordia.png", separatorChar, separatorChar, separatorChar);
+    private static final String CONCORDIA_CARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordia.png";
+    private static final String CONCORDIA_CARD_BACK_IMG = String.format("src%cgui%cimages%cconcordiaBack.png", separatorChar, separatorChar, separatorChar);
+    private static final String CONCORDIA_CARD_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/concordiaBack.png";
+    private static final String GREEN_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cgreenStorehouse.png", separatorChar, separatorChar, separatorChar);
+    private static final String GREEN_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/greenStorehouse.png";
+    private static final String PRAEFECTUS_MAGNUS_CARD_IMG = String.format("src%cgui%cimages%cpraefectusMagnus.png", separatorChar, separatorChar, separatorChar);
+    private static final String PRAEFECTUS_MAGNUS_CARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnus.png";
+    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMG = String.format("src%cgui%cimages%cpraefectusMagnusBack.png", separatorChar, separatorChar, separatorChar);
+    private static final String PRAEFECTUS_MAGNUS_CARD_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/praefectusMagnusBack.png";
+    private static final String RED_STORE_HOUSE_IMG = String.format("src%cgui%cimages%credStorehouse.png", separatorChar, separatorChar, separatorChar);
+    private static final String RED_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/redStorehouse.png";
+    private static final String REFERENCE_CARD_A_IMG = String.format("src%cgui%cimages%creferenceCardA.png", separatorChar, separatorChar, separatorChar);
+    private static final String REFERENCE_CARD_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardA.png";
+    private static final String REFERENCE_CARD_B_IMG = String.format("src%cgui%cimages%creferenceCardB.png", separatorChar, separatorChar, separatorChar);
+    private static final String REFERENCE_CARD_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/referenceCardB.png";
+    private static final String YELLOW_STORE_HOUSE_IMG = String.format("src%cgui%cimages%cyellowStorehouse.png", separatorChar, separatorChar, separatorChar);
+    private static final String YELLOW_STORE_HOUSE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/yellowStorehouse.png";
+    private static final String ARCHITECT_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String ARCHITECT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/architect.png";
+    private static final String PCARD_BLACK_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cblackBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PCARD_BLACK_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blackBack.png";
+    private static final String PCARD_BLUE_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cblueBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PCARD_BLUE_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/blueBack.png";
+    private static final String DIPLOMAT_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String DIPLOMAT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/diplomat.png";
+    private static final String PCARD_GREEN_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cgreenBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PCARD_GREEN_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/greenBack.png";
+    private static final String MERCATOR_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String MERCATOR_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/mercator.png";
+    private static final String PREFECT_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PREFECT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/prefect.png";
+    private static final String PCARD_RED_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%credBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PCARD_RED_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/redBack.png";
+    private static final String SENATOR_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%csenator.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String SENATOR_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/senator.png";
+    private static final String TRIBUNE_PCARD_IMG = String.format("src%cgui%cimages%cstartingcards%ctribune.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TRIBUNE_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/tribune.png";
+    private static final String PCARD_YELLOW_BACK_IMG = String.format("src%cgui%cimages%cstartingcards%cyellowBack.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PCARD_YELLOW_BACK_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/startingcards/yellowBack.png";
+    private static final String BRICK_CITY_IMG = String.format("src%cgui%cimages%cpieces%cbrickCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BRICK_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickCity.png";
+    private static final String BRICK_TILE_IMG = String.format("src%cgui%cimages%cpieces%cbrickTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BRICK_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/brickTile.png";
+    private static final String CLOTH_CITY_IMG = String.format("src%cgui%cimages%cpieces%cclothCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String CLOTH_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothCity.png";
+    private static final String CLOTH_TILE_IMG = String.format("src%cgui%cimages%cpieces%cclothTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String CLOTH_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/clothTile.png";
+    private static final String COIN_TILE_IMG_1 = String.format("src%cgui%cimages%cpieces%ccoinTile1.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String COIN_TILE_IMG_1_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile1.png";
+    private static final String COIN_TILE_IMG_2 = String.format("src%cgui%cimages%cpieces%ccoinTile2.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String COIN_TILE_IMG_2_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/coinTile2.png";
+    private static final String FIVE_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%cfiveCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String FIVE_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinA.png";
+    private static final String FIVE_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%cfiveCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String FIVE_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/fiveCoinB.png";
+    private static final String FOOD_CITY_IMG = String.format("src%cgui%cimages%cpieces%cfoodCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String FOOD_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodCity.png";
+    private static final String FOOD_TILE_IMG = String.format("src%cgui%cimages%cpieces%cfoodTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String FOOD_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/foodTile.png";
+    private static final String ONE_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%coneCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String ONE_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinA.png";
+    private static final String ONE_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%coneCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String ONE_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/oneCoinB.png";
+    private static final String TEN_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%ctenCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TEN_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinA.png";
+    private static final String TEN_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%ctenCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TEN_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/tenCoinB.png";
+    private static final String TOOL_CITY_IMG = String.format("src%cgui%cimages%cpieces%ctoolCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TOOL_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolCity.png";
+    private static final String TOOL_TILE_IMG = String.format("src%cgui%cimages%cpieces%ctoolTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TOOL_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/toolTile.png";
+    private static final String TWO_COIN_A_IMG = String.format("src%cgui%cimages%cpieces%ctwoCoinA.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TWO_COIN_A_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinA.png";
+    private static final String TWO_COIN_B_IMG = String.format("src%cgui%cimages%cpieces%ctwoCoinB.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String TWO_COIN_B_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/twoCoinB.png";
+    private static final String WINE_CITY_IMG = String.format("src%cgui%cimages%cpieces%cwineCity.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String WINE_CITY_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineCity.png";
+    private static final String WINE_TILE_IMG = String.format("src%cgui%cimages%cpieces%cwineTile.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String WINE_TILE_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/pieces/wineTile.png";
+    private static final String ARCHITECT_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%carchitect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String ARCHITECT_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/architect.png";
+    private static final String BACK_OF_PCARD_I_IMG = String.format("src%cgui%cimages%cboughtcards%cbackI.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BACK_OF_PCARD_I_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backI.png";
+    private static final String BACK_OF_PCARD_II_IMG = String.format("src%cgui%cimages%cboughtcards%cbackII.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BACK_OF_PCARD_II_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backII.png";
+    private static final String BACK_OF_PCARD_III_IMG = String.format("src%cgui%cimages%cboughtcards%cbackIII.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BACK_OF_PCARD_III_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIII.png";
+    private static final String BACK_OF_PCARD_IV_IMG = String.format("src%cgui%cimages%cboughtcards%cbackIV.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BACK_OF_PCARD_IV_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backIV.png";
+    private static final String BACK_OF_PCARD_V_IMG = String.format("src%cgui%cimages%cboughtcards%cbackV.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String BACK_OF_PCARD_V_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/backV.png";
+    private static final String COLONIST_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%ccolonist.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String COLONIST_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/colonist.png";
+    private static final String DIPLOMAT_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cdiplomat.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String DIPLOMAT_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/diplomat.png";
+    private static final String FARMER_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cfarmer.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String FARMER_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/farmer.png";
+    private static final String MASON_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cmason.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String MASON_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mason.png";
+    private static final String MERCATOR_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cmercator.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String MERCATOR_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/mercator.png";
+    private static final String PREFECT_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cprefect.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String PREFECT_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/prefect.png";
+    private static final String SMITH_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%csmith.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String SMITH_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/smith.png";
+    private static final String VINTER_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cvinter.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String VINTER_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/vinter.png";
+    private static final String WEAVER_BOUGHT_PCARD_IMG = String.format("src%cgui%cimages%cboughtcards%cweaver.png", separatorChar, separatorChar, separatorChar, separatorChar);
+    private static final String WEAVER_BOUGHT_PCARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/boughtcards/weaver.png";
 
     /*
      * File and directory creation methods. Note that all methods take the
@@ -855,7 +198,7 @@ public class IOUtils {
      * @param directory The directory to check for and create if it does not exist
      * @param directoryName The name of the directory to check for and create if it does not exist
      */
-    private static void createDirectoryIfNotFound(Path directory, String directoryName) {
+    private static void ensureDirExistence(Path directory, String directoryName) {
         if (Files.exists(directory)) {
             Logger.info("IOUtils", "The " + directoryName + " directory already exists");
         } else {
@@ -872,24 +215,24 @@ public class IOUtils {
      * Checks for the directory that will be used to save the unfinished games
      * to and creates it if it does not exist.
      */
-    public static void checkForUnfinishedGamesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(UNFINISHED_GAME_SAVE_FILE_DIRECTORY), "unfinished games");
+    public static void verifyUnfinishedGamesDirectory() {
+        ensureDirExistence(Paths.get(UNFINISHED_GAME_SAVE_DIR), "unfinished games");
     }
 
     /**
      * Checks for the directory that will be used to save the pre-built map files
      * and create the directory if it does not exist
      */
-    public static void checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(PRE_BUILT_MAP_FILES_DIRECTORY), "pre-built map files");
+    public static void verifyPreBuiltMapFilesDirectory() {
+        ensureDirExistence(Paths.get(PRE_BUILT_MAP_DIR), "pre-built map files");
     }
 
     /**
      * Checks for the login information directory that is used to store usernames
      * and passwords and creates the directory if it does not exist
      */
-    public static void checkForLoginInformationDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(LOGIN_INFORMATION_DIRECTORY), "login information");
+    public static void verifyLoginInformationDirectory() {
+        ensureDirExistence(Paths.get(LOGIN_INFORMATION_DIR), "login information");
     }
 
     /**
@@ -897,24 +240,24 @@ public class IOUtils {
      * information regarding the performance of players in games and creates it if
      * it does not exist
      */
-    public static void checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(PLAYER_PERFORMANCE_INFORMATION_DIRECTORY), "player performance information");
+    public static void verifyPlayerPerformanceInformationDirectory() {
+        ensureDirExistence(Paths.get(PLAYER_PERFORMANCE_INFORMATION_DIR), "player performance information");
     }
 
     /**
      * Checks for the sprites directory that is used to store the png files with the 
      * sprites and creates it if it does not exist. 
      */
-    public static void checkForSpritesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(SPRITES_DIRECTORY), "sprites");
+    public static void verifySpritesDirectory() {
+        ensureDirExistence(Paths.get(SPRITES_DIR), "sprites");
     }
 
     /**
      * Checks for the main graphics images directory that is used to store the image files
      * associated with most of the images that are used in the game.
      */
-    public static void checkForMainGraphicsImagesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(MAIN_GRAPHICS_IMAGES_DIRECTORY), "main graphics images");
+    public static void verifyMainGraphicsDir() {
+        ensureDirExistence(Paths.get(MAIN_GRAPHICS_IMAGES_DIR), "main graphics images");
     }
 
     /**
@@ -922,8 +265,8 @@ public class IOUtils {
      * of the starting personality cards that are used to render the personality cards that
      * the players start with.
      */
-    public static void checkForStartingCardsImagesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(STARTING_CARDS_IMAGES_DIRECTORY), "starting cards images");
+    public static void verifyStartingCardsDir() {
+        ensureDirExistence(Paths.get(STARTING_CARDS_IMAGES_DIR), "starting cards images");
     }
 
     /**
@@ -931,16 +274,16 @@ public class IOUtils {
      * to render the game pieces on the game board, in the inventory of the players, and in
      * the store house of the players.
      */
-    public static void checkForGamePiecesImagesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(GAME_PIECES_IMAGES_DIRECTORY), "game pieces images");
+    public static void verifyGamePiecesDir() {
+        ensureDirExistence(Paths.get(GAME_PIECES_IMAGES_DIR), "game pieces images");
     }
 
     /**
      * Checks for the bought personality cards images directory that is used to store the image
      * files of the personality cards that can be bought from the game board.
      */
-    public static void checkForBoughtPersonalityCardsImagesDirectoryAndCreateIfNotFound() {
-        createDirectoryIfNotFound(Paths.get(BOUGHT_PERSONALITY_CARDS_IMAGES_DIRECTORY), "bought personality cards images");
+    public static void verifyBoughtPersonalityCardsDir() {
+        ensureDirExistence(Paths.get(BOUGHT_PCARDS_IMAGES_DIR), "bought personality cards images");
     }
 
     /*
@@ -1071,13 +414,13 @@ public class IOUtils {
      * properly. If the file is not found locally, it will be downloaded from the internet
      * using the {@code downloadFile} method.
      */
-    public static void checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound() {
+    public static void verifyPreBuiltImperiumNetworkFile() {
         Path file = Path.of(IMPERIUM_PRE_BUILT_NETWORK_FILE);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Pre-built imperium network file already exists");
             return;
         }
-        downloadFile(IMPERIUM_PRE_BUILT_NETWORK_FILE_DOWNLOAD_LINK, IMPERIUM_PRE_BUILT_NETWORK_FILE, "pre-built imperium network file");
+        downloadFile(IMPERIUM_PRE_BUILT_NETWORK_FILE_EXTERNAL, IMPERIUM_PRE_BUILT_NETWORK_FILE, "pre-built imperium network file");
     }
 
     /**
@@ -1085,13 +428,13 @@ public class IOUtils {
      * properly. If the file is not found locally, it will be downloaded from the internet
      * using the {@code downloadFile} method.
      */
-    public static void checkForPreBuiltImperiumCitiesFileAndDownloadIfNotFound() {
+    public static void verifyPreBuiltImperiumCitiesFile() {
         Path file = Path.of(IMPERIUM_PRE_BUILT_CITIES_FILE);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Pre-built imperium cities file already exists");
             return;
         }
-        downloadFile(IMPERIUM_PRE_BUILT_CITIES_FILE_DOWNLOAD_LINK, IMPERIUM_PRE_BUILT_CITIES_FILE, "pre-built imperium cities file");
+        downloadFile(IMPERIUM_PRE_BUILT_CITIES_FILE_EXTERNAL, IMPERIUM_PRE_BUILT_CITIES_FILE, "pre-built imperium cities file");
     }
 
     /**
@@ -1099,13 +442,13 @@ public class IOUtils {
      * in terms of displaying the game board on all the various frames and panels that it is used
      * on. If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForConcordiaBoardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(CONCORDIA_BOARD_IMAGE_FILE);
+    public static void verifyConcordiaBoardImg() {
+        Path file = Path.of(CONCORDIA_BOARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Concordia board image file already exists");
             return;
         }
-        downloadFile(CONCORDIA_BOARD_IMAGE_FILE_DOWNLOAD_LINK, CONCORDIA_BOARD_IMAGE_FILE, "concordia board image file");
+        downloadFile(CONCORDIA_BOARD_IMG_EXTERNAL, CONCORDIA_BOARD_IMG, "concordia board image file");
     }
 
     /**
@@ -1114,13 +457,13 @@ public class IOUtils {
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForBlackStoreHouseImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BLACK_STORE_HOUSE_IMAGE_FILE);
+    public static void verifyBlackStoreHouseImg() {
+        Path file = Path.of(BLACK_STORE_HOUSE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Black store house image file already exists");
             return;
         }
-        downloadFile(BLACK_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, BLACK_STORE_HOUSE_IMAGE_FILE, "black store house image file");
+        downloadFile(BLACK_STORE_HOUSE_IMG_EXTERNAL, BLACK_STORE_HOUSE_IMG, "black store house image file");
     }
 
     /**
@@ -1129,13 +472,13 @@ public class IOUtils {
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForBlueStoreHouseImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BLUE_STORE_HOUSE_IMAGE_FILE);
+    public static void verifyBlueStoreHouseImg() {
+        Path file = Path.of(BLUE_STORE_HOUSE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Blue store house image file already exists");
             return;
         }
-        downloadFile(BLUE_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, BLUE_STORE_HOUSE_IMAGE_FILE, "blue store house image file");
+        downloadFile(BLUE_STORE_HOUSE_IMG_EXTERNAL, BLUE_STORE_HOUSE_IMG, "blue store house image file");
     }
 
     /**
@@ -1143,13 +486,13 @@ public class IOUtils {
      * in terms of displaying the concordia card when it is awarded to the player who ends the game.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForConcordiaCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(CONCORDIA_CARD_IMAGE_FILE);
+    public static void verifyConcordiaCardImg() {
+        Path file = Path.of(CONCORDIA_CARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Concordia card image file already exists");
             return;
         }
-        downloadFile(CONCORDIA_CARD_IMAGE_FILE_DOWNLOAD_LINK, CONCORDIA_CARD_IMAGE_FILE, "concordia card image file");
+        downloadFile(CONCORDIA_CARD_IMG_EXTERNAL, CONCORDIA_CARD_IMG, "concordia card image file");
     }
 
     /**
@@ -1157,13 +500,13 @@ public class IOUtils {
      * in terms of displaying the back of the concordia card when it is awarded to the player who ends the game.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForConcordiaCardImageFileBackAndDownloadIfNotFound() {
-        Path file = Path.of(CONCORDIA_CARD_BACK_IMAGE_FILE);
+    public static void verifyConcordiaCardImgBack() {
+        Path file = Path.of(CONCORDIA_CARD_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Back of concordia card image file already exists");
             return;
         }
-        downloadFile(CONCORDIA_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK, CONCORDIA_CARD_BACK_IMAGE_FILE, "back of concordia card image file");
+        downloadFile(CONCORDIA_CARD_BACK_IMG_EXTERNAL, CONCORDIA_CARD_BACK_IMG, "back of concordia card image file");
     }
 
     /**
@@ -1172,13 +515,13 @@ public class IOUtils {
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForGreenStoreHouseImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(GREEN_STORE_HOUSE_IMAGE_FILE);
+    public static void verifyGreenStoreHouseImg() {
+        Path file = Path.of(GREEN_STORE_HOUSE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Green store house image file already exists");
             return;
         }
-        downloadFile(GREEN_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, GREEN_STORE_HOUSE_IMAGE_FILE, "green store house image file");
+        downloadFile(GREEN_STORE_HOUSE_IMG_EXTERNAL, GREEN_STORE_HOUSE_IMG, "green store house image file");
     }
 
     /**
@@ -1186,13 +529,13 @@ public class IOUtils {
      * in terms of displaying which player has the praefectus magnus card during the game. If the file
      * is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPraefectusMagnusCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE);
+    public static void verifyPraefectusMagnusCardImg() {
+        Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Praefectus magnus card image file already exists");
             return;
         }
-        downloadFile(PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE_DOWNLOAD_LINK, PRAEFECTUS_MAGNUS_CARD_IMAGE_FILE, "praefectus magnus card image file");
+        downloadFile(PRAEFECTUS_MAGNUS_CARD_IMG_EXTERNAL, PRAEFECTUS_MAGNUS_CARD_IMG, "praefectus magnus card image file");
     }
 
     /**
@@ -1200,13 +543,13 @@ public class IOUtils {
      * in terms of displaying the back of the praefectus magnus card when it is awarded to the player who ends the game.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPraefectusMagnusCardImageFileBackAndDownloadIfNotFound() {
-        Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE);
+    public static void verifyPraefectusMagnusCardImgBack() {
+        Path file = Path.of(PRAEFECTUS_MAGNUS_CARD_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Back of praefectus magnus card image file already exists");
             return;
         }
-        downloadFile(PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE_DOWNLOAD_LINK, PRAEFECTUS_MAGNUS_CARD_BACK_IMAGE_FILE, "back of praefectus magnus card image file");
+        downloadFile(PRAEFECTUS_MAGNUS_CARD_BACK_IMG_EXTERNAL, PRAEFECTUS_MAGNUS_CARD_BACK_IMG, "back of praefectus magnus card image file");
     }
 
     /**
@@ -1215,13 +558,13 @@ public class IOUtils {
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForRedStoreHouseImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(RED_STORE_HOUSE_IMAGE_FILE);
+    public static void verifyRedStoreHouseImg() {
+        Path file = Path.of(RED_STORE_HOUSE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Red store house image file already exists");
             return;
         }
-        downloadFile(RED_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, RED_STORE_HOUSE_IMAGE_FILE, "red store house image file");
+        downloadFile(RED_STORE_HOUSE_IMG_EXTERNAL, RED_STORE_HOUSE_IMG, "red store house image file");
     }
 
     /**
@@ -1229,13 +572,13 @@ public class IOUtils {
      * in terms of displaying the information that the first reference card displays to the players.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForReferenceCardAImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(REFERENCE_CARD_A_IMAGE_FILE);
+    public static void verifyReferenceCardAImg() {
+        Path file = Path.of(REFERENCE_CARD_A_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "First reference card image file already exists");
             return;
         }
-        downloadFile(REFERENCE_CARD_A_IMAGE_FILE_DOWNLOAD_LINK, REFERENCE_CARD_A_IMAGE_FILE, "first reference card image file");
+        downloadFile(REFERENCE_CARD_A_IMG_EXTERNAL, REFERENCE_CARD_A_IMG, "first reference card image file");
     }
 
     /**
@@ -1243,13 +586,13 @@ public class IOUtils {
      * in terms of displaying the information that the second reference card displays to the players.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForReferenceCardBImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(REFERENCE_CARD_B_IMAGE_FILE);
+    public static void verifyReferenceCardBImg() {
+        Path file = Path.of(REFERENCE_CARD_B_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Second reference card image file already exists");
             return;
         }
-        downloadFile(REFERENCE_CARD_B_IMAGE_FILE_DOWNLOAD_LINK, REFERENCE_CARD_B_IMAGE_FILE, "second reference card image file");
+        downloadFile(REFERENCE_CARD_B_IMG_EXTERNAL, REFERENCE_CARD_B_IMG, "second reference card image file");
     }
 
     /**
@@ -1258,13 +601,13 @@ public class IOUtils {
      * has at any given moment in the game. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForYellowStoreHouseImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(YELLOW_STORE_HOUSE_IMAGE_FILE);
+    public static void verifyYellowStoreHouseImg() {
+        Path file = Path.of(YELLOW_STORE_HOUSE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Yellow store house image file already exists");
             return;
         }
-        downloadFile(YELLOW_STORE_HOUSE_IMAGE_FILE_DOWNLOAD_LINK, YELLOW_STORE_HOUSE_IMAGE_FILE, "yellow store house image file");
+        downloadFile(YELLOW_STORE_HOUSE_IMG_EXTERNAL, YELLOW_STORE_HOUSE_IMG, "yellow store house image file");
     }
 
     /**
@@ -1273,13 +616,13 @@ public class IOUtils {
      * game board when it can be bought. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFIle} method.
      */
-    public static void checkForArchitectPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyArchitectPersonalityCardImg() {
+        Path file = Path.of(ARCHITECT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Architect personality card image file already exists");
             return;
         }
-        downloadFile(ARCHITECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, ARCHITECT_PERSONALITY_CARD_IMAGE_FILE, "architect personality card image file");
+        downloadFile(ARCHITECT_PCARD_IMG_EXTERNAL, ARCHITECT_PCARD_IMG, "architect personality card image file");
     }
 
     /**
@@ -1287,13 +630,13 @@ public class IOUtils {
      * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForBlackBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE);
+    public static void verifyBlackBackOfPersonalityCardsImg() {
+        Path file = Path.of(PCARD_BLACK_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Black back of personality cards image file already exists");
             return;
         }
-        downloadFile(PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_BLACK_BACK_IMAGE_FILE, "black back of personality cards image file");
+        downloadFile(PCARD_BLACK_BACK_IMG_EXTERNAL, PCARD_BLACK_BACK_IMG, "black back of personality cards image file");
     }
 
     /**
@@ -1301,13 +644,13 @@ public class IOUtils {
      * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForBlueBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE);
+    public static void verifyBlueBackOfPersonalityCardsImg() {
+        Path file = Path.of(PCARD_BLUE_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Blue back of personality cards image file already exists");
             return;
         }
-        downloadFile(PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_BLUE_BACK_IMAGE_FILE, "blue back of personality cards image file");
+        downloadFile(PCARD_BLUE_BACK_IMG_EXTERNAL, PCARD_BLUE_BACK_IMG, "blue back of personality cards image file");
     }
 
     /**
@@ -1316,13 +659,13 @@ public class IOUtils {
      * game board when it can be bought. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForDiplomatPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyDiplomatPersonalityCardImg() {
+        Path file = Path.of(DIPLOMAT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Diplomat personality card image file already exists");
             return;
         }
-        downloadFile(DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, DIPLOMAT_PERSONALITY_CARD_IMAGE_FILE, "diplomat personality card image file");
+        downloadFile(DIPLOMAT_PCARD_IMG_EXTERNAL, DIPLOMAT_PCARD_IMG, "diplomat personality card image file");
     }
 
     /**
@@ -1330,13 +673,13 @@ public class IOUtils {
      * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForGreenBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE);
+    public static void verifyGreenBackOfPersonalityCardsImg() {
+        Path file = Path.of(PCARD_GREEN_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Green back of personality cards image file already exists");
             return;
         }
-        downloadFile(PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_GREEN_BACK_IMAGE_FILE, "green back of personality cards image file");
+        downloadFile(PCARD_GREEN_BACK_IMG_EXTERNAL, PCARD_GREEN_BACK_IMG, "green back of personality cards image file");
     }
 
     /**
@@ -1345,13 +688,13 @@ public class IOUtils {
      * game board when it can be bought. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForMercatorPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(MERCATOR_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyMercatorPersonalityCardImg() {
+        Path file = Path.of(MERCATOR_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Mercator personality card image file already exists");
             return;
         }
-        downloadFile(MERCATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, MERCATOR_PERSONALITY_CARD_IMAGE_FILE, "mercator personality card image file");
+        downloadFile(MERCATOR_PCARD_IMG_EXTERNAL, MERCATOR_PCARD_IMG, "mercator personality card image file");
     }
 
     /**
@@ -1360,13 +703,13 @@ public class IOUtils {
      * game board when it can be bought. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPrefectPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PREFECT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyPrefectPersonalityCardImg() {
+        Path file = Path.of(PREFECT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Prefect personality card image file already exists");
             return;
         }
-        downloadFile(PREFECT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, PREFECT_PERSONALITY_CARD_IMAGE_FILE, "prefect personality card image file");
+        downloadFile(PREFECT_PCARD_IMG_EXTERNAL, PREFECT_PCARD_IMG, "prefect personality card image file");
     }
 
     /**
@@ -1374,13 +717,13 @@ public class IOUtils {
      * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForRedBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PERSONALITY_CARD_RED_BACK_IMAGE_FILE);
+    public static void verifyRedBackOfPersonalityCardsImg() {
+        Path file = Path.of(PCARD_RED_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Red back of personality cards image file already exists");
             return;
         }
-        downloadFile(PERSONALITY_CARD_RED_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_RED_BACK_IMAGE_FILE, "red back of personality cards image file");
+        downloadFile(PCARD_RED_BACK_IMG_EXTERNAL, PCARD_RED_BACK_IMG, "red back of personality cards image file");
     }
 
     /**
@@ -1389,13 +732,13 @@ public class IOUtils {
      * game board when it can be bought. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForSenatorPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(SENATOR_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifySenatorPersonalityCardImg() {
+        Path file = Path.of(SENATOR_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Senator personality card image file already exists");
             return;
         }
-        downloadFile(SENATOR_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, SENATOR_PERSONALITY_CARD_IMAGE_FILE, "senator personality card image file");
+        downloadFile(SENATOR_PCARD_IMG_EXTERNAL, SENATOR_PCARD_IMG, "senator personality card image file");
     }
 
     /**
@@ -1404,13 +747,13 @@ public class IOUtils {
      * game board when it can be bought. If the file is not found locally, it will be downloaded
      * from the internet using the {@code downloadFile} method.
      */
-    public static void checkForTribunePersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TRIBUNE_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyTribunePersonalityCardImg() {
+        Path file = Path.of(TRIBUNE_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Tribune personality card image file already exists");
             return;
         }
-        downloadFile(TRIBUNE_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, TRIBUNE_PERSONALITY_CARD_IMAGE_FILE, "tribune personality card image file");
+        downloadFile(TRIBUNE_PCARD_IMG_EXTERNAL, TRIBUNE_PCARD_IMG, "tribune personality card image file");
     }
 
     /**
@@ -1418,13 +761,13 @@ public class IOUtils {
      * the game in terms of rendering the correct back of personality cards. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForYellowBackOfPersonalityCardsImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE);
+    public static void verifyYellowBackOfPersonalityCardsImg() {
+        Path file = Path.of(PCARD_YELLOW_BACK_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Yellow back of personality cards image file already exists");
             return;
         }
-        downloadFile(PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE_DOWNLOAD_LINK, PERSONALITY_CARD_YELLOW_BACK_IMAGE_FILE, "yellow back of personality cards image file");
+        downloadFile(PCARD_YELLOW_BACK_IMG_EXTERNAL, PCARD_YELLOW_BACK_IMG, "yellow back of personality cards image file");
     }
 
     /**
@@ -1432,13 +775,13 @@ public class IOUtils {
      * the game in terms of rendering the correct city. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForBrickCityImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BRICK_CITY_IMAGE_FILE);
+    public static void verifyBrickCityImg() {
+        Path file = Path.of(BRICK_CITY_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Brick city image file already exists");
             return;
         }
-        downloadFile(BRICK_CITY_IMAGE_FILE_DOWNLOAD_LINK, BRICK_CITY_IMAGE_FILE, "brick city image file");
+        downloadFile(BRICK_CITY_IMG_EXTERNAL, BRICK_CITY_IMG, "brick city image file");
     }
 
     /**
@@ -1446,13 +789,13 @@ public class IOUtils {
      * the game in terms of rendering the resource correct tile. If the file is not found locally,
      * it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForBrickTileImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BRICK_TILE_IMAGE_FILE);
+    public static void verifyBrickTileImg() {
+        Path file = Path.of(BRICK_TILE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Brick tile image file already exists");
             return;
         }
-        downloadFile(BRICK_TILE_IMAGE_FILE_DOWNLOAD_LINK, BRICK_TILE_IMAGE_FILE, "brick tile image file");
+        downloadFile(BRICK_TILE_IMG_EXTERNAL, BRICK_TILE_IMG, "brick tile image file");
     }
 
     /**
@@ -1460,13 +803,13 @@ public class IOUtils {
      * the game in terms of rendering the correct city. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForClothCityImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(CLOTH_CITY_IMAGE_FILE);
+    public static void verifyClothCityImg() {
+        Path file = Path.of(CLOTH_CITY_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Cloth city image file already exists");
             return;
         }
-        downloadFile(CLOTH_CITY_IMAGE_FILE_DOWNLOAD_LINK, CLOTH_CITY_IMAGE_FILE, "cloth city image file");
+        downloadFile(CLOTH_CITY_IMG_EXTERNAL, CLOTH_CITY_IMG, "cloth city image file");
     }
 
     /**
@@ -1474,13 +817,13 @@ public class IOUtils {
      * the game in terms of rendering the correct tile. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForClothTileImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(CLOTH_TILE_IMAGE_FILE);
+    public static void verifyClothTileImg() {
+        Path file = Path.of(CLOTH_TILE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Cloth tile image file already exists");
             return;
         }
-        downloadFile(CLOTH_TILE_IMAGE_FILE_DOWNLOAD_LINK, CLOTH_TILE_IMAGE_FILE, "cloth tile image file");
+        downloadFile(CLOTH_TILE_IMG_EXTERNAL, CLOTH_TILE_IMG, "cloth tile image file");
     }
 
     /**
@@ -1488,13 +831,13 @@ public class IOUtils {
      * the game in terms of rendering the correct coin. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForCoinImageFile1AndDownloadIfNotFound() {
-        Path file = Path.of(COIN_TILE_IMAGE_FILE_1);
+    public static void verifyCoinImg1() {
+        Path file = Path.of(COIN_TILE_IMG_1);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Coin image file already exists");
             return;
         }
-        downloadFile(COIN_TILE_IMAGE_FILE_1_DOWNLOAD_LINK, COIN_TILE_IMAGE_FILE_1, "coin image file");
+        downloadFile(COIN_TILE_IMG_1_EXTERNAL, COIN_TILE_IMG_1, "coin image file");
     }
 
     /**
@@ -1502,13 +845,13 @@ public class IOUtils {
      * the game in terms of rendering the correct coin. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForCoinImageFile2AndDownloadIfNotFound() {
-        Path file = Path.of(COIN_TILE_IMAGE_FILE_2);
+    public static void verifyCoinImg2() {
+        Path file = Path.of(COIN_TILE_IMG_2);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Coin image file 2 already exists");
             return;
         }
-        downloadFile(COIN_TILE_IMAGE_FILE_2_DOWNLOAD_LINK, COIN_TILE_IMAGE_FILE_2, "coin image file 2");
+        downloadFile(COIN_TILE_IMG_2_EXTERNAL, COIN_TILE_IMG_2, "coin image file 2");
     }
 
     /**
@@ -1516,13 +859,13 @@ public class IOUtils {
      * the game in terms of rendering the correct value coin. If the file is not found locally, it
      * will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForFiveCoinAImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(FIVE_COIN_A_IMAGE_FILE);
+    public static void verifyFiveCoinAImg() {
+        Path file = Path.of(FIVE_COIN_A_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Five coin image file already exists");
             return;
         }
-        downloadFile(FIVE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, FIVE_COIN_A_IMAGE_FILE, "five coin image file");
+        downloadFile(FIVE_COIN_A_IMG_EXTERNAL, FIVE_COIN_A_IMG, "five coin image file");
     }
 
     /**
@@ -1530,13 +873,13 @@ public class IOUtils {
      * graphics of the game in terms of rendering the correct value coin. If the file is not found
      * locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForFiveCoinBImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(FIVE_COIN_B_IMAGE_FILE);
+    public static void verifyFiveCoinBImg() {
+        Path file = Path.of(FIVE_COIN_B_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Five coin image file 2 already exists");
             return;
         }
-        downloadFile(FIVE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, FIVE_COIN_B_IMAGE_FILE, "five coin image file 2");
+        downloadFile(FIVE_COIN_B_IMG_EXTERNAL, FIVE_COIN_B_IMG, "five coin image file 2");
     }
 
     /**
@@ -1544,13 +887,13 @@ public class IOUtils {
      * the game in terms of rendering the correct city. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForFoodCityImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(FOOD_CITY_IMAGE_FILE);
+    public static void verifyFoodCityImg() {
+        Path file = Path.of(FOOD_CITY_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Food city image file already exists");
             return;
         }
-        downloadFile(FOOD_CITY_IMAGE_FILE_DOWNLOAD_LINK, FOOD_CITY_IMAGE_FILE, "food city image file");
+        downloadFile(FOOD_CITY_IMG_EXTERNAL, FOOD_CITY_IMG, "food city image file");
     }
 
     /**
@@ -1558,13 +901,13 @@ public class IOUtils {
      * the game in terms of rendering the correct tile. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForFoodTileImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(FOOD_TILE_IMAGE_FILE);
+    public static void verifyFoodTileImg() {
+        Path file = Path.of(FOOD_TILE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Food tile image file already exists");
             return;
         }
-        downloadFile(FOOD_TILE_IMAGE_FILE_DOWNLOAD_LINK, FOOD_TILE_IMAGE_FILE, "food tile image file");
+        downloadFile(FOOD_TILE_IMG_EXTERNAL, FOOD_TILE_IMG, "food tile image file");
     }
 
     /**
@@ -1572,13 +915,13 @@ public class IOUtils {
      * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForOneCoinAImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(ONE_COIN_A_IMAGE_FILE);
+    public static void verifyOneCoinAImg() {
+        Path file = Path.of(ONE_COIN_A_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "One coin image file already exists");
             return;
         }
-        downloadFile(ONE_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, ONE_COIN_A_IMAGE_FILE, "one coin image file");
+        downloadFile(ONE_COIN_A_IMG_EXTERNAL, ONE_COIN_A_IMG, "one coin image file");
     }
 
     /**
@@ -1586,13 +929,13 @@ public class IOUtils {
      * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForOneCoinBImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(ONE_COIN_B_IMAGE_FILE);
+    public static void verifyOneCoinBImg() {
+        Path file = Path.of(ONE_COIN_B_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "One coin image file 2 already exists");
             return;
         }
-        downloadFile(ONE_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, ONE_COIN_B_IMAGE_FILE, "one coin image file 2");
+        downloadFile(ONE_COIN_B_IMG_EXTERNAL, ONE_COIN_B_IMG, "one coin image file 2");
     }
 
     /**
@@ -1600,13 +943,13 @@ public class IOUtils {
      * of the game in terms of rendering the correct value coin. If the file is not found locally, it will
      * be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForTenCoinAImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TEN_COIN_A_IMAGE_FILE);
+    public static void verifyTenCoinAImg() {
+        Path file = Path.of(TEN_COIN_A_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Ten coin image file already exists");
             return;
         }
-        downloadFile(TEN_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, TEN_COIN_A_IMAGE_FILE, "ten coin image file");
+        downloadFile(TEN_COIN_A_IMG_EXTERNAL, TEN_COIN_A_IMG, "ten coin image file");
     }
 
     /**
@@ -1614,13 +957,13 @@ public class IOUtils {
      * of the game in terms of rendering the correct value coin. If the file is not found locally, it will
      * be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForTenCoinBImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TEN_COIN_B_IMAGE_FILE);
+    public static void verifyTenCoinBImg() {
+        Path file = Path.of(TEN_COIN_B_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Ten coin image file 2 already exists");
             return;
         }
-        downloadFile(TEN_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, TEN_COIN_B_IMAGE_FILE, "ten coin image file 2");
+        downloadFile(TEN_COIN_B_IMG_EXTERNAL, TEN_COIN_B_IMG, "ten coin image file 2");
     }
 
     /**
@@ -1628,13 +971,13 @@ public class IOUtils {
      * the game in terms of rendering the correct city. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForToolCityImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TOOL_CITY_IMAGE_FILE);
+    public static void verifyToolCityImg() {
+        Path file = Path.of(TOOL_CITY_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Tool city image file already exists");
             return;
         }
-        downloadFile(TOOL_CITY_IMAGE_FILE_DOWNLOAD_LINK, TOOL_CITY_IMAGE_FILE, "tool city image file");
+        downloadFile(TOOL_CITY_IMG_EXTERNAL, TOOL_CITY_IMG, "tool city image file");
     }
 
     /**
@@ -1642,13 +985,13 @@ public class IOUtils {
      * the game in terms of rendering the correct tile. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForToolTileImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TOOL_TILE_IMAGE_FILE);
+    public static void verifyToolTileImg() {
+        Path file = Path.of(TOOL_TILE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Tool tile image file already exists");
             return;
         }
-        downloadFile(TOOL_TILE_IMAGE_FILE_DOWNLOAD_LINK, TOOL_TILE_IMAGE_FILE, "tool tile image file");
+        downloadFile(TOOL_TILE_IMG_EXTERNAL, TOOL_TILE_IMG, "tool tile image file");
     }
 
     /**
@@ -1656,13 +999,13 @@ public class IOUtils {
      * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForTwoCoinAImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TWO_COIN_A_IMAGE_FILE);
+    public static void verifyTwoCoinAImg() {
+        Path file = Path.of(TWO_COIN_A_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Two coin image file already exists");
             return;
         }
-        downloadFile(TWO_COIN_A_IMAGE_FILE_DOWNLOAD_LINK, TWO_COIN_A_IMAGE_FILE, "two coin image file");
+        downloadFile(TWO_COIN_A_IMG_EXTERNAL, TWO_COIN_A_IMG, "two coin image file");
     }
 
     /**
@@ -1670,13 +1013,13 @@ public class IOUtils {
      * the game in terms of rendering the correct value coin. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForTwoCoinBImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(TWO_COIN_B_IMAGE_FILE);
+    public static void verifyTwoCoinBImg() {
+        Path file = Path.of(TWO_COIN_B_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Two coin image file 2 already exists");
             return;
         }
-        downloadFile(TWO_COIN_B_IMAGE_FILE_DOWNLOAD_LINK, TWO_COIN_B_IMAGE_FILE, "two coin image file 2");
+        downloadFile(TWO_COIN_B_IMG_EXTERNAL, TWO_COIN_B_IMG, "two coin image file 2");
     }
 
     /**
@@ -1684,13 +1027,13 @@ public class IOUtils {
      * of rendering the correct city. If the file is not found locally, it will be downloaded from the internet
      * using the {@code downloadFile} method.
      */
-    public static void checkForWineCityImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(WINE_CITY_IMAGE_FILE);
+    public static void verifyWineCityImg() {
+        Path file = Path.of(WINE_CITY_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Wine city image file already exists");
             return;
         }
-        downloadFile(WINE_CITY_IMAGE_FILE_DOWNLOAD_LINK, WINE_CITY_IMAGE_FILE, "wine city image file");
+        downloadFile(WINE_CITY_IMG_EXTERNAL, WINE_CITY_IMG, "wine city image file");
     }
 
     /**
@@ -1698,13 +1041,13 @@ public class IOUtils {
      * of rendering the correct tile. If the file is not found locally, it will be downloaded from the internet
      * using the {@code downloadFile} method.
      */
-    public static void checkForWineTileImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(WINE_TILE_IMAGE_FILE);
+    public static void verifyWineTileImg() {
+        Path file = Path.of(WINE_TILE_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Wine tile image file already exists");
             return;
         }
-        downloadFile(WINE_TILE_IMAGE_FILE_DOWNLOAD_LINK, WINE_TILE_IMAGE_FILE, "wine tile image file");
+        downloadFile(WINE_TILE_IMG_EXTERNAL, WINE_TILE_IMG, "wine tile image file");
     }
 
     /**
@@ -1712,13 +1055,13 @@ public class IOUtils {
      * which is necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForArchitectBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyArchitectBoughtPersonalityCardImg() {
+        Path file = Path.of(ARCHITECT_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Architect personality card image file already exists");
             return;
         }
-        downloadFile(ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, ARCHITECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "architect personality card image file");
+        downloadFile(ARCHITECT_BOUGHT_PCARD_IMG_EXTERNAL, ARCHITECT_BOUGHT_PCARD_IMG, "architect personality card image file");
     }
 
     /**
@@ -1726,13 +1069,13 @@ public class IOUtils {
      * which is necessary for the graphics of the game in terms of rendering the correct card back.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPersonalityCardBackIImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE);
+    public static void verifyPersonalityCardBackIImg() {
+        Path file = Path.of(BACK_OF_PCARD_I_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "First set personality card back image file already exists");
             return;
         }
-        downloadFile(BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_I_IMAGE_FILE, "first set personality card back image file");
+        downloadFile(BACK_OF_PCARD_I_IMG_EXTERNAL, BACK_OF_PCARD_I_IMG, "first set personality card back image file");
     }
 
     /**
@@ -1740,13 +1083,13 @@ public class IOUtils {
      * which is necessary for the graphics of the game in terms of rendering the correct card back.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPersonalityCardBackIIImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE);
+    public static void verifyPersonalityCardBackIIImg() {
+        Path file = Path.of(BACK_OF_PCARD_II_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Second set personality card back image file already exists");
             return;
         }
-        downloadFile(BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_II_IMAGE_FILE, "second set personality card back image file");
+        downloadFile(BACK_OF_PCARD_II_IMG_EXTERNAL, BACK_OF_PCARD_II_IMG, "second set personality card back image file");
     }
 
     /**
@@ -1754,13 +1097,13 @@ public class IOUtils {
      * which is necessary for the graphics of the game in terms of rendering the correct card back.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPersonalityCardBackIIIImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE);
+    public static void verifyPersonalityCardBackIIIImg() {
+        Path file = Path.of(BACK_OF_PCARD_III_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Third set personality card back image file already exists");
             return;
         }
-        downloadFile(BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_III_IMAGE_FILE, "third set personality card back image file");
+        downloadFile(BACK_OF_PCARD_III_IMG_EXTERNAL, BACK_OF_PCARD_III_IMG, "third set personality card back image file");
     }
 
     /**
@@ -1768,13 +1111,13 @@ public class IOUtils {
      * which is necessary for the graphics of the game in terms of rendering the correct card back.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPersonalityCardBackIVImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE);
+    public static void verifyPersonalityCardBackIVImg() {
+        Path file = Path.of(BACK_OF_PCARD_IV_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Fourth set personality card back image file already exists");
             return;
         }
-        downloadFile(BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_IV_IMAGE_FILE, "fourth set personality card back image file");
+        downloadFile(BACK_OF_PCARD_IV_IMG_EXTERNAL, BACK_OF_PCARD_IV_IMG, "fourth set personality card back image file");
     }
 
     /**
@@ -1782,13 +1125,13 @@ public class IOUtils {
      * which is necessary for the graphics of the game in terms of rendering the correct card back.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPersonalityCardBackVImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE);
+    public static void verifyPersonalityCardBackVImg() {
+        Path file = Path.of(BACK_OF_PCARD_V_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Fifth set personality card back image file already exists");
             return;
         }
-        downloadFile(BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE_DOWNLOAD_LINK, BACK_OF_PERSONALITY_CARD_V_IMAGE_FILE, "fifth set personality card back image file");
+        downloadFile(BACK_OF_PCARD_V_IMG_EXTERNAL, BACK_OF_PCARD_V_IMG, "fifth set personality card back image file");
     }
 
     /**
@@ -1796,13 +1139,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForColonistBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyColonistBoughtPersonalityCardImg() {
+        Path file = Path.of(COLONIST_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Colonist personality card image file already exists");
             return;
         }
-        downloadFile(COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, COLONIST_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "colonist personality card image file");
+        downloadFile(COLONIST_BOUGHT_PCARD_IMG_EXTERNAL, COLONIST_BOUGHT_PCARD_IMG, "colonist personality card image file");
     }
 
     /**
@@ -1810,13 +1153,13 @@ public class IOUtils {
      * in terms of rendering the correct card to be bought. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForDiplomatBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyDiplomatBoughtPersonalityCardImg() {
+        Path file = Path.of(DIPLOMAT_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Diplomat personality card image file already exists");
             return;
         }
-        downloadFile(DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, DIPLOMAT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "diplomat personality card image file");
+        downloadFile(DIPLOMAT_BOUGHT_PCARD_IMG_EXTERNAL, DIPLOMAT_BOUGHT_PCARD_IMG, "diplomat personality card image file");
     }
 
     /**
@@ -1824,13 +1167,13 @@ public class IOUtils {
      * in terms of rendering the correct card to be bought. If the file is not found locally, it will be
      * downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForFarmerBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyFarmerBoughtPersonalityCardImg() {
+        Path file = Path.of(FARMER_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Farmer personality card image file already exists");
             return;
         }
-        downloadFile(FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, FARMER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "farmer personality card image file");
+        downloadFile(FARMER_BOUGHT_PCARD_IMG_EXTERNAL, FARMER_BOUGHT_PCARD_IMG, "farmer personality card image file");
     }
 
     /**
@@ -1838,13 +1181,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForMasonBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyMasonBoughtPersonalityCardImg() {
+        Path file = Path.of(MASON_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Mason personality card image file already exists");
             return;
         }
-        downloadFile(MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, MASON_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "mason personality card image file");
+        downloadFile(MASON_BOUGHT_PCARD_IMG_EXTERNAL, MASON_BOUGHT_PCARD_IMG, "mason personality card image file");
     }
 
     /**
@@ -1852,13 +1195,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForMercatorBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyMercatorBoughtPersonalityCardImg() {
+        Path file = Path.of(MERCATOR_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Mercator personality card image file already exists");
             return;
         }
-        downloadFile(MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, MERCATOR_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "mercator personality card image file");
+        downloadFile(MERCATOR_BOUGHT_PCARD_IMG_EXTERNAL, MERCATOR_BOUGHT_PCARD_IMG, "mercator personality card image file");
     }
 
     /**
@@ -1866,13 +1209,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForPrefectBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyPrefectBoughtPersonalityCardImg() {
+        Path file = Path.of(PREFECT_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Prefect personality card image file already exists");
             return;
         }
-        downloadFile(PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, PREFECT_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "prefect personality card image file");
+        downloadFile(PREFECT_BOUGHT_PCARD_IMG_EXTERNAL, PREFECT_BOUGHT_PCARD_IMG, "prefect personality card image file");
     }
 
     /**
@@ -1880,13 +1223,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForSmithBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifySmithBoughtPersonalityCardImg() {
+        Path file = Path.of(SMITH_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Smith personality card image file already exists");
             return;
         }
-        downloadFile(SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, SMITH_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "smith personality card image file");
+        downloadFile(SMITH_BOUGHT_PCARD_IMG_EXTERNAL, SMITH_BOUGHT_PCARD_IMG, "smith personality card image file");
     }
 
     /**
@@ -1894,13 +1237,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForVinterBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyVinterBoughtPersonalityCardImg() {
+        Path file = Path.of(VINTER_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Vinter personality card image file already exists");
             return;
         }
-        downloadFile(VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, VINTER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "vinter personality card image file");
+        downloadFile(VINTER_BOUGHT_PCARD_IMG_EXTERNAL, VINTER_BOUGHT_PCARD_IMG, "vinter personality card image file");
     }
 
     /**
@@ -1908,13 +1251,13 @@ public class IOUtils {
      * necessary for the graphics of the game in terms of rendering the correct card to be bought.
      * If the file is not found locally, it will be downloaded from the internet using the {@code downloadFile} method.
      */
-    public static void checkForWeaverBoughtPersonalityCardImageFileAndDownloadIfNotFound() {
-        Path file = Path.of(WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE);
+    public static void verifyWeaverBoughtPersonalityCardImg() {
+        Path file = Path.of(WEAVER_BOUGHT_PCARD_IMG);
         if (Files.exists(file)) {
             Logger.info("IOUtils", "Weaver personality card image file already exists");
             return;
         }
-        downloadFile(WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE_DOWNLOAD_LINK, WEAVER_BOUGHT_PERSONALITY_CARD_IMAGE_FILE, "weaver personality card image file");
+        downloadFile(WEAVER_BOUGHT_PCARD_IMG_EXTERNAL, WEAVER_BOUGHT_PCARD_IMG, "weaver personality card image file");
     }
 
     /**
@@ -1926,76 +1269,76 @@ public class IOUtils {
      * be constantly updated to ensure that it creates or downloads all necessary files
      * and directories for the game. 
      */
-    public static void checkForGameFiles() {
-        checkForUnfinishedGamesDirectoryAndCreateIfNotFound();
-        checkForPreBuiltMapFilesDirectoryAndCreateIfNotFound();
-        checkForLoginInformationDirectoryAndCreateIfNotFound();
-        checkForPlayerPerformanceInformationDirectoryAndCreateIfNotFound();
-        checkForSpritesDirectoryAndCreateIfNotFound();
-        checkForMainGraphicsImagesDirectoryAndCreateIfNotFound();
-        checkForStartingCardsImagesDirectoryAndCreateIfNotFound();
-        checkForGamePiecesImagesDirectoryAndCreateIfNotFound();
-        checkForBoughtPersonalityCardsImagesDirectoryAndCreateIfNotFound();
-        checkForPreBuiltImperiumNetworkFileAndDownloadIfNotFound();
-        checkForPreBuiltImperiumCitiesFileAndDownloadIfNotFound();
-        checkForConcordiaBoardImageFileAndDownloadIfNotFound();
-        checkForBlackStoreHouseImageFileAndDownloadIfNotFound();
-        checkForBlueStoreHouseImageFileAndDownloadIfNotFound();
-        checkForConcordiaCardImageFileAndDownloadIfNotFound();
-        checkForConcordiaCardImageFileBackAndDownloadIfNotFound();
-        checkForGreenStoreHouseImageFileAndDownloadIfNotFound();
-        checkForPraefectusMagnusCardImageFileAndDownloadIfNotFound();
-        checkForPraefectusMagnusCardImageFileBackAndDownloadIfNotFound();
-        checkForRedStoreHouseImageFileAndDownloadIfNotFound();
-        checkForReferenceCardAImageFileAndDownloadIfNotFound();
-        checkForReferenceCardBImageFileAndDownloadIfNotFound();
-        checkForYellowStoreHouseImageFileAndDownloadIfNotFound();
-        checkForArchitectPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForBlackBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
-        checkForBlueBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
-        checkForDiplomatPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForGreenBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
-        checkForMercatorPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForPrefectPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForRedBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
-        checkForSenatorPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForTribunePersonalityCardImageFileAndDownloadIfNotFound();
-        checkForYellowBackOfPersonalityCardsImageFileAndDownloadIfNotFound();
-        checkForBrickCityImageFileAndDownloadIfNotFound();
-        checkForBrickTileImageFileAndDownloadIfNotFound();
-        checkForClothCityImageFileAndDownloadIfNotFound();
-        checkForClothTileImageFileAndDownloadIfNotFound();
-        checkForCoinImageFile1AndDownloadIfNotFound();
-        checkForCoinImageFile2AndDownloadIfNotFound();
-        checkForFiveCoinAImageFileAndDownloadIfNotFound();
-        checkForFiveCoinBImageFileAndDownloadIfNotFound();
-        checkForFoodCityImageFileAndDownloadIfNotFound();
-        checkForFoodTileImageFileAndDownloadIfNotFound();
-        checkForOneCoinAImageFileAndDownloadIfNotFound();
-        checkForOneCoinBImageFileAndDownloadIfNotFound();
-        checkForTenCoinAImageFileAndDownloadIfNotFound();
-        checkForTenCoinBImageFileAndDownloadIfNotFound();
-        checkForToolCityImageFileAndDownloadIfNotFound();
-        checkForToolTileImageFileAndDownloadIfNotFound();
-        checkForTwoCoinAImageFileAndDownloadIfNotFound();
-        checkForTwoCoinBImageFileAndDownloadIfNotFound();
-        checkForWineCityImageFileAndDownloadIfNotFound();
-        checkForWineTileImageFileAndDownloadIfNotFound();
-        checkForArchitectBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForPersonalityCardBackIImageFileAndDownloadIfNotFound();
-        checkForPersonalityCardBackIIImageFileAndDownloadIfNotFound();
-        checkForPersonalityCardBackIIIImageFileAndDownloadIfNotFound();
-        checkForPersonalityCardBackIVImageFileAndDownloadIfNotFound();
-        checkForPersonalityCardBackVImageFileAndDownloadIfNotFound();
-        checkForColonistBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForDiplomatBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForFarmerBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForMasonBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForMercatorBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForPrefectBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForSmithBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForVinterBoughtPersonalityCardImageFileAndDownloadIfNotFound();
-        checkForWeaverBoughtPersonalityCardImageFileAndDownloadIfNotFound();
+    public static void verifyGameFiles() {
+        verifyUnfinishedGamesDirectory();
+        verifyPreBuiltMapFilesDirectory();
+        verifyLoginInformationDirectory();
+        verifyPlayerPerformanceInformationDirectory();
+        verifySpritesDirectory();
+        verifyMainGraphicsDir();
+        verifyStartingCardsDir();
+        verifyGamePiecesDir();
+        verifyBoughtPersonalityCardsDir();
+        verifyPreBuiltImperiumNetworkFile();
+        verifyPreBuiltImperiumCitiesFile();
+        verifyConcordiaBoardImg();
+        verifyBlackStoreHouseImg();
+        verifyBlueStoreHouseImg();
+        verifyConcordiaCardImg();
+        verifyConcordiaCardImgBack();
+        verifyGreenStoreHouseImg();
+        verifyPraefectusMagnusCardImg();
+        verifyPraefectusMagnusCardImgBack();
+        verifyRedStoreHouseImg();
+        verifyReferenceCardAImg();
+        verifyReferenceCardBImg();
+        verifyYellowStoreHouseImg();
+        verifyArchitectPersonalityCardImg();
+        verifyBlackBackOfPersonalityCardsImg();
+        verifyBlueBackOfPersonalityCardsImg();
+        verifyDiplomatPersonalityCardImg();
+        verifyGreenBackOfPersonalityCardsImg();
+        verifyMercatorPersonalityCardImg();
+        verifyPrefectPersonalityCardImg();
+        verifyRedBackOfPersonalityCardsImg();
+        verifySenatorPersonalityCardImg();
+        verifyTribunePersonalityCardImg();
+        verifyYellowBackOfPersonalityCardsImg();
+        verifyBrickCityImg();
+        verifyBrickTileImg();
+        verifyClothCityImg();
+        verifyClothTileImg();
+        verifyCoinImg1();
+        verifyCoinImg2();
+        verifyFiveCoinAImg();
+        verifyFiveCoinBImg();
+        verifyFoodCityImg();
+        verifyFoodTileImg();
+        verifyOneCoinAImg();
+        verifyOneCoinBImg();
+        verifyTenCoinAImg();
+        verifyTenCoinBImg();
+        verifyToolCityImg();
+        verifyToolTileImg();
+        verifyTwoCoinAImg();
+        verifyTwoCoinBImg();
+        verifyWineCityImg();
+        verifyWineTileImg();
+        verifyArchitectBoughtPersonalityCardImg();
+        verifyPersonalityCardBackIImg();
+        verifyPersonalityCardBackIIImg();
+        verifyPersonalityCardBackIIIImg();
+        verifyPersonalityCardBackIVImg();
+        verifyPersonalityCardBackVImg();
+        verifyColonistBoughtPersonalityCardImg();
+        verifyDiplomatBoughtPersonalityCardImg();
+        verifyFarmerBoughtPersonalityCardImg();
+        verifyMasonBoughtPersonalityCardImg();
+        verifyMercatorBoughtPersonalityCardImg();
+        verifyPrefectBoughtPersonalityCardImg();
+        verifySmithBoughtPersonalityCardImg();
+        verifyVinterBoughtPersonalityCardImg();
+        verifyWeaverBoughtPersonalityCardImg();
 
         shutdownExecutorService();
     }

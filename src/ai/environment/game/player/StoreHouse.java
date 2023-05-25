@@ -24,12 +24,12 @@ public class StoreHouse {
     /**
      * The player who is associated with this store house.
      */
-    private Player player;
+    protected Player player;
 
     /**
      * The elements present in this store house.
      */
-    private List<Storeable> elements;
+    protected List<Storeable> elements;
 
     /**
      * Constructor to make a new store house for a player.
