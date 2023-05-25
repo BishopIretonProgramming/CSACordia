@@ -104,4 +104,17 @@ public class StoreHouse implements java.io.Serializable {
         System.out.println("you misspelled a good, go fix it");
         return false;
     }
+/* 
+    // written by Nora Hixson
+    public toString(){
+        for(Object thing: elements){
+            if(thing instanceof Good){
+                
+            }else if(thing instanceof Colonist){
+
+            }
+
+        }
+    }
+*/
 }
