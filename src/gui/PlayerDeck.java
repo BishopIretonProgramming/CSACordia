@@ -44,13 +44,17 @@ public class PlayerDeck {
     private int shownCardID; //The index of the shownCard; used for changing cards
 
     private ArrayList<BufferedImage> guiImages; //List of button and label images
-
+    private final String guiImageFilePath = "src" + File.separator + "gui" + File.separator + "images" + File.separator + "button_images" + File.separator;
     private String[] guiImageFileNames = { //list of file names, temporary until file reading added //TODO: add images of buttons and labels
-        "info_button.png",
-        "left_button.png",
-        "right_button.png",
-        "use_button.png",
-        "background_label.png"
+        guiImageFilePath + "info_button.png",
+        guiImageFilePath + "left_button.png",
+        guiImageFilePath + "right_button.png",
+        guiImageFilePath + "use_button.png",
+        guiImageFilePath + "background_label.png",
+        guiImageFilePath + "available_cards.png",
+        guiImageFilePath + "available_cards_selected.png",
+        guiImageFilePath + "discarded_cards.png",
+        guiImageFilePath + "discarded_cards_selected.png"
     };
 
     private JButton leftButton; //Button to cycle left through cards
@@ -87,9 +91,9 @@ public class PlayerDeck {
 
         guiImages = loadImage(guiImageFileNames);
 
-        infoLabel = createLabel(guiImages.get(0), 0, 0, 0, 0, "info");
-        backgroundLabel = createLabel(guiImages.get(0), 0, 0, 0, 0, "");
-        cardLabel = createLabel(guiImages.get(0), 0, 0, 0, 0, "");
+        infoLabel = createLabel(guiImages.get(0), 0, 0, 100, 100, "info");
+        backgroundLabel = createLabel(guiImages.get(4), 0, 0, 100, 100, "");
+        cardLabel = createLabel(guiImages.get(0), 0, 0, 100, 100, "");
 
         updateInfoShown(false);
         createButtons();
@@ -102,10 +106,10 @@ public class PlayerDeck {
      * Helper method for Constructor
     */
     private void createButtons() {
-        leftButton = createButton(guiImages.get(0), 0, 0, 0, 0, "");
-        rightButton = createButton(guiImages.get(0), 0, 0, 0, 0, "");
-        infoButton = createButton(guiImages.get(0), 0, 0, 0, 0, "");
-        useButton = createButton(guiImages.get(0), 0, 0, 0, 0, "");
+        leftButton = createButton(guiImages.get(1), 0, 0, 100, 100, "");
+        rightButton = createButton(guiImages.get(2), 0, 0, 100, 100, "");
+        infoButton = createButton(guiImages.get(0), 0, 0, 100, 100, "");
+        useButton = createButton(guiImages.get(3), 0, 0, 100, 100, "");
 
         infoButton.setMultiClickThreshhold(50);
         useButton.setMultiClickThreshhold(50);
@@ -150,8 +154,8 @@ public class PlayerDeck {
     private void createRadioButtons() {
         cardFilters = new ButtonGroup();
 
-        shownCards = createRadioButton(guiImages.get(0), 0, 0, 0, 0, "Available cards");
-        discardedCards = createRadioButton(guiImages.get(0), 0, 0, 0, 0, "Discarded cards");
+        shownCards = createRadioButton(guiImages.get(5), guiImages.get(6), 0, 0, 100, 100, "Available cards");
+        discardedCards = createRadioButton(guiImages.get(7), guiImages.get(8), 0, 0, 100, 100, "Discarded cards");
 
         cardFilters.add(shownCards);
         cardFilters.add(discardedCards);
@@ -203,6 +207,7 @@ public class PlayerDeck {
     /**
      * Helper method that initializes common values and settings for JRadioButtons
      * @param image image displayed by JRadioButton, what it looks like
+     * @param pressedImage image displayed by JRadioButton when it is selected
      * @param xPosition
      * @param yPosition
      * @param width
@@ -210,10 +215,11 @@ public class PlayerDeck {
      * @param text text displayed by JRadioButton
      * @return created JRadioButton
     */
-    private JRadioButton createRadioButton(BufferedImage image, int xPosition, int yPosition, int width, int height, String text) {
+    private JRadioButton createRadioButton(BufferedImage image, BufferedImage pressedImage, int xPosition, int yPosition, int width, int height, String text) {
         JRadioButton radioButton = new JRadioButton();
 
         radioButton.setIcon(new ImageIcon(image));
+        radioButton.setPressedIcon(new ImageIcon(pressedImage));
         radioButton.setBounds(xPosition, yPosition, width , height);
         radioButton.setText(text);
         radioButton.setMargin(new Insets(-1, -1, -1, -1));
@@ -319,7 +325,7 @@ public class PlayerDeck {
      * removes a card from the player's deck entirely (not to be confused with discardCard, which moves it to the discard pile)
      * @param card Personality card to be removed
     */
-    private void removeCard(PersonalityCard card) {
+    public void removeCard(PersonalityCard card) {
         cards.remove(card);
     }
 

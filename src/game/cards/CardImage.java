@@ -13,8 +13,6 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import src.util.IOUtils;
-
 public enum CardImage {
     ARCHITECT("boughtcards" + File.separator + "architect.png"),
     ARCHITECT_ST("startingcards" + File.separator + "architect.png"),
