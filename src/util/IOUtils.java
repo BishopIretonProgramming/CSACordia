@@ -31,7 +31,8 @@ public class IOUtils {
      * Suppress the default no-args constructor provided by the compiler,
      * ensuring that no one can make an instance of this class.
      */
-    private IOUtils() {}
+    private IOUtils() {
+    }
 
     /**
      * The maximum number of concurrent downloads represented by an
@@ -319,7 +320,8 @@ public class IOUtils {
                 Files.createDirectories(Paths.get(directory.getPath()));
                 Logger.info("IOUtils", "Successfully created the " + directory.getName() + " directory");
             } catch (IOException e) {
-                Logger.error("IOUtils", "Could not create the " + directory.getName() + " directory: " + e.getMessage());
+                Logger.error("IOUtils",
+                        "Could not create the " + directory.getName() + " directory: " + e.getMessage());
             }
         }
     }
@@ -455,19 +457,14 @@ public class IOUtils {
     /**
      * Method to check for all the necessary files and directories to play the game
      * and either creates them or downloads them depending on the occasion. This is
-     * the
-     * main method that should be called on game startup to ensure that the game
-     * does
-     * not experience any errors in creation and initialization. While the client is
-     * able
-     * to call the other methods individually, it is not recommended as this method
-     * will
-     * be constantly updated to ensure that it creates or downloads all necessary
-     * files
-     * and directories for the game.
+     * the main method that should be called on game startup to ensure that the game
+     * does not experience any errors in creation and initialization. While the
+     * client is able to call the other methods individually, it is not recommended
+     * as this method will be constantly updated to ensure that it creates or
+     * downloads all necessary files and directories for the game.
      */
     public static void verifyGameFiles() {
-        for (DirectoryData data : DirectoryData.values()) 
+        for (DirectoryData data : DirectoryData.values())
             ensureDirExistence(data);
         for (FileData data : FileData.values())
             verifyFile(data);
