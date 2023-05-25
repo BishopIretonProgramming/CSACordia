@@ -33,12 +33,15 @@ private int sestertii;
 
         // sets format and layout of Panel
 
+        PlayerDeck deck = new PlayerDeck(currentPlayer,currentPlayer.cards(), handDisplay);
         handDisplay.setBackground(Color.GRAY);
         handDisplay.setLayout(new GridBagLayout());
         GridBagConstraints mgb = new GridBagConstraints();
         GridBagConstraints sgb = new GridBagConstraints();
+        GridBagConstraints dgb = new GridBagConstraints();
         mgb.anchor = GridBagConstraints.WEST;
         sgb.anchor = GridBagConstraints.BASELINE;
+        dgb.anchor = GridBagConstraints.BASELINE;
 
         // creates JLables
         JLabel money = new JLabel("<html><font  size ='20' color = white> Sestertii:  </font></html>");// the html just changes the size and color should work on everyone's computer
