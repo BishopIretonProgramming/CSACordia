@@ -1,0 +1,72 @@
+SECTION gui_image_file_names
+PATH src%sgui%simages%sbutton_images%s
+left_button.png
+right_button.png
+use_button.png
+background_label.png
+available_cards.png
+available_cards_selected.png
+discarded_cards.png
+discarded_cards_selected.png
+SECTION card_image_file_names
+PATH src%sgui%simages%sstartingcards%s
+architect.png
+diplomat.png
+mercator.png
+prefect.png
+senator.png
+tribune.png
+greenBack.png
+blackBack.png
+redBack.png
+blueBack.png
+yellowBack.png
+PATH src%sgui%simages%sboughtcards%s
+architect.png
+colonist.png
+consul.png
+diplomatSatvrnvsTool.png
+diplomatSatvrnvsFood.png
+diplomatMercvrivs.png
+diplomatMars.png
+farmer.png
+mason.png
+meracator.png
+prefect.png
+smith.png
+vintner.png
+weaver.png
+backI.png
+backIII.png
+backIV.png
+backV.png
+PATH src%sgui%simages%s
+concordia.png
+concordiaBack.png
+praefectusMagnus.png
+praefectusMagnusBack.png
+SECTION starting_cards
+Architect
+Diplomat
+Mercator
+Prefect
+Prefect
+Senator
+Tribune
+SECTION cards
+Architect
+Diplomat
+Mercator
+Prefect
+Prefect
+Senator
+Tribune
+SECTION available_cards
+Architect
+Diplomat
+Mercator
+Prefect
+Prefect
+Senator
+Tribune
+SECTION discarded_cards

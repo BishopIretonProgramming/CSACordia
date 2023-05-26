@@ -12,6 +12,8 @@ package src.gui;
 import src.game.Player;
 import src.game.cards.*;
 
+import resources.saves.FileReaderTools;
+
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -44,9 +46,9 @@ public class PlayerDeck {
     private int shownCardID; //The index of the shownCard; used for changing cards
 
     private ArrayList<BufferedImage> guiImages; //List of button and label images
-    private final String guiImageFilePath = "src" + File.separator + "gui" + File.separator + "images" + File.separator + "button_images" + File.separator;
-    private String[] guiImageFileNames = { //list of file names, temporary until file reading added //TODO: add images of buttons and labels
-        guiImageFilePath + "info_button.png",
+    //private final String guiImageFilePath = String.format("src%sgui%simages%sbutton_images%s", File.separator, File.separator, File.separator, File.separator);
+
+    /* private String[] guiImageFileNames = { //list of file names, temporary until file reading added
         guiImageFilePath + "left_button.png",
         guiImageFilePath + "right_button.png",
         guiImageFilePath + "use_button.png",
@@ -55,24 +57,22 @@ public class PlayerDeck {
         guiImageFilePath + "available_cards_selected.png",
         guiImageFilePath + "discarded_cards.png",
         guiImageFilePath + "discarded_cards_selected.png"
-    };
+    }; */
 
     private JButton leftButton; //Button to cycle left through cards
     private JButton rightButton; //Button to cycle right through cards
-    private JButton infoButton; //Button to display more info on shownCard
     private JButton useButton; //Button to play the shownCard
 
     private ButtonGroup cardFilters; //Selection to select which type of cards are shown
     private JRadioButton shownCards; //shows cards the player can play (see cards)
     private JRadioButton discardedCards; //shows cards the player has already played (see discardedCards)
 
-    private JLabel infoLabel; //Label that displays info on the shownCard
     private JLabel backgroundLabel; //Label that displays a nice background for the PlayerDeck section
     private JLabel cardLabel; //Label that displays the shownCard
 
     private JPanel panel; //The JPanel that holds these graphics
 
-    private boolean infoShown; //Whether or not the info for each card is shown
+    private final FileReaderTools SAVE_FILE = new FileReaderTools("player_deck_data");
 
                                         /* Constructors */
 
@@ -82,20 +82,33 @@ public class PlayerDeck {
      * @param cards the starting cards the player receives
      * @param panel the panel that holds these graphics
     */
-    public PlayerDeck(Player player, ArrayList<PersonalityCard> cards, JPanel panel) {
+    public PlayerDeck(Player player, JPanel panel) {
         this.player = player;
         this.panel = panel;
-        availableCards = cards;
-        this.cards = availableCards;
+        
+        availableCards.add(new Architect(player, true));
+        availableCards.add(new Diplomat(player, 0, 0, 0, 0, 0, "God"));
+        availableCards.add(new Mercator(player, true));
+        availableCards.add(new Prefect(player, true));
+        availableCards.add(new Prefect(player, true));
+        availableCards.add(new Senator(player));
+        availableCards.add(new Tribune(player));
+
+        /* //TODO: find a way to make this work
+        for(Class<Object> card : SAVE_File.getClasses("cards")) {
+            availableCards.add(new card());
+        }
+        */
+
+        cards = availableCards;
         discardCards = new ArrayList<PersonalityCard>(cards.size());
 
-        guiImages = loadImage(guiImageFileNames);
+        guiImages = SAVE_FILE.getImages("gui_image_file_names");
 
-        infoLabel = createLabel(guiImages.get(0), 0, 0, 100, 100, "info");
-        backgroundLabel = createLabel(guiImages.get(4), 0, 0, 100, 100, "");
+        backgroundLabel = createLabel(guiImages.get(3), 0, 0, 100, 100, "");
         cardLabel = createLabel(guiImages.get(0), 0, 0, 100, 100, "");
+        changeCard(0);
 
-        updateInfoShown(false);
         createButtons();
         createRadioButtons();
     }
@@ -106,18 +119,15 @@ public class PlayerDeck {
      * Helper method for Constructor
     */
     private void createButtons() {
-        leftButton = createButton(guiImages.get(1), 0, 0, 100, 100, "");
-        rightButton = createButton(guiImages.get(2), 0, 0, 100, 100, "");
-        infoButton = createButton(guiImages.get(0), 0, 0, 100, 100, "");
-        useButton = createButton(guiImages.get(3), 0, 0, 100, 100, "");
+        leftButton = createButton(guiImages.get(0), 0, 0, 100, 100, "");
+        rightButton = createButton(guiImages.get(1), 0, 0, 100, 100, "");
+        useButton = createButton(guiImages.get(2), 0, 0, 100, 100, "");
 
-        infoButton.setMultiClickThreshhold(50);
         useButton.setMultiClickThreshhold(50);
 
         leftButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateInfoShown(false);
                 changeCard(-1);
             }
         });
@@ -125,15 +135,7 @@ public class PlayerDeck {
         rightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateInfoShown(false);
                 changeCard(1);
-            }
-        });
-
-        infoButton.addActionListener(new ActionListener() {//TODO: create info cards for each card
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                updateInfoShown(!infoShown);
             }
         });
 
@@ -154,8 +156,8 @@ public class PlayerDeck {
     private void createRadioButtons() {
         cardFilters = new ButtonGroup();
 
-        shownCards = createRadioButton(guiImages.get(5), guiImages.get(6), 0, 0, 100, 100, "Available cards");
-        discardedCards = createRadioButton(guiImages.get(7), guiImages.get(8), 0, 0, 100, 100, "Discarded cards");
+        shownCards = createRadioButton(guiImages.get(4), guiImages.get(5), 0, 0, 100, 100, "Available cards");
+        discardedCards = createRadioButton(guiImages.get(6), guiImages.get(7), 0, 0, 100, 100, "Discarded cards");
 
         cardFilters.add(shownCards);
         cardFilters.add(discardedCards);
@@ -165,7 +167,6 @@ public class PlayerDeck {
             public void actionPerformed(ActionEvent e) {
                 shownCardID = 0;
                 cards = availableCards;
-                updateInfoShown(false);
                 changeCard(0);
             }
         });
@@ -175,7 +176,6 @@ public class PlayerDeck {
             public void actionPerformed(ActionEvent e) {
                 shownCardID = 0;
                 cards = discardCards;
-                updateInfoShown(false);
                 changeCard(0);
             }
         });
@@ -327,16 +327,6 @@ public class PlayerDeck {
     */
     public void removeCard(PersonalityCard card) {
         cards.remove(card);
-    }
-
-    /**
-     * method that switches between showing the card and showing extra information on said card 
-     * @param showInfo if info shown, true to show info, false to show card
-    */
-    private void updateInfoShown(boolean showInfo) {
-        infoShown = showInfo;
-        infoLabel.setVisible(infoShown);
-        cardLabel.setVisible(!infoShown);
     }
 
                                         /* Getters / Setters / ToString */
