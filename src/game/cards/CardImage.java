@@ -2,6 +2,7 @@ package src.game.cards;
 
 /*
  * @Author: Joseph Murray
+ * @Author: Rory
  * Created: 5/20/2023
  * CardImage: enum representing the associated image for each card type
 */
