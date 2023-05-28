@@ -4,6 +4,7 @@ package src.ai.environment.game.cards;
 import src.ai.environment.ConcordiaGame;
 import src.ai.environment.game.cards.godtypes.Minerva;
 import src.ai.environment.game.player.Player;
+import src.ai.environment.game.Good;
 
 /**
  * A basic class to represent the weaver personality card.
@@ -11,6 +12,13 @@ import src.ai.environment.game.player.Player;
  * @author devinlinux
  */
 public class Weaver extends Minerva implements PersonalityCard {
+
+    /**
+     * Constructor to make a new Weaver personality card.
+     */
+    public Weaver() {
+        super(Good.CLOTH, 5);
+    }
 
     /**
      * A method to do the action of the personality card.
