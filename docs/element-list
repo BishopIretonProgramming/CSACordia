@@ -1,4 +1,7 @@
+resources.saves
 src
+src.ai.data
+src.ai.data.csv
 src.ai.environment
 src.ai.environment.game
 src.ai.environment.game.cards

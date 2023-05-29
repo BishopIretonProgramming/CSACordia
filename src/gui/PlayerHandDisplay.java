@@ -33,7 +33,7 @@ private int sestertii;
 
         // sets format and layout of Panel
 
-        PlayerDeck deck = new PlayerDeck(currentPlayer,currentPlayer.cards(), handDisplay);
+        PlayerDeck deck = new PlayerDeck(currentPlayer, handDisplay);
         handDisplay.setBackground(Color.GRAY);
         handDisplay.setLayout(new GridBagLayout());
         GridBagConstraints mgb = new GridBagConstraints();

@@ -71,10 +71,10 @@ public class Network {
         }
 
         if (this.cities != null) {
-            if (this.paths != null) {
+            if (this.paths == null) {
                 this.paths = new ArrayList<>();
             }
-            this.paths.add(new Path(cities.get(u), cities.get(v), land));
+            this.paths.add(new Path(paths.size(), cities.get(u), cities.get(v), land));
         }
     }
 

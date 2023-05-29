@@ -8,6 +8,11 @@ package src.ai.environment.game.map;
 public class Path {
 
     /**
+     * The id of this Path.
+     */
+    private int id;
+
+    /**
      * The first {@code City} this path connects.
      */
     private City city1;
@@ -31,11 +36,12 @@ public class Path {
      * Constructor to make a new Path with two cities and whether it is land or
      * not.
      *
+     * @param id the id of this path
      * @param city1 the first {@code City} this path connects
      * @param city2 the second {@code City} this path connects
      * @param isLand whether this path is land or not
      */
-    public Path(City city1, City city2, boolean isLand) {
+    public Path(int id, City city1, City city2, boolean isLand) {
         this.city1 = city1;
         this.city2 = city2;
         this.isLand = isLand;
@@ -48,6 +54,13 @@ public class Path {
      */
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
+    }
+
+    /**
+     * Method to return the id of this path.
+     */
+    public int getId() {
+        return this.id;
     }
 
     /**
