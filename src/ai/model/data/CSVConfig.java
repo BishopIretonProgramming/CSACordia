@@ -50,6 +50,24 @@ public class CSVConfig {
     }
 
     /**
+     * Getter to return the column names of this {@code CSVConfig}.
+     *
+     * @return the names of the columns in this {@code CSVConfig}.
+     */
+    public List<String> columnNames() {
+        return this.columnNames;
+    }
+
+    /**
+     * Getter to return the column data of this {@code CSVConfig}.
+     *
+     * @return the column data of this {@code CSVConfig}.
+     */
+    public List<ColumnData> columnData() {
+        return this.columnData;
+    }
+
+    /**
      * A builder class to build a CSV configuration
      */
     public static class Builder {
