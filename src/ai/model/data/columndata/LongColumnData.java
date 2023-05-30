@@ -9,7 +9,7 @@ package src.ai.model.data.columndata;
  *
  * @author devinlinux
  */
-public record LongColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
+public record LongColumnData(String name, long lowerBound, long upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column

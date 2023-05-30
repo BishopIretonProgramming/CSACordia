@@ -9,7 +9,7 @@ package src.ai.model.data.columndata;
  *
  * @author devinlinux
  */
-public record FloatColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
+public record FloatColumnData(String name, float lowerBound, float upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
