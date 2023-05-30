@@ -1,4 +1,4 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
  * An interface to be a common super type of any class that defines column data for a specific type.

@@ -1,15 +1,15 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
- * A record to represent the data associated with a column of type short, all bounds are inclusive.
+ * A record to represent the data associated with a column of type double, all bounds are inclusive.
  *
  * @param name       the name of this column.
- * @param lowerBound the lowest possible value a short in this column can have.
- * @param upperBound the highest possible value a short in this column can have.
+ * @param lowerBound the lowest value a double can have in this column.
+ * @param upperBound the highest value a double can have in this column.
  *
  * @author devinlinux
  */
-public record ShortColumnData(String name, short lowerBound, short upperBound) implements ColumnData {
+public record DoubleColumnData(String name, double lowerBound, double upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -19,7 +19,7 @@ public record ShortColumnData(String name, short lowerBound, short upperBound) i
      */
     @Override
     public boolean isValid(Object value) {
-        return value instanceof Short val && val >= this.lowerBound && val <= this.upperBound;
+        return value instanceof Double val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**

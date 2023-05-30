@@ -1,15 +1,15 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
- * A record to represent the data associated with a column of type long, all bounds are inclusive.
+ * A record to store the data associated with a column of type float, all bounds are inclusive.
  *
  * @param name       the name of this column.
- * @param lowerBound the lowest possible value a long can have in this column.
- * @param upperBound the highest possible value a long can have in this column.
+ * @param lowerBound the lowest value a float can have in this column.
+ * @param upperBound the highest value a float can have in this column.
  *
  * @author devinlinux
  */
-public record LongColumnData(String name, long lowerBound, long upperBound) implements ColumnData {
+public record FloatColumnData(String name, float lowerBound, float upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -19,7 +19,7 @@ public record LongColumnData(String name, long lowerBound, long upperBound) impl
      */
     @Override
     public boolean isValid(Object value) {
-        return value instanceof Long val && val >= this.lowerBound && val <= this.upperBound;
+        return value instanceof Float val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**

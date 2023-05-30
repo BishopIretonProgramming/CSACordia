@@ -1,14 +1,15 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
- * A record to store the information regarding a column, all bounds are inclusive.
- * @param name        the name of the column.
- * @param lowerBound  the lowest possible value that an integer in this column can have.
- * @param upperBound  the highest possible value that an integer in this column can have.
+ * A record to represent the data associated with a column of type short, all bounds are inclusive.
+ *
+ * @param name       the name of this column.
+ * @param lowerBound the lowest possible value a short in this column can have.
+ * @param upperBound the highest possible value a short in this column can have.
  *
  * @author devinlinux
  */
-public record IntColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
+public record ShortColumnData(String name, short lowerBound, short upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -18,7 +19,7 @@ public record IntColumnData(String name, int lowerBound, int upperBound) impleme
      */
     @Override
     public boolean isValid(Object value) {
-        return value instanceof Integer val && val >= this.lowerBound && val <= this.upperBound;
+        return value instanceof Short val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**

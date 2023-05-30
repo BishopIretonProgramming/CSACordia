@@ -1,4 +1,4 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
  * A record to represent the data associated with a column of type byte, all bounds are inclusive.

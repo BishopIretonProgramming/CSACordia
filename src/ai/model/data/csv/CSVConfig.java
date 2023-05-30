@@ -1,22 +1,20 @@
-package src.ai.model.data;
+package src.ai.model.data.csv;
 
 //  imports
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 
-import src.ai.model.data.columndata.ColumnData;
-import src.ai.model.data.columndata.ByteColumnData;
-import src.ai.model.data.columndata.ShortColumnData;
-import src.ai.model.data.columndata.IntColumnData;
-import src.ai.model.data.columndata.LongColumnData;
-import src.ai.model.data.columndata.BoolColumnData;
-import src.ai.model.data.columndata.CharColumnData;
-import src.ai.model.data.columndata.FloatColumnData;
-import src.ai.model.data.columndata.DoubleColumnData;
-import src.ai.model.data.columndata.StringColumnData;
+import src.ai.model.data.csv.columndata.ColumnData;
+import src.ai.model.data.csv.columndata.ByteColumnData;
+import src.ai.model.data.csv.columndata.ShortColumnData;
+import src.ai.model.data.csv.columndata.IntColumnData;
+import src.ai.model.data.csv.columndata.LongColumnData;
+import src.ai.model.data.csv.columndata.BoolColumnData;
+import src.ai.model.data.csv.columndata.CharColumnData;
+import src.ai.model.data.csv.columndata.FloatColumnData;
+import src.ai.model.data.csv.columndata.DoubleColumnData;
+import src.ai.model.data.csv.columndata.StringColumnData;
 
 /**
  * A class to represent the configuration of a CSV file

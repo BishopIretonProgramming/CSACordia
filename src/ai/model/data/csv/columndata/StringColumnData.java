@@ -1,4 +1,4 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
  * A record to represent the information regarding a column of the {@code String} type, lengths are inclusive.

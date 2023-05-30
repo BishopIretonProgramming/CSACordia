@@ -1,15 +1,14 @@
-package src.ai.model.data.columndata;
+package src.ai.model.data.csv.columndata;
 
 /**
- * A record to represent the data associated with a column of type double, all bounds are inclusive.
- *
- * @param name       the name of this column.
- * @param lowerBound the lowest value a double can have in this column.
- * @param upperBound the highest value a double can have in this column.
+ * A record to store the information regarding a column, all bounds are inclusive.
+ * @param name        the name of the column.
+ * @param lowerBound  the lowest possible value that an integer in this column can have.
+ * @param upperBound  the highest possible value that an integer in this column can have.
  *
  * @author devinlinux
  */
-public record DoubleColumnData(String name, double lowerBound, double upperBound) implements ColumnData {
+public record IntColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -19,7 +18,7 @@ public record DoubleColumnData(String name, double lowerBound, double upperBound
      */
     @Override
     public boolean isValid(Object value) {
-        return value instanceof Double val && val >= this.lowerBound && val <= this.upperBound;
+        return value instanceof Integer val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**
