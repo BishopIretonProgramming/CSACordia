@@ -1,6 +1,15 @@
 package src.ai.model.data.columndata;
 
-public record ByteColumnData() implements ColumnData {
+/**
+ * A record to represent the data associated with a column of type byte, all bounds are inclusive.
+ *
+ * @param name       the name of this column.
+ * @param lowerBound the lowest possible value a byte can have in this column.
+ * @param upperBound the highest possible value a byte can have in this column.
+ *
+ * @author devinlinux
+ */
+public record ByteColumnData(String name, byte lowerBound, byte upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -10,7 +19,7 @@ public record ByteColumnData() implements ColumnData {
      */
     @Override
     public boolean isValid(Object value) {
-        return false;
+        return value instanceof Byte val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**
@@ -21,6 +30,6 @@ public record ByteColumnData() implements ColumnData {
      */
     @Override
     public String toString() {
-        return null;
+        return String.format("Name: %s%nLower Bound: %d%nUpper Bound: %d", this.name, this.lowerBound, this.upperBound);
     }
 }
