@@ -1,6 +1,13 @@
 package src.ai.model.data.columndata;
 
-public record FloatColumnData() implements ColumnData {
+/**
+ * A record to store the data associated with a column of type float, all bounds are inclusive.
+ *
+ * @param name       the name of this column.
+ * @param lowerBound the lowest value a float can have in this column.
+ * @param upperBound the highest value a float can have in this column.
+ */
+public record FloatColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -10,7 +17,7 @@ public record FloatColumnData() implements ColumnData {
      */
     @Override
     public boolean isValid(Object value) {
-        return false;
+        return value instanceof Float val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**
@@ -21,6 +28,6 @@ public record FloatColumnData() implements ColumnData {
      */
     @Override
     public String toString() {
-        return null;
+        return String.format("Name: %s%nLower Bound: %d%nUpper Bound: %d", this.name, this.lowerBound, this.upperBound);
     }
 }
