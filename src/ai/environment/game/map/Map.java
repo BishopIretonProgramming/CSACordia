@@ -189,7 +189,8 @@ public class Map {
      */
     private Good getRandomCityToken() {
         Random rand = new Random();
-        return cityTokens.get(rand.nextInt(cityTokens.size()));
+        //return cityTokens.get(rand.nextInt(cityTokens.size()));
+        return Good.WINE;
     }
 
     /**
@@ -208,5 +209,10 @@ public class Map {
      */
     public List<Path> getPaths() {
         return paths;
+    }
+
+    public static void main(String[] args) {
+        Map map = new Map(true);
+        System.out.println(map.paths.size());
     }
 }

@@ -26,3 +26,14 @@ Note that the game implementation in this package is completely
 separate from the main game implementation. The game implementation
 in this package is only used to generate training data for the
 neural networks and thus will be extremely simply. 
+
+## New Plan
+
+It seems that my old idea is incredibly difficult and I do not have 
+enough time to figure out how to do that. So the new plan is to do this: Make a bunch of fake training data by providing the inputs and generating
+a lot of fake outputs using rng and then train the networks for each player and 
+having each player play the game. If after so many games a player is not reaching
+a certain average victory point quota then it will be killed off. If I have models
+that are reaching the quota then I will take the two best ones and make new training
+data based off of their training data (taking more of the better model) and repeating
+the process until I have a good model.

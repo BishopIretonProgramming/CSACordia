@@ -309,8 +309,6 @@ public class IOUtils {
      *
      * @param directory     The directory to check for and create if it does not
      *                      exist
-     * @param directoryName The name of the directory to check for and create if it
-     *                      does not exist
      */
     public static void ensureDirExistence(DirectoryData directory) {
         if (Files.exists(Paths.get(directory.getPath()))) {

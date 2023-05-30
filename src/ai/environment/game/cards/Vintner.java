@@ -4,13 +4,21 @@ package src.ai.environment.game.cards;
 import src.ai.environment.ConcordiaGame;
 import src.ai.environment.game.cards.godtypes.Minerva;
 import src.ai.environment.game.player.Player;
+import src.ai.environment.game.Good;
 
 /**
- * A basic class to represent the vinter personality card.
+ * A basic class to represent the vintner personality card.
  *
  * @author devinlinux
  */
-public class Vinter extends Minerva implements PersonalityCard {
+public class Vintner extends Minerva implements PersonalityCard {
+
+    /**
+     * Constructor to make a new Vintner personality card.
+     */
+    public Vintner() {
+        super(Good.WINE, 4);
+    }
 
     /**
      * A method to do the action of the personality card.
