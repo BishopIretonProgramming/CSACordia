@@ -9,14 +9,14 @@ import java.util.ArrayList;
  *
  * @author devinlinux
  */
-public class CSVData {
+public class CSVRow {
 
     /**
      * The values of the data.
      */
     private List<Double> values;
 
-    public CSVData() {
+    public CSVRow() {
         this.values = new ArrayList<>();
     }
 
