@@ -23,4 +23,11 @@ public sealed interface ColumnData permits ByteColumnData, ShortColumnData, IntC
      */
     @Override
     String toString();
+    
+    /**
+     * Method to get the name of the column.
+     *
+     * @return the name of the column.
+     */
+    String name();
 }
