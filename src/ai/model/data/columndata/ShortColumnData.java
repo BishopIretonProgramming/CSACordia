@@ -1,6 +1,15 @@
 package src.ai.model.data.columndata;
 
-public record ShortColumnData() implements ColumnData {
+/**
+ * A record to represent the data associated with a column of type short, all bounds are inclusive.
+ *
+ * @param name       the name of this column.
+ * @param lowerBound the lowest possible value a short in this column can have.
+ * @param upperBound the highest possible value a short in this column can have.
+ *
+ * @author devinlinux
+ */
+public record ShortColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -10,7 +19,7 @@ public record ShortColumnData() implements ColumnData {
      */
     @Override
     public boolean isValid(Object value) {
-        return false;
+        return value instanceof Short val && val >= this.lowerBound && val <= this.upperBound;
     }
 
     /**
@@ -21,6 +30,6 @@ public record ShortColumnData() implements ColumnData {
      */
     @Override
     public String toString() {
-        return null;
+        return String.format("Name: %s%nLower Bound: %d%nUpper Bound: %d", this.name, this.lowerBound, this.upperBound);
     }
 }
