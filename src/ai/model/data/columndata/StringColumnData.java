@@ -6,6 +6,8 @@ package src.ai.model.data.columndata;
  * @param name           the name of this column.
  * @param shortestLength the shortest length a {@code String} can be in this column.
  * @param longestLength  the longest length a {@code String} can be in this column.
+ *
+ * @author devinlinux
  */
 public record StringColumnData(String name, int shortestLength, int longestLength) implements ColumnData {
 
