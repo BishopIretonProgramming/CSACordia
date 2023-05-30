@@ -8,6 +8,7 @@ src.ai.environment.game.cards.godtypes
 src.ai.environment.game.map
 src.ai.environment.game.player
 src.ai.main
+src.ai.model.data
 src.game
 src.game.cards
 src.game.cards.godtype
