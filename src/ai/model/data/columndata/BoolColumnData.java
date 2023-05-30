@@ -1,6 +1,13 @@
 package src.ai.model.data.columndata;
 
-public record BoolColumnData() implements ColumnData {
+/**
+ * A record to represent the data associated with a column of type boolean.
+ *
+ * @param name the name of this column.
+ *
+ * @author devinlinux
+ */
+public record BoolColumnData(String name) implements ColumnData {
 
     /**
      * A method to check if a value is a valid value to store in this column
@@ -10,7 +17,7 @@ public record BoolColumnData() implements ColumnData {
      */
     @Override
     public boolean isValid(Object value) {
-        return false;
+        return value instanceof Boolean;
     }
 
     /**
@@ -21,6 +28,6 @@ public record BoolColumnData() implements ColumnData {
      */
     @Override
     public String toString() {
-        return null;
+        return String.format("Name: %s", this.name);
     }
 }
