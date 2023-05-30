@@ -6,6 +6,8 @@ package src.ai.model.data.columndata;
  * @param name       the name of this column.
  * @param lowerBound the lowest value a float can have in this column.
  * @param upperBound the highest value a float can have in this column.
+ *
+ * @author devinlinux
  */
 public record FloatColumnData(String name, int lowerBound, int upperBound) implements ColumnData {
 
