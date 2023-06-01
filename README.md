@@ -1,70 +1,38 @@
 # CSACordia
 
-Map
-Bonus Markers
-City Tokens
-Province
-Cities
-Personality Cards
+## **IMPORTANT INFORMATION**
 
-Player
-Store House
-Coins
-Personality Cards in Hand
-Praefectus Magnus Card
-Concordia Card
-Personality Cards Played
-Houses Played
-Houses left to Play
+Fill in the task chart I made with what you have completed and what you are working on, 
+you can follow the basic format that is already present. Make sure that you add things 
+to the chart as needed so that the chart is as complete as possible. This is not a complete
+list of things we need to get done, add to it as you need to. 
 
-Game Board
+## Components
 
-Map
-Tokens
-Border Scoring 
+### GUI Components 
+- [ ] Starting Frame
+- [ ] Game Creation Frame
+- [ ] Player Creation Frame
+- [ ] Game Load Frame
+- [ ] Main Game Frame
+- [ ] Storehouse Display
+- [ ] Card Display
 
-Bank
-Sestertii
-Goods
+### Game Components
 
-Prefectus Magnus Card
-Cards
-Card Pile
+- [ ] Player Representation
+- [ ] Personality Card Representations
+  - [ ] god Types
+- [x] Storehouse Representation - Michael
+- [x] Map Representation - Michael 
+  - [x] Cities - Michael 
+  - [x] Paths - Michael
+  - [ ] Provinces 
+- [ ] Good Representation
+- [ ] Colonist Representation
+- [ ] House Representation
+- [ ] Bonus Box Representation
 
-Cards
-  Type 
-  God
-  Factor
+### Miscellaneous 
 
-Goods
-Cloth
-Wine
-Tool
-Food
-Brick
-
-Sestertii 
-1
-2
-5
-10
-
-Tokens
-Letter
-Good
-
-Graphics:
-
-Coins
-Goods
-Bonus Markers
-City Tokens
-Map
-Sea Colonists
-Land Colonists
-Scoring Marker
-House
-Cards
-
-
-
+- [ ] Game AI - Michael
