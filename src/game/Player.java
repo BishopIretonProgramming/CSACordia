@@ -26,7 +26,6 @@ public class Player implements java.io.Serializable {
     /**
      * The version ID for serialization
      */
-    @java.io.Serial
     private static final long serialVersionUID = 1L;
 
     /**

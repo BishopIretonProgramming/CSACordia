@@ -14,7 +14,6 @@ import static src.game.Colonist.ColonistType;
  */
 public class StoreHouse implements java.io.Serializable {
     
-    @java.io.Serial
     private static final long serialVersionUID = 1L;  //  the version ID for serialization
     private static final int MAX_CAPACITY = 12;       //  the maximum capacity of the store house
     private List<Object> elements;                    //  the elements of the store house
