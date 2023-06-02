@@ -15,8 +15,8 @@ list of things we need to get done, add to it as you need to.
 - [ ] Player Creation Frame
 - [ ] Game Load Frame
 - [ ] Main Game Frame
-- [ ] Storehouse Display
-- [ ] Card Display
+- [x] Storehouse Display - Joseph M
+- [x] Card Display - Joseph M
 
 ### Game Components
 
@@ -27,7 +27,7 @@ list of things we need to get done, add to it as you need to.
 - [x] Map Representation - Michael 
   - [x] Cities - Michael 
   - [x] Paths - Michael
-  - [ ] Provinces 
+  - [x] Provinces - Joseph M
 - [ ] Good Representation
 - [ ] Colonist Representation
 - [ ] House Representation

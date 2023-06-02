@@ -26,11 +26,6 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import java.io.IOException;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import java.util.ArrayList;
 
 public class PlayerDeck {
@@ -249,39 +244,6 @@ public class PlayerDeck {
         panel.add(label);
 
         return label;
-    }
-
-    /**
-     * loads an array of image files into BufferedImages
-     * @param imageFileNames list of file names of images
-     * @return an array of BufferedImages
-    */
-    private ArrayList<BufferedImage> loadImage(String[] imageFileNames) {
-        ArrayList<BufferedImage> imageList = new ArrayList<BufferedImage>(imageFileNames.length);
-
-        for(String fileName : imageFileNames) {
-            imageList.add(loadImage(fileName));
-        }
-
-        return imageList;
-    }
-
-    /**
-     * loads an image file into a BufferedImage
-     * @param fileName file name of image
-     * @return BufferedImage
-    */
-    private BufferedImage loadImage(String fileName) {
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(new File(fileName));
-        }
-        catch(IOException e) {
-            System.out.println("Failed to load image");
-        }
-
-        return image;
     }
 
     /**
