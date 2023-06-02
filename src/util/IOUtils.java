@@ -18,6 +18,8 @@ import java.net.HttpURLConnection;
 
 import java.util.concurrent.*;
 
+import src.game.Game;
+
 /**
  * A utility class to assist with Input/Output operations regarding files
  * in the game of Concordia
@@ -467,5 +469,77 @@ public class IOUtils {
         for (FileData data : FileData.values())
             verifyFile(data);
         shutdownExecutorService();
+    }
+
+    /**
+     * Method to begin synchronously saving the current game state.
+     *
+     * @param game the {@code Game} to save.
+     * @param path the path to where the {@code Game} should be saved.
+     */
+    public static void synchronousSave(Game game, String path) {
+
+    }
+
+    private static class SynchronousSaver extends Thread {
+
+        /**
+         * The {@code Game} to save.
+         */
+        private Game game;
+
+        /**
+         * The path to where the {@code Game} should be saved.
+         */
+        private String path;
+
+        /**
+         * Whether the thread is running and should keep saving the {@code Game}.
+         */
+        private boolean running;
+
+        /**
+         * Constructor to make a new SynchronousSaver
+         *
+         * @param game the {@code Game} to save.
+         * @param path where the {@code Game} should be saved.
+         */
+        protected SynchronousSaver(Game game, String path) {
+            this.game = game;
+            this.path = path;
+            this.running = true;
+        }
+
+        /**
+         * Method to stop the thread and thus stop saving the {@code Game}.
+         */
+        protected void stopSaving() {
+            this.running = false;
+        }
+
+        /**
+         * Method to run the thread and save the {@code Game} every 30 seconds.
+         */
+        @Override
+        public void run() {
+            while (running) {
+                synchronized (game) {
+                    //  game.save(path);  //  TODO: finish the game implementation after graphics and add save method
+                    //  we could also do this: IOUtils.saveGame(game, path);
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        Logger.error("IOUtils.SynchronousSaver", String.format("Error saving game to %s: %s", path, e.getMessage()));
+                    }
+                }
+            }
+        }
+
+        /**
+         * Getter method to return if this SynchronousSaver has been stopped
+         */
+        public boolean isStopped() {
+            return !running;
+        }
     }
 }
