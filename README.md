@@ -15,7 +15,7 @@ list of things we need to get done, add to it as you need to.
 - [ ] Player Creation Frame
 - [ ] Game Load Frame
 - [ ] Main Game Frame
-- [ ] Storehouse Display
+- [x] Storehouse Display - Joseph M
 - [x] Card Display - Joseph M
 
 ### Game Components
