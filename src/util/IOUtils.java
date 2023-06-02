@@ -478,7 +478,7 @@ public class IOUtils {
      * @param path the path to where the {@code Game} should be saved.
      */
     public static void synchronousSave(Game game, String path) {
-
+        SynchronousSaver saver = new SynchronousSaver(game, path);
     }
 
     private static class SynchronousSaver extends Thread {
@@ -486,12 +486,17 @@ public class IOUtils {
         /**
          * The {@code Game} to save.
          */
-        private Game game;
+        private final Game GAME;
 
         /**
          * The path to where the {@code Game} should be saved.
          */
         private String path;
+
+        /**
+         * The lock object to be used with synchronization
+         */
+        private final Object LOCK;
 
         /**
          * Whether the thread is running and should keep saving the {@code Game}.
@@ -501,13 +506,14 @@ public class IOUtils {
         /**
          * Constructor to make a new SynchronousSaver
          *
-         * @param game the {@code Game} to save.
+         * @param GAME the {@code Game} to save.
          * @param path where the {@code Game} should be saved.
          */
-        protected SynchronousSaver(Game game, String path) {
-            this.game = game;
+        protected SynchronousSaver(Game GAME, String path) {
+            this.GAME = GAME;
             this.path = path;
             this.running = true;
+            LOCK = new Object();
         }
 
         /**
@@ -523,11 +529,11 @@ public class IOUtils {
         @Override
         public void run() {
             while (running) {
-                synchronized (game) {
-                    //  game.save(path);  //  TODO: finish the game implementation after graphics and add save method
-                    //  we could also do this: IOUtils.saveGame(game, path);
+                synchronized (LOCK) {
+                    //  GAME.save(path);  //  TODO: finish the game implementation after graphics and add save method
+                    //  we could also do this: IOUtils.saveGame(GAME, path);
                     try {
-                        Thread.sleep(30000);
+                        LOCK.wait(30000);
                     } catch (InterruptedException e) {
                         Logger.error("IOUtils.SynchronousSaver", String.format("Error saving game to %s: %s", path, e.getMessage()));
                     }
