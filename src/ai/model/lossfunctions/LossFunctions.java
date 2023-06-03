@@ -1,4 +1,4 @@
-package src.ai.data.creation.model.lossfunctions;
+package src.ai.model.lossfunctions;
 
 public enum LossFunctions {
 
