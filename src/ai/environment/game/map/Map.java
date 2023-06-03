@@ -47,12 +47,18 @@ public class Map {
     private List<Good> cityTokens;
 
     /**
+     * The random number generator for this class
+     */
+    Random random;
+
+    /**
      * Constructor to make a new Map
      *
      * @param imperium whether it is the imperium map
      */
     public Map(boolean imperium) {
         this.imperium = imperium;
+        this.random = new Random();
         init();
     }
 
@@ -61,6 +67,42 @@ public class Map {
      */
     private void init() {
         if (imperium) {
+
+            this.cityTokens = new ArrayList<>(
+                    Arrays.asList(
+                            Good.BRICK,
+                            Good.FOOD,
+                            Good.WINE,
+                            Good.BRICK,
+                            Good.FOOD,
+                            Good.TOOL,
+                            Good.CLOTH,  //  END A
+                            Good.TOOL,
+                            Good.FOOD,
+                            Good.BRICK,
+                            Good.TOOL,
+                            Good.WINE,
+                            Good.FOOD,
+                            Good.CLOTH,
+                            Good.BRICK,  //  END B
+                            Good.BRICK,
+                            Good.WINE,
+                            Good.FOOD,
+                            Good.FOOD,
+                            Good.BRICK,
+                            Good.BRICK,
+                            Good.CLOTH,
+                            Good.WINE,
+                            Good.TOOL,
+                            Good.TOOL,  //  END C
+                            Good.CLOTH,
+                            Good.WINE,
+                            Good.BRICK,
+                            Good.TOOL,
+                            Good.FOOD  //  END D
+                    )
+            );
+
             cities = new ArrayList<>(
                     Arrays.asList(
                             new City(0, getRandomCityToken()),
@@ -93,7 +135,7 @@ public class Map {
                             new City(27, getRandomCityToken()),
                             new City(28, getRandomCityToken()),
                             new City(29, getRandomCityToken()),
-                            new City(30, getRandomCityToken())
+                            new City(30, null)
                     )
             );
 
@@ -188,9 +230,7 @@ public class Map {
      * @return a random city token
      */
     private Good getRandomCityToken() {
-        Random rand = new Random();
-        //return cityTokens.get(rand.nextInt(cityTokens.size()));
-        return Good.WINE;
+        return this.cityTokens.remove(this.random.nextInt(this.cityTokens.size()));
     }
 
     /**
