@@ -21,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -100,8 +99,8 @@ public class PlayerDeck {
 
         guiImages = SAVE_FILE.getImages("gui_image_file_names");
 
-        backgroundLabel = createLabel(guiImages.get(3), 0, 0, 100, 100, "");
-        cardLabel = createLabel(guiImages.get(0), 0, 0, 100, 100, "");
+        backgroundLabel = GUITools.createLabel(panel, guiImages.get(3), 0, 0, 100, 100);
+        cardLabel = GUITools.createLabel(panel, guiImages.get(0), 0, 0, 100, 100);
         changeCard(0);
 
         createButtons();
@@ -114,9 +113,9 @@ public class PlayerDeck {
      * Helper method for Constructor
     */
     private void createButtons() {
-        leftButton = createButton(guiImages.get(0), 0, 0, 100, 100, "");
-        rightButton = createButton(guiImages.get(1), 0, 0, 100, 100, "");
-        useButton = createButton(guiImages.get(2), 0, 0, 100, 100, "");
+        leftButton = GUITools.createButton(panel, guiImages.get(0), 0, 0, 100, 100);
+        rightButton = GUITools.createButton(panel, guiImages.get(1), 0, 0, 100, 100);
+        useButton = GUITools.createButton(panel, guiImages.get(2), 0, 0, 100, 100);
 
         useButton.setMultiClickThreshhold(50);
 
@@ -151,8 +150,8 @@ public class PlayerDeck {
     private void createRadioButtons() {
         cardFilters = new ButtonGroup();
 
-        shownCards = createRadioButton(guiImages.get(4), guiImages.get(5), 0, 0, 100, 100, "Available cards");
-        discardedCards = createRadioButton(guiImages.get(6), guiImages.get(7), 0, 0, 100, 100, "Discarded cards");
+        shownCards = GUITools.createRadioButton(panel, guiImages.get(4), guiImages.get(5), 0, 0, 100, 100);
+        discardedCards = GUITools.createRadioButton(panel, guiImages.get(6), guiImages.get(7), 0, 0, 100, 100);
 
         cardFilters.add(shownCards);
         cardFilters.add(discardedCards);
@@ -175,76 +174,6 @@ public class PlayerDeck {
             }
         });
     } 
-
-    /**
-     * Helper method that initializes common values and settings for JButtons
-     * @param image image displayed by JButton, what it looks like
-     * @param xPosition 
-     * @param yPosition
-     * @param width
-     * @param height
-     * @param text text displayed by JButton
-     * @return created JButton
-    */
-    private JButton createButton(BufferedImage image, int xPosition, int yPosition, int width, int height, String text) {
-        JButton button = new JButton();
-
-        button.setIcon(new ImageIcon(image));
-        button.setBounds(xPosition, yPosition, width , height);
-        button.setText(text);
-        button.setMargin(new Insets(-1, -1, -1, -1));
-
-        panel.add(button);
-
-        return button;
-    }
-
-    /**
-     * Helper method that initializes common values and settings for JRadioButtons
-     * @param image image displayed by JRadioButton, what it looks like
-     * @param pressedImage image displayed by JRadioButton when it is selected
-     * @param xPosition
-     * @param yPosition
-     * @param width
-     * @param height
-     * @param text text displayed by JRadioButton
-     * @return created JRadioButton
-    */
-    private JRadioButton createRadioButton(BufferedImage image, BufferedImage pressedImage, int xPosition, int yPosition, int width, int height, String text) {
-        JRadioButton radioButton = new JRadioButton();
-
-        radioButton.setIcon(new ImageIcon(image));
-        radioButton.setPressedIcon(new ImageIcon(pressedImage));
-        radioButton.setBounds(xPosition, yPosition, width , height);
-        radioButton.setText(text);
-        radioButton.setMargin(new Insets(-1, -1, -1, -1));
-
-        panel.add(radioButton);
-
-        return radioButton;
-    }
-
-    /**
-     * Helper method that initializes common values and seetings for JLabels
-     * @param image image displayed by JLabel, what it looks like
-     * @param xPosition
-     * @param yPosition
-     * @param width
-     * @param height
-     * @param text text displayed by JLabel
-     * @return created JLabel
-    */
-    private JLabel createLabel(BufferedImage image, int xPosition, int yPosition, int width, int height, String text) {
-        JLabel label = new JLabel();
-
-        label.setIcon(new ImageIcon(image));
-        label.setBounds(xPosition, yPosition, width, height);
-        label.setText(text);
-
-        panel.add(label);
-
-        return label;
-    }
 
     /**
      * changes the shownCard
