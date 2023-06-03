@@ -2,7 +2,7 @@
 
 ## GUI:
 
-- [ ] StartScreen - needs functionality
+- [ ] StartScreen - Nora
 - [ ] Make New Game - Joe Lentini
 - [ ] Load Game - Andrew
 - [ ] Main Game - Rory
