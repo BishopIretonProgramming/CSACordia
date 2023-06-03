@@ -1,38 +1,25 @@
 # CSACordia
 
-## **IMPORTANT INFORMATION**
+## GUI:
 
-Fill in the task chart I made with what you have completed and what you are working on, 
-you can follow the basic format that is already present. Make sure that you add things 
-to the chart as needed so that the chart is as complete as possible. This is not a complete
-list of things we need to get done, add to it as you need to. 
+- [ ] StartScreen - needs functionality
+- [ ] Make New Game - Joe Lentini
+- [ ] Load Game - Andrew
+- [ ] Main Game - Rory
+- [ ] Bonus Box - Anthony
 
-## Components
+## Modals/Popups:
 
-### GUI Components 
-- [ ] Starting Frame
-- [ ] Game Creation Frame
-- [ ] Player Creation Frame
-- [ ] Game Load Frame
-- [ ] Main Game Frame
-- [x] Storehouse Display - Joseph M
-- [x] Card Display - Joseph M
+- [ ] StoreHouse - Joe Murray
+- [ ] Cards in Hand - Joe Murray
+- [ ] Player Resources - Caroline
+- [ ] Cards to Buy - Anthony
+- [ ] Personality Card Choices/Display - Joe Murray
+- [ ] Other Modals/Popups - Emily
 
-### Game Components
+## Backend
 
-- [ ] Player Representation
-- [ ] Personality Card Representations
-  - [ ] god Types
-- [x] Storehouse Representation - Michael
-- [x] Map Representation - Michael 
-  - [x] Cities - Michael 
-  - [x] Paths - Michael
-  - [x] Provinces - Joseph M
-- [ ] Good Representation
-- [ ] Colonist Representation
-- [ ] House Representation
-- [ ] Bonus Box Representation
-
-### Miscellaneous 
-
-- [ ] Game AI - Michael
+- [ ] Game Class and Play Loop - Emily
+- [ ] Scoring System - Emily
+- [ ] Personality Cards - Rory
+- [ ] Making Backend Work with GUI - Michael
