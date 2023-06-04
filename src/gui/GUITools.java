@@ -4,6 +4,7 @@ package src.gui;
  * @Author: Joseph Murray
  * Created: 6/2/2023
  * GUITools: helpful methods for using default Java Graphics
+ * 
  * Note: This class is optimized for my own preferences, 
  * and while these graphics can be used with a java layout manager, 
  * they are optimized to be used alone

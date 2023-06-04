@@ -40,19 +40,7 @@ public class PlayerDeck {
     private int shownCardID; //The index of the shownCard; used for changing cards
 
     private ArrayList<BufferedImage> guiImages; //List of button and label images
-    //private final String guiImageFilePath = String.format("src%sgui%simages%sbutton_images%s", File.separator, File.separator, File.separator, File.separator);
-
-    /* private String[] guiImageFileNames = { //list of file names, temporary until file reading added
-        guiImageFilePath + "left_button.png",
-        guiImageFilePath + "right_button.png",
-        guiImageFilePath + "use_button.png",
-        guiImageFilePath + "background_label.png",
-        guiImageFilePath + "available_cards.png",
-        guiImageFilePath + "available_cards_selected.png",
-        guiImageFilePath + "discarded_cards.png",
-        guiImageFilePath + "discarded_cards_selected.png"
-    }; */
-
+    
     private JButton leftButton; //Button to cycle left through cards
     private JButton rightButton; //Button to cycle right through cards
     private JButton useButton; //Button to play the shownCard
