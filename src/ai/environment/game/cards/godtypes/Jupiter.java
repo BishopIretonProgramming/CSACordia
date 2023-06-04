@@ -1,9 +1,6 @@
 package src.ai.environment.game.cards.godtypes;
 
 //  imports
-import java.util.List;
-import java.util.ArrayList;
-
 import src.ai.environment.ConcordiaGame;
 import src.ai.environment.game.player.Player;
 import src.ai.environment.game.Good;

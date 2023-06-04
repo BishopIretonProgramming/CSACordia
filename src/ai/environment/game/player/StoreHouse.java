@@ -3,7 +3,6 @@ package src.ai.environment.game.player;
 //  imports
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import src.ai.environment.game.Storeable;
 import src.ai.environment.game.Good;

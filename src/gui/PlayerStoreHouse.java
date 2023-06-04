@@ -8,9 +8,6 @@ package src.gui;
 
 import src.game.Player;
 import src.game.StoreHouse;
-import src.gui.images.*;
-
-import assets.sprites.*;
 
 import resources.saves.FileReaderTools;
 

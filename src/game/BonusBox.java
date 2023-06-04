@@ -7,7 +7,6 @@ package src.game;
 
  import java.util.ArrayList;
  import java.util.Random;
- import java.awt.Shape;
  import java.awt.Graphics;
  import java.awt.Color;
 

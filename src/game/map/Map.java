@@ -328,6 +328,6 @@ public class Map {
     }
 
     public static void main(String[] args) {
-        Map map = new Map(Map.IMPERIUM);
+        new Map(Map.IMPERIUM);
     }
 }
