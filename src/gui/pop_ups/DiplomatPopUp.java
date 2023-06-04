@@ -14,7 +14,6 @@ import src.gui.GUITools;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import src.game.Player;
 import src.game.cards.*;
 import src.game.Game;
 
