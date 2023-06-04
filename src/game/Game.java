@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import resources.default_data.SaveLoader;
+
 import java.awt.Color;
 import java.io.File;
 import java.io.BufferedWriter;
@@ -20,70 +23,25 @@ import src.game.cards.PersonalityCard;
  */
 public class Game {
 
-    /**
-     * The Map of this Game
-     */
     private Map map;
-
-    /**
-     * The Players of this Game
-     */
     private List<Player> players;
-
-    /**
-     * The Colors of each of the Players
-     */
     private List<Color> colors;
-
-    /**
-     * The name of this Game
-     */
     private String name;
-
-    /**
-     * The draw pile of this Game
-     */
     private List<PersonalityCard> drawPile;
-
-    /**
-     * The Bonus Box of this Game
-     */
     private BonusBox bonusBox;
-
-    /**
-     * The current Player who is playing their turn
-     */
     private Player currentPlayer;
-
-    /**
-     * An alias for File.separator
-     */
     private static final String SEP = File.separator;
-
-    /**
-     * The Player who ended the game
-     */
     private Player endingPlayer;
-
-    /**
-     * The List of top facing cards in the discard pile of each Player
-     */
     private List<PersonalityCard> topFacingDiscardedCards;
-
-    /**
-     * Whether it is the last turn
-     */
     private boolean lastTurn;
-
-    /**
-     * The number of turns that have been played in this Game
-     */
     private int totalTurnsPlayed;
-
-    /**
-     * The path to save the game to
-     */
     private String path;
+
+    public static Game initGame(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
+        if (SaveLoader.existingNames().contains(name))
+            return new Game(name, map, players, colors, firstPlayer);
+        return null;
+    }
 
     /**
      * Constructor to make a new Game
@@ -93,7 +51,7 @@ public class Game {
      * @param colors the colors of the players who will be playing this Game
      * @param firstPlayer the Player who will play first
      */
-    public Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
+    private Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
         this.name = name;
         this.map = map;
         this.players = players;
@@ -104,7 +62,7 @@ public class Game {
         this.drawPile = initDrawPile();
         this.topFacingDiscardedCards = new ArrayList<>(players.size());
         this.totalTurnsPlayed = 0;
-        this.path = String.format("assets%ssaves%s%s.concordia", SEP, SEP, this.name);  //  TODO: find a better location to save the game to
+        this.path = String.format("resources%ssaves%s%s.gam", SEP, this.name);
     }
 
     /**

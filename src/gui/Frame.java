@@ -144,7 +144,7 @@ public class Frame {
         lol.add(Color.BLUE);
 
 
-        Game Rick = new Game(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
+        Game Rick = Game.initGame(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
         Frame test = new Frame();
         test.welcome();
         test.board(Rick);
