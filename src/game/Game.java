@@ -43,6 +43,10 @@ public class Game {
         return null;
     }
 
+    public static Game DO_NOT_USE___SAVE_LOADER_GAME_INITIALIZER(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
+        return new Game(name, map, players, colors, firstPlayer);
+    }
+
     /**
      * Constructor to make a new Game
      * @param name the name of this Game
@@ -117,7 +121,7 @@ public class Game {
      * Method to write this Game to a file
      * @param path the path to the file to write to
      */
-    public void save(String path) {
+    public void save(String path) { // TODO we need the game saving to actually save stuff so we can recreate the data from a file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             String line = String.format("");
         } catch (IOException e) {

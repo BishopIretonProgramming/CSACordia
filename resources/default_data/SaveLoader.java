@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import src.game.Game;
+
 public class SaveLoader {
 
     private static final String GAME_STATE_SAVES_DIR = String.format("resources%1$ssaves", File.separatorChar);
@@ -16,8 +18,9 @@ public class SaveLoader {
         // suppress default constructor
     }
 
-    public static boolean loadSave() {
-        return false;
+    public static Game loadSave() {
+        // do stuff to recreate a game object from the save
+        return Game.DO_NOT_USE___SAVE_LOADER_GAME_INITIALIZER(null, null, null, null, null);
     }
 
     public static ArrayList<String> existingNames() {
