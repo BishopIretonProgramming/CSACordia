@@ -1,7 +1,7 @@
 package src.game.cards.godtype;
 
 //Imports:
-import src.game.Player;
+import src.game.player.Player;
 
 public interface Satvrnvs {
    

@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import src.game.map.Map;
 import src.game.cards.PersonalityCard;
+import src.game.player.Player;
 
 /**
  * A class to represent a Game and all of its components

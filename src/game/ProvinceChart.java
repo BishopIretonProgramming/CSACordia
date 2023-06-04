@@ -8,6 +8,8 @@ package src.game;
 
 import java.util.ArrayList;
 import src.game.map.CityNode;
+import src.game.map.Province;
+import src.game.player.Player;
 
 public class ProvinceChart {
    private static ProvinceChart provinceChartInstance = null;

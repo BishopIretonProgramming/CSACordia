@@ -8,7 +8,7 @@ package src.game;
 * String NAME
 */
 
-public enum Good {
+@Storeable public enum Good {
 
    WINE(6,"wine"), 
    BRICK(3,"brick"),
@@ -50,5 +50,14 @@ public enum Good {
          case "FOOD" -> FOOD;
          default -> null;
       };
+   }
+
+   /**
+    * Getter method to get the price of a good
+    *
+    * @return the price of the good
+    */
+   public int price() {
+      return this.PRICE;
    }
 }

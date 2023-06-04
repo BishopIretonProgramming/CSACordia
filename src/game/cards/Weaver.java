@@ -2,7 +2,7 @@ package src.game.cards;
 
 //  imports
 import src.game.cards.godtype.Minerva;
-import src.game.Player;
+import src.game.player.Player;
 import src.game.Good;
 import src.game.House;
 

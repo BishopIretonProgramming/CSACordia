@@ -2,6 +2,8 @@ package src.game;
 
 //  imports
 import src.game.map.PathNode;
+import src.game.player.Player;
+
 import static src.game.Colonist.ColonistType.SEA;
 import static src.game.Colonist.ColonistType.LAND;
 
