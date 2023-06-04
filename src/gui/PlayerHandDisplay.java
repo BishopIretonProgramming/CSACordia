@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import src.game.Player;
-import src.game.StoreHouse;
+import src.game.player.Player;
+import src.game.player.StoreHouse;
 import src.game.Game;
 
 /* @author Nora Hixson

@@ -6,8 +6,8 @@ package src.gui;
  * PlayerStoreHouse: GUI representation of a player's storehouse
 */
 
-import src.game.Player;
-import src.game.StoreHouse;
+import src.game.player.Player;
+import src.game.player.StoreHouse;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;

@@ -2,6 +2,7 @@ package src.game;
 
 //  imports
 import src.game.map.CityNode;
+import src.game.player.Player;
 
 /**
  * A class to represent a House that can be placed on a city by a player

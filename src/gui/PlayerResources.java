@@ -5,7 +5,7 @@ package src.gui;
     PlayerResources: 
  */
 
-import src.game.Player;
+import src.game.player.Player;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

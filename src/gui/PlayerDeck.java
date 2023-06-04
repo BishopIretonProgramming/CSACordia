@@ -9,7 +9,7 @@ package src.gui;
 //TODO: add positioning and sizing for all GUI components
 //TODO: add file reading for appropriate data
 
-import src.game.Player;
+import src.game.player.Player;
 import src.game.cards.*;
 
 import javax.swing.JButton;
