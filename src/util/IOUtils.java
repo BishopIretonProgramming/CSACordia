@@ -57,14 +57,14 @@ public class IOUtils {
     PRE_BUILT_MAP_DIR = String.format("resources%csaves%cpre_built_maps", separatorChar, separatorChar), // 
     LOGIN_INFORMATION_DIR = String.format("resources%clog_in%cuap", separatorChar, separatorChar), // 
     PLAYER_PERFORMANCE_INFORMATION_DIR = String.format("resources%cplayers%cperformance", separatorChar, separatorChar), // 
-    SPRITE_IMAGES_DIR = String.format("assets%csprites", separatorChar), // 
+    SPRITE_IMAGES_DIR = String.format("resources%csprites", separatorChar), // 
     MAIN_GRAPHICS_IMAGES_DIR = String.format("src%cgui%cimages", separatorChar, separatorChar), // 
     STARTING_CARDS_IMAGES_DIR = String.format("src%cgui%cimages%cstartingcards", separatorChar, separatorChar, separatorChar), // 
     GAME_PIECES_IMAGES_DIR = String.format("src%cgui%cimages%cpieces", separatorChar, separatorChar, separatorChar), // 
     BOUGHT_PCARDS_IMAGES_DIR = String.format("src%cgui%cimages%cboughtcards", separatorChar, separatorChar, separatorChar), // 
-    IMPERIUM_PREBUILT_NETWORK_FILE = String.format("resources%csaves%cpre_built_maps%cimperium.nw", separatorChar, separatorChar, separatorChar), // 
+    IMPERIUM_PREBUILT_NETWORK_FILE = String.format("resources%cdefault%cmaps%cimperium.nw", separatorChar, separatorChar, separatorChar), // 
     IMPERIUM_PREBUILT_NETWORK_FILE_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium.nw", // 
-    IMPERIUM_PREBUILT_CITIES_FILE = String.format("resources%csaves%cpre_built_maps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar), // 
+    IMPERIUM_PREBUILT_CITIES_FILE = String.format("resources%cdefault%cmaps%cimperium_cities.cnw", separatorChar, separatorChar, separatorChar), // 
     IMPERIUM_PREBUILT_CITIES_FILE_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/resources/saves/pre_built_maps/imperium_cities.cnw", // 
     CONCORDIA_BOARD_IMG = String.format("src%cgui%cimages%cConcordia board.jpg", separatorChar, separatorChar, separatorChar), // 
     CONCORDIA_BOARD_IMG_EXTERNAL = "https://raw.githubusercontent.com/Flambrew/CSACordia/main/src/gui/images/Concordia%20board.jpg", // 

@@ -1,4 +1,4 @@
-package resources.saves;
+package resources.default_data;
 
 /*
  * @Author Joseph Murray

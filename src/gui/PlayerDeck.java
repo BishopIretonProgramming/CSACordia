@@ -12,16 +12,18 @@ package src.gui;
 import src.game.Player;
 import src.game.cards.*;
 
-import resources.saves.FileReaderTools;
-
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+
+import resources.default_data.FileReaderTools;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -66,7 +68,7 @@ public class PlayerDeck {
 
     private JPanel panel; //The JPanel that holds these graphics
 
-    private final FileReaderTools SAVE_FILE = new FileReaderTools("player_deck_data.txt");
+    private final FileReaderTools SAVE_FILE = new FileReaderTools("resources" + File.separatorChar + "default_data" + File.separatorChar + "player_deck_data");
 
                                         /* Constructors */
 
