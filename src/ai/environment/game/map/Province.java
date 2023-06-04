@@ -2,7 +2,6 @@ package src.ai.environment.game.map;
 
 //  imports
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * A basic class to represent a province in the game of Concordia.

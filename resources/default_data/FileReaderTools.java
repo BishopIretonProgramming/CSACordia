@@ -1,4 +1,4 @@
-package resources.saves;
+package resources.default_data;
 
 /*
  * @Author Joseph Murray
@@ -29,12 +29,7 @@ import javax.imageio.ImageIO;
 
 import java.awt.image.BufferedImage;
 
-import src.game.cards.*;
-
 public class FileReaderTools {
-
-                                        //Methods
-
     private File file;
     private ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 

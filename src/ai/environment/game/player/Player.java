@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import src.ai.environment.game.cards.PersonalityCard;
 import src.ai.environment.game.cards.*;
-import src.ai.environment.game.cards.godtypes.*;
 import src.ai.environment.game.Colonist;
 import src.ai.environment.game.map.City;
 import src.ai.environment.game.House;

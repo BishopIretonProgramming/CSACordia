@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;  
 import java.awt.event.ActionEvent;
 
@@ -146,7 +144,7 @@ public class Frame {
         lol.add(Color.BLUE);
 
 
-        Game Rick = new Game(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
+        Game Rick = Game.initGame(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
         Frame test = new Frame();
         test.welcome();
         test.board(Rick);

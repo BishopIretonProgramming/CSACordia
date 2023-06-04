@@ -1,13 +1,9 @@
 package src.ai.environment.game.cards.godtypes;
 
 //  imports
-import java.util.List;
-
 import src.ai.environment.ConcordiaGame;
 import src.ai.environment.game.player.Player;
-import src.ai.environment.game.cards.PersonalityCard;
 import src.ai.environment.game.Good;
-import src.ai.environment.game.map.City;
 
 /**
  * A basic class to represent the Roman god Minerva.
