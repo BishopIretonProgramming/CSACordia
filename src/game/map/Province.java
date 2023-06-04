@@ -1,4 +1,4 @@
-package src.game;
+package src.game.map;
 
 /**
  * @author Joseph Murray
@@ -7,10 +7,14 @@ package src.game;
  */
 
 import java.util.ArrayList;
+
+import src.game.Good;
+import src.game.House;
 import src.game.map.CityNode;
+import src.game.player.Player;
 
 public class Province {
-   private ArrayList<CityNode> cityList = new ArrayList<CityNode>();
+   private ArrayList<CityNode> cityList;
    private String name;
    private Good provinceGood;
    private ResourceStatus status;
@@ -60,7 +64,7 @@ public class Province {
       Good good = Good.BRICK;
       
       for(CityNode city : cityList) {
-         if(city.good().PRICE > good.PRICE) {
+         if(city.good().price() > good.price()) {
             good = city.good();
          }
       }

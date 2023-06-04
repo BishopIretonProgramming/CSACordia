@@ -4,10 +4,10 @@ package src.gui;
  * @Author: Joseph Murray
  * Created: 6/2/2023
  * GUITools: helpful methods for using default Java Graphics
- * Note: This class is optimized for my own preferences, 
- * and while these graphics can be used with a java layout manager, 
+ * Note: This class is optimized for my own preferences,
+ * and while these graphics can be used with a java layout manager,
  * they are optimized to be used alone
-*/
+ */
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -33,7 +33,7 @@ public class GUITools {
      * @param width
      * @param height
      * @return JLabel with set features
-    */
+     */
     public static JLabel createLabel(JPanel panel, BufferedImage image, int xPosition, int yPosition, int width, int height) {
         JLabel label = new JLabel();
 
@@ -54,7 +54,7 @@ public class GUITools {
      * @param width
      * @param height
      * @return JLabel with set features
-    */
+     */
     public static JLabel createLabel(JPanel panel, String text, int xPosition, int yPosition, int width, int height) {
         JLabel label = new JLabel();
 
@@ -75,7 +75,7 @@ public class GUITools {
      * @param width
      * @param height
      * @return JButton with set features
-    */
+     */
     public static JButton createButton(JPanel panel, BufferedImage image, int xPosition, int yPosition, int width, int height) {
         JButton button = new JButton();
 
@@ -97,7 +97,7 @@ public class GUITools {
      * @param width
      * @param height
      * @return JButton with set features
-    */
+     */
     public static JButton createButton(JPanel panel, String text, int xPosition, int yPosition, int width, int height) {
         JButton button = new JButton();
 
@@ -119,7 +119,7 @@ public class GUITools {
      * @param width
      * @param height
      * @return JRadioButton with set preferences
-    */
+     */
     public static JRadioButton createRadioButton(JPanel panel, BufferedImage image, BufferedImage pressedImage, int xPosition, int yPosition, int width, int height) {
         JRadioButton radioButton = new JRadioButton();
 
@@ -142,7 +142,7 @@ public class GUITools {
      * @param width
      * @param height
      * @return JRadioButton with set preferences
-    */
+     */
     public static JRadioButton createRadioButton(JPanel panel, String text, int xPosition, int yPosition, int width, int height) {
         JRadioButton radioButton = new JRadioButton();
 

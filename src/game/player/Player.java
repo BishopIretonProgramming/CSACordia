@@ -1,4 +1,4 @@
-package src.game;
+package src.game.player;
 
 //  imports
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.awt.Color;
 
+import src.game.Good;
+import src.game.House;
 import src.game.cards.PersonalityCard;
 import src.game.cards.Architect;
 import src.game.cards.Colonist;

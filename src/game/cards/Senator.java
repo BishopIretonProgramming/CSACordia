@@ -2,7 +2,7 @@ package src.game.cards;
 
 //  imports
 import src.game.cards.godtype.Vesta;
-import src.game.Player;
+import src.game.player.Player;
 
 import java.awt.Graphics;
 

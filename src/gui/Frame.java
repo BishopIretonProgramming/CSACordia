@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 import src.game.Game;
 import src.game.map.Map;
-import src.game.Player;
+import src.game.player.Player;
 
 public class Frame {
 

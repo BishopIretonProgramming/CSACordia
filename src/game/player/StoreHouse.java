@@ -1,6 +1,10 @@
-package src.game;
+package src.game.player;
 
 //  imports
+import src.game.Colonist;
+import src.game.Good;
+import src.game.player.Player;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
