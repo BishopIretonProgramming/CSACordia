@@ -144,4 +144,8 @@ public class Game {
     public Player currentPlayer() {
         return this.currentPlayer;
     }
-}
+
+    public List<PersonalityCard> getTopFacingDiscardedCards() {
+        return topFacingDiscardedCards;
+    }
+ }

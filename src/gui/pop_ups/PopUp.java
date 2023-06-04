@@ -1,4 +1,4 @@
-package src.gui;
+package src.gui.pop_ups;
 
 /*
  * @Author: Joseph Murray

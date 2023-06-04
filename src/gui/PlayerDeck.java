@@ -56,7 +56,7 @@ public class PlayerDeck {
 
     private JPanel panel; //The JPanel that holds these graphics
 
-    private final FileReaderTools SAVE_FILE = new FileReaderTools("resources" + File.separatorChar + "default_data" + File.separatorChar + "player_deck_data");
+    private final FileReaderTools SAVE_FILE = new FileReaderTools("resources" + File.separatorChar + "default_data" + File.separatorChar + "player_deck_data.txt");
 
                                         /* Constructors */
 
