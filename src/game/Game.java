@@ -149,4 +149,84 @@ public class Game {
     public List<PersonalityCard> getTopFacingDiscardedCards() {
         return topFacingDiscardedCards;
     }
+
+    /**
+     * Getter to get the map
+     * @return the map
+     */
+    public Map getMap(){
+        return this.map;
+    }
+
+    /**
+     * Getter to get the list of players
+     * @return the list of players
+     */
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    /**
+     * Getter to get the list of colors
+     * @return the list of colors
+     */
+    public List<Color> getColors() {
+        return this.colors;
+    }
+
+    /**
+     * Getter to get the name of Game
+     * @return the name of Game
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Getter to get the draw pile of personality cards
+     * @return the draw pile personality cards
+     */
+    public List<PersonalityCard> getDrawPile(){
+        return this.drawPile;
+    }
+
+    /**
+     * Getter to get the bonus box
+     * @return the bonus box
+     */
+    public BonusBox getBonusBox() {
+        return this.bonusBox;
+    }
+
+    /**
+     * Getter to get the ending player
+     * @return the ending player
+     */
+    public Player getEndingPlayer() {
+        return this.endingPlayer;
+    }
+
+    /**
+     * Getter to get the last turn played
+     * @return the last turn played
+     */
+    public boolean getLastTurn() {
+        return this.lastTurn;
+    }
+
+    /**
+     * Getter to get the total number of turns played
+     * @return the total number of turns played
+     */
+    public int getTotalTurnsPlayed() {
+        return this.totalTurnsPlayed;
+    }
+
+    /**
+     * Getter to get the path
+     * @return the path
+     */
+    public String getPath() {
+        return this.path;
+    }
  }
