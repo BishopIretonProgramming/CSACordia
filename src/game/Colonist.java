@@ -13,7 +13,7 @@ import static src.game.Colonist.ColonistType.LAND;
  * @author Jonah Cook
  * @author Caroline Miller
  */
-public class Colonist {
+public class Colonist implements Storeable {
 
 	/**
 	 * The player that the colonist is associated with

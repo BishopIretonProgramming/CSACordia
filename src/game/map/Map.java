@@ -198,12 +198,13 @@ public class Map {
                                 new CityNode("Roma", 30, '\0')
                         )
                 );
-                CityNode.fwrite(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP), cities);
+                //CityNode.fwrite(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP), cities);
 
 
                 //  Note to self: 0 -> 29, no connections to lower, right > left! ^ ~ >! < ~ >!
                 this.network = new Network(cities.size());
-                network.setCities(CityNode.fread(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP)));
+                network.setCities(cities);
+                //network.setCities(CityNode.fread(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP)));
                 network.connect(0, 8, SEA);
                 network.connect(0, 1, LAND);
                 network.connect(0, 1, SEA);
@@ -282,8 +283,9 @@ public class Map {
                 network.connect(26, 28, LAND);
                 network.connect(27, 28, LAND);
                 network.connect(28, 29, LAND);
-                Network.fwrite(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP), network);
-                this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP), String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP));
+                //Network.fwrite(String.format("imperium.nw"), network);
+                //CityNode.fwrite("cities.cn", cities);
+                //this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP), String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP));
                 this.cities = network.cities();
                 this.paths = this.network.paths();
             }
@@ -325,9 +327,5 @@ public class Map {
      */
     public List<PathNode> paths() {
         return this.paths;
-    }
-
-    public static void main(String[] args) {
-        new Map(Map.IMPERIUM);
     }
 }

@@ -1,6 +1,7 @@
 package src.game.player;
 
 //  imports
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import src.game.cards.Mercator;
 import src.game.cards.Tribune;
 import src.game.cards.Prefect;
 import src.game.cards.Senator;
+import src.game.Storeable;
 
 /**
  * A class to represent a player
@@ -155,7 +157,7 @@ public class Player implements java.io.Serializable {
      * @param cost the cost of the item, the key should be an Integer for sestertii
      *             and the value should be the value of either the sestertii or
      *             the good in the Map
-     * @return whether this Player can afford something based on its cost
+     * @return     whether this Player can afford something based on its cost
      */
     public boolean canAfford(HashMap<Object, Integer> cost) {
         for (Map.Entry<Object, Integer> entry : cost.entrySet()) {
@@ -167,9 +169,10 @@ public class Player implements java.io.Serializable {
                     return false;
                 }
             }
-            
+
+            //  DO NOT PUT MORE THAN ONE REFERENCE TO A SINGLE TYPE OF GOOD IN THE HASHMAP
             if (key instanceof Good) {  //  if the key is a Good
-                if (!this.storeHouse.contains(key, value)) {
+                if (!this.storeHouse.contains((Good) key, value)) {
                     return false;
                 }
             }
