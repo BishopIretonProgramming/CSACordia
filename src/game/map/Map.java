@@ -283,8 +283,8 @@ public class Map {
                 network.connect(26, 28, LAND);
                 network.connect(27, 28, LAND);
                 network.connect(28, 29, LAND);
-                Network.fwrite(String.format("imperium.nw"), network);
-                CityNode.fwrite("cities.cn", cities);
+                //Network.fwrite(String.format("imperium.nw"), network);
+                //CityNode.fwrite("cities.cn", cities);
                 //this.network = Network.fread(String.format("src%sgame%smap%ssaves%simperium.nw", SEP, SEP, SEP, SEP), String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP));
                 this.cities = network.cities();
                 this.paths = this.network.paths();
