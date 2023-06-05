@@ -1,4 +1,4 @@
-package resources.default_data;
+package resources.default_data.saveloading;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -24,10 +24,12 @@ public class SaveLoader {
     }
 
     public static ArrayList<String> existingNames() {
-        try (Stream<Path> names = Files.list(Paths.get(GAME_STATE_SAVES_DIR))
-                .filter(file -> !Files.isDirectory(file))
-                .map(Path::getFileName)) {
-            return (ArrayList<String>) names.map(Path::toString).collect(Collectors.toList());
+        try (Stream<Path> names = Files.list(Paths.get(GAME_STATE_SAVES_DIR))) {
+            return (ArrayList<String>) names
+                    .filter(file -> !Files.isDirectory(file))
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             return null;
         }
