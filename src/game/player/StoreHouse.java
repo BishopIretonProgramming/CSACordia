@@ -168,4 +168,14 @@ public class StoreHouse {
     public int size() {
         return this.size;
     }
+
+    /**
+     * Method to get an element at a specified index.
+     *
+     * @param index the index of the element to get.
+     * @return      the element at index.
+     */
+    public Storeable get(int index) {
+        return this.elements.get(index);
+    }
 }
