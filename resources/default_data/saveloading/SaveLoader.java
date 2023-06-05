@@ -37,6 +37,9 @@ public class SaveLoader {
 
     // this is for testing ignore it
     public static void main(String[] args) {
-        //JSONObject file = JSONObject.
+        JSONObject file = JSONObject.createBaseObject();
+        JSONObject folder = JSONObject.addSubObject(file, "folder");
+        JSONObject.addData(folder, "num1", "50");
+        JSONObject.addData(folder, "num2", "25");
     }
 }
