@@ -1,4 +1,4 @@
-package src.gui;
+package src.gui.buttons;
 
 /*
  * @Author: Joseph Murray

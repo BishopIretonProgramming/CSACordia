@@ -10,6 +10,7 @@ package src.gui;
 //TODO: add file reading for appropriate data
 
 import src.game.player.Player;
+import src.gui.buttons.GUITools;
 import src.game.cards.*;
 
 import javax.swing.JButton;

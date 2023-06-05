@@ -8,6 +8,7 @@ package src.gui;
 
 import src.game.player.Player;
 import src.game.player.StoreHouse;
+import src.gui.buttons.GUITools;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
