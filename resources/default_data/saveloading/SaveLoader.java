@@ -34,4 +34,9 @@ public class SaveLoader {
             return null;
         }
     }
+
+    // this is for testing ignore it
+    public static void main(String[] args) {
+        //JSONObject file = JSONObject.
+    }
 }
