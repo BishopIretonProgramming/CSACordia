@@ -4,7 +4,7 @@ package src.game.cards;
 import src.game.cards.godtype.Jvpiter;
 import src.game.player.Player;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 public class Consul extends PersonalityCard implements Jvpiter {
    public final CardImage image = CardImage.CONSUL;
@@ -27,11 +27,6 @@ public class Consul extends PersonalityCard implements Jvpiter {
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    

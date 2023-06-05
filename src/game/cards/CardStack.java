@@ -78,12 +78,12 @@ public class CardStack extends ArrayList<PersonalityCard> {
    }
 
    /**
-    * Returns the top 5 cards which are available to buy
-    * @return the top 5 cards of this which are available to buy
+    * Returns the top 7 cards which are available to buy
+    * @return the top 7 cards of this which are available to buy
     */
    public ArrayList<PersonalityCard> getAvailable() {
-      if(this.size() > 5) {
-         return (ArrayList<PersonalityCard>)this.subList(0, 5);
+      if(this.size() > 7) {
+         return (ArrayList<PersonalityCard>)this.subList(0, 7);
       } else {
          return this;
       }

@@ -11,7 +11,7 @@ import java.awt.Point;
  class ProvinceBonus {
      private boolean flipped;
      private Good provinceGood;
-     private int sersertiiVal;
+     private int sestertiiVal;
      private Point pos;
 
      public String regionName;
@@ -23,7 +23,7 @@ import java.awt.Point;
         regionName = c;
          flipped = false;
          provinceGood = g;
-         sersertiiVal = sV;
+         sestertiiVal = sV;
      }
  
      public Good getProvinceGood() {
@@ -34,8 +34,8 @@ import java.awt.Point;
          return flipped;
      }
  
-     public int getSersertiiVal() {
-         return sersertiiVal;
+     public int getSestertiiVal() {
+         return sestertiiVal;
      }
  
       public String getRegion() {
@@ -44,20 +44,15 @@ import java.awt.Point;
  
      public int flip(){
          flipped = !flipped;
-         return getSersertiiVal();
+         return getSestertiiVal();
      }
 
-     public void paintSerSide(Graphics g, int w, int h, int serAmount) {
-        switch (serAmount) {
-            case 1:               
-                g.drawImage(PieceImage.TILE_COIN_1.pieceImage, pos.x, pos.y, SIZE, SIZE, null);
-                break;
-            case 2:
-                g.drawImage(PieceImage.TILE_COIN_2.pieceImage, pos.x, pos.y, SIZE, SIZE, null);
-        }
+     public void paintSerSide(Graphics g) {
+        g.drawImage((sestertiiVal == 1) ? PieceImage.TILE_COIN_1.pieceImage : PieceImage.TILE_COIN_2.pieceImage,
+        pos.x, pos.y, SIZE, SIZE, null);
     }
 //for now rudimentary way of representing the goods will fix later probably
-    public void paintGoodSide(Graphics g,int w, int h) {
+    public void paintGoodSide(Graphics g) {
         switch (provinceGood) {
             case BRICK:
                 g.drawImage(PieceImage.TILE_BRICK.pieceImage, pos.x, pos.y, SIZE, SIZE, null);

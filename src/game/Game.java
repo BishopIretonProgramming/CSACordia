@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import src.game.map.Map;
 import src.game.cards.PersonalityCard;
+import src.game.cards.CardStack;
 import src.game.player.Player;
 
 /**
@@ -28,7 +29,7 @@ public class Game {
     private List<Player> players;
     private List<Color> colors;
     private String name;
-    private List<PersonalityCard> drawPile;
+    private CardStack drawPile;
     private BonusBox bonusBox;
     private Player currentPlayer;
     private static final String SEP = File.separator;
@@ -62,20 +63,12 @@ public class Game {
         this.players = players;
         this.colors = colors;
         this.currentPlayer = firstPlayer;
-        this.bonusBox = new BonusBox(12);
+        this.bonusBox = new BonusBox(20, 20);
         this.lastTurn = false;
-        this.drawPile = initDrawPile();
+        this.drawPile = new CardStack();
         this.topFacingDiscardedCards = new ArrayList<>(players.size());
         this.totalTurnsPlayed = 0;
         this.path = String.format("resources%ssaves%s%s.gam", SEP, this.name);
-    }
-
-    /**
-     * Method to make and shuffle the draw pile of this Game
-     * @return the draw pile that will be used for this Game
-     */
-    private List<PersonalityCard> initDrawPile() {
-        return null;  //  TODO: information on number and types of cards
     }
 
     /**

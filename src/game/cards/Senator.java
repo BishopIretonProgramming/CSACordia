@@ -4,7 +4,7 @@ package src.game.cards;
 import src.game.cards.godtype.Vesta;
 import src.game.player.Player;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 public class Senator extends PersonalityCard implements Vesta {
    public final CardImage IMAGE = CardImage.SENATOR;
@@ -27,11 +27,6 @@ public class Senator extends PersonalityCard implements Vesta {
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    

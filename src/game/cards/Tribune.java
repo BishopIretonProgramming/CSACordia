@@ -4,7 +4,7 @@ package src.game.cards;
 import src.game.cards.godtype.Mars;
 import src.game.player.Player;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 public class Tribune extends PersonalityCard implements Mars {
    public final CardImage IMAGE = CardImage.TRIBUNE;
@@ -35,11 +35,6 @@ public class Tribune extends PersonalityCard implements Mars {
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    
