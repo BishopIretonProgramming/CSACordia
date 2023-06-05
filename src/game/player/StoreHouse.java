@@ -2,6 +2,7 @@ package src.game.player;
 
 //  imports
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -47,7 +48,9 @@ public class StoreHouse {
      */
     public StoreHouse(Player player) {
         this.player = player;
-        this.elements = Arrays.asList(new Storeable[MAXIMUM_CAPACITY]);
+
+        List<Storeable> list = Arrays.asList(new Storeable[MAXIMUM_CAPACITY]);// added by Nora gets rid of java.lang.UnsupportedOperationException
+        this.elements = new ArrayList<>(list);
         this.size = 0;
         init();
     }
