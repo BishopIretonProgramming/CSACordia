@@ -1,4 +1,4 @@
-package src.game;
+package src.gui;
 
 /*
  * @Author: Joseph Murray
@@ -36,7 +36,7 @@ public enum PieceImage {
     CITY_CLOTH("pieces" + File.separator + "clothCity.png"),
     CITY_TOOL("pieces" + File.separator + "toolCity.png"),
     CITY_WINE("pieces" + File.separator + "wineCity.png"),
-    BOARD("Concordia board.png"),
+    BOARD("Concordia board.jpg"),
     STOREHOUSE_BLACK("blackStorehouse.png"),
     STOREHOUSE_RED("blackStorehouse.png"),
     STOREHOUSE_YELLOW("blackStorehouse.png"),
