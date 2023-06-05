@@ -18,13 +18,18 @@ import src.game.Game;
 import src.game.map.Map;
 import src.game.player.Player;
 
-public class Frame {
+/**
+ *  @author Joe Lentini
+ *  @author Nora Hixson
+ *  this should display th start screen
+ */
+public class Welcome extends JFrame {
 
-    public Frame(){
+    public Welcome(){
 
     }
     
-    public void welcome() {
+    public void welcomeFrame() {
         JFrame wFrame = new JFrame("Welcome Frame");
         wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -39,6 +44,28 @@ public class Frame {
         // add buttons to the panel
         wPanel.add(newGameButton);
         wPanel.add(loadGameButton);
+
+        // add action listeners to all the buttons
+        loadGameButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        System.out.println("load game was pressed");
+                        
+                        
+                    }
+                }        );
+
+        newGameButton.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e){
+                            System.out.println("new game was pressed");
+                            
+                            
+                        }
+                    }        );
+
         
         // create a JLabel object with an image as the background
         JLabel wBackground = new JLabel();
@@ -70,6 +97,7 @@ public class Frame {
         wFrame.setVisible(true);
     }
 
+/*  Could be useful as last resort
     public void board(Game g) { // Probably will have parameters for gamestate. 
         JFrame bord = new JFrame("Game Board");
         PlayerHandDisplay d = new PlayerHandDisplay();
@@ -121,7 +149,7 @@ public class Frame {
         bord.setSize(1225, 900);
         bord.setVisible(true);
     }
-
+*/
     public static void main(String[] args) {
         // what I need for game String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer
         String name ="We're no strangers to love";
@@ -146,7 +174,7 @@ public class Frame {
 
         Game Rick = Game.initGame(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
         Frame test = new Frame();
-        test.welcome();
-        test.board(Rick);
+        test.welcomeFrame();
+        //test.board(Rick);
     }
 }
