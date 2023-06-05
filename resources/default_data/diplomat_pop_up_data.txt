@@ -1,5 +1,5 @@
 SECTION gui_image_file_names
-PATH src%sgui%simages%sbutton_images%s
+PATH resources%simages%sbutton_images%s
 left_button.png
 right_button.png
 use_button.png

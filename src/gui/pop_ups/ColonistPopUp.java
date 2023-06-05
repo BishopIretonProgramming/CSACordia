@@ -9,7 +9,7 @@ package src.gui.pop_ups;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import src.gui.GUITools;
+import src.gui.buttons.GUITools;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

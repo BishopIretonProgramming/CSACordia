@@ -1,5 +1,5 @@
 SECTION gui_image_file_names
-PATH src%sgui%simages%sbutton_images%s
+PATHresources%simages%sbutton_images%s
 left_button.png
 right_button.png
 use_button.png
@@ -9,7 +9,7 @@ available_cards_selected.png
 discarded_cards.png
 discarded_cards_selected.png
 SECTION card_image_file_names
-PATH src%sgui%simages%sstartingcards%s
+PATH resources%simages%sstartingcards%s
 architect.png
 diplomat.png
 mercator.png
@@ -21,7 +21,7 @@ blackBack.png
 redBack.png
 blueBack.png
 yellowBack.png
-PATH src%sgui%simages%sboughtcards%s
+PATH resources%simages%sboughtcards%s
 architect.png
 colonist.png
 consul.png
@@ -40,7 +40,7 @@ backI.png
 backIII.png
 backIV.png
 backV.png
-PATH src%sgui%simages%s
+PATH resources%simages%s
 concordia.png
 concordiaBack.png
 praefectusMagnus.png
