@@ -1,57 +1,30 @@
 package src.game;
 
-
 /* Anthony Amedome
- *  This is a class for the top left of the board it is an array list of region bonuses
+ *  This is a class for the Region Bonus Box on the top left of the board
  */
 
- import java.util.ArrayList;
- import java.util.Random;
- import java.awt.Graphics;
- import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.util.Collections;
 
-
- class ProvinceBonus {
-     private boolean flipped;
-     private Good provinceGood;
-     private int sersertiiVal;
- //     public String regionName;
- 
-     public ProvinceBonus (/*String c,*/ Good g, int sV){
-        // regionName = c;
-         flipped = false;
-         provinceGood = g;
-         sersertiiVal = sV;
-     }
- 
-     public Good getProvinceGood() {
-         return provinceGood;
-     }
- 
-     public boolean getFlipped() {
-         return flipped;
-     }
- 
-     public int getSersertiiVal() {
-         return sersertiiVal;
-     }
- 
- //     public String getRegion() {
- //         return regionName;
- //     }
- 
-     public int flip(){
-         flipped = !flipped;
-         return getSersertiiVal();
-     }
- }
  public class BonusBox extends ArrayList<ProvinceBonus> {
  
-     private int capacity;
-     
-     public BonusBox (int c) {
-         super(c);
-         capacity = c;
+     public Dimension SIZE = new Dimension(4, 3);
+     public ArrayList<String> PROVINCES = new ArrayList<String> ();
+
+     private Point pos;
+
+     public BonusBox (int x, int y) {
+        super();
+        this.pos = new Point(x, y);
+
+        String[] provs = new String[12]; //FILL THIS WITH 12 PROVINCES
+        Collections.addAll(PROVINCES, provs);
      }
      
      public Good randomGood() {
@@ -82,8 +55,10 @@ package src.game;
      
      public void fillBox() {
      Random math = new Random();
-        for (int i = 0; i < capacity; i++) {
-            this.add(new ProvinceBonus(randomGood(), (math.nextInt()*3) +1));
+        for (int c = 0; c < SIZE.width; c++) {
+            for(int r = 0; r < SIZE.height; r++) {
+                this.add(new ProvinceBonus(pos.x + c*(50), pos.y + r*(30), PROVINCES.get(c+r), randomGood(), (math.nextInt()*3) +1));
+            }
         }
      }
  
@@ -105,49 +80,4 @@ package src.game;
         }
         return output;
      }
-
-
  }
-//putting this here for now since I dont know where to put it
-class ProvinceBonusGraphics {
-    public void paintSerSide(Graphics g, int w, int h, int serAmount){
-        g.setColor(new Color(166,166,166));
-        switch (serAmount) {
-            case 1:               
-                g.fillOval(w/2, h/2, 10, 10);
-                break;
-            case 2:
-                g.fillOval(w*3/4, h *1/4, 10,10);
-        }
-    }
-//for now rudimentary vway of representing teh goods will fix later probably
-    public void paintGoodSide(Graphics g,int w, int h, ProvinceBonus pb) {
-        Good good = pb.getProvinceGood();
-        switch (good) {
-            case BRICK:
-                g.setColor(new Color(66,10,9));
-                g.fillRect(w,h,15,10);
-                break;
-            case FOOD:
-                int[] xCords = {0,w,w/2};
-                int[] yCords = {0,0,h};
-                g.setColor(new Color(230,177,32));
-                g.fillPolygon(xCords,yCords,3);
-                break;
-            case TOOL:
-                g.setColor(new Color(166,166,166));
-                g.fillRect(w, h, 15, 10);
-                break;
-            case WINE:
-                int[] xCord = {0,w,w/2};
-                int[] yCord = {0,0,h};
-                g.setColor(new Color(182,99,255));
-                g.fillPolygon(xCord,yCord,3);
-                break;
-            case CLOTH:
-                g.setColor(new Color(0,0,255));
-                g.fillRect(w,h,10,10);
-                break;
-        }
-    }
-}

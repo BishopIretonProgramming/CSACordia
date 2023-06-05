@@ -6,67 +6,86 @@ package src.game.cards;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class CardStack {
-   
-   private ArrayList<PersonalityCard> stack;
+public class CardStack extends ArrayList<PersonalityCard> {
    
    public CardStack() {
-      stack = new ArrayList<PersonalityCard>();
-   }
-   
-   // adds cards to the top of the pile in order
-   public void addToTop(PersonalityCard... o) {
-      for (PersonalityCard obj : o) stack.add(obj);
-   }
-   
-   // adds cards to the bottom of the pile in order
-   public void addToBottom(PersonalityCard... o) {
-      for (PersonalityCard obj : o) stack.add(0, obj);
-   }
-   
-   // randomly adds cards to the pile
-   public void addRandomly(PersonalityCard... o) {
-      for (PersonalityCard obj : o) stack.add((int) (Math.random() * stack.size()), obj);
-   }
-      
-   // pass an instance of the card you want to check if the stack contains
-   // parameter is a class type, so pass the type of the card you want like this: Diplomat.class
-   // might be Diplomat.getClass() idk I dont like generics, you figure it out
-   public boolean contains(Class<?> c) {
-      for (PersonalityCard obj : stack) if (obj.getClass() == c) return true;
-      return false;
-   }
-   
-   // returns the total amount of cards in the stack that are a certain type
-   public int count(Class<?> c) {
-      int total = 0;
-      for (PersonalityCard obj : stack) if (obj.getClass() == c) total++;
-      return total;
-   }
-   
-   // shuffles the card stack
-   public void shuffle() {
-      Collections.shuffle(stack);
-   }
-   
-   // returns the amount of cards in the stack
-   public int size() {
-      return stack.size();
-   }
-   
-   // returns the card stack
-   public ArrayList<PersonalityCard> getCards() {
-      return stack;
-   }
-   
-   // returns a specific card
-   public PersonalityCard get(int i) {
-      return stack.get(i);
-   }
-   
-   // clears the array
-   public void clear() {
-      stack = new ArrayList<PersonalityCard>();
+      super();
+      init();
    }
 
+   public void init() {
+      this.addAll(phaseI());
+      this.addAll(phaseII());
+      this.addAll(phaseIII());
+      this.addAll(phaseIV());
+      this.addAll(phaseV());
+   }
+
+   public ArrayList<PersonalityCard> phaseI() {
+      ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
+      a.add(new Mason(null));
+      a.add(new Smith(null));
+      a.add(new Mercator(null, false));
+      a.add(new Colonist(null));
+      a.add(new Diplomat(null, 0, 0, 1, 0, 0, "Satvrnvs"));
+      a.add(new Farmer(null));
+      a.add(new Architect(null, false));
+      a.add(new Prefect(null, false));
+      Collections.shuffle(a);
+      return a;
+   }
+   public ArrayList<PersonalityCard> phaseII() {
+      ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
+      a.add(new Mercator(null, false));
+      a.add(new Colonist(null));
+      a.add(new Prefect(null, false));
+      a.add(new Weaver(null));
+      a.add(new Architect(null, false));
+      a.add(new Consul(null));
+      a.add(new Vintner(null));
+      Collections.shuffle(a);
+      return a;
+   }
+   public ArrayList<PersonalityCard> phaseIII() {
+      ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
+      a.add(new Consul(null));
+      a.add(new Architect(null, false));
+      a.add(new Colonist(null));
+      a.add(new Diplomat(null, 0, 1, 0, 0, 0, "Satvrnvs"));
+      a.add(new Mercator(null, false));
+      a.add(new Prefect(null, false));
+      Collections.shuffle(a);
+      return a;
+   }
+   public ArrayList<PersonalityCard> phaseIV() {
+      ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
+      a.add(new Consul(null));
+      a.add(new Prefect(null, false));
+      a.add(new Colonist(null));
+      a.add(new Diplomat(null, 0, 0, 1, 0, 0, "Mercvrivs"));
+      a.add(new Architect(null, false));
+      Collections.shuffle(a);
+      return a;
+   }
+   public ArrayList<PersonalityCard> phaseV() {
+      ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
+      a.add(new Consul(null));
+      a.add(new Prefect(null, false));
+      a.add(new Diplomat(null, 0, 1, 0, 0, 0, "Mars"));
+      a.add(new Mercator(null, false));
+      Collections.shuffle(a);
+      return a;
+   }
+
+   /**
+    * Returns the top 5 cards which are available to buy
+    * @return the top 5 cards of this which are available to buy
+    */
+   public ArrayList<PersonalityCard> getAvailable() {
+      if(this.size() > 5) {
+         return (ArrayList<PersonalityCard>)this.subList(0, 5);
+      } else {
+         return this;
+      }
+   }
 }

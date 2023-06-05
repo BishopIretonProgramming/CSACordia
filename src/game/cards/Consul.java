@@ -9,8 +9,8 @@ import java.awt.Graphics;
 public class Consul extends PersonalityCard implements Jvpiter {
    public final CardImage image = CardImage.CONSUL;
    
-   public Consul(Player myPlayer, boolean isStarting) {
-      super(myPlayer, 0, 0, 0, 0, isStarting ? 0 : 1, 1);
+   public Consul(Player myPlayer) {
+      super(myPlayer, 0, 0, 0, 0, 1, 1);
    }
    
    @Override
