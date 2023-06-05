@@ -6,7 +6,7 @@ package src.game;
 
 import java.util.ArrayList;
 import java.util.Random;
-//import java.awt.Graphics;
+import java.awt.Graphics;
 //import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -74,11 +74,21 @@ import java.util.Collections;
          return totalSestertii;
      }
 
+     public void draw(Graphics g) {
+         for(ProvinceBonus p : this) {
+            if(p.getFlipped()) {
+               p.paintSerSide(g);
+            } else {
+               p.paintGoodSide(g);
+            }
+         }
+     }
+
      @Override
      public String toString(){
         String output = "";
         for (ProvinceBonus region : this) {
-            output += ( "(" + this.get(1).getProvinceGood() + " / " + region.getSersertiiVal() + ")");
+            output += ( "(" + this.get(1).getProvinceGood() + " / " + region.getSestertiiVal() + ")");
         }
         return output;
      }
