@@ -4,7 +4,7 @@ package src.game.cards;
 import src.game.cards.godtype.Mercvrivs;
 import src.game.player.Player;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 public class Mercator extends PersonalityCard implements Mercvrivs {
    public final CardImage IMAGE = CardImage.MERCATOR;
@@ -32,11 +32,6 @@ public class Mercator extends PersonalityCard implements Mercvrivs {
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    

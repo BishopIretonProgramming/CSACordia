@@ -6,8 +6,8 @@ package src.game;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.Graphics;
-import java.awt.Color;
+//import java.awt.Graphics;
+//import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.Collections;
@@ -23,7 +23,9 @@ import java.util.Collections;
         super();
         this.pos = new Point(x, y);
 
-        String[] provs = new String[12]; //FILL THIS WITH 12 PROVINCES
+        String[] provs = {"Britannia", "Germania", "Dacia", "Asia",
+                           "Gallia", "Italia", "Hellas", "Syria",
+                           "Hispania", "Mavretania", "Lybia", "Aegyptvs"};
         Collections.addAll(PROVINCES, provs);
      }
      

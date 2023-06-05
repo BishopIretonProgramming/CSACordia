@@ -4,7 +4,7 @@ package src.game.cards;
 import src.game.cards.godtype.*;
 import src.game.player.Player;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvrivs, Jvpiter {
    public final CardImage IMAGE;
@@ -87,11 +87,6 @@ public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvri
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    

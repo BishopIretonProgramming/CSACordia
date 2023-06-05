@@ -6,7 +6,8 @@ import src.game.player.Player;
 import src.game.Good;
 import src.game.House;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
+
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Vintner extends PersonalityCard implements Minerva {
@@ -36,11 +37,6 @@ public class Vintner extends PersonalityCard implements Minerva {
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    

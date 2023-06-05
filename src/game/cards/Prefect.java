@@ -4,7 +4,7 @@ package src.game.cards;
 import src.game.cards.godtype.Satvrnvs;
 import src.game.player.Player;
 
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 public class Prefect extends PersonalityCard implements Satvrnvs {
    public final CardImage IMAGE;
@@ -33,11 +33,6 @@ public class Prefect extends PersonalityCard implements Satvrnvs {
    
    @Override
    public void update() {
-      
-   }
-   
-   @Override
-   public void draw(Graphics g) {
       
    }
    
