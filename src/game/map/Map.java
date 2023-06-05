@@ -328,9 +328,4 @@ public class Map {
     public List<PathNode> paths() {
         return this.paths;
     }
-
-    public static void main(String[] args) {
-        Map map = new Map(Map.IMPERIUM);
-    }
-
 }
