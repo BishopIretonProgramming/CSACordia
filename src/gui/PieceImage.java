@@ -47,7 +47,7 @@ public enum PieceImage {
 
     private PieceImage(String pieceImageFileName) {
         try {
-            pieceImage = ImageIO.read(new File(String.format("reasources%simages%s"+pieceImageFileName, File.separator, File.separator, File.separator)));
+            pieceImage = ImageIO.read(new File(String.format("resources%simages%s"+pieceImageFileName, File.separator, File.separator, File.separator)));
         }
         catch(IOException e) {
             System.out.println("Failed to load image");
