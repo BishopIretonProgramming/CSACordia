@@ -8,7 +8,7 @@ package src.game;
 * String NAME
 */
 
-@Storeable public enum Good {
+public enum Good implements Storeable {
 
    WINE(6,"wine"), 
    BRICK(3,"brick"),
