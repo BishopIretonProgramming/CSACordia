@@ -39,6 +39,8 @@ public class MainFrame extends JComponent implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(PieceImage.BOARD.pieceImage, 0, 0, SIZE.width, SIZE.height, null);
+        
+        game.getBonusBox().draw(g);
     }
 
     @Override

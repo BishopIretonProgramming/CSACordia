@@ -1,17 +1,22 @@
 package src.game.cards;
 
-import java.awt.Graphics;
 import src.game.player.Player;
+import src.game.Good;
+
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Point;
 import java.awt.Dimension;
+import java.util.HashMap;
 
 public abstract class PersonalityCard {
    private int winePrice, toolPrice, foodPrice, brickPrice, clothPrice; //The amount of each item that this card costs to buy it
+   private int clothModifier = 0; //The additional price you may have to pay if the card is in a certain position
    private int victoryMultiplier; //The mutiplier for the card's victory points
    private boolean played; //Whether this card has been played already
    private Player myPlayer;
    private Point pos;
+   private HashMap<Object, Integer> price;
 
    public final Dimension SIZE = new Dimension(44, 69); //original: 755px, 1171px
    public final BufferedImage IMAGE = null;
@@ -26,6 +31,13 @@ public abstract class PersonalityCard {
       this.victoryMultiplier = victoryMultiplier;
 
       this.pos = new Point(0, 0);
+
+      price = new HashMap<Object, Integer> ();
+      price.put(Good.BRICK, brickPrice);
+      price.put(Good.FOOD, foodPrice);
+      price.put(Good.TOOL, toolPrice);
+      price.put(Good.WINE, winePrice);
+      price.put(Good.CLOTH, clothPrice);
    }
    
    public abstract void doAction();
@@ -56,8 +68,14 @@ public abstract class PersonalityCard {
    public int getClothPrice() {return this.clothPrice;}
    public int getVictoryMultiplier() {return this.victoryMultiplier;}
    public boolean getPlayed() {return this.played;}
+   public HashMap<Object, Integer> getPrice() {return this.price;}
 
    /**SETTERS**/
    public void setPlayed(boolean played) {this.played = played;}
    public void setMyPlayer(Player m) {this.myPlayer = m;}
+   public void setPos(int x, int y) {this.pos.setLocation(x, y);}
+   public void setClothModifier(int x) {
+      clothModifier = x;
+      price.put(Good.CLOTH, clothPrice + clothModifier);
+   }
 }
