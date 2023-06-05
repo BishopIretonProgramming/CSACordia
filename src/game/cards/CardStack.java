@@ -3,11 +3,15 @@
 
 package src.game.cards;
 
+import src.game.player.Player;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardStack extends ArrayList<PersonalityCard> {
    
+   public final int[] CLOTHMODIFIERS = {0, 1, 1, 1, 1, 2, 2}; //the additional cloth price players might need to pay for cards
+
    public CardStack() {
       super();
       init();
@@ -19,6 +23,37 @@ public class CardStack extends ArrayList<PersonalityCard> {
       this.addAll(phaseIII());
       this.addAll(phaseIV());
       this.addAll(phaseV());
+
+      updateDisplayedCards();
+   }
+
+   /**
+    * Attempts to purchase a card and returns true and adds the card to the player's card list if able to purchase
+    * @param x the index of the card (must be within the range of displayed cards)
+    * @param p the player attempting to purchase the card
+    * @return whether the purchase was successful
+    */
+   public boolean purchaseCard(int x, Player p) {
+      if(x >= getAvailable().size()) throw new IllegalArgumentException("index x is outside accepted range");
+      PersonalityCard pc = getAvailable().get(x);
+      
+      if(p.canAfford(pc.getPrice())) {
+         pc.setMyPlayer(p);
+         p.cards().add(pc);
+         this.remove(x);
+
+         updateDisplayedCards();
+         return true;
+      }
+      return false;
+   }
+
+   private void updateDisplayedCards() {
+      ArrayList<PersonalityCard> top = getAvailable();
+      for(int i = 0; i < top.size(); i ++) {
+         top.get(i).setPos(390 + i*30, 25);
+         top.get(i).setClothModifier(CLOTHMODIFIERS[i]);
+      }
    }
 
    public ArrayList<PersonalityCard> phaseI() {
