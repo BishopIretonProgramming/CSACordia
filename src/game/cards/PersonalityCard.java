@@ -48,4 +48,5 @@ public abstract class PersonalityCard {
 
    /**SETTERS**/
    public void setPlayed(boolean played) {this.played = played;}
+   public void setMyPlayer(Player m) {this.myPlayer = m;}
 }

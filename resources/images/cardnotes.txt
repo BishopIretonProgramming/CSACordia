@@ -1,6 +1,7 @@
 All starting hand cards can be found in startingcards, all cards bought afterward are found in boughtcards
 The only difference between them is that starting cards don't have prices
 *Mercator cards are different, starting mercators give 3 sestertii, while bought give 5
+*Diplomat cards have different godtypes and prices every round
 
 Cards Found in Each Category:
 
@@ -9,7 +10,7 @@ Tribune
 Mercator
 Prefect --X2
 Architect
-Diplomat
+Diplomat (Jupiter)
 Senator
 
 Bought cards: (All cards with prices)
@@ -19,7 +20,7 @@ Mason
 Smith
 Mercator
 Colonist
-Diplomat
+Diplomat (Saturnus, tool)
 Farmer
 Architect
 Prefect
@@ -37,7 +38,7 @@ III:
 Consul
 Architect
 Colonist
-Diplomat
+Diplomat (Saturnus, Food)
 Mercator
 Prefect
 
@@ -45,11 +46,11 @@ IV:
 Consul
 Prefect
 Colonist
-Diplomat
+Diplomat (Mercurius, tool)
 Architect
 
 V:
 Consul
 Mercator
 Prefect
-Diplomat
+Diplomat (Mars, food)
