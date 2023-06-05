@@ -1,4 +1,4 @@
-resources.saves
+resources.default_data
 src
 src.ai.data.creation
 src.ai.environment
@@ -8,11 +8,14 @@ src.ai.environment.game.cards.godtypes
 src.ai.environment.game.map
 src.ai.environment.game.player
 src.ai.main
-src.ai.model.data.csv
-src.ai.model.data.csv.columndata
+src.ai.model.lossfunctions
 src.game
 src.game.cards
 src.game.cards.godtype
 src.game.map
+src.game.player
 src.gui
+src.gui.buttons
+src.gui.pop_ups
+src.login
 src.util
