@@ -173,7 +173,7 @@ public class Welcome extends JFrame {
 
 
         Game Rick = Game.initGame(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
-        Frame test = new Frame();
+        Welcome test = new Welcome();
         test.welcomeFrame();
         //test.board(Rick);
     }
