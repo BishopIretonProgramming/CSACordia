@@ -79,7 +79,7 @@ public class Frame {
         JLabel wBackground = new JLabel();
         try {
 
-            Image img = ImageIO.read(new File("src\\gui\\images\\Concordia board.jpg"));
+            Image img = ImageIO.read(new File("resources\\images\\Concordia board.jpg"));
 
             Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
             wBackground.setIcon(new ImageIcon(imgMap));
