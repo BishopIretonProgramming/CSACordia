@@ -25,11 +25,7 @@ import src.game.player.Player;
  */
 public class Welcome extends JFrame {
 
-    public Welcome(){
-
-    }
-    
-    public void welcomeFrame() {
+    public static void welcomeFrame() {
         JFrame wFrame = new JFrame("Welcome Frame");
         wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -71,7 +67,7 @@ public class Welcome extends JFrame {
         JLabel wBackground = new JLabel();
         try {
             // load the image file from the project folder
-            Image imgM = ImageIO.read(new File(String.format("src%sgui%simages%sConcordia board.jpg", File.separator, File.separator, File.separator)));
+            Image imgM = ImageIO.read(new File(String.format("resources%simages%sConcordia board.jpg", File.separator, File.separator)));
             wBackground.setIcon(new ImageIcon(imgM));
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,7 +145,8 @@ public class Welcome extends JFrame {
         bord.setSize(1225, 900);
         bord.setVisible(true);
     }
-*/
+
+    testing method
     public static void main(String[] args) {
         // what I need for game String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer
         String name ="We're no strangers to love";
@@ -171,10 +168,13 @@ public class Welcome extends JFrame {
         List<Color> lol = new ArrayList<Color>();
         lol.add(Color.BLUE);
 
+        welcomeFrame();
 
-        Game Rick = Game.initGame(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
-        Welcome test = new Welcome();
-        test.welcomeFrame();
+
+        //Game Rick = Game.(name, youKnowTheRulesAndSoDoI, rickroll, lol, aFullCommitmentsWhatImThinkingOf);
+        
+        //welcomeFrame();
         //test.board(Rick);
     }
+*/
 }
