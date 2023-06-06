@@ -82,7 +82,6 @@ public class Welcome extends JFrame {
                         public void actionPerformed(ActionEvent e){
                             System.out.println("new game was pressed");
                             CreateNewGame.create(wFrame, wPanel,wLabel,wBackground);
-                            
                         }
                     }        );
     }
