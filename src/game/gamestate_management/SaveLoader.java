@@ -14,6 +14,7 @@ import src.game.Good;
 import src.game.House;
 import src.game.Storeable;
 import src.game.cards.PersonalityCard;
+import src.game.map.CityNode;
 import src.game.player.Player;
 
 public class SaveLoader {
@@ -37,25 +38,33 @@ public class SaveLoader {
             JObject.addData(player, "color", p.color());
             JObject.addData(player, "money", p.sestertii());
 
-            JObject deck = JObject.addSubObject(player, "deck");
-            for (PersonalityCard pCard : p.cards()) 
-                JObject.addWord(deck, pCard);
-
-            JObject discard = JObject.addSubObject(player, "discard");
-            for (PersonalityCard pCard : p.discard()) 
-                JObject.addWord(discard, pCard);
+            JObject[] folders = new JObject[] { JObject.addSubObject(player, "deck"),
+                    JObject.addSubObject(player, "discard"), JObject.addSubObject(player, "houses") };
+            ArrayList<?>[] data = new ArrayList<?>[] { p.cards(), p.discard(), p.houses() };
+            for (int j = 0; i < data.length; j++)
+                for (Object object : data[j])
+                    JObject.addWord(folders[j], object);
 
             JObject storehouse = JObject.addSubObject(player, "storehouse");
-            for (Storeable store : p.storeHouse().getResources()) 
+            for (Storeable store : p.storeHouse().getResources())
                 JObject.addWord(storehouse, store instanceof Good ? ((Good) store).name() : ((Colonist) store).type());
 
-            JObject houses = JObject.addSubObject(player, "houses");
-            for (House house : p.houses()) 
-                JObject.addWord(houses, house.city());
-                
             JObject colonists = JObject.addSubObject(player, "colonists");
-            //for (Colonist colonist : p.colonists()) 
-                
+            for (int j = 0; j < p.colonists().size(); j++) {
+                JObject colonist = JObject.addSubObject(colonists, j);
+                Colonist c = p.colonists().get(j);
+
+                JObject.addData(colonist, "type", c.type());
+
+                JObject location = JObject.addSubObject(colonist, "location");
+                for (CityNode city : c.path().nodes())
+                    JObject.addWord(location, city.name());
+            }
+        }
+
+        // cities
+        JObject cities = JObject.addSubObject(head, "cities");
+        for (int i = 0; i < game.getMap().network().nodeCount(); i++) {
             
         }
     }

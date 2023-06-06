@@ -6,88 +6,29 @@ import java.util.HashMap;
 import java.util.Map;
 import java.awt.Color;
 
+import src.game.Colonist;
 import src.game.Good;
 import src.game.House;
 import src.game.cards.PersonalityCard;
 import src.game.cards.Architect;
-import src.game.cards.ColonistPCard;
 import src.game.cards.Diplomat;
 import src.game.cards.Mercator;
 import src.game.cards.Tribune;
 import src.game.cards.Prefect;
 import src.game.cards.Senator;
 
-/**
- * A class to represent a player
- * can be serialized for game state saving
- * @author devinlinux
- */
-
 public class Player implements java.io.Serializable {
-
-    /**
-     * The version ID for serialization
-     */
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * The personality cards of this player
-     */
     private ArrayList<PersonalityCard> cards;
-
-    /**
-     * The discard pile of this Player's personality cards
-     */
     private ArrayList<PersonalityCard> discard;
-
-    /**
-     * The colonists of this Player
-     */
-    private ArrayList<ColonistPCard> colonists;
-
-    /**
-     * The StoreHouse of this Player
-     */
+    private ArrayList<Colonist> colonists;
     private StoreHouse storeHouse;
-
-    /**
-     * The name of this Player
-     */
     private final String NAME;
-
-    /**
-     * The number of victory points this Player has
-     */
     private int victoryPoints;
-
-    /**
-     * The number of sestertii this Player has
-     */
     private int sestertii;
-
-    /**
-     * The houses of the players
-     */
     private ArrayList<House> houses;
-
-    /**
-     * The number of houses the player has
-     */
     private int numHouses;
-
-    /**
-     * Whether the player has the praefectus magnus card
-     */
     private boolean hasPraefectusMagnus;
-
-    /**
-     * The color of this player
-     */
     private Color color;
-
-    /**
-     * The number of turns this player has left
-     */
     private int numTurnsLeft;
 
     /**
@@ -128,9 +69,6 @@ public class Player implements java.io.Serializable {
         init();
     }
 
-    /**
-     * A method to fill the ArrayList of Houses of this Player
-     */
     private void fillHouses() {
         for (int i = 0; i < 15; i++) {
             this.houses.add(new House(this));
@@ -222,7 +160,7 @@ public class Player implements java.io.Serializable {
      * Getter to return the Colonists of this Player
      * @return the Colonists of this Player
      */
-    public ArrayList<ColonistPCard> colonists() {
+    public ArrayList<Colonist> colonists() {
         return this.colonists;
     }
 

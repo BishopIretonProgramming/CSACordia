@@ -74,6 +74,10 @@ public class Network implements java.io.Serializable {
         }
     }
 
+    public int nodeCount() {
+        return NUM_NODES;
+    }
+
     /**
      * Method to add an edge (path) to the Network
      * @param u the starting node (city) of the new edge (path)
