@@ -33,15 +33,12 @@ public class Game {
     private boolean lastTurn;
     private int totalTurnsPlayed;
     private String path;
+    private boolean original; // if the game is loaded from file or original
 
     public static Game initGame(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
         if (SaveLoader.existingNames().contains(name))
-            return new Game(name, map, players, colors, firstPlayer);
-        return null;
-    }
-
-    public static Game DO_NOT_USE___SAVE_LOADER_GAME_INITIALIZER(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
-        return new Game(name, map, players, colors, firstPlayer);
+            return new Game(name, map, players, colors, firstPlayer, true);
+        return SaveLoader.loadGame(name); // returns existing game with <original> flag set false
     }
 
     /**
@@ -52,7 +49,7 @@ public class Game {
      * @param colors the colors of the players who will be playing this Game
      * @param firstPlayer the Player who will play first
      */
-    private Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
+    private Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer, boolean original) {
         this.name = name;
         this.map = map;
         this.players = players;
@@ -64,6 +61,7 @@ public class Game {
         this.topFacingDiscardedCards = new ArrayList<>(players.size());
         this.totalTurnsPlayed = 0;
         this.path = String.format("resources%ssaves%s%s.gam", SEP, this.name);
+        this.original = original;
     }
 
     /**

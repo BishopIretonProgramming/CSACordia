@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import src.game.Game;
+import src.game.player.Player;
 
 public class SaveLoader {
 
@@ -19,12 +20,13 @@ public class SaveLoader {
     }
 
     public static void saveGame(Game game) {
-
+        ArrayList<Player> players = new ArrayList<Player>(game.getPlayers());
+        game.getMap().network();
     }
 
-    public static Game loadGame() {
+    public static Game loadGame(String name) {
         // do stuff to recreate a game object from the save
-        return Game.DO_NOT_USE___SAVE_LOADER_GAME_INITIALIZER(null, null, null, null, null);
+        return null;
     }
 
     public static ArrayList<String> existingNames() {
