@@ -76,7 +76,7 @@ public class PlayerSetupPanel extends JPanel {
         });
 
         startButton.addActionListener(e -> {
-            frame.showNamePanel();
+            frame.showNamePanel(Game.initGame("", new Map(Map.IMPERIUM), null, null, null));
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout());

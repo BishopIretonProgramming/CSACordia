@@ -14,8 +14,6 @@ public class GameNamePanel extends JPanel {
     private Game game;
 
     public GameNamePanel(Frame frame, Game game) {
-        this.frame = frame;
-        this.game = game;
         setLayout(new BorderLayout());
 
         nameField = new JTextField(20);
@@ -27,19 +25,17 @@ public class GameNamePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String gameName = nameField.getText();
                 if (!gameName.isEmpty()) {
-                    frame.showMainPanel();
+                    // Start the game with the provided name
+                    System.out.println("Starting game with name: " + gameName);
                 }
             }
         });
 
-        JPanel centerPanel = new JPanel(new GridBagLayout());
-        centerPanel.add(nameField);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(nameField, BorderLayout.CENTER);
+        panel.add(startButton, BorderLayout.EAST);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.add(startButton);
-
-        add(centerPanel, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.EAST);
+        add(panel, BorderLayout.CENTER);
 
         nameField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override

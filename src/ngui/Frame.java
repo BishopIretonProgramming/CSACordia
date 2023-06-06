@@ -1,6 +1,8 @@
 package src.ngui;
 
 //  imports
+import src.game.Game;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -12,7 +14,7 @@ public class Frame extends JFrame {
     private CardLayout layout;
 
     public Frame() {
-        setTitle("Concordia");
+        setTitle("CSACORDIA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.content = new JPanel();
@@ -35,11 +37,12 @@ public class Frame extends JFrame {
         layout.next(content);
     }
 
-    public void showNamePanel() {
-
+    public void showNamePanel(Game game) {
+        content.add(new GameNamePanel(this, game));
+        layout.next(content);
     }
 
-    public void showMainPanel() {
+    public void showMainPanel(Game game) {
 
     }
 }

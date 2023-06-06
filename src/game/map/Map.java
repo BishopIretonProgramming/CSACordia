@@ -144,11 +144,6 @@ public class Map {
                         Good.FOOD
                 )
         );
-
-        System.out.println(cityTokensA);
-        System.out.println(cityTokensB);
-        System.out.println(cityTokensC);
-        System.out.println(cityTokensD);
     }
 
     /**
