@@ -1,0 +1,54 @@
+Britannia:
+Isca D (161, 254)
+Londinium (224, 221)
+
+Gallia:
+Lutetia (277, 283)
+Burdigala(240, 380)
+Massilia(345, 400)
+
+Hispania:
+Brigatium (109, 415)
+Olisiro (110, 528)
+Valentia (271, 518)
+
+Mauretania:
+Rusander (226, 625)
+Carthago (462, 542)
+
+Germania:
+Colonia (355, 219)
+Vindorona (503, 235)
+
+Italia:
+Novaria (400, 342)
+Aquileia (4924, 320)
+(Roma) (489, 423)
+Syracus (565, 502)
+
+Dacia:
+Sermium (606, 306)
+Napoca (666, 243)
+Tomis (741, 295)
+
+Lybia:
+Leptis Magna (561, 642)
+Cyrene (694, 617)
+
+Hellas:
+Dyrrhachium (616, 402)
+Athene (714, 468)
+
+Asia:
+Bycantium (785, 369)
+Sinope (905, 340)
+Athalia (840, 466)
+
+Syria:
+Antiochia (960, 469)
+Tyron (943, 554)
+
+Aegyptus:
+Alexandria (842, 606)
+Memphis (899, 670)
+Petra (969, 641)
