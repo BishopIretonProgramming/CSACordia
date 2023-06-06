@@ -189,6 +189,127 @@ public class Network implements java.io.Serializable {
     }
 
     /**
+     * Computes the path between two {@code PathNode}s given the connected nodes and the types of the paths.
+     *
+     * @param start1 the first node of the starting path.
+     * @param start2 the second node of the starting path.
+     * @param type1  the type of the first path.
+     * @param end1   the first node of the ending path.
+     * @param end2   the second node of the ending path.
+     * @param type2  the type of the second path.
+     * @return       A {@code List} of the {@code PathNode}s between start and end.
+     */
+    private List<PathNode> computePathBetween(int start1, int start2, PathType type1, int end1, int end2, PathType type2) {
+        if (type1 != type2) {
+            return null; // Paths must be of the same type
+        }
+
+        int start = Math.min(start1, start2);
+        int end = Math.min(end1, end2);
+
+        boolean[] visited = new boolean[this.NUM_NODES];
+        int[] dist = new int[this.NUM_NODES];
+        int[] prev = new int[this.NUM_NODES];
+        Arrays.fill(dist, -1);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        visited[start] = true;
+        dist[start] = 0;
+        prev[start] = -1;
+
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+
+            switch (type1) {
+                case LAND -> {
+                    for (int neighbor : adjListLand.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            dist[neighbor] = dist[curr] + 1;
+                            prev[neighbor] = curr;
+                            queue.add(neighbor);
+                        }
+                        if (neighbor == end) {
+                            return getPathNodes(prev, start, end);
+                        }
+                    }
+                }
+                case SEA -> {
+                    for (int neighbor : adjListSea.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            dist[neighbor] = dist[curr] + 1;
+                            prev[neighbor] = curr;
+                            queue.add(neighbor);
+                        }
+                        if (neighbor == end) {
+                            return getPathNodes(prev, start, end);
+                        }
+                    }
+                }
+            }
+        }
+
+        return null; // No path found
+    }
+
+    /**
+     * A method to make the path of {@code PathNode}s.
+     *
+     * @param prev   The array of previous nodes visited during path computation.
+     * @param start  The starting point of the path.
+     * @param end    The ending point of the path.
+     * @return       A {@code List} of {@code PathNode}s representing the path between start and end.
+     */
+    private List<PathNode> getPathNodes(int[] prev, int start, int end) {
+        List<PathNode> pathNodes = new ArrayList<>();
+        int current = end;
+        while (current != -1) {
+            int parent = prev[current];
+            if (parent != -1) {
+                CityNode node1 = cities.get(parent);
+                CityNode node2 = cities.get(current);
+                PathType type = getPathType(node1.id(), node2.id());
+                pathNodes.add(new PathNode(node1.name() + " to " + node2.name(), node1, node2, type));
+            }
+            current = parent;
+        }
+        Collections.reverse(pathNodes);
+        return pathNodes;
+    }
+
+    /**
+     * A method to get the {@code PathType} of a {@code PathNode} using indices.
+     *
+     * @param u the starting node of the path.
+     * @param v the ending node of the path.
+     * @return  the path type of the path or null if it is not a valid path.
+     */
+    private PathType getPathType(int u, int v) {
+        if (adjListLand.get(u).contains(v)) {
+            return PathType.LAND;
+        } else if (adjListSea.get(u).contains(v)) {
+            return PathType.SEA;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * The client method to compute the {@code PathNode}s between a start {@code PathNode} and an end {@code PathNode}.
+     *
+     * @param start the {@code PathNode} to start at.
+     * @param end   the {@code PathNode} to end at.
+     * @return      the {@code PathNode}s between start and end.
+     */
+    public List<PathNode> computePathBetween(PathNode start, PathNode end) {
+        List<PathNode> nodes = computePathBetween(start.node1().id(), start.node2().id(), start.type(), end.node1().id(), end.node2().id(), end.type());
+        if (nodes == null) return new ArrayList<>();
+        nodes.add(end);
+        return nodes;
+    }
+
+    /**
      * Library (static) method to load a Network from a file with CityNodes (cities)
      * The first non comment line must be the number of nodes in the Network
      * From there you can connect nodes using u <-> v <-> t
