@@ -110,8 +110,8 @@ public class Game {
      * Method to write this Game to a file
      * @param path the path to the file to write to
      */
-    public void save(String path) { // TODO we need the game saving to actually save stuff so we can recreate the data from a file
-
+    public void save() {
+        SaveLoader.saveGame(this);
     }
 
     /**

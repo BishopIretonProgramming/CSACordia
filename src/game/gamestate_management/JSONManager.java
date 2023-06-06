@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-class JSONGenerator {
+class JSONManager {
     private static boolean exists = false;
-    private static JSONGenerator self = null;
-    private String braces = "", tabs = "";
+    private static JSONManager self = null;
+    private static String braces = "", tabs = "";
 
-    public static JSONGenerator get() {
+    static JSONManager get() {
         if (!exists)
-            return self = new JSONGenerator();
+            return self = new JSONManager();
         return self;
     }
 
-    private JSONGenerator() {
+    private JSONManager() {
         exists = true;
     }
 
@@ -27,7 +27,7 @@ class JSONGenerator {
      * as one string as the first index of the array and the user should leave the
      * rest blank
      */
-    public void generateJSONFile(JSONObject head, String... path) {
+    void generateJSONFile(JSONObject head, String... path) {
         File file = new File(Arrays.asList(path).stream().collect(Collectors.joining(File.separator)) + File.separator + JSON.getTitle(head) + ".game");
 
         try (PrintWriter pr = new PrintWriter(file)) {
@@ -58,5 +58,9 @@ class JSONGenerator {
         tabs = tabs.substring(0, tabs.length() - 1);
         pr.write(tabs + braces.charAt(braces.length() - 1));
         braces = braces.substring(0, braces.length() - 2);
+    }
+
+    JSONObject generateJSONTree(String... path) {
+        return null;
     }
 }

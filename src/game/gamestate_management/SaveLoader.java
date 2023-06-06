@@ -18,7 +18,11 @@ public class SaveLoader {
         // suppress default constructor
     }
 
-    public static Game loadSave() {
+    public static void saveGame(Game game) {
+
+    }
+
+    public static Game loadGame() {
         // do stuff to recreate a game object from the save
         return Game.DO_NOT_USE___SAVE_LOADER_GAME_INITIALIZER(null, null, null, null, null);
     }
@@ -33,17 +37,5 @@ public class SaveLoader {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    // this is for testing ignore it
-    public static void main(String[] args) {
-        JSONObject file = JSONObject.createBaseObject();
-        JSONObject folder = JSONObject.addSubObject(file, "folder");
-        JSONObject subfolder = JSONObject.addSubObject(folder, "subfolder");
-        System.out.println(JSONObject.addData(folder, "num1", "50"));
-        System.out.println(JSONObject.addData(folder, "num2", "25"));
-        System.out.println(JSONObject.addWord(subfolder, "boing"));
-        System.out.println(JSONObject.addData(subfolder, "num2", "25"));
-        JSONGenerator.get().generateJSONFile(file, "resources", "saves");
     }
 }
