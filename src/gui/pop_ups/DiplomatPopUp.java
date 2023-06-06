@@ -104,6 +104,6 @@ public class DiplomatPopUp extends PopUp {
         shownCardID = newShownCardID;
         shownCard = cards.get(shownCardID);
         
-        cardLabel.setIcon(new ImageIcon(shownCard.IMAGE.cardImage));
+        //cardLabel.setIcon(new ImageIcon(shownCard.IMAGE.cardImage));
     }
 }

@@ -43,7 +43,7 @@ public class PlayerDeck {
     private int shownCardID; //The index of the shownCard; used for changing cards
 
     private ArrayList<BufferedImage> guiImages; //List of button and label images
-    
+
     private JButton leftButton; //Button to cycle left through cards
     private JButton rightButton; //Button to cycle right through cards
     private JButton useButton; //Button to play the shownCard
@@ -70,7 +70,7 @@ public class PlayerDeck {
     public PlayerDeck(Player player, JPanel panel) {
         this.player = player;
         this.panel = panel;
-        
+
         availableCards.add(new Architect(player, true));
         availableCards.add(new Diplomat(player, 0, 0, 0, 0, 0, "God"));
         availableCards.add(new Mercator(player, true));
@@ -125,7 +125,7 @@ public class PlayerDeck {
         });
 
         useButton.addActionListener(new ActionListener() {
-            @Override            
+            @Override
             public void actionPerformed(ActionEvent e) {
                 discardCard(shownCard);
                 changeCard(1);
@@ -136,7 +136,7 @@ public class PlayerDeck {
     }
 
     /**
-     * Helper method for Constructor 
+     * Helper method for Constructor
     */
     private void createRadioButtons() {
         cardFilters = new ButtonGroup();
@@ -164,7 +164,7 @@ public class PlayerDeck {
                 changeCard(0);
             }
         });
-    } 
+    }
 
     /**
      * changes the shownCard
@@ -175,15 +175,15 @@ public class PlayerDeck {
 
         if(newShownCardID <= -1) {
             newShownCardID = cards.size() - 1;
-        } 
+        }
         else if(newShownCardID >= cards.size()) {
             newShownCardID = 0;
         }
 
         shownCardID = newShownCardID;
         shownCard = cards.get(shownCardID);
-        
-        cardLabel.setIcon(new ImageIcon(shownCard.IMAGE.cardImage));
+
+        //cardLabel.setIcon(new ImageIcon(shownCard.IMAGE.cardImage));
     }
 
     /**

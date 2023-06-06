@@ -47,44 +47,44 @@ public class CardShop extends ArrayList<PersonalityCard>{
         
         switch (random) {
             case 1:
-                card = (Architect)card;
-                break;
-            case 2:
-                card = (Colonist)card;
-                break;
-            case 3:
-                card = (Consul)card;
-                break;
-            case 4:
-                card = (Diplomat)card;
-                break;
-            case 5:
-                card = (Farmer)card;
-                break;
-            case 6:
-                card = (Mason)card;
-                break;
-            case 7:
-                card = (Mercator)card;
-                break;
-            case 8:
-                card = (Prefect)card;
-                break;
-            case 9:
-                card = (Senator)card;
-                break;
-            case 10:
-                card = (Smith)card;
-                break;
-            case 11:
-                card = (Tribune)card;
-                break;
-            case 12:
-                card = (Vintner)card;
-                break;
-            case 13:
-                card = (Weaver)card;
-                break;
+                    card = (Architect)card;
+                    break;
+                case 2:
+                    card = (Colonist)card;
+                    break;
+                case 3:
+                    card = (Consul)card;
+                    break;
+                case 4:
+                    card = (Diplomat)card;
+                    break;
+                case 5:
+                    card = (Farmer)card;
+                    break;
+                case 6:
+                    card = (Mason)card;
+                    break;
+                case 7:
+                    card = (Mercator)card;
+                    break;
+                case 8:
+                    card = (Prefect)card;
+                    break;
+                case 9:
+                    card = (Senator)card;
+                    break;
+                case 10:
+                    card = (Smith)card;
+                    break;
+                case 11:
+                    card = (Tribune)card;
+                    break;
+                case 12:
+                    card = (Vintner)card;
+                    break;
+                case 13:
+                    card = (Weaver)card;
+                    break;
 
         }
         
@@ -130,24 +130,30 @@ public class CardShop extends ArrayList<PersonalityCard>{
                 player.addCard(card1);
                 setCard1(setRandCard(card1));
                 break;
-                case 2: 
+            case 2: 
                 player.addCard(card2);
                 setCard2(setRandCard(card2));
                 break;
-                case 3: 
+            case 3: 
                 player.addCard(card3);
                 setCard3(setRandCard(card3));
                 break;
-                case 4: 
+            case 4: 
                 player.addCard(card4);
                 setCard4(setRandCard(card4));
                 break;
-                case 5: 
+            case 5: 
                 player.addCard(card5);
                 setCard5(setRandCard(card5));
                 break;
         }
     }
+
+
+        
+    }
+
+
     
 
-}
+

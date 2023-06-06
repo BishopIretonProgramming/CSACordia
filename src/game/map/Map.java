@@ -195,14 +195,14 @@ public class Map {
                 //CityNode.fwrite(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP), cities);
 
 
-                //  Note to self: 0 -> 29, no connections to lower, right > left! ^ ~ >! < ~ >!
+                //  Note to self: 0 -> 30, no connections to lower, right > left! ^ ~ >! < ~ >!
                 this.network = new Network(cities.size());
                 network.setCities(cities);
                 //network.setCities(CityNode.fread(String.format("src%sgame%smap%ssaves%simperium_cities.cn", SEP, SEP, SEP, SEP)));
-                network.connect(0, 8, SEA);
                 network.connect(0, 1, LAND);
                 network.connect(0, 1, SEA);
                 network.connect(0, 9, SEA);
+                network.connect(0, 8, SEA);
                 network.connect(1, 5, LAND);
                 network.connect(1, 2, SEA);
                 network.connect(2, 5, LAND);
@@ -217,32 +217,33 @@ public class Map {
                 network.connect(6, 7, LAND);
                 network.connect(6, 12, LAND);
                 network.connect(6, 19, LAND);
+                network.connect(7, 13, LAND);
                 network.connect(7, 13, SEA);
                 network.connect(7, 14, SEA);
-                network.connect(8, 15, SEA);
+                network.connect(8, 9, SEA);
                 network.connect(8, 15, LAND);
+                network.connect(8, 15, SEA);
                 network.connect(8, 16, LAND);
                 network.connect(8, 9, LAND);
-                network.connect(8, 9, SEA);
                 network.connect(9, 10, LAND);
                 network.connect(10, 11, LAND);
-                network.connect(10, 16, SEA);
                 network.connect(10, 16, LAND);
+                network.connect(10, 16, SEA);
                 network.connect(10, 30, SEA);
                 network.connect(10, 17, SEA);
-                network.connect(11, 30, LAND);
                 network.connect(11, 12, LAND);
-                network.connect(12, 30, LAND);
+                network.connect(11, 30, LAND);
                 network.connect(12, 19, SEA);
+                network.connect(12, 30, LAND);
                 network.connect(13, 19, LAND);
-                network.connect(13, 14, SEA);
                 network.connect(13, 14, LAND);
-                network.connect(13, 20, SEA);
+                network.connect(13, 14, SEA);
                 network.connect(13, 21, LAND);
+                network.connect(13, 20, SEA);
                 network.connect(14, 22, LAND);
-                network.connect(15, 16, LAND);
                 network.connect(15, 24, LAND);
                 network.connect(15, 24, SEA);
+                network.connect(15, 16, LAND);
                 network.connect(16, 24, LAND);
                 network.connect(16, 24, SEA);
                 network.connect(16, 17, SEA);
@@ -250,23 +251,23 @@ public class Map {
                 network.connect(17, 24, SEA);
                 network.connect(17, 25, LAND);
                 network.connect(17, 25, SEA);
-                network.connect(17, 30, SEA);
                 network.connect(17, 18, SEA);
-                network.connect(18, 30, LAND);
+                network.connect(17, 30, SEA);
                 network.connect(18, 30, SEA);
+                network.connect(18, 30, LAND);
+                network.connect(18, 19, SEA);
+                network.connect(18, 20, SEA);
                 network.connect(18, 25, SEA);
                 network.connect(18, 26, SEA);
-                network.connect(18, 20, SEA);
-                network.connect(18, 19, SEA);
                 network.connect(19, 20, LAND);
                 network.connect(20, 26, SEA);
                 network.connect(20, 27, SEA);
                 network.connect(20, 21, SEA);
-                network.connect(21, 27, SEA);
                 network.connect(21, 22, LAND);
                 network.connect(21, 22, SEA);
-                network.connect(22, 23, SEA);
+                network.connect(21, 27, SEA);
                 network.connect(22, 23, LAND);
+                network.connect(22, 23, SEA);
                 network.connect(23, 27, LAND);
                 network.connect(23, 27, SEA);
                 network.connect(23, 29, LAND);
@@ -321,5 +322,53 @@ public class Map {
      */
     public List<PathNode> paths() {
         return this.paths;
+    }
+
+    /**
+     * Getter method for the network
+     *
+     * @return the {@code Network} of this map
+     */
+    public Network network() {
+        return this.network;
+    }
+
+    /*
+     * This section of the code will be managing all interactions with a Map.
+     * This section of the code will contain all of the necessary methods for
+     * getting the necessary information about the Map.
+     */
+
+    /**
+     * A method to check if it is possible to move from one path to another
+     * with a given amount of movement points
+     *
+     * @param start  the path to start from.
+     * @param end    the path to end at.
+     * @param points the number of movement points available.
+     * @return       whether it is possible to go from start to end with points movement points.
+     */
+    public boolean canGoBetween(PathNode start, PathNode end, int points) {
+        return this.distanceBetween(start, end) <= points;
+    }
+
+    /**
+     * A method to get the number of paths between a start {@code PathNode} and an
+     * end {@code PathNode}.
+     *
+     * @param start the path to start from.
+     * @param end   the path to end at.
+     * @return      the number of paths between start and end.
+     */
+    public int distanceBetween(PathNode start, PathNode end) {
+        return this.network.computeDistanceBetween(start, end);
+    }
+
+    public static void main(String[] args) {
+        Map map = new Map(IMPERIUM);
+        System.out.println(map.paths.get(1));
+        System.out.println(map.paths.get(23));
+        System.out.println(map.network.computeDistanceBetween(map.paths.get(1), map.paths.get(23)));
+        System.out.println(map.network.computePathBetween(map.paths.get(1), map.paths.get(23)));
     }
 }
