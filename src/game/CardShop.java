@@ -10,7 +10,7 @@ import src.game.cards.Diplomat;
 import src.game.cards.Farmer;
 import src.game.cards.Mason;
 import src.game.cards.Mercator;
-import src.game.cards.Colonist;
+import src.game.cards.ColonistPCard;
 import src.game.cards.Smith;
 import src.game.cards.Tribune;
 import src.game.cards.Vintner;
@@ -50,7 +50,7 @@ public class CardShop extends ArrayList<PersonalityCard>{
                     card = (Architect)card;
                     break;
                 case 2:
-                    card = (Colonist)card;
+                    card = (ColonistPCard)card;
                     break;
                 case 3:
                     card = (Consul)card;

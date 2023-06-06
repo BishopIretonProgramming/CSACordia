@@ -6,9 +6,9 @@ import src.game.player.Player;
 
 //import java.awt.Graphics;
 
-public class Colonist extends PersonalityCard implements Mars {
+public class ColonistPCard extends PersonalityCard implements Mars {
 
-   public Colonist(Player myPlayer) {
+   public ColonistPCard(Player myPlayer) {
       super(myPlayer, 0, 1, 0, 0, 0, 2, CardImage.COLONIST.cardImage);
    }
    

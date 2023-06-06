@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-class JSONManager {
+class JManager {
     private static boolean exists = false;
-    private static JSONManager self = null;
+    private static JManager self = null;
     private static String braces = "", tabs = "";
 
-    static JSONManager get() {
+    static JManager get() {
         if (!exists)
-            return self = new JSONManager();
+            return self = new JManager();
         return self;
     }
 
-    private JSONManager() {
+    private JManager() {
         exists = true;
     }
 
@@ -27,7 +27,7 @@ class JSONManager {
      * as one string as the first index of the array and the user should leave the
      * rest blank
      */
-    void generateJSONFile(JSONObject head, String... path) {
+    void generateJSONFile(JObject head, String... path) {
         File file = new File(Arrays.asList(path).stream().collect(Collectors.joining(File.separator)) + File.separator + JSON.getTitle(head) + ".game");
 
         try (PrintWriter pr = new PrintWriter(file)) {
@@ -37,20 +37,20 @@ class JSONManager {
         }
     }
 
-    private void writeFolder(PrintWriter pr, JSONObject folder) {
-        boolean wordFolder = JSONObject.listContents(folder).stream().filter(jobj -> jobj instanceof JSONWord).collect(Collectors.toList()).size() > 0;
+    private void writeFolder(PrintWriter pr, JObject folder) {
+        boolean wordFolder = JObject.listContents(folder).stream().filter(jobj -> jobj instanceof JWord).collect(Collectors.toList()).size() > 0;
         braces += wordFolder ? "[]" : "{}";
         pr.write(tabs + "\"" + JSON.getTitle(folder) + String.format("\": %c\n", braces.charAt(braces.length() - 2)));
         tabs += "\t";
 
-        ArrayList<JSON> list = JSONObject.listContents(folder);
+        ArrayList<JSON> list = JObject.listContents(folder);
         for (int i = 0; i < list.size(); i++) {
             if (wordFolder) {
                 pr.write(tabs + "\"" + JSON.getTitle(list.get(i)) + "\"");
-            } else if (list.get(i) instanceof JSONData) {
-                pr.write(tabs + "\"" + JSON.getTitle(list.get(i)) + ": " + JSONData.getData((JSONData) list.get(i)) + "\"");
+            } else if (list.get(i) instanceof JData) {
+                pr.write(tabs + "\"" + JSON.getTitle(list.get(i)) + ": " + JData.getData((JData) list.get(i)) + "\"");
             } else {
-                writeFolder(pr, (JSONObject) list.get(i));
+                writeFolder(pr, (JObject) list.get(i));
             }
             pr.write((i != list.size() - 1 ? "," : "") + "\n");
         }
@@ -60,7 +60,7 @@ class JSONManager {
         braces = braces.substring(0, braces.length() - 2);
     }
 
-    JSONObject generateJSONTree(String... path) {
+    JObject generateJSONTree(String... path) {
         return null;
     }
 }

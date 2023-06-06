@@ -10,7 +10,7 @@ import src.game.Good;
 import src.game.House;
 import src.game.cards.PersonalityCard;
 import src.game.cards.Architect;
-import src.game.cards.Colonist;
+import src.game.cards.ColonistPCard;
 import src.game.cards.Diplomat;
 import src.game.cards.Mercator;
 import src.game.cards.Tribune;
@@ -43,7 +43,7 @@ public class Player implements java.io.Serializable {
     /**
      * The colonists of this Player
      */
-    private ArrayList<Colonist> colonists;
+    private ArrayList<ColonistPCard> colonists;
 
     /**
      * The StoreHouse of this Player
@@ -222,7 +222,7 @@ public class Player implements java.io.Serializable {
      * Getter to return the Colonists of this Player
      * @return the Colonists of this Player
      */
-    public ArrayList<Colonist> colonists() {
+    public ArrayList<ColonistPCard> colonists() {
         return this.colonists;
     }
 
