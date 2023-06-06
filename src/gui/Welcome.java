@@ -40,29 +40,7 @@ public class Welcome extends JFrame {
         // add buttons to the panel
         wPanel.add(newGameButton);
         wPanel.add(loadGameButton);
-
-        // add action listeners to all the buttons
-        loadGameButton.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e){
-                        System.out.println("load game was pressed");
-                        
-                        
-                    }
-                }        );
-
-        newGameButton.addActionListener(
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e){
-                            System.out.println("new game was pressed");
-                            
-                            
-                        }
-                    }        );
-
-        
+  
         // create a JLabel object with an image as the background
         JLabel wBackground = new JLabel();
         try {
@@ -91,61 +69,33 @@ public class Welcome extends JFrame {
         // set the size and visibility of the frame
         wFrame.setSize(1000, 600);
         wFrame.setVisible(true);
+
+        
+        // add action listeners to all the buttons
+        loadGameButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        System.out.println("load game was pressed");
+                        
+                        
+                    }
+                }        );
+
+        newGameButton.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e){
+                            System.out.println("new game was pressed");
+                            CreateNewGame.create(wFrame, wPanel,wLabel,wBackground);
+                            
+                        }
+                    }        );
     }
 
-/*  Could be useful as last resort
-    public void board(Game g) { // Probably will have parameters for gamestate. 
-        JFrame bord = new JFrame("Game Board");
-        PlayerHandDisplay d = new PlayerHandDisplay();
 
-        bord.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Construct Board
-        JLabel wBackground = new JLabel();
-        try {
 
-            Image img = ImageIO.read(new File("resources\\images\\Concordia board.jpg"));
-
-            Image imgMap = img.getScaledInstance(1080, 600,  java.awt.Image.SCALE_SMOOTH);
-            wBackground.setIcon(new ImageIcon(imgMap));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // centers the map so you can see the whole map
-        wBackground.setHorizontalAlignment(JLabel.CENTER);
-
-        JPanel bPanel = new JPanel();
-        bPanel.setBackground(Color.CYAN);
-
-        // create "Player Hand" button
-        JButton playerHandB = new JButton("Player Hand");
-        
-        
-
-        // adds an action listener only prints for now
-        d.display(g);
-
-        playerHandB.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
-                    System.out.println("Player hand was pressed");
-                    d.changeVisible();
-                    
-                }
-            }        );
-
-        // add buttons to the panel
-        bPanel.add(playerHandB);
-
-        // add background to the frame
-        bord.getContentPane().add(wBackground, BorderLayout.CENTER);
-        bord.getContentPane().add(bPanel, BorderLayout.SOUTH);
-        bord.getContentPane().add(d.handDisplay);
-        bord.setSize(1225, 900);
-        bord.setVisible(true);
-    }
-
+/* 
     testing method
     public static void main(String[] args) {
         // what I need for game String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer
