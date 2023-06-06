@@ -14,20 +14,20 @@ public class GameNamePanel extends JPanel {
     private Game game;
 
     public GameNamePanel(Frame frame, Game game) {
+        this.frame = frame;
+        this.game = game;
         setLayout(new BorderLayout());
 
         nameField = new JTextField(20);
+        nameField.setFont(nameField.getFont().deriveFont(60f));
         startButton = new JButton("Start Game");
         startButton.setEnabled(false);
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String gameName = nameField.getText();
-                if (!gameName.isEmpty()) {
-                    // Start the game with the provided name
-                    System.out.println("Starting game with name: " + gameName);
-                }
+        startButton.addActionListener(e -> {
+            String gameName = nameField.getText();
+            if (!gameName.isEmpty()) {
+                game.setName(gameName);
+                frame.showMainPanel(game);
             }
         });
 
