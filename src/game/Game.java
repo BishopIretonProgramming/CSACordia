@@ -120,6 +120,10 @@ public class Game {
         this.path = path;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * Getter to get the current Player
      * @return the current Player
