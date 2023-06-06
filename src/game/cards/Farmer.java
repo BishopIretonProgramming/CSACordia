@@ -11,11 +11,10 @@ import src.game.House;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Farmer extends PersonalityCard implements Minerva {
-   public final CardImage IMAGE = CardImage.FARMER;
    public final Good GOOD = Good.FOOD;
    
    public Farmer(Player myPlayer) {
-      super(myPlayer, 1, 1, 0, 0, 0, 3);
+      super(myPlayer, 1, 1, 0, 0, 0, 3, CardImage.FARMER.cardImage);
    }
    
    @Override
