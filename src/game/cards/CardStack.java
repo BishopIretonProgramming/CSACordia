@@ -69,7 +69,7 @@ public class CardStack extends ArrayList<PersonalityCard> {
       a.add(new Mason(null));
       a.add(new Smith(null));
       a.add(new Mercator(null, false));
-      a.add(new Colonist(null));
+      a.add(new ColonistPCard(null));
       a.add(new Diplomat(null, 0, 0, 1, 0, 0, "Satvrnvs"));
       a.add(new Farmer(null));
       a.add(new Architect(null, false));
@@ -80,7 +80,7 @@ public class CardStack extends ArrayList<PersonalityCard> {
    public ArrayList<PersonalityCard> phaseII() {
       ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
       a.add(new Mercator(null, false));
-      a.add(new Colonist(null));
+      a.add(new ColonistPCard(null));
       a.add(new Prefect(null, false));
       a.add(new Weaver(null));
       a.add(new Architect(null, false));
@@ -93,7 +93,7 @@ public class CardStack extends ArrayList<PersonalityCard> {
       ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
       a.add(new Consul(null));
       a.add(new Architect(null, false));
-      a.add(new Colonist(null));
+      a.add(new ColonistPCard(null));
       a.add(new Diplomat(null, 0, 1, 0, 0, 0, "Satvrnvs"));
       a.add(new Mercator(null, false));
       a.add(new Prefect(null, false));
@@ -104,7 +104,7 @@ public class CardStack extends ArrayList<PersonalityCard> {
       ArrayList<PersonalityCard> a = new ArrayList<PersonalityCard> ();
       a.add(new Consul(null));
       a.add(new Prefect(null, false));
-      a.add(new Colonist(null));
+      a.add(new ColonistPCard(null));
       a.add(new Diplomat(null, 0, 0, 1, 0, 0, "Mercvrivs"));
       a.add(new Architect(null, false));
       Collections.shuffle(a);

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import src.game.cards.Architect;
-import src.game.cards.Colonist;
+import src.game.cards.ColonistPCard;
 import src.game.CardShop;
 import src.game.cards.CardImage;
 import src.game.cards.PersonalityCard;
@@ -28,7 +28,7 @@ public class ShopPanel extends JPanel {
         for (PersonalityCard card : cShop) {
             if (card instanceof Architect) {
                 cardImgList.add(CardImage.ARCHITECT.cardImage);
-            } else if (card instanceof Colonist) {
+            } else if (card instanceof ColonistPCard) {
                 cardImgList.add(CardImage.COLONIST.cardImage);
             } else if (card instanceof Consul) {
                 cardImgList.add(CardImage.CONSUL.cardImage);
