@@ -7,13 +7,11 @@ import src.game.player.Player;
 //import java.awt.Graphics;
 
 public class Architect extends PersonalityCard implements Jvpiter {
-   public final CardImage IMAGE;
    public final boolean ISSTARTING;
    
    public Architect(Player myPlayer, boolean isStarting) {
-      super(myPlayer, 0, 0, isStarting ? 0 : 1, 0, 0, 1);
+      super(myPlayer, 0, 0, isStarting ? 0 : 1, 0, 0, 1, isStarting ? CardImage.ARCHITECT_ST.cardImage : CardImage.ARCHITECT.cardImage);
       this.ISSTARTING = isStarting;
-      this.IMAGE = this.ISSTARTING ? CardImage.ARCHITECT_ST : CardImage.ARCHITECT;
    }
    
    @Override

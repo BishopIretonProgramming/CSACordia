@@ -11,11 +11,10 @@ import src.game.House;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Smith extends PersonalityCard implements Minerva {
-   public final CardImage IMAGE = CardImage.SMITH;
    public final Good GOOD = Good.TOOL;
    
    public Smith(Player myPlayer) {
-      super(myPlayer, 1, 0, 1, 0, 0, 2);
+      super(myPlayer, 1, 0, 1, 0, 0, 2, CardImage.SMITH.cardImage);
    }
    
    @Override

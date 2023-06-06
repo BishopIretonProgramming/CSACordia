@@ -1,5 +1,6 @@
 // represents a stack of cards
 // author: jonah cook
+// edited by Rory McGuire
 
 package src.game.cards;
 
@@ -7,6 +8,7 @@ import src.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.awt.Graphics;
 
 public class CardStack extends ArrayList<PersonalityCard> {
    
@@ -34,7 +36,7 @@ public class CardStack extends ArrayList<PersonalityCard> {
     * @return whether the purchase was successful
     */
    public boolean purchaseCard(int x, Player p) {
-      if(x >= getAvailable().size()) throw new IllegalArgumentException("index x is outside accepted range");
+      if(x >= getAvailable().size() || x < 0) throw new IllegalArgumentException("index x is outside accepted range");
       PersonalityCard pc = getAvailable().get(x);
       
       if(p.canAfford(pc.getPrice())) {
@@ -51,8 +53,15 @@ public class CardStack extends ArrayList<PersonalityCard> {
    private void updateDisplayedCards() {
       ArrayList<PersonalityCard> top = getAvailable();
       for(int i = 0; i < top.size(); i ++) {
-         top.get(i).setPos(390 + i*30, 25);
+         top.get(i).setPos(434 + i*85, 50);
          top.get(i).setClothModifier(CLOTHMODIFIERS[i]);
+      }
+   }
+
+   public void draw(Graphics g) {
+      for(PersonalityCard p : getAvailable()) {
+         System.out.println("H");
+         p.draw(g);
       }
    }
 
@@ -118,7 +127,7 @@ public class CardStack extends ArrayList<PersonalityCard> {
     */
    public ArrayList<PersonalityCard> getAvailable() {
       if(this.size() > 7) {
-         return (ArrayList<PersonalityCard>)this.subList(0, 7);
+         return new ArrayList<PersonalityCard>(this.subList(0, 7));
       } else {
          return this;
       }

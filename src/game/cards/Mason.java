@@ -11,11 +11,10 @@ import src.game.House;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Mason extends PersonalityCard implements Minerva {
-   public final CardImage IMAGE = CardImage.MASON;
    public final Good GOOD = Good.BRICK;
    
    public Mason(Player myPlayer) {
-      super(myPlayer, 0, 1, 0, 0, 0, 3);
+      super(myPlayer, 0, 1, 0, 0, 0, 3, CardImage.MASON.cardImage);
    }
    
    @Override

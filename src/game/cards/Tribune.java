@@ -7,10 +7,9 @@ import src.game.player.Player;
 //import java.awt.Graphics;
 
 public class Tribune extends PersonalityCard implements Mars {
-   public final CardImage IMAGE = CardImage.TRIBUNE;
    
    public Tribune(Player myPlayer) {
-      super(myPlayer, 0, 0, 0, 0, 0, 2);
+      super(myPlayer, 0, 0, 0, 0, 0, 2, CardImage.TRIBUNE.cardImage);
    }
    
    @Override

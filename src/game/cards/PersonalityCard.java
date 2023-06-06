@@ -18,10 +18,10 @@ public abstract class PersonalityCard {
    private Point pos;
    private HashMap<Object, Integer> price;
 
-   public final Dimension SIZE = new Dimension(44, 69); //original: 755px, 1171px
-   public final BufferedImage IMAGE = null;
+   public final Dimension SIZE = new Dimension(79, 123); //original: 755px, 1171px
+   public final BufferedImage IMAGE;
    
-   public PersonalityCard(Player myPlayer, int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier) {
+   public PersonalityCard(Player myPlayer, int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, int victoryMultiplier, BufferedImage img) {
       this.myPlayer = myPlayer;
       this.brickPrice = brickPrice;
       this.foodPrice = foodPrice;
@@ -29,6 +29,7 @@ public abstract class PersonalityCard {
       this.winePrice = winePrice;
       this.clothPrice = clothPrice;
       this.victoryMultiplier = victoryMultiplier;
+      this.IMAGE = img;
 
       this.pos = new Point(0, 0);
 

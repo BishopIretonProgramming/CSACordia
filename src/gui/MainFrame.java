@@ -1,6 +1,7 @@
 package src.gui;
 
 import src.game.Game;
+import src.game.cards.CardStack;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -17,7 +18,7 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JComponent implements ActionListener {
     private JFrame f;
     private Game game;
-    private Dimension SIZE = new Dimension(900, 632);
+    private Dimension SIZE = new Dimension(1080, 758); //original: 1200px x 842px
 
     MainFrame(Game game) {
         this.game = game;
@@ -39,8 +40,9 @@ public class MainFrame extends JComponent implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(PieceImage.BOARD.pieceImage, 0, 0, SIZE.width, SIZE.height, null);
-        
-        game.getBonusBox().draw(g);
+        CardStack c = new CardStack();
+        c.draw(g);
+        //game.getBonusBox().draw(g);
     }
 
     @Override
@@ -53,6 +55,6 @@ public class MainFrame extends JComponent implements ActionListener {
 class TestMainFrame {
     public static void main(String[] args) {
         Game g = null;
-        /*MainFrame m = */new MainFrame(g);
+        MainFrame m = new MainFrame(g);
     }
 }
