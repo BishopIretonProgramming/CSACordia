@@ -43,6 +43,8 @@ public class Frame extends JFrame {
     }
 
     public void showMainPanel(Game game) {
-
+        System.out.println(game.getName());
+        System.out.println(game.getPlayers());
+        System.out.println(game.getColors());
     }
 }

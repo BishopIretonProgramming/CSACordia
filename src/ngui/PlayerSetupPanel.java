@@ -7,7 +7,9 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import src.game.Game;
 import src.game.map.Map;
@@ -76,7 +78,7 @@ public class PlayerSetupPanel extends JPanel {
         });
 
         startButton.addActionListener(e -> {
-            frame.showNamePanel(Game.initGame("", new Map(Map.IMPERIUM), null, null, null));
+            frame.showNamePanel(new Game("", new Map(Map.IMPERIUM), getPlayerNames(), getPlayerColors(), getPlayerNames().get(0)));
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -181,5 +183,71 @@ public class PlayerSetupPanel extends JPanel {
         addButton.setEnabled(playerCount < MAX_PLAYERS);
         removeButton.setEnabled(playerCount > MIN_PLAYERS);
         startButton.setEnabled(!hasDuplicateName && !hasDuplicateColor && playerCount >= MIN_PLAYERS);
+    }
+
+    public List<Player> getPlayerNames() {
+        List<Player> playerNames = new ArrayList<>();
+
+        Component[] components = playerCardsPanel.getComponents();
+        for (Component component : components) {
+            if (component instanceof JPanel) {
+                JPanel playerCard = (JPanel) component;
+                Component[] cardComponents = playerCard.getComponents();
+                JTextField nameField = null;
+
+                for (Component cardComponent : cardComponents) {
+                    if (cardComponent instanceof JTextField) {
+                        nameField = (JTextField) cardComponent;
+                        break;
+                    }
+                }
+
+                if (nameField != null) {
+                    String playerName = nameField.getText();
+                    playerNames.add(new Player(playerName));
+                }
+            }
+        }
+
+        return playerNames;
+    }
+
+    public List<Color> getPlayerColors() {
+        List<Color> playerColors = new ArrayList<>();
+
+        Component[] components = playerCardsPanel.getComponents();
+        for (Component component : components) {
+            if (component instanceof JPanel) {
+                JPanel playerCard = (JPanel) component;
+                Component[] cardComponents = playerCard.getComponents();
+                JComboBox<String> colorField = null;
+
+                for (Component cardComponent : cardComponents) {
+                    if (cardComponent instanceof JComboBox) {
+                        colorField = (JComboBox<String>) cardComponent;
+                        break;
+                    }
+                }
+
+                if (colorField != null) {
+                    String playerColorString = (String) colorField.getSelectedItem();
+                    Color playerColor = getColorFromString(playerColorString);
+                    playerColors.add(playerColor);
+                }
+            }
+        }
+
+        return playerColors;
+    }
+
+    private Color getColorFromString(String colorString) {
+        return switch (colorString.toLowerCase()) {
+            case "red" -> Color.RED;
+            case "yellow" -> Color.YELLOW;
+            case "blue" -> Color.BLUE;
+            case "purple" -> new Color(128, 0, 128);
+            case "green" -> Color.GREEN;
+            default -> Color.BLACK;
+        };
     }
 }

@@ -49,7 +49,7 @@ public class Game {
      * @param colors the colors of the players who will be playing this Game
      * @param firstPlayer the Player who will play first
      */
-    private Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer, boolean original) {
+    public Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer, boolean original) {
         this.name = name;
         this.map = map;
         this.players = players;
@@ -61,6 +61,21 @@ public class Game {
         this.topFacingDiscardedCards = new ArrayList<>(players.size());
         this.totalTurnsPlayed = 0;
         this.path = String.format("resources%ssaves%s%s.gam", SEP, this.name);
+        this.original = original;
+    }
+
+    public Game(String name, Map map, List<Player> players, List<Color> colors, Player firstPlayer) {
+        this.name = name;
+        this.map = map;
+        this.players = players;
+        this.colors = colors;
+        this.currentPlayer = firstPlayer;
+        this.bonusBox = new BonusBox(20, 20);
+        this.lastTurn = false;
+        this.drawPile = new CardStack();
+        this.topFacingDiscardedCards = new ArrayList<>(players.size());
+        this.totalTurnsPlayed = 0;
+        this.path = String.format("resources%ssaves%s%s.gam", SEP, SEP, this.name);
         this.original = original;
     }
 
@@ -104,10 +119,6 @@ public class Game {
         } while (this.currentPlayer != this.endingPlayer);
     }
 
-    /**
-     * Method to write this Game to a file
-     * @param path the path to the file to write to
-     */
     public void save() {
         SaveLoader.saveGame(this);
     }
