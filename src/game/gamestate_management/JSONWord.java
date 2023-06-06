@@ -6,7 +6,7 @@ class JSONWord extends JSON {
         super(title);
     }
 
-    public static JSONWord newData(String title) {
+    static JSONWord newData(String title) {
         return new JSONWord(title);
     }
 }

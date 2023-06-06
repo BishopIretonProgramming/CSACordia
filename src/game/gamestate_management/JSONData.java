@@ -8,11 +8,11 @@ class JSONData extends JSON {
         this.data = data;
     }
 
-    public static JSONData newData(String title, String data) {
+    static JSONData newData(String title, String data) {
         return new JSONData(title, data);
     }
 
-    public static String getData(JSONData head) {
+    static String getData(JSONData head) {
         return head.data;
     }
 }

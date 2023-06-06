@@ -60,7 +60,6 @@ public class CardStack extends ArrayList<PersonalityCard> {
 
    public void draw(Graphics g) {
       for(PersonalityCard p : getAvailable()) {
-         System.out.println("H");
          p.draw(g);
       }
    }

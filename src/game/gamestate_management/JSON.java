@@ -7,7 +7,7 @@ class JSON {
         this.title = title;
     }    
 
-    public static String getTitle(JSON head) {
+    static String getTitle(JSON head) {
         return head.title;
     }
 }
