@@ -1,6 +1,8 @@
 package src.ngui;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,98 +11,170 @@ import java.util.HashSet;
 public class PlayerSetupPanel extends JPanel {
     private static final int MAX_PLAYERS = 5;
     private static final int MIN_PLAYERS = 2;
-    private int playerCount = 2;
-    private JPanel playersPanel;
+
     private HashSet<String> usedNames;
     private HashSet<String> usedColors;
+    private int playerCount;
+
+    private JPanel playerCardsPanel;
+    private JButton addButton;
+    private JButton removeButton;
+    private JButton startButton;
     private Frame frame;
 
     public PlayerSetupPanel(Frame frame) {
         this.frame = frame;
+        usedNames = new HashSet<>();
+        usedColors = new HashSet<>();
+        playerCount = 0;
+
         setLayout(new BorderLayout());
 
-        playersPanel = new JPanel();
-        playersPanel.setLayout(new GridLayout(0, 2));
-        addPlayers();
+        playerCardsPanel = new JPanel();
+        playerCardsPanel.setLayout(new BoxLayout(playerCardsPanel, BoxLayout.Y_AXIS));
+        addPlayerCard();
 
-        JScrollPane scrollPane = new JScrollPane(playersPanel);
-        add(scrollPane, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(playerCardsPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        JPanel buttonPanel = new JPanel();
-        JButton addButton = new JButton("Add Player");
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        centerPanel.add(scrollPane);
+
+        // Create a wrapper panel to center the centerPanel horizontally
+        JPanel wrapperPanel = new JPanel(new GridBagLayout());
+        wrapperPanel.add(centerPanel);
+
+        add(wrapperPanel, BorderLayout.CENTER);
+
+        addButton = new JButton("Add Player");
+        removeButton = new JButton("Remove Player");
+        startButton = new JButton("Start Game");
+
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addPlayer();
+                if (playerCount < MAX_PLAYERS) {
+                    addPlayerCard();
+                    validateButtons();
+                }
             }
         });
+
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (playerCount > MIN_PLAYERS) {
+                    removePlayerCard();
+                    validateButtons();
+                }
+            }
+        });
+
+        startButton.addActionListener(e -> {
+            frame.showMainPanel();
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.add(addButton);
-
-        JButton removeButton = new JButton("Remove Player");
-        removeButton.addActionListener(e -> {
-
-        });
         buttonPanel.add(removeButton);
+        buttonPanel.add(startButton);
+        add(buttonPanel, BorderLayout.SOUTH);
 
-        JPanel startButtonPanel = new JPanel();
-        JButton startButton = new JButton("Start Game");
-        startButtonPanel.add(startButton);
-
-        add(buttonPanel, BorderLayout.NORTH);
-        add(startButtonPanel, BorderLayout.SOUTH);
-
-        usedNames = new HashSet<>();
-        usedColors = new HashSet<>();
+        validateButtons();
     }
 
-    private void addPlayers() {
-        for (int i = 0; i < playerCount; i++) {
-            JPanel playerPanel = new JPanel();
-            playerPanel.setLayout(new FlowLayout());
-
-            JTextField nameField = new JTextField(10);
-            playerPanel.add(nameField);
-
-            JComboBox<String> colorCombo = new JComboBox<>(new String[]{"Red", "Blue", "Green"});
-            playerPanel.add(colorCombo);
-
-            playersPanel.add(playerPanel);
-        }
-    }
-
-    private void addPlayer() {
+    private void addPlayerCard() {
         if (playerCount < MAX_PLAYERS) {
-            JPanel playerPanel = new JPanel();
-            playerPanel.setLayout(new FlowLayout());
+            JPanel playerCard = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
             JTextField nameField = new JTextField(10);
-            playerPanel.add(nameField);
+            JComboBox<String> colorField = new JComboBox<>(new String[]{"Red", "Yellow", "Blue", "Purple", "Green"});
 
-            JComboBox<String> colorCombo = new JComboBox<>(new String[]{"Red", "Blue", "Green"});
-            playerPanel.add(colorCombo);
+            nameField.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    validateButtons();
+                }
 
-            playersPanel.add(playerPanel);
-            playersPanel.revalidate();
-            playersPanel.repaint();
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    validateButtons();
+                }
 
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    validateButtons();
+                }
+            });
+
+            colorField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    validateButtons();
+                }
+            });
+
+            playerCard.add(new JLabel("Name:"));
+            playerCard.add(nameField);
+            playerCard.add(new JLabel("Color:"));
+            playerCard.add(colorField);
+
+            playerCardsPanel.add(playerCard);
             playerCount++;
-        } else {
-            JOptionPane.showMessageDialog(this, "Maximum player limit reached!");
+            revalidate();
+            repaint();
         }
     }
 
-    private void removePlayer() {
+    private void removePlayerCard() {
         if (playerCount > MIN_PLAYERS) {
-            Component[] components = playersPanel.getComponents();
-            if (components.length > 0) {
-                playersPanel.remove(components[components.length - 1]);
-                playersPanel.revalidate();
-                playersPanel.repaint();
-
-                playerCount--;
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Minimum player limit reached!");
+            playerCardsPanel.remove(playerCount - 1);
+            playerCount--;
+            revalidate();
+            repaint();
         }
+    }
+
+    private void validateButtons() {
+        boolean hasDuplicateName = false;
+        boolean hasDuplicateColor = false;
+
+        usedNames.clear();
+        usedColors.clear();
+
+        Component[] components = playerCardsPanel.getComponents();
+        for (Component component : components) {
+            if (component instanceof JPanel) {
+                JPanel playerCard = (JPanel) component;
+                Component[] cardComponents = playerCard.getComponents();
+                JTextField nameField = null;
+                JComboBox<String> colorField = null;
+
+                for (Component cardComponent : cardComponents) {
+                    if (cardComponent instanceof JTextField) {
+                        nameField = (JTextField) cardComponent;
+                    } else if (cardComponent instanceof JComboBox) {
+                        colorField = (JComboBox<String>) cardComponent;
+                    }
+                }
+
+                if (nameField != null && colorField != null) {
+                    String playerName = nameField.getText();
+                    String playerColor = (String) colorField.getSelectedItem();
+
+                    if (!usedNames.add(playerName)) {
+                        hasDuplicateName = true;
+                    }
+
+                    if (!usedColors.add(playerColor)) {
+                        hasDuplicateColor = true;
+                    }
+                }
+            }
+        }
+
+        addButton.setEnabled(playerCount < MAX_PLAYERS);
+        removeButton.setEnabled(playerCount > MIN_PLAYERS);
+        startButton.setEnabled(!hasDuplicateName && !hasDuplicateColor && playerCount >= MIN_PLAYERS);
     }
 }

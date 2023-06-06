@@ -34,4 +34,8 @@ public class Frame extends JFrame {
         content.add(new PlayerSetupPanel(this));
         layout.next(content);
     }
+
+    public void showMainPanel() {
+
+    }
 }
