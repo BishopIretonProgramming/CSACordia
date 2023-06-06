@@ -16,7 +16,10 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainFrame extends JComponent implements ActionListener {
+//import java.awt.event.MouseListener;
+//import java.awt.event.MouseEvent;
+
+public class MainFrame extends JComponent implements ActionListener/*, MouseListener*/ {
     private JFrame f;
     private Game game;
     private Dimension SIZE = new Dimension(1080, 758); //original: 1200px x 842px
@@ -36,6 +39,8 @@ public class MainFrame extends JComponent implements ActionListener {
 
         Timer t = new Timer(1, this); //timer to assist with updating the frame
         t.start();
+
+        //f.addMouseListener(this);
     }
 
     @Override
@@ -54,6 +59,15 @@ public class MainFrame extends JComponent implements ActionListener {
         //update if needed
         //repaint();
     }
+
+    //For testing positions
+    /*public void mousePressed(MouseEvent e) {
+        System.out.println("(" + e.getX() + ", " + e.getY() + ")");
+    }
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {}*/
 }
 
 class TestMainFrame {
