@@ -212,6 +212,9 @@ public class Game {
         return this.path;
     }
 
+    public class initGame {
+    }
+
     /*SCORING - EMILY */ 
 
     /**
