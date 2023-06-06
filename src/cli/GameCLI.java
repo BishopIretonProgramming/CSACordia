@@ -65,8 +65,7 @@ public class GameCLI {
         System.out.println("                                                                 ");
         System.out.println("                                                                 ");
         System.out.println("-------------------- Enter the name of the game -----------------");
-        String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 }
 
