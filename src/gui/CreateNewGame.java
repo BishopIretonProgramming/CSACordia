@@ -262,7 +262,7 @@ private static JPanel bPanel = new JPanel();
                  
 
                     // creates the game
-                    Game game = new Game(gName.getText(), new Map(0),players, color,players.get(0) );
+                    Game game = Game.initGame(gName.getText(), new Map(),players, color,players.get(0) );
                 }
             }        );
     }
