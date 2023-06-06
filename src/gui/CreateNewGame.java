@@ -16,7 +16,6 @@ import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import src.game.Game;
-import src.game.Game.initGame;
 import src.game.map.Map;
 
  public class CreateNewGame{
