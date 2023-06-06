@@ -13,7 +13,7 @@ import src.game.Good;
 
 /**
  * A class to represent an entire map in the game of Concordia
- * 
+ *
  * @author devinlinux
  */
 public class Map {
@@ -71,7 +71,7 @@ public class Map {
      * The symbolic constant for the italia map
      */
     public static final byte ITALIA = 1;
-    
+
     /**
      * The random number generator for this class
      */
@@ -97,51 +97,51 @@ public class Map {
     private void initCityTokens() {
         this.cityTokensA = new ArrayList<>(
                 Arrays.asList(
-                    Good.BRICK,
-                    Good.FOOD,
-                    Good.WINE,
-                    Good.BRICK,
-                    Good.FOOD,
-                    Good.TOOL,
-                    Good.CLOTH
+                        Good.BRICK,
+                        Good.FOOD,
+                        Good.WINE,
+                        Good.BRICK,
+                        Good.FOOD,
+                        Good.TOOL,
+                        Good.CLOTH
                 )
         );
 
         this.cityTokensB = new ArrayList<>(
                 Arrays.asList(
-                    Good.TOOL,
-                    Good.FOOD,
-                    Good.BRICK,
-                    Good.TOOL,
-                    Good.WINE,
-                    Good.FOOD,
-                    Good.CLOTH,
-                    Good.BRICK
+                        Good.TOOL,
+                        Good.FOOD,
+                        Good.BRICK,
+                        Good.TOOL,
+                        Good.WINE,
+                        Good.FOOD,
+                        Good.CLOTH,
+                        Good.BRICK
                 )
         );
 
         this.cityTokensC = new ArrayList<>(
                 Arrays.asList(
-                    Good.BRICK,
-                    Good.WINE,
-                    Good.FOOD,
-                    Good.FOOD,
-                    Good.BRICK,
-                    Good.BRICK,
-                    Good.CLOTH,
-                    Good.WINE,
-                    Good.TOOL,
-                    Good.TOOL
+                        Good.BRICK,
+                        Good.WINE,
+                        Good.FOOD,
+                        Good.FOOD,
+                        Good.BRICK,
+                        Good.BRICK,
+                        Good.CLOTH,
+                        Good.WINE,
+                        Good.TOOL,
+                        Good.TOOL
                 )
         );
 
         this.cityTokensD = new ArrayList<>(
                 Arrays.asList(
-                    Good.CLOTH,
-                    Good.WINE,
-                    Good.BRICK,
-                    Good.TOOL,
-                    Good.FOOD
+                        Good.CLOTH,
+                        Good.WINE,
+                        Good.BRICK,
+                        Good.TOOL,
+                        Good.FOOD
                 )
         );
 
@@ -292,7 +292,7 @@ public class Map {
 
     /**
      * Method to get a random city token.
-     * 
+     *
      * @param letter the letter city that the city token is for.
      * @return a random city token.
      */
@@ -308,7 +308,7 @@ public class Map {
 
     /**
      * Getter method for the map cities
-     * 
+     *
      * @return the cities of this Map
      */
     public List<CityNode> cities() {
@@ -317,7 +317,7 @@ public class Map {
 
     /**
      * Getter method for the map paths
-     * 
+     *
      * @return the paths of this Map
      */
     public List<PathNode> paths() {
@@ -325,9 +325,9 @@ public class Map {
     }
 
     /**
-     * Getter method for the network
+     * Getter method for the {@code Network} of this map.
      *
-     * @return the {@code Network} of this map
+     * @return the {@code Network} of this map.
      */
     public Network network() {
         return this.network;
@@ -364,11 +364,15 @@ public class Map {
         return this.network.computeDistanceBetween(start, end);
     }
 
-    public static void main(String[] args) {
-        Map map = new Map(IMPERIUM);
-        System.out.println(map.paths.get(1));
-        System.out.println(map.paths.get(23));
-        System.out.println(map.network.computeDistanceBetween(map.paths.get(1), map.paths.get(23)));
-        System.out.println(map.network.computePathBetween(map.paths.get(1), map.paths.get(23)));
+    /**
+     * A method to get the path between a start {@code PathNode} and an end {@code PathNode}
+     * as represented by a {@code List} of {@code PathNode}s.
+     *
+     * @param start the {@code PathNode} to start from.
+     * @param end   the {@code PathNode} to end at.
+     * @return      the {@code PathNode} s between start and end in a {@code List}.
+     */
+    public List<PathNode> pathBetween(PathNode start, PathNode end) {
+        return this.network.computePathBetween(start, end);
     }
 }
