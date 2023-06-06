@@ -170,7 +170,7 @@ public class Game {
      * Getter to get the draw pile of personality cards
      * @return the draw pile personality cards
      */
-    public List<PersonalityCard> getDrawPile(){
+    public CardStack getDrawPile(){
         return this.drawPile;
     }
 

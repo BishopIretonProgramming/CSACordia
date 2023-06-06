@@ -2,6 +2,7 @@ package src.gui;
 
 import src.game.Game;
 import src.game.cards.CardStack;
+import src.game.BonusBox;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -42,6 +43,9 @@ public class MainFrame extends JComponent implements ActionListener {
         g.drawImage(PieceImage.BOARD.pieceImage, 0, 0, SIZE.width, SIZE.height, null);
         CardStack c = new CardStack();
         c.draw(g);
+        BonusBox b = new BonusBox(55, 55);
+        b.draw(g);
+        //game.getDrawPile().draw(g);
         //game.getBonusBox().draw(g);
     }
 
