@@ -7,6 +7,7 @@ class JSONObject extends JSON {
     
     private JSONObject(String title) {
         super(title);
+        contents = new ArrayList<JSON>();
     }
 
     public static JSONObject createBaseObject() {

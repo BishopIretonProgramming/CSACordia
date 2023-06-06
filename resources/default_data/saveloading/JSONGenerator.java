@@ -38,7 +38,7 @@ class JSONGenerator {
     }
 
     private void writeFolder(PrintWriter pr, JSONObject folder) {
-        boolean wordFolder = JSONObject.listContents(folder).stream().filter(jobj -> jobj instanceof JSONWord).collect(Collectors.toList()).size() > 0
+        boolean wordFolder = JSONObject.listContents(folder).stream().filter(jobj -> jobj instanceof JSONWord).collect(Collectors.toList()).size() > 0;
         braces += wordFolder ? "[]" : "{}";
         pr.write(tabs + "\"" + JSON.getTitle(folder) + String.format("\": %c\n", braces.charAt(braces.length() - 2)));
         tabs += "\t";
@@ -46,17 +46,17 @@ class JSONGenerator {
         ArrayList<JSON> list = JSONObject.listContents(folder);
         for (int i = 0; i < list.size(); i++) {
             if (wordFolder) {
-                
+                pr.write(tabs + "\"" + JSON.getTitle(list.get(i)) + "\"");
+            } else if (list.get(i) instanceof JSONData) {
+                pr.write(tabs + "\"" + JSON.getTitle(list.get(i)) + ": " + JSONData.getData((JSONData) list.get(i)) + "\"");
             } else {
-
+                writeFolder(pr, (JSONObject) list.get(i));
             }
-            if (i != list.size() - 1) {
-                
-            }
+            pr.write((i != list.size() - 1 ? "," : "") + "\n");
         }
 
-        pr.write(braces.charAt(braces.length() - 1));
-        braces = braces.substring(0, braces.length() - 2);
         tabs = tabs.substring(0, tabs.length() - 1);
+        pr.write(tabs + braces.charAt(braces.length() - 1));
+        braces = braces.substring(0, braces.length() - 2);
     }
 }

@@ -1,0 +1,53 @@
+{
+    "players": {
+        "person": {
+            "color": "blue",
+            "money": 10,
+            "deck": [
+                "card1",
+                "card2"
+            ],
+            "discard": [
+                "card1",
+                "card2"
+            ],
+            "storehouse": [
+                "thingone",
+                "thingtwo"
+            ],
+            "houses": [
+                "city1",
+                "city2"
+            ],
+            "colonists": {
+                "1": {
+                    "type": "land",
+                    "location": [
+                        "city1",
+                        "city2"
+                    ]
+                }
+            }
+        }
+    },
+    "cities": {
+        "city1": {
+            "resource": "boioioioioing",
+            "name": "bloptopolis",
+            "netdata": {
+                "position": {
+                    "x": 0,
+                    "y": 1
+                },
+                "connections": {
+                    "land": [
+                        "city2"
+                    ],
+                    "sea": [
+                        "city3"
+                    ]
+                }
+            }
+        }
+    }
+}
