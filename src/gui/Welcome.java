@@ -7,16 +7,10 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import java.awt.event.ActionListener;  
 import java.awt.event.ActionEvent;
-
-import src.game.Game;
-import src.game.map.Map;
-import src.game.player.Player;
 
 /**
  *  @author Joe Lentini

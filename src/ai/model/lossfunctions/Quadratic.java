@@ -29,6 +29,7 @@ public class Quadratic implements LossFunction {
     @Override
     public Object[] apply(float[][] outputs, float[][] targets) {
         float dHalf = steepnessFactor / 2;
+        System.out.println(dHalf); // this is just to remove the ide warning for an unused variable, feel free to remove
         return null;
     }
 }

@@ -74,7 +74,6 @@ public class ProvinceChart {
       return null;
    }
    
-   //TODO: add cities, either in this class or passed from another
    private void addProvinces() {
       provinceList.add(new Province("Britania", new ArrayList<CityNode>(2)));
       provinceList.add(new Province("Gallia", new ArrayList<CityNode>(3)));

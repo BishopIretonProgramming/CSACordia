@@ -293,7 +293,6 @@ public class IOUtils {
         }
     }
 
-    // TODO Bob write a javadoc
     public static void verifyFile(FileData file) {
         if (Files.exists(Path.of(file.getPath())))
             Logger.info("IOUtils", file.getName() + " already exists");
@@ -478,7 +477,7 @@ public class IOUtils {
      * @param path the path to where the {@code Game} should be saved.
      */
     public static void synchronousSave(Game game, String path) {
-        SynchronousSaver saver = new SynchronousSaver(game, path);
+        new SynchronousSaver(game, path);
     }
 
     private static class SynchronousSaver extends Thread {

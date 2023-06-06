@@ -1,7 +1,6 @@
 package src.game.player;
 
 //  imports
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,6 @@ import src.game.cards.Mercator;
 import src.game.cards.Tribune;
 import src.game.cards.Prefect;
 import src.game.cards.Senator;
-import src.game.Storeable;
 
 /**
  * A class to represent a player
