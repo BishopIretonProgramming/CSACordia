@@ -346,4 +346,13 @@ public class Player implements java.io.Serializable {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    /**
+     * Method to add a card to the cards of this {@code Player}.
+     *
+     * @param card the card to add.
+     */
+    public void addCard(PersonalityCard card) {
+        this.cards.add(card);
+    }
 }
