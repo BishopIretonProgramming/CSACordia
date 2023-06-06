@@ -20,6 +20,7 @@ import src.game.cards.PersonalityCard;
 import src.game.cards.CardStack;
 import src.game.player.Player;
 import src.game.player.StoreHouse;
+import src.game.cards.Colonist;
 
 /**
  * A class to represent a Game and all of its components
@@ -231,57 +232,58 @@ public class Game {
      * Vesta calculations: gets total amout of sestertii from money + storehouse
      * @return number of victory points from Vesta
      */
-    public int getVestaVP(Player p) {
+    /* public int getVestaVP(Player p) {
         StoreHouse resources = p.storeHouse();
         int totalSestertii = p.sestertii();
 
-        for(Storeable o: resources.getResources()){
-            if (o.equals(Good.BRICK))
+        for(Storeable s: resources.getResources()){
+            if (s.equals(Good.BRICK))
                 totalSestertii += 3;
-            else if (o.equals(Good.FOOD))
+            else if (s.equals(Good.FOOD))
                 totalSestertii += 4;
-            else if (o.equals(Good.TOOL))
+            else if (s.equals(Good.TOOL))
                 totalSestertii += 5;
-            else if (o.equals(Good.WINE))
+            else if (s.equals(Good.WINE))
                 totalSestertii += 6;
-            else if (o.equals(Good.CLOTH))
+            else if (s.equals(Good.CLOTH))
                 totalSestertii += 7;
             else 
                 totalSestertii += 0;
         }
 
         return totalSestertii/10;
-    }
+    }*/
 
     /**
      * Jvpiter calculations: number of non brick house muliplied by number of Jvpiter cards
      * @return number of victory points from Jvpiter
      */
-    public int getJvpiterVP(Player p){
+    /*public int getJvpiterVP(Player p){
         ArrayList<House> houses = p.houses();
         int count = 0;
-        // get jvp cards
+        // get # jvp cards
 
         for (House h: houses){
             if(!h.good().equals(Good.BRICK))
                 count++;
         }
         return count; // * num of jvp cards
-    }
+    }*/
 
     /**
      * Satvrnvs calculations: number of provinces that have a players city in it muliplied by number of Satvrnvs cards
      * @return number of victory points from Satvrnvs
      */
-    public int getSatvrnvsVP(Player p){
+    /*public int getSatvrnvsVP(Player p){
+        // can't get provinces?????
         return 0;
-    }
+    }*/
 
     /**
      * Mercvrivs calculations: number of goods produced muliplied by number of Mercvrivs cards
      * @return number of victory points from Mercvrivs
      */
-    public int getMercvrivsVP(Player p){
+    /*public int getMercvrivsVP(Player p){
         ArrayList<House> houses = p.houses();
         int foodCount = 0;
         int toolCount = 0;
@@ -289,7 +291,7 @@ public class Game {
         int clothCount = 0;
         int brickCount = 0;
         int count = 0;
-        // get merc cards
+        // get # merc cards
 
         for (House h: houses){
             if (count == 5){
@@ -323,23 +325,29 @@ public class Game {
                     
         }
         return count * 2; // *num of merc cards
-    }
+    }*/
 
     /**
      * Mars calculations: number of colonists on the board produced muliplied by number of Mars cards
      * @return number of victory points from Mars
      */
-    public int getMarsVP (Player p) {
-        // get num of colonists on board
-        // return num of colonists on board * num of mars cards
+    /*public int getMarsVP (Player p) {
+        // get num of mars cards
+        ArrayList<Colonist> colonistList = p.colonists();
+        int count = 0;
+
+        for(Colonist c: colonistList){
+            //if (c is on the board) count++
+        }
+        // return num of colonists on board (count) * num of mars cards
         return 0;
-    }
+    }*/
 
     /**
      * Minera calculations: based of speciality cards muliplied by number on certain Minera cards
      * @return number of victory points from Minera
      */
-    public int getMineraVP(Player p) {
+    /*public int getMineraVP(Player p) {
         return 0;
-    }
+    }*/
  }
