@@ -152,7 +152,7 @@ public class Network implements java.io.Serializable {
                             queue.add(neighbor);
                         }
                         if (neighbor == end) {
-                            return dist[neighbor];
+                            return dist[neighbor] + 1;
                         }
                     }
                 }
@@ -164,7 +164,7 @@ public class Network implements java.io.Serializable {
                             queue.add(neighbor);
                         }
                         if (neighbor == end) {
-                            return dist[neighbor];
+                            return dist[neighbor] + 1;
                         }
                     }
                 }
@@ -225,6 +225,79 @@ public class Network implements java.io.Serializable {
             System.err.printf("Error loading Network from file: %s%n", e.getMessage());
         }
         return network;
+    }
+
+    public List<PathNode> computePathBetween(int start1, int start2, PathType type1, int end1, int end2, PathType type2) {
+        if (type1 != type2) {
+            return new ArrayList<>(); // Return an empty list if types are different
+        }
+
+        int start = Math.min(start1, start2);
+        int end = Math.min(end1, end2);
+
+        boolean[] visited = new boolean[this.NUM_NODES];
+        int[] prev = new int[this.NUM_NODES];
+        for (int i = 0; i < prev.length; i++) {
+            prev[i] = -1;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        visited[start] = true;
+
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+
+            switch (type1) {
+                case LAND -> {
+                    for (int neighbor : adjListLand.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            prev[neighbor] = curr;
+                            queue.add(neighbor);
+
+                            if (neighbor == end) {
+                                // Reconstruct the path by traversing prev array from end to start
+                                List<PathNode> pathNodes = new ArrayList<>();
+                                int node = end;
+                                while (prev[node] != -1) {
+                                    pathNodes.add(paths.get(prev[node]));
+                                    node = prev[node];
+                                }
+                                return pathNodes;
+                            }
+                        }
+                    }
+                }
+                case SEA -> {
+                    for (int neighbor : adjListSea.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            prev[neighbor] = curr;
+                            queue.add(neighbor);
+
+                            if (neighbor == end) {
+                                // Reconstruct the path by traversing prev array from end to start
+                                List<PathNode> pathNodes = new ArrayList<>();
+                                int node = end;
+                                while (prev[node] != -1) {
+                                    pathNodes.add(paths.get(prev[node]));
+                                    node = prev[node];
+                                }
+                                return pathNodes;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return new ArrayList<>(); // Return an empty list if no path is found
+    }
+
+
+    public List<PathNode> computePathBetween(PathNode start, PathNode end) {
+        return computePathBetween(start.node1().id(), start.node2().id(), start.type(), end.node1().id(), end.node2().id(), end.type());
     }
 
     /**
