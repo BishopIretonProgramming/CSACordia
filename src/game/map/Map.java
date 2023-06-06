@@ -1,7 +1,6 @@
 package src.game.map;
 
 //  imports
-import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,11 +21,6 @@ public class Map {
     //throw away constructor to delete later
 
     public Map(){}
-
-    /**
-     * An alias for File.separator
-     */
-    private static final String SEP = File.separator;
 
     /**
      * The Network representing the various cities and paths of the map

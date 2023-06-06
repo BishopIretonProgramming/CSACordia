@@ -53,6 +53,6 @@ public class MainFrame extends JComponent implements ActionListener {
 class TestMainFrame {
     public static void main(String[] args) {
         Game g = null;
-        MainFrame m = new MainFrame(g);
+        /*MainFrame m = */new MainFrame(g);
     }
 }

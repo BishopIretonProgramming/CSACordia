@@ -7,18 +7,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.awt.Color;
 import java.io.File;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import src.game.map.Map;
-import src.ai.environment.game.Good;
 import src.game.cards.PersonalityCard;
 import src.game.gamestate_management.SaveLoader;
 import src.game.cards.CardStack;
 import src.game.player.Player;
-import src.game.player.StoreHouse;
-import src.game.cards.Colonist;
 
 /**
  * A class to represent a Game and all of its components
@@ -107,7 +101,7 @@ public class Game {
         this.endingPlayer = this.currentPlayer;
         do {
             currentPlayer = this.players.get(totalTurnsPlayed % players.size());
-            /* TODO: Graphics interoperability */
+            /* Graphics interoperability */
             updateTopFacingDiscardedCards();
         } while (this.currentPlayer != this.endingPlayer);
     }
@@ -117,11 +111,7 @@ public class Game {
      * @param path the path to the file to write to
      */
     public void save(String path) { // TODO we need the game saving to actually save stuff so we can recreate the data from a file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            String line = String.format("");
-        } catch (IOException e) {
-            System.err.printf("Error saving game: %s%n", e.getMessage());
-        }
+
     }
 
     /**
