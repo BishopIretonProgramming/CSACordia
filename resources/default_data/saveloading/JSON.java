@@ -1,7 +1,7 @@
 package resources.default_data.saveloading;
 
 class JSON {
-    final String title;
+    private final String title;
 
     protected JSON(String title) {
         this.title = title;

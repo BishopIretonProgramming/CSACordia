@@ -39,7 +39,11 @@ public class SaveLoader {
     public static void main(String[] args) {
         JSONObject file = JSONObject.createBaseObject();
         JSONObject folder = JSONObject.addSubObject(file, "folder");
-        JSONObject.addData(folder, "num1", "50");
-        JSONObject.addData(folder, "num2", "25");
+        JSONObject subfolder = JSONObject.addSubObject(folder, "subfolder");
+        System.out.println(JSONObject.addData(folder, "num1", "50"));
+        System.out.println(JSONObject.addData(folder, "num2", "25"));
+        System.out.println(JSONObject.addWord(subfolder, "boing"));
+        System.out.println(JSONObject.addData(subfolder, "num2", "25"));
+        JSONGenerator.get().generateJSONFile(file, "resources", "saves");
     }
 }
