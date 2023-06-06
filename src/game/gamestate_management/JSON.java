@@ -1,4 +1,4 @@
-package resources.default_data.saveloading;
+package src.game.gamestate_management;
 
 class JSON {
     private final String title;

@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import resources.default_data.saveloading.SaveLoader;
-
 import java.awt.Color;
 import java.io.File;
 import java.io.BufferedWriter;
@@ -17,6 +14,7 @@ import java.io.IOException;
 import src.game.map.Map;
 import src.ai.environment.game.Good;
 import src.game.cards.PersonalityCard;
+import src.game.gamestate_management.SaveLoader;
 import src.game.cards.CardStack;
 import src.game.player.Player;
 import src.game.player.StoreHouse;
