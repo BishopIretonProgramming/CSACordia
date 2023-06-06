@@ -322,4 +322,35 @@ public class Map {
     public List<PathNode> paths() {
         return this.paths;
     }
+
+    /*
+     * This section of the code will be managing all interactions with a Map.
+     * This section of the code will contain all of the necessary methods for
+     * getting the necessary information about the Map.
+     */
+
+    /**
+     * A method to check if it is possible to move from one path to another
+     * with a given amount of movement points
+     *
+     * @param start  the path to start from.
+     * @param end    the path to end at.
+     * @param points the number of movement points available.
+     * @return       whether it is possible to go from start to end with points movement points.
+     */
+    public boolean canGoBetween(PathNode start, PathNode end, int points) {
+        return this.distanceBetween(start, end) <= points;
+    }
+
+    /**
+     * A method to get the number of paths between a start {@code PathNode} and an
+     * end {@code PathNode}.
+     *
+     * @param start the path to start from.
+     * @param end   the path to end at.
+     * @return      the number of paths between start and end.
+     */
+    public int distanceBetween(PathNode start, PathNode end) {
+        return this.network.computeDistanceBetween(start, end);
+    }
 }
