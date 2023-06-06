@@ -15,9 +15,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import src.game.map.Map;
+import src.ai.environment.game.Good;
 import src.game.cards.PersonalityCard;
 import src.game.cards.CardStack;
 import src.game.player.Player;
+import src.game.player.StoreHouse;
 
 /**
  * A class to represent a Game and all of its components
@@ -221,5 +223,123 @@ public class Game {
      */
     public String getPath() {
         return this.path;
+    }
+
+    /*SCORING - EMILY */ 
+
+    /**
+     * Vesta calculations: gets total amout of sestertii from money + storehouse
+     * @return number of victory points from Vesta
+     */
+    public int getVestaVP(Player p) {
+        StoreHouse resources = p.storeHouse();
+        int totalSestertii = p.sestertii();
+
+        for(Storeable o: resources.getResources()){
+            if (o.equals(Good.BRICK))
+                totalSestertii += 3;
+            else if (o.equals(Good.FOOD))
+                totalSestertii += 4;
+            else if (o.equals(Good.TOOL))
+                totalSestertii += 5;
+            else if (o.equals(Good.WINE))
+                totalSestertii += 6;
+            else if (o.equals(Good.CLOTH))
+                totalSestertii += 7;
+            else 
+                totalSestertii += 0;
+        }
+
+        return totalSestertii/10;
+    }
+
+    /**
+     * Jvpiter calculations: number of non brick house muliplied by number of Jvpiter cards
+     * @return number of victory points from Jvpiter
+     */
+    public int getJvpiterVP(Player p){
+        ArrayList<House> houses = p.houses();
+        int count = 0;
+        // get jvp cards
+
+        for (House h: houses){
+            if(!h.good().equals(Good.BRICK))
+                count++;
+        }
+        return count; // * num of jvp cards
+    }
+
+    /**
+     * Satvrnvs calculations: number of provinces that have a players city in it muliplied by number of Satvrnvs cards
+     * @return number of victory points from Satvrnvs
+     */
+    public int getSatvrnvsVP(Player p){
+        return 0;
+    }
+
+    /**
+     * Mercvrivs calculations: number of goods produced muliplied by number of Mercvrivs cards
+     * @return number of victory points from Mercvrivs
+     */
+    public int getMercvrivsVP(Player p){
+        ArrayList<House> houses = p.houses();
+        int foodCount = 0;
+        int toolCount = 0;
+        int wineCount = 0;
+        int clothCount = 0;
+        int brickCount = 0;
+        int count = 0;
+        // get merc cards
+
+        for (House h: houses){
+            if (count == 5){
+                return (count * 2); //  *merc cards
+            }
+            if (h.good().equals(Good.BRICK)){
+                brickCount++;
+                if (brickCount == 1)
+                    count++;
+            }
+            else if (h.good().equals(Good.FOOD)){
+                foodCount++;
+                if(foodCount == 1)
+                    count++;
+            }
+            else if(h.good().equals(Good.TOOL)){
+                toolCount++;
+                if(toolCount == 1)
+                    count++;
+            }
+            else if(h.good().equals(Good.WINE)){
+                wineCount++;
+                if(wineCount == 1)
+                    count++;
+            }
+            else {
+                clothCount++;
+                if(clothCount == 1)
+                    count++;
+            }
+                    
+        }
+        return count * 2; // *num of merc cards
+    }
+
+    /**
+     * Mars calculations: number of colonists on the board produced muliplied by number of Mars cards
+     * @return number of victory points from Mars
+     */
+    public int getMarsVP (Player p) {
+        // get num of colonists on board
+        // return num of colonists on board * num of mars cards
+        return 0;
+    }
+
+    /**
+     * Minera calculations: based of speciality cards muliplied by number on certain Minera cards
+     * @return number of victory points from Minera
+     */
+    public int getMineraVP(Player p) {
+        return 0;
     }
  }
