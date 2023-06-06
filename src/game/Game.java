@@ -351,4 +351,27 @@ public class Game {
     /*public int getMineraVP(Player p) {
         return 0;
     }*/
- }
+
+    /*
+     * 4 AM stuff
+     */
+
+    public boolean nextPlayer() {
+        this.currentPlayer = this.players.get(totalTurnsPlayed % players.size());
+        this.lastTurn = endedGame();
+        if (lastTurn) {
+            this.currentPlayer.addVictoryPoints(7);
+            this.endingPlayer = this.currentPlayer;
+        }
+        this.totalTurnsPlayed++;
+        return this.lastTurn;
+    }
+
+    public boolean nextPlayerEnd() {
+        if (this.players.get(totalTurnsPlayed % players.size()) == this.endingPlayer) {
+            return true;
+        }
+        this.currentPlayer = this.players.get(totalTurnsPlayed % players.size());
+        return false;
+    }
+}
