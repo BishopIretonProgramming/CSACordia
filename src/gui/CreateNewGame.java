@@ -1,12 +1,14 @@
 /**
  * @author Nora Hixson
- * only used by the welcome frame to create a new class given 
+ * only used by the welcome frame to create a new class given
  * user input
  */
 package src.gui;
 
 import javax.swing.*;
+
 import src.game.player.Player;
+
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,19 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import src.game.Game;
 import src.game.map.Map;
 
- public class CreateNewGame{
+public class CreateNewGame {
 
-private static JPanel panel = new JPanel();
-private static JPanel inner = new JPanel();
-private static JPanel bPanel = new JPanel();
+    private static JPanel panel = new JPanel();
+    private static JPanel inner = new JPanel();
+    private static JPanel bPanel = new JPanel();
 
-    public static void create(JFrame frame, JPanel oldPanel, JLabel oldTitle, JLabel oldBackground ){
+    public static void create(JFrame frame, JPanel oldPanel, JLabel oldTitle, JLabel oldBackground) {
 
         // create a panel, remove old panel, and put new panel in frame
-        
+
         oldPanel.setVisible(false);
         frame.remove(oldPanel);
         frame.remove(oldTitle);
@@ -46,12 +49,12 @@ private static JPanel bPanel = new JPanel();
         inner.setVisible(true);
         inner.setBackground(Color.BLACK);
 
-        panel.add(inner,BorderLayout.CENTER);
-        
+        panel.add(inner, BorderLayout.CENTER);
+
         // make title
 
         Font font = new Font("Egyptian", Font.BOLD, 48);
-        JLabel title = new JLabel("Create a Game",SwingConstants.CENTER);
+        JLabel title = new JLabel("Create a Game", SwingConstants.CENTER);
         title.setForeground(Color.WHITE);
         title.setFont(font);
 
@@ -75,13 +78,13 @@ private static JPanel bPanel = new JPanel();
         TextField gName = new TextField("Please name your game");
         gName.setFont(font);
 
-        
+
         // add stuff to the panel
 
-        panel.add(title, BorderLayout.NORTH);    
-        inner.add(gName,BorderLayout.NORTH);
-        inner.add(numPlayers,BorderLayout.CENTER); 
-        inner.add(bPanel,BorderLayout.SOUTH);
+        panel.add(title, BorderLayout.NORTH);
+        inner.add(gName, BorderLayout.NORTH);
+        inner.add(numPlayers, BorderLayout.CENTER);
+        inner.add(bPanel, BorderLayout.SOUTH);
         bPanel.add(one);
         bPanel.add(two);
         bPanel.add(three);
@@ -89,65 +92,65 @@ private static JPanel bPanel = new JPanel();
         bPanel.add(five);
 
         // add action Listeners
-    
+
         one.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
-                    inner.remove(numPlayers);
-                    playerName(1, gName);
-                    
-                }
-            }        );
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        inner.remove(numPlayers);
+                        playerName(1, gName);
+
+                    }
+                });
 
         two.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
-                    inner.remove(numPlayers);
-                    playerName(2, gName);
-                }
-            }        );
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        inner.remove(numPlayers);
+                        playerName(2, gName);
+                    }
+                });
         three.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
-                    inner.remove(numPlayers);
-                    playerName(3, gName);
-                }
-            }        );  
-            
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        inner.remove(numPlayers);
+                        playerName(3, gName);
+                    }
+                });
+
         four.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
-                    inner.remove(numPlayers);
-                    playerName(4,gName);
-                }
-            }        );
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        inner.remove(numPlayers);
+                        playerName(4, gName);
+                    }
+                });
 
         five.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
-                    inner.remove(numPlayers);
-                    playerName(5, gName);
-                }
-            }        );
-        
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        inner.remove(numPlayers);
+                        playerName(5, gName);
+                    }
+                });
+
     }
 
     // gets the player names
-    private static void playerName(int num, TextField gName){
+    private static void playerName(int num, TextField gName) {
 
         // makes color list
 
-        List<Color> color = new ArrayList<Color>();
-            color.add(Color.BLUE);
-            color.add(Color.RED);
-            color.add(Color.MAGENTA);
-            color.add(Color.YELLOW);
-            color.add(Color.GREEN);
+        List<Color> color = new ArrayList<>();
+        color.add(Color.BLUE);
+        color.add(Color.RED);
+        color.add(Color.MAGENTA);
+        color.add(Color.YELLOW);
+        color.add(Color.GREEN);
 
         // creates the text fields no matter what 
 
@@ -169,13 +172,13 @@ private static JPanel bPanel = new JPanel();
         // adds JPanel for player names
         JPanel playerPanel = new JPanel();
 
-        inner.add(playerPanel,BorderLayout.CENTER);
+        inner.add(playerPanel, BorderLayout.CENTER);
 
         // adds everyhting to the JPanel and creates Player list, but doesn't fill it
 
         List<Player> players = new ArrayList<Player>();
-        
-        switch(num){
+
+        switch (num) {
             case 1:
                 playerPanel.add(p1);
                 break;
@@ -190,7 +193,7 @@ private static JPanel bPanel = new JPanel();
                 playerPanel.add(p1);
                 playerPanel.add(p2);
                 playerPanel.add(p3);
-                
+
 
                 break;
 
@@ -212,57 +215,54 @@ private static JPanel bPanel = new JPanel();
                 break;
 
         }
-        
-        
+
+
         playerPanel.add(createG);
 
         // action listener to make fill array list on names and create game
         createG.addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e){
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
 
-                    switch(num){
-                        case 1:
-                            players.add(new Player(p1.getText(), true,false));
-                        
-                            break;
+                        switch (num) {
+                            case 1:
+                                players.add(new Player(p1.getText(), true, false));
 
-                        case 2:
-                            players.add(new Player(p1.getText(), true,false));
-                            players.add(new Player(p2.getText(), false,true));
-        
-                            break;
-                        case 3:
-                            players.add(new Player(p1.getText(), true,false));
-                            players.add(new Player(p2.getText(), false,false));
-                            players.add(new Player(p3.getText(), false,true));
+                                break;
 
-                            break;
-                        case 4:
-                            players.add(new Player(p1.getText(), true,false));
-                            players.add(new Player(p2.getText(), false,false));
-                            players.add(new Player(p3.getText(), false,false));
-                            players.add(new Player(p4.getText(), false,true));
+                            case 2:
+                                players.add(new Player(p1.getText(), true, false));
+                                players.add(new Player(p2.getText(), false, true));
 
-                            break;
-                        case 5:
-                            players.add(new Player(p1.getText(), true,false));
-                            players.add(new Player(p2.getText(), false,false));
-                            players.add(new Player(p3.getText(), false,false));
-                            players.add(new Player(p4.getText(), false,false));
-                            players.add(new Player(p5.getText(), false,true));
+                                break;
+                            case 3:
+                                players.add(new Player(p1.getText(), true, false));
+                                players.add(new Player(p2.getText(), false, false));
+                                players.add(new Player(p3.getText(), false, true));
 
-                            break;
+                                break;
+                            case 4:
+                                players.add(new Player(p1.getText(), true, false));
+                                players.add(new Player(p2.getText(), false, false));
+                                players.add(new Player(p3.getText(), false, false));
+                                players.add(new Player(p4.getText(), false, true));
+
+                                break;
+                            case 5:
+                                players.add(new Player(p1.getText(), true, false));
+                                players.add(new Player(p2.getText(), false, false));
+                                players.add(new Player(p3.getText(), false, false));
+                                players.add(new Player(p4.getText(), false, false));
+                                players.add(new Player(p5.getText(), false, true));
+
+                                break;
+                        }
+
+
+                        // creates the game
+                        Game game = Game.initGame(gName.getText(), new Map(), players, color, players.get(0));
                     }
-                    
-
-                    
-                 
-
-                    // creates the game
-                    Game game = Game.initGame(gName.getText(), new Map(),players, color,players.get(0) );
-                }
-            }        );
+                });
     }
- }
+}
