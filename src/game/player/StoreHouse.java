@@ -181,4 +181,54 @@ public class StoreHouse {
     public Storeable get(int index) {
         return this.elements.get(index);
     }
+
+    /**
+     * Getter to get list of resources
+     * @return list of resources
+     * @author Emily --> added for scoring (refer to bottom of Game.java)
+     */
+    public List<Storeable> getResources() {
+        return elements; 
+    }
+    
+    // method to remove an element
+    // returns true if an element was removed, returns false if no matching element was found
+    // accepts an object as a parameter just in case, but if the object is not a good it will return false
+    public boolean removeGood(Object o) {
+        if (o instanceof Good) {
+            for (Object e : elements) {
+                if (e == o) { // both .equals and == work with enums, however == is null safe so this stays
+                    elements.remove(e);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    // this is purely for convenienience since I strongly dislike enums -jonah
+    // even though a string is an object, passing a string as an argument would work
+    // since the method with the most specific matching parameter is called
+    public boolean removeGood(String s) {
+        if (s.equals("wine")) return removeGood(Good.WINE);
+        if (s.equals("brick")) return removeGood(Good.BRICK);
+        if (s.equals("tool")) return removeGood(Good.TOOL);
+        if (s.equals("cloth")) return removeGood(Good.CLOTH);
+        if (s.equals("food")) return removeGood(Good.FOOD);
+        System.out.println("you misspelled a good, go fix it");
+        return false;
+    }
+/* 
+    // written by Nora Hixson
+    public toString(){
+        for(Object thing: elements){
+            if(thing instanceof Good){
+                
+            }else if(thing instanceof Colonist){
+
+            }
+
+        }
+    }
+*/
 }
