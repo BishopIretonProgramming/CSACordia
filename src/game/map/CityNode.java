@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Point;
 
 import src.game.Good;
 import src.game.Colonist;

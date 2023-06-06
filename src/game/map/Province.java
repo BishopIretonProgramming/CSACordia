@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import src.game.Good;
 import src.game.House;
-import src.game.map.CityNode;
 import src.game.player.Player;
 
 public class Province {

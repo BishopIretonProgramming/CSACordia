@@ -1,7 +1,6 @@
 package src.game.player;
 
 //  imports
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,6 @@ import src.game.cards.Mercator;
 import src.game.cards.Tribune;
 import src.game.cards.Prefect;
 import src.game.cards.Senator;
-import src.game.Storeable;
 
 /**
  * A class to represent a player
@@ -345,5 +343,14 @@ public class Player implements java.io.Serializable {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    /**
+     * Method to add a card to the cards of this {@code Player}.
+     *
+     * @param card the card to add.
+     */
+    public void addCard(PersonalityCard card) {
+        this.cards.add(card);
     }
 }

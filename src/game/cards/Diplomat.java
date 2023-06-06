@@ -4,18 +4,21 @@ package src.game.cards;
 import src.game.cards.godtype.*;
 import src.game.player.Player;
 
+import java.awt.image.BufferedImage;
+
 //import java.awt.Graphics;
 
 public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvrivs, Jvpiter {
-   public final CardImage IMAGE;
    public final String GOD;
    private PersonalityCard copied;
 
    public Diplomat(Player myPlayer, int brickPrice, int foodPrice, int toolPrice, int winePrice, int clothPrice, String god) {
-      super(myPlayer, brickPrice, foodPrice, toolPrice, winePrice, clothPrice, 1);
+      super(myPlayer, brickPrice, foodPrice, toolPrice, winePrice, clothPrice, 1, findImage(god, foodPrice));
       this.GOD = god;
       this.copied = null;
-      
+   }
+
+   public static BufferedImage findImage(String GOD, int foodPrice) {
       //set the correct image
       switch(GOD) {
          case "Satvrnvs":
@@ -23,29 +26,25 @@ public class Diplomat extends PersonalityCard implements Satvrnvs, Mars, Mercvri
          case "Saturnus":
          case "saturnus":
             if(foodPrice > 0)
-               IMAGE = CardImage.DIPLOMAT_I;
+               return CardImage.DIPLOMAT_I.cardImage;
             else
-               IMAGE = CardImage.DIPLOMAT_III;
-            break;
+               return CardImage.DIPLOMAT_III.cardImage;
          case "Mercvrivs":
          case "mercvrivs":
          case "Mercurius":
          case "mercurius":
-            IMAGE = CardImage.DIPLOMAT_IV;
-            break;
+            return CardImage.DIPLOMAT_IV.cardImage;
          case "Mars":
          case "mars":
-            IMAGE = CardImage.DIPLOMAT_V;
-            break;
+            return CardImage.DIPLOMAT_V.cardImage;
          case "Jvpiter":
          case "jvpiter":
          case "Jupiter":
          case "jupiter":
-            IMAGE = CardImage.DIPLOMAT_ST;
-            break;
+            return CardImage.DIPLOMAT_ST.cardImage;
          default:
             System.out.println("Invalid godtype entered into Diplomat constructor");
-            IMAGE = null;
+            return null;
       }
    }
    

@@ -5,17 +5,12 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import resources.default_data.saveloading.SaveLoader;
-
 import java.awt.Color;
 import java.io.File;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import src.game.map.Map;
 import src.game.cards.PersonalityCard;
+import src.game.gamestate_management.SaveLoader;
 import src.game.cards.CardStack;
 import src.game.player.Player;
 
@@ -106,7 +101,7 @@ public class Game {
         this.endingPlayer = this.currentPlayer;
         do {
             currentPlayer = this.players.get(totalTurnsPlayed % players.size());
-            /* TODO: Graphics interoperability */
+            /* Graphics interoperability */
             updateTopFacingDiscardedCards();
         } while (this.currentPlayer != this.endingPlayer);
     }
@@ -116,11 +111,7 @@ public class Game {
      * @param path the path to the file to write to
      */
     public void save(String path) { // TODO we need the game saving to actually save stuff so we can recreate the data from a file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            String line = String.format("");
-        } catch (IOException e) {
-            System.err.printf("Error saving game: %s%n", e.getMessage());
-        }
+
     }
 
     /**
@@ -222,4 +213,129 @@ public class Game {
     public String getPath() {
         return this.path;
     }
+
+    /*SCORING - EMILY */ 
+
+    /**
+     * Vesta calculations: gets total amout of sestertii from money + storehouse
+     * @return number of victory points from Vesta
+     */
+    /* public int getVestaVP(Player p) {
+        StoreHouse resources = p.storeHouse();
+        int totalSestertii = p.sestertii();
+
+        for(Storeable s: resources.getResources()){
+            if (s.equals(Good.BRICK))
+                totalSestertii += 3;
+            else if (s.equals(Good.FOOD))
+                totalSestertii += 4;
+            else if (s.equals(Good.TOOL))
+                totalSestertii += 5;
+            else if (s.equals(Good.WINE))
+                totalSestertii += 6;
+            else if (s.equals(Good.CLOTH))
+                totalSestertii += 7;
+            else 
+                totalSestertii += 0;
+        }
+
+        return totalSestertii/10;
+    }*/
+
+    /**
+     * Jvpiter calculations: number of non brick house muliplied by number of Jvpiter cards
+     * @return number of victory points from Jvpiter
+     */
+    /*public int getJvpiterVP(Player p){
+        ArrayList<House> houses = p.houses();
+        int count = 0;
+        // get # jvp cards
+
+        for (House h: houses){
+            if(!h.good().equals(Good.BRICK))
+                count++;
+        }
+        return count; // * num of jvp cards
+    }*/
+
+    /**
+     * Satvrnvs calculations: number of provinces that have a players city in it muliplied by number of Satvrnvs cards
+     * @return number of victory points from Satvrnvs
+     */
+    /*public int getSatvrnvsVP(Player p){
+        // can't get provinces?????
+        return 0;
+    }*/
+
+    /**
+     * Mercvrivs calculations: number of goods produced muliplied by number of Mercvrivs cards
+     * @return number of victory points from Mercvrivs
+     */
+    /*public int getMercvrivsVP(Player p){
+        ArrayList<House> houses = p.houses();
+        int foodCount = 0;
+        int toolCount = 0;
+        int wineCount = 0;
+        int clothCount = 0;
+        int brickCount = 0;
+        int count = 0;
+        // get # merc cards
+
+        for (House h: houses){
+            if (count == 5){
+                return (count * 2); //  *merc cards
+            }
+            if (h.good().equals(Good.BRICK)){
+                brickCount++;
+                if (brickCount == 1)
+                    count++;
+            }
+            else if (h.good().equals(Good.FOOD)){
+                foodCount++;
+                if(foodCount == 1)
+                    count++;
+            }
+            else if(h.good().equals(Good.TOOL)){
+                toolCount++;
+                if(toolCount == 1)
+                    count++;
+            }
+            else if(h.good().equals(Good.WINE)){
+                wineCount++;
+                if(wineCount == 1)
+                    count++;
+            }
+            else {
+                clothCount++;
+                if(clothCount == 1)
+                    count++;
+            }
+                    
+        }
+        return count * 2; // *num of merc cards
+    }*/
+
+    /**
+     * Mars calculations: number of colonists on the board produced muliplied by number of Mars cards
+     * @return number of victory points from Mars
+     */
+    /*public int getMarsVP (Player p) {
+        // get num of mars cards
+        ArrayList<Colonist> colonistList = p.colonists();
+        int count = 0;
+
+        for(Colonist c: colonistList){
+            //if (c is on the board) count++
+        }
+        // return num of colonists on board (count) * num of mars cards
+        return 0;
+    }*/
+
+    /**
+     * Minera calculations: based of speciality cards muliplied by number on certain Minera cards
+     * @return number of victory points from Minera
+     */
+    /*public int getMineraVP(Player p) {
+        return 0;
+    }*/
  }

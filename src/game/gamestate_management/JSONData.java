@@ -1,4 +1,4 @@
-package resources.default_data.saveloading;
+package src.game.gamestate_management;
 
 class JSONData extends JSON {
     private final String data;

@@ -181,4 +181,13 @@ public class StoreHouse {
     public Storeable get(int index) {
         return this.elements.get(index);
     }
+
+    /**
+     * Getter to get list of resources
+     * @return list of resources
+     * @author Emily --> added for scoring (refer to bottom of Game.java)
+     */
+    public List<Storeable> getResources() {
+        return elements; 
+    }
 }

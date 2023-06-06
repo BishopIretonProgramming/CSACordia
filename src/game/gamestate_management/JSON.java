@@ -1,7 +1,7 @@
-package resources.default_data.saveloading;
+package src.game.gamestate_management;
 
 class JSON {
-    final String title;
+    private final String title;
 
     protected JSON(String title) {
         this.title = title;

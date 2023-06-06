@@ -7,10 +7,9 @@ import src.game.player.Player;
 //import java.awt.Graphics;
 
 public class Consul extends PersonalityCard implements Jvpiter {
-   public final CardImage image = CardImage.CONSUL;
    
    public Consul(Player myPlayer) {
-      super(myPlayer, 0, 0, 0, 0, 1, 1);
+      super(myPlayer, 0, 0, 0, 0, 1, 1, CardImage.CONSUL.cardImage);
    }
    
    @Override

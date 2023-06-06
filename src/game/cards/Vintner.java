@@ -11,11 +11,10 @@ import src.game.House;
 //Depending on future implementation, may incorporate all Specialist cards under
 //one superclass/interface
 public class Vintner extends PersonalityCard implements Minerva {
-   public final CardImage IMAGE = CardImage.VINTNER;
    public final Good GOOD = Good.WINE;
 
    public Vintner(Player myPlayer) {
-      super(myPlayer, 1, 0, 0, 1, 0, 4);
+      super(myPlayer, 1, 0, 0, 1, 0, 4, CardImage.VINTNER.cardImage);
    }
    
    @Override
