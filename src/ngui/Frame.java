@@ -35,6 +35,10 @@ public class Frame extends JFrame {
         layout.next(content);
     }
 
+    public void showNamePanel() {
+
+    }
+
     public void showMainPanel() {
 
     }

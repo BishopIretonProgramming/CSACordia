@@ -1,5 +1,6 @@
 package src.ngui;
 
+//  imports
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -7,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
+
+import src.game.Game;
+import src.game.map.Map;
+import src.game.player.Player;
 
 public class PlayerSetupPanel extends JPanel {
     private static final int MAX_PLAYERS = 5;
@@ -48,7 +53,7 @@ public class PlayerSetupPanel extends JPanel {
 
         addButton = new JButton("Add Player");
         removeButton = new JButton("Remove Player");
-        startButton = new JButton("Start Game");
+        startButton = new JButton("Continue");
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -71,7 +76,7 @@ public class PlayerSetupPanel extends JPanel {
         });
 
         startButton.addActionListener(e -> {
-            frame.showMainPanel();
+            frame.showNamePanel();
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
