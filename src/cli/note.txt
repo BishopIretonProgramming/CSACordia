@@ -1,2 +1,0 @@
-It has become apparent that there is little chance of completing the graphics of the game alone
-so I have elected to start writing this cli to give myself a small chance of finishing.
