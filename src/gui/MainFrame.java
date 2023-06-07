@@ -24,7 +24,7 @@ public class MainFrame extends JComponent implements ActionListener/*, MouseList
     private Game game;
     private Dimension SIZE = new Dimension(1080, 758); //original: 1200px x 842px
 
-    MainFrame(Game game) {
+    public MainFrame(Game game) {
         this.game = game;
         
         f = new JFrame("Concordia");
@@ -46,12 +46,12 @@ public class MainFrame extends JComponent implements ActionListener/*, MouseList
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(PieceImage.BOARD.pieceImage, 0, 0, SIZE.width, SIZE.height, null);
-        CardStack c = new CardStack();
-        c.draw(g);
-        BonusBox b = new BonusBox(55, 55);
-        b.draw(g);
-        //game.getDrawPile().draw(g);
-        //game.getBonusBox().draw(g);
+        //CardStack c = new CardStack();
+        //c.draw(g);
+        //BonusBox b = new BonusBox(55, 55);
+        //b.draw(g);
+        game.getDrawPile().draw(g);
+        game.getBonusBox().draw(g);
     }
 
     @Override

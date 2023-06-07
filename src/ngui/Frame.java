@@ -2,6 +2,7 @@ package src.ngui;
 
 //  imports
 import src.game.Game;
+import src.gui.MainFrame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,7 +44,6 @@ public class Frame extends JFrame {
     }
 
     public void showMainPanel(Game game) {
-        content.add(new GamePanel(this, game));
-        layout.next(content);
+        new MainFrame(game);
     }
 }
