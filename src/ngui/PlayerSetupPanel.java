@@ -1,12 +1,23 @@
 package src.ngui;
 
 //  imports
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
+import java.awt.Component;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -57,23 +68,17 @@ public class PlayerSetupPanel extends JPanel {
         removeButton = new JButton("Remove Player");
         startButton = new JButton("Continue");
 
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (playerCount < MAX_PLAYERS) {
-                    addPlayerCard();
-                    validateButtons();
-                }
+        addButton.addActionListener(e -> {
+            if (playerCount < MAX_PLAYERS) {
+                addPlayerCard();
+                validateButtons();
             }
         });
 
-        removeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (playerCount > MIN_PLAYERS) {
-                    removePlayerCard();
-                    validateButtons();
-                }
+        removeButton.addActionListener(e -> {
+            if (playerCount > MIN_PLAYERS) {
+                removePlayerCard();
+                validateButtons();
             }
         });
 
@@ -114,12 +119,7 @@ public class PlayerSetupPanel extends JPanel {
                 }
             });
 
-            colorField.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    validateButtons();
-                }
-            });
+            colorField.addActionListener(e -> validateButtons());
 
             playerCard.add(new JLabel("Name:"));
             playerCard.add(nameField);
