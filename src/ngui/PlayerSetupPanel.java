@@ -26,6 +26,11 @@ import src.game.Game;
 import src.game.map.Map;
 import src.game.player.Player;
 
+/**
+ * A GUI component to get information regarding the {@code Player}s that are playing the game.
+ *
+ * @author devinlinux
+ */
 public class PlayerSetupPanel extends JPanel {
     private static final int MAX_PLAYERS = 5;
     private static final int MIN_PLAYERS = 2;

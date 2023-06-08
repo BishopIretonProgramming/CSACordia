@@ -12,6 +12,12 @@ import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A basic GUI component that is shown at the start of the game to load a game or 
+ * make a new game.
+ *
+ * @author devinlinux
+ */
 public class StartPanel extends JPanel {
 
     private Frame frame;

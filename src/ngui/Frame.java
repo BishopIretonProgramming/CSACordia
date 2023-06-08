@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 
 import java.awt.CardLayout;
 
+/**
+ * A basic class to hold all of the content of the game on one {@code JFrame}.
+ *
+ * @author devinlinux
+ */
 public class Frame extends JFrame {
 
     private JPanel content;

@@ -9,6 +9,11 @@ import java.awt.Insets;
 
 import src.game.Game;
 
+/**
+ * A basic GUI component to get the name of the game for saving purposes.
+ *
+ * @author devinlinux.
+ */
 public class GameNamePanel extends JPanel {
     
     private JTextField field;
