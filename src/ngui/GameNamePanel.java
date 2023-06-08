@@ -1,10 +1,19 @@
 package src.ngui;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 import src.game.Game;
 
+/**
+ * A basic GUI component to get the name of the game for saving purposes.
+ *
+ * @author devinlinux.
+ */
 public class GameNamePanel extends JPanel {
     
     private JTextField field;

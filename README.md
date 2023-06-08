@@ -2,11 +2,17 @@
 
 ## GUI:
 
-- [ ] StartScreen - Nora
-- [ ] Make New Game - Joe Lentini
+- [X] StartScreen - Nora
+- [X] Make New Game - Nora
 - [ ] Load Game - Andrew
 - [ ] Main Game - Rory
-- [ ] Bonus Box - Anthony
+- [X] Bonus Box - Anthony
+
+## New GUI:
+
+- [X] StartScreen - Michael
+- [X] Make New Game - Michael
+- [ ] Load Game - Michael
 
 ## Modals/Popups:
 
@@ -15,11 +21,13 @@
 - [ ] Player Resources - Caroline
 - [ ] Cards to Buy - Anthony
 - [ ] Personality Card Choices/Display - Joe Murray
-- [ ] Other Modals/Popups - Emily
 
 ## Backend
 
-- [ ] Game Class and Play Loop - Emily
+- [X] Game Class and Play Loop - Michael
 - [ ] Scoring System - Emily
-- [ ] Personality Cards - Rory
-- [ ] Making Backend Work with GUI - Michael
+- [X] Personality Cards - Rory
+- [X] Making Backend Work with GUI - Michael
+- [X] Login System - Michael
+- [X] JSON game saver - Andrew
+- [ ] JSON game reader - Andrew
