@@ -9,13 +9,16 @@ src.ai.environment.game.map
 src.ai.environment.game.player
 src.ai.main
 src.ai.model.lossfunctions
+src.cli
 src.game
 src.game.cards
 src.game.cards.godtype
+src.game.gamestate_management
 src.game.map
 src.game.player
 src.gui
 src.gui.buttons
 src.gui.pop_ups
 src.login
+src.ngui
 src.util
