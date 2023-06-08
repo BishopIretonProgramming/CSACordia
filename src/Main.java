@@ -1,6 +1,6 @@
 package src;
 
-import src.gui.Welcome;
+import src.ngui.Frame;
 
 /**
  * Class to run the game, use this main method for the main run loop
@@ -8,9 +8,6 @@ import src.gui.Welcome;
 public class Main {
     
     public static void main(String[] args) {
-
-        Welcome.welcomeFrame();
-        //  Use this for the main play loop
-        //  init graphics and make the Game here
+        new Frame();
     }
 }
