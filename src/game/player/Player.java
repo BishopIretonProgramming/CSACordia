@@ -27,7 +27,7 @@ public class Player implements java.io.Serializable {
     private int sestertii;
     private ArrayList<House> houses;
     private int numHouses;
-    private boolean hasPraefectusMagnus;
+    private boolean hasPraefectusMagnus, hasConcordiaCard;
     private Color color;
     private int numTurnsLeft;
 
@@ -195,6 +195,13 @@ public class Player implements java.io.Serializable {
     public boolean hasPraefectusMagnus() {
         return this.hasPraefectusMagnus;
     }
+/**
+     * Getter to return whether this Player has the concordia card
+     * @return whether this Player has the concordia card
+     */
+    public boolean hasConcordiaCard() {
+        return this.hasConcordiaCard;
+    }
 
     /**
      * Getter to return the Color of this Player
@@ -249,6 +256,14 @@ public class Player implements java.io.Serializable {
      */
     public void setPraefectusMagnus(boolean has) {
         this.hasPraefectusMagnus = has;
+    }
+
+    /**
+     * Setter to set whether this Player has the concordia card
+     * @param has whether this Player should have the concordai card
+     */
+    public void setConcordiaCard(boolean has) {
+        this.hasConcordiaCard = has;
     }
 
     /**
