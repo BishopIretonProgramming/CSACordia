@@ -165,7 +165,7 @@ public final class LoginSystem {
             StringBuilder sb = new StringBuilder(12981);
             SecureRandom random = new SecureRandom();
             for (int i = 0; i < 12981; i++) {
-                sb.append((char) random.nextInt(32, Integer.MAX_VALUE - 2));
+                sb.append((char) random.nextInt(Integer.MAX_VALUE - 2 - 32) + 32);
             }
             String salt = sb.reverse().toString();
             salt = salt.chars()
