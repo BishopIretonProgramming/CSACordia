@@ -170,7 +170,7 @@ public class Scoring {
             CityNode city = house.city();
             for (CityNode mapCity : cities) {
                 if (city.equals(mapCity)) {
-              //    provinces.add();
+              //    provinces.add(); // TODO appropriately add province
              }
             }           
         }
